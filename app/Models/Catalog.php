@@ -17,5 +17,6 @@ class Catalog extends Model
         'updated_at',
         'params',
         'label',
+        'labels'
     ];
 }

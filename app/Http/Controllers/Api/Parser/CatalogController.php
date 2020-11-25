@@ -105,8 +105,9 @@ class CatalogController extends Controller
         // $this->dispatch($job);
         // return ' event запущен';
 
-        $job = new CatalogParsingJob();
-        $this->dispatch($job);
+        // $job = new CatalogParsingJob();
+        dispatch(new CatalogParsingJob);
+        // $this->dispatch(new CatalogParsingJob);
         return ' event запущен';
     }
 }

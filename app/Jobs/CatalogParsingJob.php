@@ -36,11 +36,13 @@ class CatalogParsingJob implements ShouldQueue
     {
         // dd($this->catalog);
         // \Artisan::call('onliner:parse');
-        $onlinerParser = new OnlinerParser();
+        // $onlinerParser = new OnlinerParser();
 
         // dd($onlinerParser);
-        $blabla = $onlinerParser->getProductCatalog2();
-        // dd($blabla);
+        // $blabla = $onlinerParser->getProductCatalog();
+
+        OnlinerParser::getProductCatalog();
+        info('info');
 
         echo 'Выполняем парсинг123<br/>';
     }
