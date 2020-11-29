@@ -90,6 +90,6 @@ class CatalogController extends Controller
     public function startCatalogParsing()
     {
         dispatch(new CatalogParsingJob);
-        return ' event запущен';
+        return response()->json(['status'=>'started', 'message'=>'Event запущен'], 200);
     }
 }

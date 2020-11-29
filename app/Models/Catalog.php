@@ -11,12 +11,15 @@ class Catalog extends Model
     protected $fillable = [
         'id',
         'name',
+        'type',
         'parent_id',
         'password',
         'created_at',
         'updated_at',
         'params',
         'label',
-        'labels'
+        'labels',
+        'url',
+        'full_url'
     ];
 }
