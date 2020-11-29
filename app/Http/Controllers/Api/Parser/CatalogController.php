@@ -89,25 +89,7 @@ class CatalogController extends Controller
 
     public function startCatalogParsing()
     {
-        // $item = Catalog::create(
-        //     [
-        //         'name'=>'startCatalogParsing',
-        //         'parent_id'=>'0',
-        //         'label'=>'startCatalogParsing',
-        //         'labels'=>'startCatalogParsing'
-        //     ]
-        // );
-
-
-        // $job = new CatalogParsingJob($item);
-        //         //    ->delay(Carbon::now()->addMinutes(1));
-        // // dd($job);
-        // $this->dispatch($job);
-        // return ' event запущен';
-
-        // $job = new CatalogParsingJob();
         dispatch(new CatalogParsingJob);
-        // $this->dispatch(new CatalogParsingJob);
         return ' event запущен';
     }
 }
