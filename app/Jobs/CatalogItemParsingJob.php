@@ -7,11 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Catalog;
 use  App\Services\Parsers\OnlinerParser;
 
-
-class CatalogParsingJob implements ShouldQueue
+class CatalogItemParsingJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -22,9 +20,9 @@ class CatalogParsingJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        // $this->catalogItem = $test;
+        $this->catalogItem = $data;
     }
 
     /**
@@ -34,9 +32,7 @@ class CatalogParsingJob implements ShouldQueue
      */
     public function handle()
     {
-        OnlinerParser::getCatalog();
+        OnlinerParser::getCatalogItem($this->catalogItem);
         info('info');
-
-        echo 'Выполняем парсинг123<br/>';
     }
 }

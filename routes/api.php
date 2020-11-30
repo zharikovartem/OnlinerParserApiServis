@@ -19,4 +19,6 @@ use Illuminate\Http\Request;
 
 
 Route::resource('getCatalogParts', Api\Parser\CatalogController::class);
+
 Route::get('startCatalogParsing', 'Api\Parser\CatalogController@startCatalogParsing');
+Route::get('startCatalogItem/{item}', 'Api\Parser\CatalogController@startCatalogItem');

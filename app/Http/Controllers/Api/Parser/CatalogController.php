@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Parser;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Jobs\CatalogParsingJob;
+use App\Jobs\CatalogItemParsingJob;
 use App\Models\Catalog;
 // use Carbon\Carbon;
 
@@ -91,5 +92,17 @@ class CatalogController extends Controller
     {
         dispatch(new CatalogParsingJob);
         return response()->json(['status'=>'started', 'message'=>'Event запущен'], 200);
+    }
+
+    public function startCatalogItem($item)
+    {
+        $urlToParse = Catalog::where('name', $item)->first();
+
+        dispatch(new CatalogItemParsingJob([
+            'name'=>$item,
+            'part'=>1,
+            'url'=>$urlToParse['url']
+        ]));
+        return 'parse catalog item';
     }
 }

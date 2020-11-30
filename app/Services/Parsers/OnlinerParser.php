@@ -4,6 +4,7 @@ namespace App\Services\Parsers;
 
 use App\Models\Catalog;
 use DiDom\Document; // gfhcth реьд
+use Illuminate\Support\Facades\Schema;
 
 // use Sunra\PhpSimple\HtmlDomParser;
 // use Symfony\Component\DomCrawler\Crawler;
@@ -17,7 +18,7 @@ use DiDom\Document; // gfhcth реьд
 
 class OnlinerParser {
 
-    public static function getProductCatalog() {
+    public static function getCatalog() {
         $catalog = Catalog::get();
         $catalogByName = array();
         foreach ($catalog as $key => $value) {
@@ -97,6 +98,35 @@ class OnlinerParser {
         }
 
 
+    }
+
+    public static function getCatalogItem($data) {
+        $catalogItem = $data['name'];
+        # Проверяем таблицу на существование:
+        if (Schema::hasTable($catalogItem)) {
+            echo $catalogItem.' - Существует!';
+        } else {
+            Schema::create($catalogItem, function($table) {
+                $table->increments('id');
+                $table->timestamps();
+                $table->string('name');
+                $table->string('article');
+                $table->mediumText('url')->nullable();
+                $table->mediumText('params')->nullable();
+            });
+
+            echo $catalogItem.' - Создана!';
+        }
+
+        echo '
+        Стартуем: '.$data['part'];
+        # https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page=1
+        # https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page=0
+        $baseUrl = 'https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page='.$data['part'];
+        // $document = new Document($baseUrl, true);
+        $pageJSON = file_get_contents($baseUrl);
+        $pageObject = json_decode($pageJSON, true);
+        var_dump($pageObject);
     }
 
 }
