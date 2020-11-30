@@ -5,6 +5,7 @@ namespace App\Services\Parsers;
 use App\Models\Catalog;
 use DiDom\Document; // gfhcth реьд
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 // use Sunra\PhpSimple\HtmlDomParser;
 // use Symfony\Component\DomCrawler\Crawler;
@@ -108,25 +109,60 @@ class OnlinerParser {
         } else {
             Schema::create($catalogItem, function($table) {
                 $table->increments('id');
+                $table->integer('onliner_id');
                 $table->timestamps();
+                $table->string('key');
                 $table->string('name');
-                $table->string('article');
-                $table->mediumText('url')->nullable();
-                $table->mediumText('params')->nullable();
+                $table->string('full_name');
+                $table->string('name_prefix');
+                $table->string('extended_name');
+                $table->mediumText('image_header_url');
+                $table->mediumText('descriptions');
+                $table->decimal('price_min', 6, 2);
+
+                // $table->mediumText('params')->nullable();
             });
 
             echo $catalogItem.' - Создана!';
         }
 
         echo '
-        Стартуем: '.$data['part'];
+        Стартуем: '.$data['part'].'
+        
+        ';
         # https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page=1
-        # https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page=0
         $baseUrl = 'https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page='.$data['part'];
         // $document = new Document($baseUrl, true);
         $pageJSON = file_get_contents($baseUrl);
         $pageObject = json_decode($pageJSON, true);
-        var_dump($pageObject);
+
+        $productsData = $pageObject['products'];
+        $products = array();
+
+        foreach ($productsData as $key => $item) {
+            $productItem = [
+                ['name'] => $item['name'],
+                ['onliner_id'] => $item['id'],
+                ['key'] = $item['key'],
+                ['full_name'] => $item['full_name'],
+                ['name_prefix'] => $item['name_prefix'],
+                ['extended_name'] => $item['extended_name'],
+                ['image_header_url'] => $item['images']['header'],
+                ['descriptions'] => $item['description'],
+                ['price_min'] => $item['prices']['price_min']['amount']
+            ];
+            
+            $products[] = $productItem;
+        }
+
+        DB::table('users')->insert($products);
+
+
+        if ($pageObject['page']['last'] == $data['part']) {
+            echo 'end';
+        } else {
+            echo 'next';
+        }
     }
 
 }
