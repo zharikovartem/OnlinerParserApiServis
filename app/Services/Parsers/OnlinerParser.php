@@ -6,6 +6,7 @@ use App\Models\Catalog;
 use DiDom\Document; // gfhcth реьд
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\CatalogItemParsingJob;
 
 // use Sunra\PhpSimple\HtmlDomParser;
 // use Symfony\Component\DomCrawler\Crawler;
@@ -105,66 +106,110 @@ class OnlinerParser {
         $catalogItem = $data['name'];
         # Проверяем таблицу на существование:
         if (Schema::hasTable($catalogItem)) {
-            echo $catalogItem.' - Существует!';
+            // echo $catalogItem.' - Существует!';
         } else {
             Schema::create($catalogItem, function($table) {
                 $table->increments('id');
                 $table->integer('onliner_id');
+                $table->integer('popularity');
                 $table->timestamps();
-                $table->string('key');
+                $table->string('onliner_key');
                 $table->string('name');
                 $table->string('full_name');
                 $table->string('name_prefix');
                 $table->string('extended_name');
-                $table->mediumText('image_header_url');
+                $table->mediumText('image_header_url')->nullable();
                 $table->mediumText('descriptions');
-                $table->decimal('price_min', 6, 2);
+                $table->mediumText('html_url');
+                $table->decimal('price_min', 8, 2);
 
                 // $table->mediumText('params')->nullable();
             });
 
-            echo $catalogItem.' - Создана!';
+            // echo $catalogItem.' - Создана!';
         }
 
-        echo '
-        Стартуем: '.$data['part'].'
+        // echo '
+        // Стартуем: '.$data['part'].'
         
-        ';
+        // ';
         # https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page=1
-        $baseUrl = 'https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page='.$data['part'];
+        $baseUrl = 'https://catalog.onliner.by/sdapi/catalog.api/search/'.$catalogItem.'?page='.$data['part'];
         // $document = new Document($baseUrl, true);
         $pageJSON = file_get_contents($baseUrl);
         $pageObject = json_decode($pageJSON, true);
 
         $productsData = $pageObject['products'];
-        $products = array();
+        $productsToInsert = array();
+        $productsToUpdate = array();
+        $onlinerIds = array();
 
-        foreach ($productsData as $key => $item) {
+        foreach ($productsData as $index => $item) {
+            $onlinerIds[] = $item['id'];
             $productItem = [
-                ['name'] => $item['name'],
-                ['onliner_id'] => $item['id'],
-                ['key'] = $item['key'],
-                ['full_name'] => $item['full_name'],
-                ['name_prefix'] => $item['name_prefix'],
-                ['extended_name'] => $item['extended_name'],
-                ['image_header_url'] => $item['images']['header'],
-                ['descriptions'] => $item['description'],
-                ['price_min'] => $item['prices']['price_min']['amount']
+                'name' => $item['name'],
+                'onliner_id' => $item['id'],
+                'onliner_key' => $item['key'],
+                'full_name' => $item['full_name'],
+                'name_prefix' => $item['name_prefix'],
+                'extended_name' => $item['extended_name'],
+                'image_header_url' => $item['images']['header'],
+                'descriptions' => $item['description'],
+                'price_min' => floatval($item['prices']['price_min']['amount']),
+                'popularity' => ((int)$data['part']-1) * 30 + (int)$index + 1,
+                'html_url' => $item['html_url']
             ];
             
-            $products[] = $productItem;
+            $productsToInsert[] = $productItem;
         }
 
-        DB::table('users')->insert($products);
+        # Получаем существующие товары:
+        $oldProducts = DB::table($catalogItem)
+                    ->whereIn('onliner_id', $onlinerIds)
+                    ->get();
+        // var_dump($oldProducts);
+        foreach ($oldProducts as $keyO => $oldProduct) {
+            // echo $oldProduct->onliner_id;
+            foreach ($productsToInsert as $keyP => $product) {
+                if ($product['onliner_id'] == $oldProduct->onliner_id) {
+                    // $oldProduct->updated_at = now();
+                    $itemToUpdate = [
+                        'id'=>$oldProduct->id
+                    ];
+                    $productsToUpdate[] = $itemToUpdate;
+                    unset($productsToInsert[$keyP]);
+                }
+            }
+        }
+
+        # Добавляем в базу:
+        if (count($productsToInsert) > 0) {
+            DB::table($catalogItem)->insert($productsToInsert);
+        } else {
+            // foreach ($productsToUpdate as $key => $value) {
+                // DB::table('users')
+                //     ->where('id', $value['id'])
+                //     ->update(['updated_at'=>now()]);
+            // }
+        }
+        
 
 
         if ($pageObject['page']['last'] == $data['part']) {
             echo 'end';
         } else {
-            echo 'next';
+            // echo 'next';
+            $data['part']++;
+            dispatch(new CatalogItemParsingJob($data));
+            echo (int)memory_get_peak_usage()/1000000 . '';
         }
     }
 
+    # Получение параметров для обработки:
+    # Request URL: https://catalog.onliner.by/sdapi/catalog.api/facets/hob_cooker
+
+    # Получение цены и продавцов товара
+    # Request URL: https://catalog.onliner.by/sdapi/catalog.api/products/exite1013
 }
 
 
