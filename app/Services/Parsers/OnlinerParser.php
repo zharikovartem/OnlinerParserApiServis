@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Jobs\CatalogItemParsingJob;
 use App\Jobs\ProductParamParsingJob;
 
+
+
 // use Sunra\PhpSimple\HtmlDomParser;
 // use Symfony\Component\DomCrawler\Crawler;
 // use Goutte\Client;
@@ -248,6 +250,9 @@ class OnlinerParser {
             ->limit(1)
             ->get();
             // dd($products);
+        }
+        if (count($products) == 0) {
+            die('Все товары спаршены');
         }
         
 
