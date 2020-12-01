@@ -47,3 +47,7 @@ php artisan queue:restart
 **[api/startProductParamParsing/{productType}](http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории
 
 **[api/startProductParamParsing/{productType}/{productId}](http://127.0.0.1:8000/api/startProductParamParsing/hoods/1)** - Парсинг описаний выбранного по id товара
+
+
+### Полезные статьи:
+**[Создание команды php artisan db:create](https://www.techspeak.dev/2018/09/30/laravel-creating-the-database-using-artisan-commands.html)**

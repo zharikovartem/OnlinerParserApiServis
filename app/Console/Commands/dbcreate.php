@@ -49,5 +49,6 @@ class dbcreate extends Command
 
         config(["database.connections.mysql.database" => $schemaName]);
 
+        echo 'database '.$this->argument('name').' created!';
     }
 }
