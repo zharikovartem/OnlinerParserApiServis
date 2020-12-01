@@ -1,5 +1,10 @@
 # Rest сервис для обработки контента и цен конкурентов с onliner.by
 
+### Установка на Хостинг:
+```console
+
+```
+
 ### Установка на OpenServer:
 ```console
 git clone  https://github.com/zharikovartem/localhost.git
