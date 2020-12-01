@@ -1,4 +1,4 @@
-# CRM система для розничной интернет торговли 
+# Rest сервис для обработки контента и цен конкурентов с onliner.by
 
 ### Установка на OpenServer:
 
@@ -16,3 +16,7 @@ php artisan config:clear
 php artisan config:cache
 php artisan key:generate
 php artisan migrate
+```
+
+### Endpoints:
+Описание разметки файла README.md **[Ссылка на репозиторий](https://github.com/GnuriaN/format-README#%D0%A1%D0%BF%D0%B8%D1%81%D0%BA%D0%B8)**
