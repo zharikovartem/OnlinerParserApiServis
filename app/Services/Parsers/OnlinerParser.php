@@ -244,16 +244,20 @@ class OnlinerParser {
             ->whereNull('pars_date')
             ->limit(1)
             ->get();
+            if (count($products) == 0) {
+                die('Все товары спаршены');
+            }
         } else {
             $products = DB::table($data['name'])
             ->where('id', $data['target'])
             ->limit(1)
             ->get();
             // dd($products);
+            if (count($products) == 0) {
+                die('Данный товар не существует');
+            }
         }
-        if (count($products) == 0) {
-            die('Все товары спаршены');
-        }
+        
         
 
         $document = new Document($products[0]->html_url, true);
