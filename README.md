@@ -18,8 +18,24 @@ php artisan key:generate
 php artisan migrate
 ```
 
+Обновление базы данных
 ```console
 php artisan migrate:fresh
+```
+
+Запуск очереди
+```console
+php artisan queue:work
+```
+
+Запуск срвера
+```console
+php artisan serv
+```
+
+Перезапус очереди
+```console
+php artisan queue:restart
 ```
 
 ### Endpoints:
