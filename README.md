@@ -12,6 +12,7 @@ composer install
 npm install
     Открыть VsCode:
 copy .env.example .env
+php artisan db:create
 php artisan config:clear
 php artisan config:cache
 php artisan key:generate
