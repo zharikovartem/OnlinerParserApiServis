@@ -18,6 +18,10 @@ php artisan key:generate
 php artisan migrate
 ```
 
+```console
+php artisan migrate:fresh
+```
+
 ### Endpoints:
 **[api/startCatalogParsing](http://127.0.0.1:8000/api/startCatalogParsing)** - получить список категорий
 
