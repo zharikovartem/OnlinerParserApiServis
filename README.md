@@ -1,8 +1,6 @@
 # Rest сервис для обработки контента и цен конкурентов с onliner.by
 
 ### Установка на OpenServer:
-
-Устанавливаем Composer:
 ```console
 git clone  https://github.com/zharikovartem/localhost.git
     или
