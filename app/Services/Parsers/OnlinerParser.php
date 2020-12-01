@@ -7,6 +7,7 @@ use DiDom\Document; // gfhcth реьд
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\CatalogItemParsingJob;
+use App\Jobs\ProductParamParsingJob;
 
 // use Sunra\PhpSimple\HtmlDomParser;
 // use Symfony\Component\DomCrawler\Crawler;
@@ -115,6 +116,7 @@ class OnlinerParser {
                 $table->timestamps();
                 $table->string('onliner_key');
                 $table->string('name');
+                $table->string('brend')->nullable();
                 $table->string('full_name');
                 $table->string('name_prefix');
                 $table->string('extended_name');
@@ -122,6 +124,9 @@ class OnlinerParser {
                 $table->mediumText('descriptions');
                 $table->mediumText('html_url');
                 $table->decimal('price_min', 8, 2);
+                $table->dateTime('pars_date')->nullable();
+                $table->json('params')->nullable();
+                $table->json('images')->nullable();
 
                 // $table->mediumText('params')->nullable();
             });
@@ -157,7 +162,8 @@ class OnlinerParser {
                 'descriptions' => $item['description'],
                 'price_min' => floatval($item['prices']['price_min']['amount']),
                 'popularity' => ((int)$data['part']-1) * 30 + (int)$index + 1,
-                'html_url' => $item['html_url']
+                'html_url' => $item['html_url'],
+                'brend'=> explode(' '.$item['name'], $item['full_name'])[0]
             ];
             
             $productsToInsert[] = $productItem;
@@ -205,7 +211,154 @@ class OnlinerParser {
         }
     }
 
-    # Получение параметров для обработки:
+    public static function getProductParams($data) {
+        if ($data['getParams']) {
+            // echo 'получаем параметры';
+            // $baseUrl = 'https://catalog.onliner.by/sdapi/catalog.api/facets/'.$data['name'];
+            // $newParamsData = json_decode( file_get_contents($baseUrl) , true);
+            // # обновить данные JSON в ДБ
+            // DB::table('Catalog')
+            //     ->where('name', $data['name'])
+            //     ->update(['params' => $newParamsData]);
+
+            // // dd($newParamsData['facets']);
+
+            // foreach ($newParamsData['facets'] as $key1 => $blocks) {
+            //     // echo '
+            //     //     -'.$key1;
+            //     foreach ($blocks['items'] as $key2 => $block) {
+            //         // echo '
+            //         //     -'.$block['name'];
+            //         $paramsData[$block['description']] = $block;
+            //         $paramsData[$block['name']] = $block;
+            //     }
+            // }
+        }
+        // dd($paramsData);
+
+        # Получаем список товаров для парсинга:
+        if (!$data['item']) {
+            $products = DB::table($data['name'])
+            ->whereNull('pars_date')
+            ->limit(1)
+            ->get();
+        } else {
+            $products = DB::table($data['name'])
+            ->where('id', $data['target'])
+            ->limit(1)
+            ->get();
+            // dd($products);
+        }
+        
+
+        $document = new Document($products[0]->html_url, true);
+        $paramsBlock = $document->find('.product-specs__table');
+
+        // echo count($paramsBlock);
+
+        $tables = $paramsBlock[0]->find('tbody');
+        // echo count($tables);
+        $params = [];
+
+        foreach ($tables as $key => $table) {
+            # получаем заголовок параметра:
+            $titleParam = trim( $table->find('.product-specs__table-title-inner')[0]->text() );
+            // echo '
+            // ---('.$titleParam.')';
+            foreach ($table->find('tr') as $key1 => $value) {
+                if ($key1 != 0) {
+
+                    $paramBlocks = $value->find('td');
+                    $paramBlock = $paramBlocks[0];
+                    if (!isset($paramBlocks[1])) {
+                        continue;
+                    }
+                    $valueBlock = $paramBlocks[1];
+                        $check = $paramBlock->find('.product-tip__term');
+                        if ( count($check) > 0 ) {
+                            // echo '
+                            // ('.count($check).')'.$titleParam.' # '.trim( $check[0]->text() ).' = '.trim($valueBlock->text());
+                            $dataToParam = trim($valueBlock->text());
+                            if ($dataToParam != '') {
+                                $params[$titleParam][trim( $check[0]->text() )]['value'] = trim($valueBlock->text());
+                                $params[$titleParam][trim( $check[0]->text() )]['bool'] = true;
+                            } 
+                            else {
+                                if ( count( $valueBlock->find('.i-tip') ) ) {
+                                    $params[$titleParam][trim( $check[0]->text() )]['bool'] = true;
+                                } else {
+                                    $params[$titleParam][trim( $check[0]->text() )]['bool'] = false;
+                                }
+                                $params[$titleParam][trim( $check[0]->text() )]['value'] = null;
+                            }
+                            
+
+                        } else {
+                            // echo '
+                            // !!!!!!!'.count($check).'!!!!!!!!'.$titleParam.' # '.trim( $paramBlock->text() ).' = '.trim($valueBlock->text());
+                            $dataToParam = trim($valueBlock->text());
+                            if ($dataToParam != '') {
+                                $params[$titleParam][trim( $paramBlock->text() )]['value'] = trim($valueBlock->text());
+                                $params[$titleParam][trim( $paramBlock->text() )]['bool'] = true;
+                            } else {
+                                if ( count( $valueBlock->find('.i-tip') ) ) {
+                                    $params[$titleParam][trim( $paramBlock->text() )]['bool'] = true;
+                                } else {
+                                    $params[$titleParam][trim( $paramBlock->text() )]['bool'] = false;
+                                }
+                                $params[$titleParam][trim( $paramBlock->text() )]['value'] = null;
+                            }
+
+                        }
+                        // echo '('.$key1.')';
+                    }
+               
+            }
+        }
+
+        // dd($params);
+
+        # Получаем фото:
+        $imgToUpdate = array();
+        $imagesSmall = $document->find('.product-gallery__thumb-img');
+        foreach ($imagesSmall as $key => $image) {
+            $imgToUpdate[] = $image->getAttribute('src');
+        }
+        $imagesBig = $document->find('.product-gallery__thumb');
+        foreach ($imagesBig as $key => $image) {
+            $imgToUpdate[] = $image->getAttribute('data-original');
+        }
+        foreach ($imgToUpdate as $key => $value) {
+            if ($value == null) {
+                unset($imgToUpdate[$key]);
+            }
+        }
+
+        # Сохраняем JSON
+        DB::table($data['name'])
+            ->where('id', $products[0]->id)
+            ->update(['params'=>$params, 'pars_date'=>now(), 'images'=>$imgToUpdate]);
+
+        # Распаршиваем HTML:
+
+        if ($data['repeat']) {
+            dispatch(new ProductParamParsingJob([
+                'name'=>$data['name'],
+                'part'=>(int)$data['part']+1,
+                'getParams'=>true,
+                'repeat'=>true,
+                'item'=>false,
+                'target'=>null
+            ]));
+            echo $products[0]->id;
+        } else {
+            return json_encode($params) ;
+        }
+        
+        
+    }
+
+    # Получение параметров для обработки: +++++++++++
     # Request URL: https://catalog.onliner.by/sdapi/catalog.api/facets/hob_cooker
 
     # Получение цены и продавцов товара

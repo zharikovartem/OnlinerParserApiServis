@@ -19,9 +19,9 @@ class CreateCatalogsTable extends Migration
             $table->string('name');
             $table->integer('parent_id');
             $table->string('label');
+            $table->json('params')->nullable();
             $table->string('labels')->nullable();
             $table->string('type')->nullable();
-            $table->string('params')->nullable();
             $table->mediumText('url')->nullable();
             $table->mediumText('full_url')->nullable();
         });

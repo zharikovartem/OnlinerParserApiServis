@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api\Parser;
 
+use App\Services\Parsers\OnlinerParser;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Jobs\CatalogParsingJob;
 use App\Jobs\CatalogItemParsingJob;
+use App\Jobs\ProductParamParsingJob;
 use App\Models\Catalog;
 // use Carbon\Carbon;
 
@@ -94,15 +97,60 @@ class CatalogController extends Controller
         return response()->json(['status'=>'started', 'message'=>'Event запущен'], 200);
     }
 
-    public function startCatalogItem($item)
+    public function startCatalogItem($productType)
     {
-        $urlToParse = Catalog::where('name', $item)->first();
+        $urlToParse = Catalog::where('name', $productType)->first();
 
         dispatch(new CatalogItemParsingJob([
-            'name'=>$item,
+            'name'=>$productType,
             'part'=>1,
             'url'=>$urlToParse['url']
         ]));
         return 'parse catalog item';
+    }
+
+    public function startProductParamParsing($productType) 
+    {
+        $productBase = Catalog::where('name', $productType)->first();
+        // dd($productBase);
+        
+        dispatch(new ProductParamParsingJob([
+            // $productBase
+            'name'=>$productType,
+            'part'=>1,
+            'getParams'=>true,
+            'repeat'=>true,
+            'item'=>false,
+            'target'=>null
+        ]));
+        return 'startProductParamParsing';
+    }
+
+    public function startProductParamItem($productType, $productId) {
+
+        $productBase = Catalog::where('name', $productType)->first();
+
+        // dispatch(new ProductParamParsingJob([
+        //     // $productBase
+        //     'name'=>$productType,
+        //     'part'=>1,
+        //     'getParams'=>false,
+        //     'repeat'=>false,
+        //     'item'=>true,
+        //     'target'=>$productId
+        // ]));
+
+
+
+        return OnlinerParser::getProductParams(
+            [
+                'name'=>$productType,
+                'part'=>1,
+                'getParams'=>false,
+                'repeat'=>false,
+                'item'=>true,
+                'target'=>$productId
+            ]
+        );
     }
 }
