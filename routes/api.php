@@ -24,3 +24,6 @@ Route::get('startCatalogParsing', 'Api\Parser\CatalogController@startCatalogPars
 Route::get('startCatalogItem/{item}', 'Api\Parser\CatalogController@startCatalogItem'); # Получить список товаров для раздела
 Route::get('startProductParamParsing/{productType}', 'Api\Parser\CatalogController@startProductParamParsing'); # Получить Описания для раздела
 Route::get('startProductParamParsing/{productType}/{productId}', 'Api\Parser\CatalogController@startProductParamItem'); # Получить Описания для Товара
+
+
+

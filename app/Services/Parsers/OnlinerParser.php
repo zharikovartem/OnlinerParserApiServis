@@ -127,8 +127,11 @@ class OnlinerParser {
                 $table->mediumText('html_url');
                 $table->decimal('price_min', 8, 2);
                 $table->dateTime('pars_date')->nullable();
-                $table->json('params')->nullable();
-                $table->json('images')->nullable();
+                // $table->json('params')->nullable();
+                // $table->json('images')->nullable();
+                
+                $table->longText('params')->nullable();
+                $table->longText('images')->nullable();
 
                 // $table->mediumText('params')->nullable();
             });
