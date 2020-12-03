@@ -364,6 +364,7 @@ class OnlinerParser {
             ]));
             echo $products[0]->id;
         } else {
+            $params['images'] = json_decode( str_replace('\\', '', json_encode($imgToUpdate)) , true);
             return json_encode($params) ;
         }
         
