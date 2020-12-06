@@ -43,6 +43,9 @@ php artisan queue:restart
 ```
 
 ### Endpoints:
+**[api/getCatalogParts](http://127.0.0.1:8000/api/getCatalogParts)** - получить спаршенное дерево категорий
+**[Продакшен](https://artcrmvds.h1n.ru/api/getCatalogParts)**
+
 **[api/startCatalogParsing](http://127.0.0.1:8000/api/startCatalogParsing)** - получить список категорий
 **[Продакшен](https://artcrmvds.h1n.ru/api/startCatalogParsing)**
 
