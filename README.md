@@ -45,13 +45,15 @@ php artisan queue:restart
 ### Endpoints:
 **[api/startCatalogParsing](http://127.0.0.1:8000/api/startCatalogParsing)** - получить список категорий
 
-???**[api/startCatalogParsing/{caegoryId}](http://127.0.0.1:8000/api/startCatalogParsing/250)**-получить категорию по id
+<!-- ???**[api/startCatalogParsing/{caegoryId}](http://127.0.0.1:8000/api/startCatalogParsing/250)**-получить категорию по id -->
 
 **[api/startCatalogItem/{productName}](http://127.0.0.1:8000/api/startCatalogItem/hoods)** - получить список товаров выбранной категории
 
 **[api/startProductParamParsing/{productType}](http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории
 
 **[api/startProductParamParsing/{productType}/{productId}](http://127.0.0.1:8000/api/startProductParamParsing/hoods/1)** - Парсинг описаний выбранного по id товара
+
+**[api/getProductDescriptions/{productType}](http://127.0.0.1:8000/api/getProductDescriptions/hoods)** - Получить готовые описания для выбранной группы товаров
 
 
 ### Полезные статьи:
