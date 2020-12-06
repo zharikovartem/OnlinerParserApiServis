@@ -165,4 +165,25 @@ class CatalogController extends Controller
 
         return response()->json($products, 200);
     }
+
+    public function getProductPrices($productType) {
+        $startTime = now();
+        $products = DB::table($productType)
+            ->select('id', 'onliner_key')
+            // ->where('params', '!=', null)
+            ->limit(1)
+            ->get();
+
+            // dd($products);
+
+            $resp = ( OnlinerParser::getProductPrices(
+                    [
+                        'table'=>$productType,
+                        'onliner_key'=>$products[0]->onliner_key,
+                        'product_id'=>$products[0]->id
+                    ]
+                )
+            );
+            return $resp;
+    }
 }

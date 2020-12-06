@@ -371,11 +371,26 @@ class OnlinerParser {
         
     }
 
+    public static function getProductPrices($data) {
+        // $startTime = now();
+        $table = $data['table'];
+        $onliner_key = $data['onliner_key'];
+        $product_id = $data['product_id'];
+        // $baseUrl = 'https://catalog.onliner.by/sdapi/shop.api/products/'.$onliner_key.'/positions';
+        $baseUrl = 'https://shop.api.onliner.by/products/'.$onliner_key.'/positions';
+        $pageJSON = file_get_contents($baseUrl);
+        $pageObject = json_decode($pageJSON, true);
+        // $pageObject['start'] = $startTime;
+        // $pageObject['stop'] = now();
+        return json_encode($pageObject);
+    }
+
     # Получение параметров для обработки: +++++++++++
     # Request URL: https://catalog.onliner.by/sdapi/catalog.api/facets/hob_cooker
 
     # Получение цены и продавцов товара
-    # Request URL: https://catalog.onliner.by/sdapi/catalog.api/products/exite1013
+    # Request URL:  https://catalog.onliner.by/sdapi/shop.api/products/slsgii60wh/positions
+    #               https://shop.api.onliner.by/products/slsgii60wh/positions
 }
 
 

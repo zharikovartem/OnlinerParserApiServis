@@ -27,6 +27,6 @@ Route::get('startProductParamParsing/{productType}', 'Api\Parser\CatalogControll
 Route::get('startProductParamParsing/{productType}/{productId}', 'Api\Parser\CatalogController@startProductParamItem'); # Получить Описания для Товара
 
 Route::get('getProductDescriptions/{productType}', 'Api\Parser\CatalogController@getProductDescriptions'); # Получить готовые описания для товаров
-
+Route::get('getProductPrices/{productType}', 'Api\Parser\CatalogController@getProductPrices'); # Получить цены с ценами конкурентов
 
 
