@@ -108,7 +108,7 @@ class CatalogController extends Controller
             'part'=>1,
             'url'=>$urlToParse['url']
         ]));
-        return 'parse catalog item';
+        return 'parse catalog : '.$productType;
     }
 
     public function startProductParamParsing($productType) 
