@@ -48,13 +48,16 @@ php artisan queue:restart
 <!-- ???**[api/startCatalogParsing/{caegoryId}](http://127.0.0.1:8000/api/startCatalogParsing/250)**-получить категорию по id -->
 
 **[api/startCatalogItem/{productName}](http://127.0.0.1:8000/api/startCatalogItem/hoods)** - получить список товаров выбранной категории
+**[Продакшен](https://artcrmvds.h1n.ru/startCatalogItem/hoods)**
 
 **[api/startProductParamParsing/{productType}](http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории 
 **[Продакшен](https://artcrmvds.h1n.ru/api/startProductParamParsing/hoods)**
 
 **[api/startProductParamParsing/{productType}/{productId}](http://127.0.0.1:8000/api/startProductParamParsing/hoods/1)** - Парсинг описаний выбранного по id товара
+**[Продакшен](https://artcrmvds.h1n.ru/api/startProductParamParsing/hoods/1)**
 
 **[api/getProductDescriptions/{productType}](http://127.0.0.1:8000/api/getProductDescriptions/hoods)** - Получить готовые описания для выбранной группы товаров
+**[Продакшен](https://artcrmvds.h1n.ru/api/getProductDescriptions/hoods)**
 
 
 ### Полезные статьи:
