@@ -49,7 +49,8 @@ php artisan queue:restart
 
 **[api/startCatalogItem/{productName}](http://127.0.0.1:8000/api/startCatalogItem/hoods)** - получить список товаров выбранной категории
 
-**[api/startProductParamParsing/{productType}](http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории
+**[api/startProductParamParsing/{productType}](http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории 
+**[Продакшен](https://artcrmvds.h1n.ru/api/startProductParamParsing/hoods)**
 
 **[api/startProductParamParsing/{productType}/{productId}](http://127.0.0.1:8000/api/startProductParamParsing/hoods/1)** - Парсинг описаний выбранного по id товара
 
