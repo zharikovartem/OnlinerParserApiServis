@@ -10,6 +10,7 @@ use App\Jobs\CatalogParsingJob;
 use App\Jobs\CatalogItemParsingJob;
 use App\Jobs\ProductParamParsingJob;
 use App\Models\Catalog;
+use Illuminate\Support\Facades\DB;
 // use Carbon\Carbon;
 
 class CatalogController extends Controller
@@ -23,6 +24,7 @@ class CatalogController extends Controller
     {
         return response()->json(Catalog::get(), 200);
         // return 'Вывод всех товарных групп';
+        //https://artcrmvds.h1n.ru/api/getCatalogParts
     }
 
     /**
@@ -152,5 +154,14 @@ class CatalogController extends Controller
                 'target'=>$productId
             ]
         );
+    }
+
+    public function getProductDescriptions($productType) {
+        $products = DB::table($productType)
+            ->select('id', 'name', 'params', 'images')
+            ->where('params', '!=', null)
+            ->get();
+
+        return response()->json($products, 200);
     }
 }

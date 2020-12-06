@@ -43,15 +43,25 @@ php artisan queue:restart
 ```
 
 ### Endpoints:
-**[api/startCatalogParsing](http://127.0.0.1:8000/api/startCatalogParsing)** - получить список категорий
+**[api/getCatalogParts](http://127.0.0.1:8000/api/getCatalogParts)** - получить спаршенное дерево категорий
+**[Продакшен](https://artcrmvds.h1n.ru/api/getCatalogParts)**
 
-???**[api/startCatalogParsing/{caegoryId}](http://127.0.0.1:8000/api/startCatalogParsing/250)**-получить категорию по id
+**[api/startCatalogParsing](http://127.0.0.1:8000/api/startCatalogParsing)** - получить список категорий
+**[Продакшен](https://artcrmvds.h1n.ru/api/startCatalogParsing)**
+
+<!-- ???**[api/startCatalogParsing/{caegoryId}](http://127.0.0.1:8000/api/startCatalogParsing/250)**-получить категорию по id -->
 
 **[api/startCatalogItem/{productName}](http://127.0.0.1:8000/api/startCatalogItem/hoods)** - получить список товаров выбранной категории
+**[Продакшен](https://artcrmvds.h1n.ru/startCatalogItem/hoods)**
 
-**[api/startProductParamParsing/{productType}](http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории
+**[api/startProductParamParsing/{productType}](http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории 
+**[Продакшен](https://artcrmvds.h1n.ru/api/startProductParamParsing/hoods)**
 
 **[api/startProductParamParsing/{productType}/{productId}](http://127.0.0.1:8000/api/startProductParamParsing/hoods/1)** - Парсинг описаний выбранного по id товара
+**[Продакшен](https://artcrmvds.h1n.ru/api/startProductParamParsing/hoods/1)**
+
+**[api/getProductDescriptions/{productType}](http://127.0.0.1:8000/api/getProductDescriptions/hoods)** - Получить готовые описания для выбранной группы товаров
+**[Продакшен](https://artcrmvds.h1n.ru/api/getProductDescriptions/hoods)**
 
 
 ### Полезные статьи:
@@ -83,3 +93,6 @@ C радостью сообщаем, что на Ваш сервер была у
 По вопросам поддержки вы можете создать тикет по адресу: https://my.hostiman.ru/cabinet/tickets/create
 
 Для ускорения процесса, пожалуйста, сразу указывайте всю нужную информацию: root пароль, доменные имена, описание проблемы / вид помощи. Таким образом, вы сэкономите наше и свое время, позволив администраторам немедленно начать диагностирование проблемы.
+
+### компнды CMD
+```pwd``` - узнать директорию
