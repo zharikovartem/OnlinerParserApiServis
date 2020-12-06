@@ -44,6 +44,7 @@ php artisan queue:restart
 
 ### Endpoints:
 **[api/startCatalogParsing](http://127.0.0.1:8000/api/startCatalogParsing)** - получить список категорий
+**[Продакшен](https://artcrmvds.h1n.ru/api/startCatalogParsing)**
 
 <!-- ???**[api/startCatalogParsing/{caegoryId}](http://127.0.0.1:8000/api/startCatalogParsing/250)**-получить категорию по id -->
 
