@@ -160,7 +160,7 @@ class CatalogController extends Controller
         $products = DB::table($productType)
             ->select('id', 'name', 'params', 'images')
             ->where('params', '!=', null)
-            ->limit(100)
+            // ->limit(100)
             ->get();
 
         return response()->json($products, 200);
