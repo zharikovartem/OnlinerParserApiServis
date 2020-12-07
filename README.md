@@ -7,9 +7,9 @@
 
 ### Установка на OpenServer:
 ```console
-git clone  https://github.com/zharikovartem/localhost.git
+git clone  https://github.com/zharikovartem/OnlinerParserApiServis.git
     или
-git clone  https://github.com/zharikovartem/localhost.git project_name
+git clone  https://github.com/zharikovartem/OnlinerParserApiServis.git project_name
 cd project_name
 composer install
 npm install
