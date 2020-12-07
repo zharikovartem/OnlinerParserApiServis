@@ -11,13 +11,14 @@ const MainRouter = props => (
 <Switch>
   {/*User might LogIn*/}
   <Route exact path='/' component={Home}/>
+  
   {/*User will LogIn*/}
-  <Route path='/login' component={Login}/>
-  <Route path='/register' component={Register}/>
+  {/* <Route path='/login' component={Login}/> */}
+  {/* <Route path='/register' component={Register}/> */}
   {/* User is LoggedIn*/}
-  <PrivateRoute path='/dashboard' component={Dashboard}/>
+  {/* <PrivateRoute path='/dashboard' component={Dashboard}/> */}
   {/*Page Not Found*/}
-  <Route component={NotFound}/>
+  {/* <Route component={NotFound}/> */}
 </Switch>
 );
 
