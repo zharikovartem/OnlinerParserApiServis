@@ -9,7 +9,7 @@ function Example() {
         <div className="container">
             <BrowserRouter>
                 <Route component={Main} />
-                {/* <Route component={MainRouter} /> */}
+                <Route component={MainRouter} />
             </BrowserRouter>
         </div>
     );
