@@ -18,10 +18,13 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * The path to the "home" route for your application.
+     * Путь к «домашнему» маршруту для вашего приложения.
      *
      * @var string
      */
-    public const HOME = '/home';
+    // public const HOME = '/home';
+    public const HOME = '/';
+    public const LOGIN = '/login';
 
     /**
      * Define your route model bindings, pattern filters, etc.

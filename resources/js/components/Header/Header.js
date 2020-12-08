@@ -58,7 +58,7 @@ const Header = (props) => {
         {props.isLoggedIn ?
           <li className="has-sub"><Link to="/dashboard">Dashboard</Link></li> : ""}
         {!props.isLoggedIn ?
-          <li><Link to="/login">Login</Link> | <Link to="/register">Register</Link></li> : ""}
+          <li><Link to="/login">Login</Link> | <Link to="/registration">Register</Link></li> : ""}
       </ul>
     </nav>
   );

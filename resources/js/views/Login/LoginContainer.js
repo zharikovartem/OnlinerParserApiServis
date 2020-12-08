@@ -126,7 +126,7 @@ render() {
            <button disabled={this.state.formSubmitting} type="submit" name="singlebutton" className="btn btn-default btn-lg  btn-block mb10"> {this.state.formSubmitting ? "Logging You In..." : "Log In"} </button>
            </form>
         </div>
-        <p className="text-white">Don't have an account? <Link to="/register" className="text-yellow"> Register</Link>
+        <p className="text-white">Don't have an account? <Link to="/registration" className="text-yellow"> Register</Link>
           <span className="pull-right">
             <Link to="/" className="text-white">Back to Index</Link>
           </span>

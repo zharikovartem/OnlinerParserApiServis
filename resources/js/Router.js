@@ -13,8 +13,8 @@ const MainRouter = props => (
   <Route exact path='/' component={Home}/>
   
   {/*User will LogIn*/}
-  {/* <Route path='/login' component={Login}/> */}
-  {/* <Route path='/register' component={Register}/> */}
+  <Route path='/login' component={Login}/>
+  <Route path='/registration' component={Register}/>
   {/* User is LoggedIn*/}
   {/* <PrivateRoute path='/dashboard' component={Dashboard}/> */}
   {/*Page Not Found*/}
