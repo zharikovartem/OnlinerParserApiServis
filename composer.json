@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "imangazaliev/didom": "^1.16",
         "laravel/framework": "^6.18.35",
+        "laravel/passport": "^9.4",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.3"

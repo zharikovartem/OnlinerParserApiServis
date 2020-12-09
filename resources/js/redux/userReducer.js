@@ -41,4 +41,12 @@ export const registerThunkCreator = (creds) => {
     }
 }
 
+export const loginThunkCreator = (creds) => {
+    return (dispatch) => {
+        userAPI.login(creds).then(response => {
+            dispatch(setUser(response));
+        });
+    }
+}
+
 export default userReducer;

@@ -29,26 +29,38 @@ class RegisterController extends Controller
         return response()->json($response, $code);
     }
 
-    public function register(Request $request)
+    protected function validator(array $data)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
             'c_password' => 'required|same:password',
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        // echo $success['check'] = User::create($input);
 
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+            // return '!!!!!!!!!!!!!';
+            return response()->json($validator->errors(), 404);
+            // return $this->sendError('Validation Error.', $validator->errors());       
         }
+        
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        // $success['check'] = User::create($input);
         $user = User::create($input);
-        // $success['token'] =  $user->createToken('MyApp')->accessToken;
+        $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
 
         return response()->json($success, 200);
-        return $this->sendResponse($success, 'User register successfully.');
+        // }
+        // return $this->sendResponse($success, 'User register successfully.');
     }
 }

@@ -17,9 +17,9 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-
+Route::post('login', 'Api\Auth\LoginController@login');
 Route::post('register', 'Api\Auth\RegisterController@register');
-Route::get('register', 'Api\Auth\RegisterController@register');
+
 // Route::post('register', 'Api\Parser\CatalogController@startCatalogParsing'); # Получить весь каталог
 
 # https://artcrmvds.h1n.ru/api/getCatalogParts
