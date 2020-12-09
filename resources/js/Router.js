@@ -7,6 +7,7 @@ import NotFound from './views/NotFound/NotFound'
 // User is LoggedIn
 import PrivateRoute from './PrivateRoute'
 import Dashboard from './views/user/Dashboard/Dashboard';
+import RegisterContainer from './views/Register/RegisterContainer ';
 const MainRouter = props => (
 <Switch>
   {/*User might LogIn*/}
@@ -14,7 +15,7 @@ const MainRouter = props => (
   
   {/*User will LogIn*/}
   <Route path='/login' component={Login}/>
-  <Route path='/registration' component={Register}/>
+  <Route path='/registration' component={RegisterContainer}/>
   {/* User is LoggedIn*/}
   {/* <PrivateRoute path='/dashboard' component={Dashboard}/> */}
   {/*Page Not Found*/}

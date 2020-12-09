@@ -1,8 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import userReducer from './userReducer';
+import thunkMiddleware from "redux-thunk";
 
 
-let rducers = combineReducers({
+let redusers = combineReducers({
     user: userReducer
 });
 

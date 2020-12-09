@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 
 const instanse = axios.create({
-    baseURL: window.location.href,
+    baseURL: window.location.origin,
     withCredentials: true,
     headers: {'Authorization': 'Bearer '+localStorage.getItem('JwcToken')}
 });
@@ -13,6 +13,7 @@ export const userAPI = {
     register(data) {
         return instanse.post('api/register', data)
             .then(response => {
+                console.log(response)
                 return response.status === 200 ? response : null;
             })
             .catch(err => {

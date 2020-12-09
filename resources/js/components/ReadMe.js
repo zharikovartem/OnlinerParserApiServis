@@ -22,6 +22,13 @@ const ReadMe = () => {
             <br/>
             <a href="https://81.90.181.175:1500/ispmgr#/list/file/4?path=%2Fvar%2Fwww%2Fwww-root%2Fdata%2Fwww%2Fcrmapiserver.h1n.ru&p_num=1">Менеджер файлов</a> 
             
+            <h3>Увеличние памяти для composer require laravel/passport:</h3>
+            <a>@ini_set('memory_limit', '2536M');  - in composer.phar</a>
+            9
+
+            Похоже, у вас по какой-то причине поврежден phar. 
+            <br/> Попробуйте загрузить новый с https://getcomposer.org/download/ - если инструкции интерфейса командной строки вам не подходят, 
+            <br/>вы можете просто загрузить последний снимок вручную с https://getcomposer.org/composer.phar
         </div>
     );
 };

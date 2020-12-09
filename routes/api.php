@@ -18,6 +18,10 @@ use Illuminate\Http\Request;
 // });
 
 
+Route::post('register', 'Api\Auth\RegisterController@register');
+Route::get('register', 'Api\Auth\RegisterController@register');
+// Route::post('register', 'Api\Parser\CatalogController@startCatalogParsing'); # Получить весь каталог
+
 # https://artcrmvds.h1n.ru/api/getCatalogParts
 Route::resource('getCatalogParts', Api\Parser\CatalogController::class); // Получить все разделы Catalog
 

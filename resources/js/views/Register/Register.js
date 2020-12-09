@@ -1,28 +1,77 @@
-import React, { Component } from 'react';
-import RegisterContainer from './RegisterContainer ';
-// class Register extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       redirect: props.location,
-//     }
-//   }
-//   render() {
-//     return (
-//       <div className="content">
-//         <RegisterContainer redirect={this.state.redirect} />
-//       </div>
-//     )
-//   }
-// }
+import React from 'react';
+import { Form, Input, Button, Checkbox } from 'antd';
+
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 },
+};
 
 const Register = (props) => {
   console.log('Register props: ', props);
+
+  const onFinish = values => {
+    console.log('Success:', values);
+    if (values['password'] === values['c_password']) {
+      // delete values['passwordToConfirm']
+      props.registerThunkCreator(values);
+    }
+  };
+
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
-    <div className="content">
-      {/* <RegisterContainer redirect={props.redirect} /> */}
-      Register
-    </div>
+    <section className="p-5">
+    <Form
+      {...layout}
+      name="basic"
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+    >
+      <Form.Item
+        label="Name"
+        name="name"
+        rules={[{ required: true, message: 'Please input your username!' }]}
+      >
+        <Input className="mr-sm-2"/>
+      </Form.Item>
+
+      <Form.Item
+        label="E-Mail Address"
+        name="email"
+        rules={[{ required: true, message: 'Please input your E-Mail Address!' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Form.Item
+        label="Confirm Password"
+        name="c_password"
+        rules={[{ required: true, message: 'Please Confirm your password!' }]}
+      >
+        <Input.Password autoComplete="new-password"/>
+      </Form.Item>
+
+      <Form.Item {...tailLayout}>
+        <Button type="primary" htmlType="submit">
+          Зарегистрироваться
+        </Button>
+      </Form.Item>
+    </Form>
+    </section>
   );
 }
 export default Register
