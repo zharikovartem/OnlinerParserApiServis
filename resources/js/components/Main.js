@@ -1,9 +1,10 @@
 import React from 'react';
+import ReadMe from './ReadMe';
 
 const Main = () => {
     return (
         <>
-            <a href="/login">login</a>
+            <ReadMe />
         </>
     );
 }

@@ -33,6 +33,11 @@ export const userAPI = {
         return instanse.post('api/login', data)
             .then(response => {
                 console.log(response)
+                if (response.data.remember_token !== null) {
+                    localStorage.setItem('remember_token', response.data.remember_token);
+                } else {
+                    localStorage.removeItem('remember_token');
+                }
                 return response.status === 200 ? response : null;
             })
             .catch(err => {

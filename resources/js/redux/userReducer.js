@@ -2,19 +2,17 @@ import {userAPI} from './../api/api';
 const SET_USER_DATA = 'SET_USER_DATA';
 
 let initialState = {
-    phone: null,
-    password: null,
-    name: null,
-    userId: null,
-    status: null,
     isAuth: false,
-    isLoginInProgress: false
+    isLoginInProgress: false,
+    user: {}
 };
 
 const userReducer = (state = initialState, action) => {
     let stateCopy= { ...state };
     switch (action.type) {
         case SET_USER_DATA:
+            stateCopy.user = action.userData.data.user;
+            stateCopy.isAuth = true;
             return stateCopy;
 
         default:
@@ -44,7 +42,12 @@ export const registerThunkCreator = (creds) => {
 export const loginThunkCreator = (creds) => {
     return (dispatch) => {
         userAPI.login(creds).then(response => {
-            dispatch(setUser(response));
+            if (response) {
+                dispatch(setUser(response));
+            } else {
+                alert('ERROR!');
+            }
+            
         });
     }
 }
