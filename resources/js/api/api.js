@@ -32,7 +32,7 @@ export const userAPI = {
     login(data) {
         return instanse.post('api/login', data)
             .then(response => {
-                console.log(response)
+                console.log('api/login: ', response)
                 if (response.data.remember_token !== null) {
                     localStorage.setItem('remember_token', response.data.remember_token);
                 } else {

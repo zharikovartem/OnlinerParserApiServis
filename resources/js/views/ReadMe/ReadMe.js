@@ -29,6 +29,10 @@ const ReadMe = () => {
             Похоже, у вас по какой-то причине поврежден phar. 
             <br/> Попробуйте загрузить новый с https://getcomposer.org/download/ - если инструкции интерфейса командной строки вам не подходят, 
             <br/>вы можете просто загрузить последний снимок вручную с https://getcomposer.org/composer.phar
+
+            <h3>Обраить внимание</h3>
+            https://ant.design/components/steps/
+            <br/>
         </div>
     );
 };

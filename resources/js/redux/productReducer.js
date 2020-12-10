@@ -4,14 +4,17 @@ const SET_CATALOG_TREE = 'SET_CATALOG_TREE';
 
 let initialState = {
     catalogTree: null,
+    defaultCheckedKeys: [],
 };
 
 const productReducer = (state = initialState, action) => {
     let stateCopy= { ...state };
     switch (action.type) {
         case SET_CATALOG_TREE:
-            stateCopy.catalogTree = treeMaping.mapingArreyToObject(action.catalogItems);
-            console.log('catalogTree: ', stateCopy.catalogTree)
+            const treeData = treeMaping.mapingArreyToObject(action.catalogItems);
+            stateCopy.catalogTree = treeData.tree;
+            stateCopy.defaultCheckedKeys = treeData.defaultCheckedKeys;
+            console.log('catalogTree: ', stateCopy.catalogTree);
             return stateCopy;
 
         default:

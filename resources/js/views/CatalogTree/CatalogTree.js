@@ -21,15 +21,18 @@ const CatalogTree = (props) => {
         );
     } else {
         return (
+            <>
+            <h3>Дерево каталога Onliner</h3>
             <Tree
                 checkable
                 // defaultExpandedKeys={['0-0-0', '0-0-1']}
                 // defaultSelectedKeys={['0-0-0', '0-0-1']}
-                // defaultCheckedKeys={['0-0-0', '0-0-1']}
+                defaultCheckedKeys={props.defaultCheckedKeys}
                 // onSelect={onSelect}
                 // onCheck={onCheck}
                 treeData={props.catalogTree}
             />
+            </>
         );
     }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 import MainRouter from './Router';
@@ -10,7 +10,8 @@ import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Menu from './components/Menu/MenuContainer';
 
-function Example() {
+const Example = () => {
+    console.log(store)
     return (
         <div className="container-fluid">
             <Provider store={store}>

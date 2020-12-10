@@ -1,6 +1,7 @@
+let defaultCheckedKeys = [];
+
 const toAndtTreeType = (object, thisKey, oldKey) => {
     let response = [];
-    // console.log(object)
 
     for (const key in object) {
         if (object.hasOwnProperty(key)) {
@@ -10,7 +11,7 @@ const toAndtTreeType = (object, thisKey, oldKey) => {
             if (oldKey !== '') {
                 newKey = oldKey+'-'+thisKey;
             }
-            console.log(String(newKey));
+            // console.log(String(newKey));
             
             if (element.id == undefined) {
                 let item = {
@@ -24,6 +25,9 @@ const toAndtTreeType = (object, thisKey, oldKey) => {
                     title: element.label,
                     key: String(newKey),
                 };
+                if (element.is_active) {
+                    defaultCheckedKeys.push(String(newKey));
+                }
                 response.push(item)
             }
         }
@@ -75,6 +79,10 @@ export const treeMaping = {
             }
         }
         console.log('response: ', response)
-        return toAndtTreeType(response, 0, '');
+        // return toAndtTreeType(response, 0, '');
+        return {
+            tree: toAndtTreeType(response, 0, ''),
+            defaultCheckedKeys: defaultCheckedKeys
+        }
     }
 }
