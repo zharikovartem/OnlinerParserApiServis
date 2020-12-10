@@ -1,4 +1,40 @@
+const toAndtTreeType = (object, thisKey, oldKey) => {
+    let response = [];
+    // console.log(object)
+
+    for (const key in object) {
+        if (object.hasOwnProperty(key)) {
+            const element = object[key];
+
+            let newKey = thisKey;
+            if (oldKey !== '') {
+                newKey = oldKey+'-'+thisKey;
+            }
+            console.log(String(newKey));
+            
+            if (element.id == undefined) {
+                let item = {
+                    title: key,
+                    key: String(newKey),
+                    children: toAndtTreeType(element, 0, newKey)
+                };
+                response.push(item)
+            } else {
+                let item = {
+                    title: element.label,
+                    key: String(newKey),
+                };
+                response.push(item)
+            }
+        }
+        thisKey++;
+    }
+
+    return response;
+}
+
 export const treeMaping = {
+
     mapingArreyToObject(arr) {
         let response = {};
         let elemsByParent = {};
@@ -38,6 +74,7 @@ export const treeMaping = {
                 }
             }
         }
-        return response;
+        console.log('response: ', response)
+        return toAndtTreeType(response, 0, '');
     }
 }

@@ -82,7 +82,6 @@ export const catalogAPI = {
     getCatalogItems() {
         return instanse.get('api/getCatalogParts')
             .then(response => {
-                console.log(response)
                 return response.status === 200 ? response : null;
             })
             .catch(err => {

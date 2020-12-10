@@ -6,10 +6,10 @@ import CatalogTree from '../../views/CatalogTree/CatalogTreeContainer';
 const { TabPane } = Tabs;
 
 const Main = (props) => {
-    console.log('Main props: ', props);
+    // console.log('Main props: ', props);
 
     const callback = (key) => {
-        console.log(key);
+        // console.log(key);
     }
 
     if (props.isAuth) {

@@ -11,6 +11,7 @@ const productReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CATALOG_TREE:
             stateCopy.catalogTree = treeMaping.mapingArreyToObject(action.catalogItems);
+            console.log('catalogTree: ', stateCopy.catalogTree)
             return stateCopy;
 
         default:
@@ -23,7 +24,6 @@ export const setCatalogTree = (catalogItems) => ({ type: SET_CATALOG_TREE, catal
 export const getCatalogTreeThunkCreator = () => {
     return (dispatch) => {
         catalogAPI.getCatalogItems().then(response => {
-            console.log(response)
             dispatch(setCatalogTree(response.data));
         });
     }
