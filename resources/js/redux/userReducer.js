@@ -1,10 +1,12 @@
 import {userAPI} from './../api/api';
 const SET_USER_DATA = 'SET_USER_DATA';
+const LOGOUT = 'LOGOUT';
 
 let initialState = {
     isAuth: false,
     isLoginInProgress: false,
-    user: {}
+    user: {},
+    userStatus: 'guest',
 };
 
 const userReducer = (state = initialState, action) => {
@@ -13,6 +15,13 @@ const userReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             stateCopy.user = action.userData.data.user;
             stateCopy.isAuth = true;
+            if (action.userData.data.user.status !== undefined) {
+                stateCopy.userStatus = action.userData.data.user.status;
+            }
+            return stateCopy;
+
+        case LOGOUT:
+            stateCopy = initialState;
             return stateCopy;
 
         default:
@@ -21,6 +30,7 @@ const userReducer = (state = initialState, action) => {
 }
 
 export const setUser = (userData) => ({ type: SET_USER_DATA, userData });
+export const logout = () => ({type: LOGOUT});
 
 // export const getAuthMeThunkCreator = () => {
 //     return (dispatch) => {

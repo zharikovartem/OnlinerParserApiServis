@@ -3,7 +3,7 @@ import {BrowserRouter, Link, Route, Switch} from 'react-router-dom';
 import Login from './views/Login/LoginContainer';
 import RegisterContainer from './views/Register/RegisterContainer ';
 // User is LoggedIn
-import Main from './components/Main';
+import Main from './components/Content/MainContainer';
 
 const MainRouter = props => (
 <Switch>

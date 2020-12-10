@@ -50,12 +50,12 @@ const Login = (props) => {
         </Form.Item>
 
         <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox>Запомнить меня</Checkbox>
         </Form.Item>
 
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Вход
           </Button>
           <Link className="nav-link" to="/registration">Регистрация</Link>
         </Form.Item>

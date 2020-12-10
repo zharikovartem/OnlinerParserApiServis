@@ -1,10 +1,12 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import IsLoginContainer from './IsLoginContainer';
 
 const Menu = (props) => {
-    console.log('Menu props: ', props);
-    return(
+    // console.log('Menu props: ', props);
+
+    return( 
         <Navbar bg="light" expand="lg">
                         <Navbar.Brand href="/">ArtCRM</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -22,11 +24,7 @@ const Menu = (props) => {
                             </Nav>
                             <div className="mr-sm-2">
                                 {props.isAuth ?
-                                    <div>
-                                        <span className="nav-link">{props.user.name}
-                                        <Button >Выход</Button>
-                                        </span>
-                                    </div>
+                                    <IsLoginContainer />
                                     :
                                     <Link className="nav-link" to="/login">Login</Link>
                                 }
