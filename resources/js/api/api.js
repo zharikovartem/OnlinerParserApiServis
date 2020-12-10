@@ -52,7 +52,7 @@ export const userAPI = {
                 return null
             })
     },
-    
+
     authMe(token) {
         // console.log('remember_token: ', localStorage.getItem('remember_token'))
         return instanse.get('api/authMe/' + localStorage.getItem('remember_token'))
@@ -75,5 +75,26 @@ export const userAPI = {
 
     logout() {
 
+    }
+}
+
+export const catalogAPI = {
+    getCatalogItems() {
+        return instanse.get('api/getCatalogParts')
+            .then(response => {
+                console.log(response)
+                return response.status === 200 ? response : null;
+            })
+            .catch(err => {
+                if (err.response) {
+                    console.log(err.response.data)
+                    return err.response.data
+                } else if (err.request) {
+                    console.log('request', err.request)
+                } else {
+                    console.log('anything else: ', err)
+                }
+                return null
+            })
     }
 }
