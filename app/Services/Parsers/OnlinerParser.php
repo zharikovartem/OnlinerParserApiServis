@@ -208,6 +208,15 @@ class OnlinerParser {
 
         if ($pageObject['page']['last'] == $data['part']) {
             echo 'end';
+            # получаем количество товаров в базе:
+            $total_count = DB::table($catalogItem)->count();
+            # меняем is_active, total_count раздела
+            DB::table('Catalog')
+                ->where('name', $catalogItem)
+                ->update(array(
+                    'is_active' => 1,
+                    'total_count' => $total_count
+                ));
         } else {
             // echo 'next';
             $data['part']++;

@@ -93,6 +93,7 @@ class CatalogController extends Controller
         //
     }
 
+    # Получить всю структуру каталога
     public function startCatalogParsing()
     {
         dispatch(new CatalogParsingJob);

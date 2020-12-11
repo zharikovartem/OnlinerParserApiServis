@@ -1,4 +1,16 @@
+import React from 'react';
+
 let defaultCheckedKeys = [];
+
+const TreeItem = (props) => {
+
+    return(
+        <div>
+            {props.name}
+            {/* <button>getItems</button> */}
+        </div>
+    );
+}
 
 const toAndtTreeType = (object, thisKey, oldKey) => {
     let response = [];
@@ -22,7 +34,8 @@ const toAndtTreeType = (object, thisKey, oldKey) => {
                 response.push(item)
             } else {
                 let item = {
-                    title: element.label,
+                    // title: element.label,
+                    title: <TreeItem name={element.label} />,
                     key: String(newKey),
                 };
                 if (element.is_active) {
@@ -71,6 +84,7 @@ export const treeMaping = {
                         for (const key3 in elemsByParent[key2]) {
                             if (elemsByParent[key2].hasOwnProperty(key3)) {
                                 const element3 = elemsByParent[key2][key3];
+                                // response[key][element2][nameByLabel[element3]] = <TreeItem name={itemsByNmae[element3]} />;
                                 response[key][element2][nameByLabel[element3]] = itemsByNmae[element3];
                             }
                         }

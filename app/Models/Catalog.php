@@ -12,6 +12,7 @@ class Catalog extends Model
         'id',
         'name',
         'is_active',
+        'total_count',
         'type',
         'parent_id',
         'password',
