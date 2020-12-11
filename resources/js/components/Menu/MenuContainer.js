@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Menu from './Menu';
-import {logout} from './../../redux/userReducer';
+import {logout, authMeThunkCreator} from './../../redux/userReducer';
 
 let mapStateToProps = (state) => {
     return {
@@ -11,5 +11,5 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, 
-    {logout}) 
+    {logout, authMeThunkCreator}) 
     (Menu);

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import IsLoginContainer from './IsLoginContainer';
 
 const Menu = (props) => {
     // console.log('Menu props: ', props);
+    useEffect(() => {
+        if (props.isAuth === false) {
+            props.authMeThunkCreator();
+        }
+    }, [])
 
     return( 
         <Navbar bg="light" expand="lg">

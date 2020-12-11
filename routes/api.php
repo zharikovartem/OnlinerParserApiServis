@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'Api\Auth\LoginController@login');
 Route::post('register', 'Api\Auth\RegisterController@register');
+Route::get('authMe/{token}', 'Api\Auth\AuthController@authMe');
 
 // Route::post('register', 'Api\Parser\CatalogController@startCatalogParsing'); # Получить весь каталог
 

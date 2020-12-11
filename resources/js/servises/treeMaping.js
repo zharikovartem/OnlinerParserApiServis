@@ -6,7 +6,7 @@ const TreeItem = (props) => {
 
     return(
         <div>
-            {props.name}
+            {props.element.label}({props.element.total_count})
             {/* <button>getItems</button> */}
         </div>
     );
@@ -35,7 +35,7 @@ const toAndtTreeType = (object, thisKey, oldKey) => {
             } else {
                 let item = {
                     // title: element.label,
-                    title: <TreeItem name={element.label} />,
+                    title: <TreeItem element={element} />,
                     key: String(newKey),
                 };
                 if (element.is_active) {
@@ -84,7 +84,6 @@ export const treeMaping = {
                         for (const key3 in elemsByParent[key2]) {
                             if (elemsByParent[key2].hasOwnProperty(key3)) {
                                 const element3 = elemsByParent[key2][key3];
-                                // response[key][element2][nameByLabel[element3]] = <TreeItem name={itemsByNmae[element3]} />;
                                 response[key][element2][nameByLabel[element3]] = itemsByNmae[element3];
                             }
                         }

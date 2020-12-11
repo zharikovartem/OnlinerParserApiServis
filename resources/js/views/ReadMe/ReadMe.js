@@ -33,6 +33,7 @@ const ReadMe = () => {
             <h3>Обраить внимание</h3>
             https://ant.design/components/steps/
             <br/>
+            php artisan make:controller Api/Auth/AuthController
         </div>
     );
 };

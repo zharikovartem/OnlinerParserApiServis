@@ -53,9 +53,9 @@ export const userAPI = {
             })
     },
 
-    authMe(token) {
+    authMe() {
         // console.log('remember_token: ', localStorage.getItem('remember_token'))
-        return instanse.get('api/authMe/' + localStorage.getItem('remember_token'))
+        return instanse.get('api/authMe/'+localStorage.getItem('remember_token'))
             .then(response => {
                 // console.log('auth/me: ', response);
                 return response

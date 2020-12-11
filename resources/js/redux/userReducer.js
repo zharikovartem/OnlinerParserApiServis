@@ -22,6 +22,7 @@ const userReducer = (state = initialState, action) => {
 
         case LOGOUT:
             stateCopy = initialState;
+            localStorage.removeItem('remember_token');
             return stateCopy;
 
         default:
@@ -59,6 +60,22 @@ export const loginThunkCreator = (creds) => {
             }
             
         });
+    }
+}
+
+export const authMeThunkCreator = () => {
+    return (dispatch) => {
+        const JwcToken = localStorage.getItem('remember_token');
+        if (JwcToken) {
+            userAPI.authMe().then(response => {
+                console.log('authMe() in Reducer -> response: ', response.data)
+                // if (response.data.error === undefined) {
+                //     dispatch(updateUserData(response.data));
+                dispatch(setUser(response));    
+                // }
+                // сохраняем ответ с сервера
+            });
+        }
     }
 }
 
