@@ -95,5 +95,12 @@ export const catalogAPI = {
                 }
                 return null
             })
+    }, 
+
+    parseProductsList(productType) {
+        return instanse.get('api/startCatalogItem/'+productType)
+            .then(response => {
+                return response.status === 200 ? response : null;
+            })
     }
 }

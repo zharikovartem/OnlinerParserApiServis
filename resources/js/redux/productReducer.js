@@ -1,5 +1,5 @@
 import {catalogAPI} from './../api/api';
-import {treeMaping} from './../servises/treeMaping'; 
+import {treeMaping} from '../servises/Tree/treeMaping'; 
 const SET_CATALOG_TREE = 'SET_CATALOG_TREE';
 
 let initialState = {
@@ -32,5 +32,13 @@ export const getCatalogTreeThunkCreator = () => {
     }
 }
 
+export const getProductsList = (item) => {
+    return (dispatch) => {
+        catalogAPI.parseProductsList(item).then(response => {
+            // dispatch(setCatalogTree(response.data));
+            console.log(response)
+        });
+    }
+}
 
 export default productReducer;
