@@ -30,6 +30,12 @@ const ReadMe = () => {
             <br/> Попробуйте загрузить новый с https://getcomposer.org/download/ - если инструкции интерфейса командной строки вам не подходят, 
             <br/>вы можете просто загрузить последний снимок вручную с https://getcomposer.org/composer.phar
 
+            <h3>Git</h3>
+            git stash
+            <br/>
+            git pull
+
+
             <h3>Обраить внимание</h3>
             https://ant.design/components/steps/
             <br/>
