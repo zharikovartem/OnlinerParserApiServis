@@ -100,6 +100,7 @@ class CatalogController extends Controller
         return response()->json(['status'=>'started', 'message'=>'Event запущен'], 200);
     }
 
+    # начать получение списка моделей
     public function startCatalogItem($productType)
     {
         $urlToParse = Catalog::where('name', $productType)->first();
@@ -111,7 +112,7 @@ class CatalogController extends Controller
         ]));
         return 'parse catalog : '.$productType;
     }
-
+    # начать парсинг
     public function startProductParamParsing($productType) 
     {
         $productBase = Catalog::where('name', $productType)->first();
@@ -157,9 +158,9 @@ class CatalogController extends Controller
         );
     }
 
-    public function getProductDescriptions($productType) {
+    public function getProductDescriptions($productType, $part=0) {
         $products = DB::table($productType)
-            ->select('id', 'name', 'params', 'images')
+            ->select('id', 'name', 'params', 'images', 'html_url', 'onliner_id', 'brend')
             ->where('params', '!=', null)
             ->limit(1000)
             ->get();
