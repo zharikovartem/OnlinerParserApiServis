@@ -102,5 +102,13 @@ export const catalogAPI = {
             .then(response => {
                 return response.status === 200 ? response : null;
             })
+    }, 
+
+    startDescriptionsParse(productType) {
+        console.log('api/startProductParamParsing/',productType)
+        return instanse.get('api/startProductParamParsing/'+productType)
+            .then(response => {
+                return response.status === 200 ? response : null;
+            })
     }
 }

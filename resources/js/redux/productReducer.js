@@ -11,9 +11,10 @@ const productReducer = (state = initialState, action) => {
     let stateCopy= { ...state };
     switch (action.type) {
         case SET_CATALOG_TREE:
-            const treeData = treeMaping.mapingArreyToObject(action.catalogItems);
-            stateCopy.catalogTree = treeData.tree;
-            stateCopy.defaultCheckedKeys = treeData.defaultCheckedKeys;
+            // const treeData = treeMaping.mapingArreyToObject(action.catalogItems);
+            // stateCopy.catalogTree = treeData.tree;
+            // stateCopy.defaultCheckedKeys = treeData.defaultCheckedKeys;
+            stateCopy.catalogTree = action.catalogItems;
             console.log('catalogTree: ', stateCopy.catalogTree);
             return stateCopy;
 
@@ -35,6 +36,15 @@ export const getCatalogTreeThunkCreator = () => {
 export const getProductsList = (item) => {
     return (dispatch) => {
         catalogAPI.parseProductsList(item).then(response => {
+            // dispatch(setCatalogTree(response.data));
+            console.log(response)
+        });
+    }
+}
+
+export const startDescriptionsParse = (item) => {
+    return (dispatch) => {
+        catalogAPI.startDescriptionsParse(item).then(response => {
             // dispatch(setCatalogTree(response.data));
             console.log(response)
         });

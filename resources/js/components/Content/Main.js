@@ -29,6 +29,9 @@ const Main = (props) => {
                     <TabPane tab="ReadMe" key="4">
                         <ReadMe />
                     </TabPane>
+                    <TabPane tab="Процессы" key="5">
+                        Процессы
+                    </TabPane>
                 </Tabs>
             );
         } else if (props.userStatus === 'guest') {

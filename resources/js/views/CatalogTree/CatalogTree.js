@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Spin, Space, Tree } from 'antd';
+import {treeMaping} from '../../servises/Tree/treeMaping'; 
 
 const CatalogTree = (props) => {
     // console.log('CatalogTree props: ', props);
@@ -10,9 +11,6 @@ const CatalogTree = (props) => {
         }
     }, [])
 
-    const createCatalogTree = () => {
-
-    }
     if (props.catalogTree === null) {
         return (
             <Space size="middle">
@@ -20,6 +18,8 @@ const CatalogTree = (props) => {
             </Space>
         );
     } else {
+        const treeData = treeMaping.mapingArreyToObject(props.catalogTree);
+        console.log('treeData: ', treeData)
         return (
             <>
             <h3>Дерево каталога Onliner</h3>
@@ -27,10 +27,10 @@ const CatalogTree = (props) => {
                 checkable
                 // defaultExpandedKeys={['0-0-0', '0-0-1']}
                 // defaultSelectedKeys={['0-0-0', '0-0-1']}
-                defaultCheckedKeys={props.defaultCheckedKeys}
+                defaultCheckedKeys={treeData.defaultCheckedKeys}
                 // onSelect={onSelect}
                 // onCheck={onCheck}
-                treeData={props.catalogTree}
+                treeData={treeData.tree}
             />
             </>
         );
