@@ -25,6 +25,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@ant-design/icons": "^4.3.0",
         "antd": "^4.9.2",
         "react-bootstrap": "^1.4.0",
         "react-flash-message": "^1.0.5",
