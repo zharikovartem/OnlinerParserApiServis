@@ -1,5 +1,5 @@
-import React from 'react';
-import { Collapse } from 'antd';
+import React, {useState} from 'react';
+import { Collapse, message } from 'antd';
 import {
     HomeOutlined,
     SettingFilled,
@@ -11,10 +11,33 @@ import {
 
 const { Panel } = Collapse;
 
+const UrlCopyed = (props) => {
+    const [copyed, setCopyed] = useState(null);
+    const copy = (value) => {
+        navigator.clipboard.writeText(value)
+        message.success(value + '- скопирован');
+    }
+
+    return(
+        <p>
+            <b>{props.value}</b>
+            <CopyOutlined 
+                        onClick={()=>{copy(props.value)}}
+            />
+            {props.descriptions ?
+                <span> - {props.descriptions}</span>
+                :
+                null
+            }
+        </p>
+    )
+}
+
 const ReadMe = () => {
     const copy = (value) => {
         // console.log(e.target.parentNode)
         navigator.clipboard.writeText(value)
+        message.success(value + '- скопирован');
     }
     return (
         <div>
@@ -48,12 +71,12 @@ const ReadMe = () => {
             // onChange=""
             >
                 <Panel header="Endpoints" key="1">
-                http://127.0.0.1:8000/api/getCatalogParts)** - получить спаршенное дерево категорий
-                <br />http://127.0.0.1:8000/api/startCatalogParsing)** - получить список категорий
-                <br />http://127.0.0.1:8000/api/startCatalogItem/hoods)** - получить список товаров выбранной категории
-                <br />http://127.0.0.1:8000/api/startProductParamParsing/hoods)** - Начать парсинг описаний выбранной категории 
-                <br />http://127.0.0.1:8000/api/startProductParamParsing/hoods/1)** - Парсинг описаний выбранного по id товара
-                <br />http://127.0.0.1:8000/api/getProductDescriptions/hoods)** - Получить готовые описания для выбранной группы товаров
+                    <UrlCopyed value="http://127.0.0.1:8000/api/getCatalogParts" descriptions="получить спаршенное дерево категорий"/>
+                    <UrlCopyed value="http://127.0.0.1:8000/api/startCatalogParsing" descriptions="получить список категорий"/>
+                    <UrlCopyed value="http://127.0.0.1:8000/api/startCatalogItem/hoods" descriptions="получить список товаров выбранной категории"/>
+                    <UrlCopyed value="http://127.0.0.1:8000/api/startProductParamParsing/hoods" descriptions="Начать парсинг описаний выбранной категории "/>
+                    <UrlCopyed value="http://127.0.0.1:8000/api/startProductParamParsing/hoods/1" descriptions="Парсинг описаний выбранного по id товара"/>
+                    <UrlCopyed value="http://127.0.0.1:8000/api/getProductDescriptions/hoods" descriptions="Получить готовые описания для выбранной группы товаров"/>
                 </Panel>
                 <Panel header="Git" key="2">
                     Загрузка на VDS:
@@ -92,6 +115,10 @@ const ReadMe = () => {
                     </p>
                 </Panel>
             </Collapse>
+            {/* Client ID: 4
+            Client secret: t8d8fUpKuKl9h17QiIkoHYaov0gJm3zVswZBGolB */}
+
+            jwt-auth secret [INk0XG6ac7zgH2zp1w7Q5EDYqOvKuYVYFmzyhE3TjQr3IowHyDj4uMLop1a11qNb] set successfully.
         </div>
     );
 };

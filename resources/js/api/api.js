@@ -3,7 +3,9 @@ import * as axios from 'axios';
 const instanse = axios.create({
     baseURL: window.location.origin,
     withCredentials: true,
-    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('JwcToken') }
+    headers: { 
+        'X-Auth-Token' : localStorage.getItem('remember_token')
+    }
 });
 
 axios.defaults.withCredentials = true;
