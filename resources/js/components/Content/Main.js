@@ -2,6 +2,7 @@ import React from 'react';
 import ReadMe from '../../views/ReadMe/ReadMe';
 import { Tabs } from 'antd';
 import CatalogTree from '../../views/CatalogTree/CatalogTreeContainer';
+import ToDo from './ToDo/ToDo';
 
 const { TabPane } = Tabs;
 
@@ -24,7 +25,7 @@ const Main = (props) => {
                         <CatalogTree />
                     </TabPane>
                     <TabPane tab="ToDo" key="3">
-                        Вывести список запланированных дел
+                        <ToDo />
                     </TabPane>
                     <TabPane tab="ReadMe" key="4">
                         <ReadMe />
