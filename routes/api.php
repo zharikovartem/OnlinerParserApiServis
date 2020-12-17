@@ -40,4 +40,12 @@ Route::get('startProductParamParsing/{productType}/{productId}', 'Api\Parser\Cat
 Route::get('getProductDescriptions/{productType}', 'Api\Parser\CatalogController@getProductDescriptions')->middleware('token'); # Получить готовые описания для товаров
 Route::get('getProductPrices/{productType}', 'Api\Parser\CatalogController@getProductPrices')->middleware('token'); # Получить цены с ценами конкурентов
 
+Route::get('init-event', function() {
+    $data = [
+        'topic_id'=>'onNewData',
+        'data'=>'someData: '.rand(1,100)
+    ];
 
+    \App\Classes\Socket\Pusher::sendDataToServer($data);
+    var_dump($data);
+});

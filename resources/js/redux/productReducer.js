@@ -1,10 +1,12 @@
 import {catalogAPI} from './../api/api';
 import {treeMaping} from '../servises/Tree/treeMaping'; 
 const SET_CATALOG_TREE = 'SET_CATALOG_TREE';
+const SET_CATALOG_RELOAD = 'SET_CATALOG_RELOAD';
 
 let initialState = {
     catalogTree: null,
     defaultCheckedKeys: [],
+    catalogReload: false,
 };
 
 const productReducer = (state = initialState, action) => {
@@ -18,12 +20,19 @@ const productReducer = (state = initialState, action) => {
             console.log('catalogTree: ', stateCopy.catalogTree);
             return stateCopy;
 
+        case SET_CATALOG_RELOAD:
+            console.log(SET_CATALOG_RELOAD)
+            stateCopy.catalogReload = true;
+            stateCopy.catalogTree = null;
+            return stateCopy;
+
         default:
             return state;
     }
 }
 
 export const setCatalogTree = (catalogItems) => ({ type: SET_CATALOG_TREE, catalogItems });
+export const setCatalogReload = () => ({ type: SET_CATALOG_RELOAD });
 
 export const getCatalogTreeThunkCreator = () => {
     return (dispatch) => {
@@ -34,6 +43,9 @@ export const getCatalogTreeThunkCreator = () => {
 }
 
 export const getProductsList = (item) => {
+    //////////////////////////////////////////////
+        
+    //////////////////////////////////////////////
     return (dispatch) => {
         catalogAPI.parseProductsList(item).then(response => {
             // dispatch(setCatalogTree(response.data));

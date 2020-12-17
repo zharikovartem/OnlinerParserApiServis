@@ -217,6 +217,16 @@ class OnlinerParser {
                     'is_active' => 1,
                     'total_count' => $total_count
                 ));
+
+            $data['total_count'] = $total_count;
+            $dataToEvent = [
+                // 'topic_id'=>'onNewData',
+                'topic_id'=>$data['name'],
+                'data'=>$data
+            ];
+        
+            \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
+
         } else {
             // echo 'next';
             $data['part']++;

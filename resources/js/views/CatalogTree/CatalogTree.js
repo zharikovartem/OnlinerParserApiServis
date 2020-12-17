@@ -3,13 +3,25 @@ import { Spin, Space, Tree } from 'antd';
 import {treeMaping} from '../../servises/Tree/treeMaping'; 
 
 const CatalogTree = (props) => {
-    // console.log('CatalogTree props: ', props);
+    console.log('CatalogTree props: ', props);
+
+    // let treeData = [];
 
     useEffect(() => {
+        console.log('useEffect')
         if (props.catalogTree === null) {
             props.getCatalogTreeThunkCreator();
         }
-    }, [])
+        
+    }, [props.catalogTree])
+
+    // useEffect(() => {
+    //     console.log('useEffect catalogReload')
+    //     if (props.catalogReload) {
+    //         props.getCatalogTreeThunkCreator();
+    //     }
+        
+    // }, [props.catalogReload])
 
     if (props.catalogTree === null) {
         return (
@@ -19,6 +31,7 @@ const CatalogTree = (props) => {
         );
     } else {
         const treeData = treeMaping.mapingArreyToObject(props.catalogTree);
+
         console.log('treeData: ', treeData)
         return (
             <>

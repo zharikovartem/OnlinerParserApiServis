@@ -12,6 +12,29 @@ const TreeItem = (props) => {
             props.getProductsList(listTarget);
             setListTarget(false);
             setToggler(true);
+            /////////////////////////////////////////
+            var conn = new ab.connect(
+                'ws:Localhost:8080',
+                function(session) {
+                    session.subscribe(listTarget, function(topic, data) {
+                        console.info('new data topic id: "'+topic+'"');
+                        console.log(data.data);
+        
+                        props.setCatalogReload()
+                    });
+                },
+        
+                function(code, reason, detail) {
+                    console.warn('WebSocket connection closed: code='+code+'; reason='+reason+'; detail='+detail);
+                },
+        
+                {
+                    'maxRetries': 60,
+                    'retryDelay': 4000,
+                    'skipSubprotocolCheck': true
+                }
+            );
+            /////////////////////////////////////////
         }
         if (paramsTarget) {
             console.log('startDescriptionsParse ', paramsTarget)

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import TreeItem from './TreeItem';
-import {getProductsList, startDescriptionsParse} from './../../redux/productReducer';
+import {getProductsList, startDescriptionsParse, setCatalogReload} from './../../redux/productReducer';
 
 let mapStateToProps = (state) => {
     // console.log(parseProductsListThunkCreator);
@@ -13,5 +13,5 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, 
-    {getProductsList, startDescriptionsParse}) 
+    {getProductsList, startDescriptionsParse, setCatalogReload}) 
     (TreeItem);

@@ -3,6 +3,7 @@ import ReadMe from '../../views/ReadMe/ReadMe';
 import { Tabs } from 'antd';
 import CatalogTree from '../../views/CatalogTree/CatalogTreeContainer';
 import ToDo from './ToDo/ToDo';
+import Client from './Client/Client';
 
 const { TabPane } = Tabs;
 
@@ -31,7 +32,7 @@ const Main = (props) => {
                         <ReadMe />
                     </TabPane>
                     <TabPane tab="Процессы" key="5">
-                        Процессы
+                        <Client />
                     </TabPane>
                 </Tabs>
             );

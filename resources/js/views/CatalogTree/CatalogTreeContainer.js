@@ -6,6 +6,7 @@ let mapStateToProps = (state) => {
     return {
         isAuth: state.user.isAuth,
         catalogTree: state.products.catalogTree,
+        catalogReload: state.products.catalogReload,
         // defaultCheckedKeys: state.products.defaultCheckedKeys,
     }
 }
