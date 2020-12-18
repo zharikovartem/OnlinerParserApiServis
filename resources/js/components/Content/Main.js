@@ -4,6 +4,7 @@ import { Tabs } from 'antd';
 import CatalogTree from '../../views/CatalogTree/CatalogTreeContainer';
 import ToDo from './ToDo/ToDo';
 import Client from './Client/Client';
+import Providers from './Providers/ProvidersContainer';
 
 const { TabPane } = Tabs;
 
@@ -25,14 +26,20 @@ const Main = (props) => {
                     <TabPane tab="Catalog" key="2">
                         <CatalogTree />
                     </TabPane>
-                    <TabPane tab="ToDo" key="3">
+                    <TabPane tab="Поставщики" key="3">
+                        <Providers />
+                    </TabPane>
+                    <TabPane tab="ToDo" key="4">
                         <ToDo />
                     </TabPane>
-                    <TabPane tab="ReadMe" key="4">
+                    <TabPane tab="ReadMe" key="5">
                         <ReadMe />
                     </TabPane>
-                    <TabPane tab="Процессы" key="5">
+                    <TabPane tab="Процессы" key="6">
                         <Client />
+                    </TabPane>
+                    <TabPane tab="Почта" key="7">
+                        Почта
                     </TabPane>
                 </Tabs>
             );

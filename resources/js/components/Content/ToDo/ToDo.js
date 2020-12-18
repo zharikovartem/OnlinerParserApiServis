@@ -137,6 +137,10 @@ generateData(z);
         // setgData(data);
     };
 
+    const onDrop2 = info => {
+      console.log('onDrop info: ',info)
+    }
+
     // console.log('render: ', gData);
     return (
         <Tree
@@ -145,7 +149,7 @@ generateData(z);
             draggable
             blockNode
             onDragEnter={onDragEnter}
-            onDrop={onDrop}
+            onDrop={onDrop2}
             treeData={gData}
         />
     );

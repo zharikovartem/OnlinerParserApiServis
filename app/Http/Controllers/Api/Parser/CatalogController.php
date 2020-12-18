@@ -121,6 +121,7 @@ class CatalogController extends Controller
         dispatch(new ProductParamParsingJob([
             // $productBase
             'name'=>$productType,
+            'start'=>now(),
             'part'=>1,
             'getParams'=>true,
             'repeat'=>true,

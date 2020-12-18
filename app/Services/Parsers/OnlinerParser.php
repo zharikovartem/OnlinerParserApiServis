@@ -224,12 +224,12 @@ class OnlinerParser {
                 'topic_id'=>$data['name'],
                 'data'=>$data
             ];
-        
             \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
 
         } else {
             // echo 'next';
             $data['part']++;
+            sleep(1);
             dispatch(new CatalogItemParsingJob($data));
             echo (int)memory_get_peak_usage()/1000000 . '';
         }
@@ -263,11 +263,27 @@ class OnlinerParser {
         # Получаем список товаров для парсинга:
         if (!$data['item']) {
             $products = DB::table($data['name'])
-            ->whereNull('pars_date')
+            // ->whereNull('pars_date')
+            ->where('pars_date', '<', $data['start'])
+            ->orWhereNull('pars_date')
             ->limit(1)
             ->get();
             if (count($products) == 0) {
-                die('Все товары спаршены');
+                # Отравляем WebSocket:
+                ############################################################################################################
+                $dataToEvent = [
+                    // 'topic_id'=>'onNewData',
+                    'topic_id'=>$data['name'].'Desc',
+                    'data'=>'end'
+                ];
+                \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
+                ############################################################################################################
+                # Сохраняем нужное количество товаров в Catalog:
+                DB::table('Catalog')
+                    ->where('name', $data['name'])
+                    ->update([ 'descriptions_count' => $data['part'] ]);
+                ############################################################################################################
+                die('Все товары для '.$data['name'].' спаршены дата: '.$data['start']);
             }
         } else {
             $products = DB::table($data['name'])
@@ -375,13 +391,25 @@ class OnlinerParser {
         if ($data['repeat']) {
             dispatch(new ProductParamParsingJob([
                 'name'=>$data['name'],
+                'start'=>$data['start'],
                 'part'=>(int)$data['part']+1,
                 'getParams'=>true,
                 'repeat'=>true,
                 'item'=>false,
                 'target'=>null
             ]));
-            echo $products[0]->id;
+            ################################################################################################
+            # обновляем количество спаршенных товаров:
+            $dataToEvent = [
+                // 'topic_id'=>'onNewData',
+                'topic_id'=>$data['name'].'Desc',
+                'data'=>$data['part']
+            ];
+            \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
+
+            ####################################################################
+
+            echo $products[0]->id.' для '.$data['name'].'=>'.$data['start'];
         } else {
             $params['images'] = json_decode( str_replace('\\', '', json_encode($imgToUpdate)) , true);
             return json_encode($params) ;
@@ -410,6 +438,15 @@ class OnlinerParser {
     # Получение цены и продавцов товара
     # Request URL:  https://catalog.onliner.by/sdapi/shop.api/products/slsgii60wh/positions
     #               https://shop.api.onliner.by/products/slsgii60wh/positions
+
+    # блочит:
+    # https://catalog.onliner.by/sdapi/catalog.api/search/faucet?page=354
+
+    # https://shop.api.onliner.by/products/slsgii60wh/positions
+    # https://shop.api.onliner.by/search/faucet?page=354
+
+    # https://catalog.onliner.by/sdapi/catalog.api/facets/oven_cooker - Получить описание параметров
+    # https://catalog.onliner.by/sdapi/catalog.api/search/oven_cooker?mfr[0]=maunfeld
 }
 
 

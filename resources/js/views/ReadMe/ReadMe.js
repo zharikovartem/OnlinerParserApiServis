@@ -108,11 +108,25 @@ const ReadMe = () => {
                         />
                     </p>
                     <p>
+                        <b>php artisan queue:work --tries=10</b>
+                        <CopyOutlined 
+                        onClick={()=>{copy('php artisan queue:work --tries=10')}}
+                        />
+                    </p>
+                    <p>
                         <b>php artisan queue:restart</b>
                         <CopyOutlined 
                         onClick={()=>{copy('php artisan queue:restart')}}
                         />
                     </p>
+                        <UrlCopyed value="php artisan queue:work --sleep=5" descriptions="Ждем 5 секунд ???"/>
+                    <p>Migrations:</p>
+                        <UrlCopyed value="php artisan make:migration create_users_table --create=users" descriptions="Создание новой миграции"/>
+                        <UrlCopyed value="php artisan migrate" descriptions=""/>
+                    <p>Controllers:</p>
+                        <UrlCopyed value="php artisan make:controller Api/Auth/AuthController" descriptions="Создание нового контроллера"/>
+                    <p>Models:</p>
+                    <p>Siders:</p>
                 </Panel>
             </Collapse>
             {/* Client ID: 4
