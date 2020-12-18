@@ -126,6 +126,11 @@ const ReadMe = () => {
                     <p>Controllers:</p>
                         <UrlCopyed value="php artisan make:controller Api/Auth/AuthController" descriptions="Создание нового контроллера"/>
                     <p>Models:</p>
+                    
+                        <UrlCopyed 
+                            value="php artisan make:model User --migration" 
+                            descriptions="Создать миграцию БД при создании модели"
+                        />
                     <p>Siders:</p>
                 </Panel>
             </Collapse>
