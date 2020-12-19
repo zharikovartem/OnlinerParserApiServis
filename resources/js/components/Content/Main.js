@@ -55,6 +55,10 @@ const Main = (props) => {
             return (
                 <div>CATALOG for guest when auth as lead</div>
             );
+        } else if (props.userStatus === 'client') {
+            return (
+                <div>CATALOG for guest when auth as client</div>
+            );
         }
 
     } else {

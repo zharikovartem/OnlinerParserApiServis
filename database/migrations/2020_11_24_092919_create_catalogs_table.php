@@ -17,8 +17,9 @@ class CreateCatalogsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->nullable();
             $table->integer('total_count')->nullable();
+            $table->integer('descriptions_count')->nullable();
             $table->integer('parent_id');
             $table->string('label');
             // $table->json('params')->nullable();

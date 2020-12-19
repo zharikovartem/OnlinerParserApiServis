@@ -32,7 +32,7 @@ Route::resource('getCatalogParts', Api\Parser\CatalogController::class)->middlew
 //     Route::resource('getCatalogParts', Api\Parser\CatalogController::class);
 //   })->middleware('token');
 
-Route::get('startCatalogParsing', 'Api\Parser\CatalogController@startCatalogParsing')->middleware('token'); # Получить весь каталог
+Route::get('startCatalogParsing', 'Api\Parser\CatalogController@startCatalogParsing');//->middleware('token'); # Получить весь каталог
 Route::get('startCatalogItem/{item}', 'Api\Parser\CatalogController@startCatalogItem')->middleware('token'); # Получить список товаров для раздела
 Route::get('startProductParamParsing/{productType}', 'Api\Parser\CatalogController@startProductParamParsing')->middleware('token'); # Начать парсинг Описаний для раздела
 Route::get('startProductParamParsing/{productType}/{productId}', 'Api\Parser\CatalogController@startProductParamItem')->middleware('token'); # Получить Описания для Товара

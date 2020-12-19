@@ -54,6 +54,7 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['status'] = 'guest';
         // $success['check'] = User::create($input);
         $user = User::create($input);
         $success['user'] =  $user;
