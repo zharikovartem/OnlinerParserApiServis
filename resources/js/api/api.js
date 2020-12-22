@@ -114,3 +114,41 @@ export const catalogAPI = {
             })
     }
 }
+
+export const toDoAPI = {
+    getToDoList() {
+        return instanse.get('api/getToDoList')
+            .then(response => {
+                console.log(response)
+                return response.status === 200 ? response : null;
+            })
+            // .catch(err => {
+            //     if (err.response) {
+            //         console.log(err.response.data)
+            //         return err.response.data
+            //     } else if (err.request) {
+            //         console.log('request', err.request)
+            //     } else {
+            //         console.log('anything else: ', err)
+            //     }
+            //     return null
+            // })
+    },
+
+    editToDoItem(data) {
+        return instanse.post('api/getToDoList', data)
+            .then(response => {
+                console.log(response)
+                return response.status === 200 ? response : null;
+            })
+    },
+
+    createNewTask(data) {
+        return instanse.post('api/createNewTask', data)
+            .then(response => {
+                console.log(response)
+                return response.status === 200 ? response : null;
+            })
+    }
+}
+

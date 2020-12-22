@@ -1,6 +1,5 @@
-import {userAPI} from './../api/api';
-const SET_TODO_DATA = 'SET_USER_DATA';
-const LOGOUT = 'LOGOUT';
+import {toDoAPI} from './../api/api';
+const SET_TODO_DATA = 'SET_TODO_DATA';
 
 let initialState = {
     ToDoData: [],
@@ -9,15 +8,16 @@ let initialState = {
     // userStatus: 'guest',
 };
 
-const userReducer = (state = initialState, action) => {
+const toDoReducer = (state = initialState, action) => {
     let stateCopy= { ...state };
     switch (action.type) {
         case SET_TODO_DATA:
-            stateCopy.user = action.userData.data.user;
-            stateCopy.isAuth = true;
-            if (action.userData.data.user.status !== undefined) {
-                stateCopy.userStatus = action.userData.data.user.status;
-            }
+            console.log(action)
+            stateCopy.ToDoData = action.toDoData.data.ToDoList;
+            // stateCopy.isAuth = true;
+            // if (action.userData.data.user.status !== undefined) {
+            //     stateCopy.userStatus = action.userData.data.user.status;
+            // }
             return stateCopy;
 
         // case LOGOUT:
@@ -30,4 +30,22 @@ const userReducer = (state = initialState, action) => {
     }
 }
 
-export const setUser = (toDoData) => ({ type: SET_TODO_DATA, toDoData });
+export const setToDoList = (toDoData) => ({ type: SET_TODO_DATA, toDoData });
+
+export const getToDoList = () => {
+    return (dispatch) => {
+        toDoAPI.getToDoList().then(response => {
+            dispatch(setToDoList(response));
+        });
+    }
+}
+
+export const createNewTask = (data) => {
+    return (dispatch) => {
+        toDoAPI.createNewTask(data).then(response => {
+            dispatch(setToDoList(response));
+        });
+    }
+}
+
+export default toDoReducer;

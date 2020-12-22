@@ -3,7 +3,7 @@ import TreeItem from './TreeItemContainer';
 
 let defaultCheckedKeys = [];
 
-const toAndtTreeType = (object, thisKey, oldKey) => {
+const toAndtTreeType = (object, thisKey, oldKey, Comp = undefined) => {
     let response = [];
 
     for (const key in object) {
@@ -17,21 +17,36 @@ const toAndtTreeType = (object, thisKey, oldKey) => {
             // console.log(String(newKey));
             
             if (element.id == undefined) {
+                // console.log('object: ', object)
                 let item = {
-                    title: key,
+                    title: Comp===undefined ? key : <Comp elem={ {name: key} } />,
                     key: String(newKey),
-                    children: toAndtTreeType(element, 0, newKey)
+                    children: toAndtTreeType(element, 0, newKey, Comp)
                 };
                 response.push(item)
             } else {
-                let item = {
-                    // title: element.label,
-                    title: <TreeItem elem={element} />,
-                    key: String(newKey),
-                };
+                // console.log('comp: ', Comp)
+                let item = {}
+                if (Comp === undefined) {
+                    // console.log('Comp === undefined: ')
+                    item = {
+                        // title: element.label,
+                        title:  <TreeItem elem={element} />,
+                        key: String(newKey),
+                    };
+                    // console.log(item)
+                } else {
+                    item = {
+                        // title: element.label,
+                        title:  <Comp elem={element} />,
+                        key: String(newKey),
+                    };
+                }
+                
                 if (element.is_active) {
                     defaultCheckedKeys.push(String(newKey));
                 }
+                // console.log(item)
                 response.push(item)
             }
         }
@@ -43,7 +58,7 @@ const toAndtTreeType = (object, thisKey, oldKey) => {
 
 export const treeMaping = {
 
-    mapingArreyToObject(arr) {
+    mapingArreyToObject(arr, Comp = undefined) {
         let response = {};
         let elemsByParent = {};
         let nameByLabel = {};
@@ -85,7 +100,7 @@ export const treeMaping = {
         console.log('response: ', response)
         // return toAndtTreeType(response, 0, '');
         return {
-            tree: toAndtTreeType(response, 0, ''),
+            tree: toAndtTreeType(response, 0, '', Comp),
             defaultCheckedKeys: defaultCheckedKeys
         }
     }

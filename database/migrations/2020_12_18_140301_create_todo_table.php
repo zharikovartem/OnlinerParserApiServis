@@ -19,6 +19,7 @@ class CreateTodoTable extends Migration
             $table->string('name');
             $table->integer('parent_id');
             $table->string('type')->nullable();
+            $table->string('description')->nullable();
         });
     }
 

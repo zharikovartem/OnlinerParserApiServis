@@ -40,6 +40,12 @@ Route::get('startProductParamParsing/{productType}/{productId}', 'Api\Parser\Cat
 Route::get('getProductDescriptions/{productType}', 'Api\Parser\CatalogController@getProductDescriptions')->middleware('token'); # Получить готовые описания для товаров
 Route::get('getProductPrices/{productType}', 'Api\Parser\CatalogController@getProductPrices')->middleware('token'); # Получить цены с ценами конкурентов
 
+# ToDo:
+Route::get('getToDoList', 'Api\ToDo\ToDoController@getToDoList');//->middleware('token');
+Route::post('editToDoItem', 'Api\ToDo\ToDoController@editToDoItem')->middleware('token');
+Route::post('createNewTask', 'Api\ToDo\ToDoController@createNewTask')->middleware('token');
+// Route::post('createNewTask', 'Api\ToDo\ToDoController@createNewTask')->middleware('token');
+
 Route::get('init-event', function() {
     $data = [
         'topic_id'=>'onNewData',
