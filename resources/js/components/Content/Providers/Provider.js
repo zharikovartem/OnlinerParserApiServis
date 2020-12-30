@@ -23,11 +23,12 @@ const Providers = (props) => {
       <h3>Providers</h3>
       <p>https://ant.design/components/drawer/</p>
       <Button type="primary" onClick={showDrawer}>
-        <PlusOutlined />Создать
+        <PlusOutlined />Создать (Formik)
             </Button>
       <Drawer
-        title="Basic Drawer"
-        width={720}
+        title="Formik Drawer"
+        width={1040}
+        // className="w-100"
         placement="right"
         closable={false}
         onClose={onClose}

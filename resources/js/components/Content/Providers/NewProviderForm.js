@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
+import { Select } from 'formik-antd'
 import DisplayProviderForm from './DisplayProviderForm';
-import { Select } from 'antd';
+// import { Select } from 'antd';
 
 import {
     AntDatePicker,
@@ -19,53 +20,95 @@ import {
 
 const { Option } = Select;
 
+const optionsData = [
+    { value: 'api', label: 'API', disabled: false },
+    { value: 'mail', label: 'Email', disabled: false },
+    { value: 'ftp', label: 'FTP', disabled: true },
+    { value: 'parser', label: 'Parser', disabled: false },
+];
+
 const NewProviderForm = (props) => {
+    const [fieldValues, setFieldValues] = useState({});
     const initialValues = {
-        numberOfTickets: '',
         data: [],
         loadType: ''
     };
 
-    // const validationSchema = Yup.object().shape({
-    //     numberOfTickets: Yup.string()
-    //         .required('Number of tickets is required'),
-    //     tickets: Yup.array().of(
-    //         Yup.object().shape({
-    //             name: Yup.string()
-    //                 .required('Name is required'),
-    //             email: Yup.string()
-    //                 .email('Email is invalid')
-    //                 .required('Email is required')
-    //         })
-    //     )
-    // });
+    const validationSchema = (values) => {
+        // console.log('validationSchema: ', values)
+        let errors = {};
+        // const res = Object.assign(fieldValues, values);
+        // console.log('!!!res: ', res)
+        // setFieldValues(res)
+        return errors
+    }
 
     function onChangeLoadType(e, field, values, setValues) {
+        // console.log('onChangeLoadType:', e)
+        // console.log('fieldValues: ', fieldValues)
+        // let valuesCopy = { ...initialValues };
         let valuesCopy = { ...values };
         valuesCopy.data = [];
-        valuesCopy.loadType = e.target.value;
-        if (e.target.value === 'mail') {
-            valuesCopy.mailData = {};
-            valuesCopy.data.push('mailAdress')
-            valuesCopy.data.push('fileName')
+        valuesCopy.loadType = e;
+
+        switch (e) {
+            case 'mail':
+                // valuesCopy.data.push({name:'mailAdress', label:'Адрес отправителя', type:'text', value: fieldValues.mailAdress === undefined ? fieldValues.mailAdress : ""})
+                valuesCopy.data.push({name:'mailAdress', label:'Адрес отправителя', type:'text', value: values.mailAdress})
+                valuesCopy.data.push({name:'fileName', label:'Название прайса в письме', type:'text', value: values.fileName})
+                break;
+
+            case 'api':
+                valuesCopy.data.push({name:'apiAdress', label:'URL API', type:'text', value: values.apiAdress})
+                valuesCopy.data.push({name:'httpType', label:'Вид запроса', type:'text', value: values.httpType})
+                valuesCopy.data.push({name:'token', label:'Ключ доступа', type:'password', value: values.token})
+                valuesCopy.data.push({name:'alg', label:'Алгоритм получения прайса', type:'select', value: values.token, 
+                options: [
+                    { value: '1', label: 'Получение кталога -> Получение товаров', disabled: false },
+                    { value: '2', label: 'Получение прайса одним запросом', disabled: true },
+                ]
+            })
+                break;
+        
+            default:
+                break;
         }
-        if (e.target.value === 'api') {
-            valuesCopy.mailData = {};
-            valuesCopy.data.push('apiAdress')
-            valuesCopy.data.push('getType')
-        }
+
+        console.log('valuesCopy', valuesCopy)
         setValues(valuesCopy)
 
         field.onChange(e);
     }
 
+    const onChangeAlg = (e, field, values, setValues) => {
+        console.log('onChangeAlg: ', e)
+        let valuesCopy = { ...values };
+        valuesCopy.algData = [];
+        switch (e) {
+            case '1':
+                console.log('case 1')
+                valuesCopy.data.push({name:'catalogListApi', label:'URL для получения каталога', type:'text', value: values.catalogListApi});
+                valuesCopy.data.push({name:'categoryFieldName', label:'Наименование категории', type:'text', value: values.catalogListApi});
+                valuesCopy.data.push({name:'categoryFieldid', label:'Наименование идентификатора категории', type:'text', value: values.catalogListApi});
+                valuesCopy.data.push({name:'productsByCatalogItem', label:'URL для получения товаров раздела', type:'text', value: values.catalogListApi});
+                break;
+        
+            default:
+                break;
+        }
+        setValues(valuesCopy)
+        console.log('valuesCopy alg: ', valuesCopy)
+        field.onChange(e);
+    }
+
     function onSubmit(fields) {
         // display form field values on success
+        delete fields.data
         console.log('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
     }
 
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <Formik initialValues={initialValues} validate={validationSchema} onSubmit={onSubmit}>
             {({ errors, values, touched, setValues }) => (
                 <Form>
                     <Field
@@ -76,41 +119,63 @@ const NewProviderForm = (props) => {
                         validate={validateName}
                         hasFeedback
                     />
+
                     <div className="form-group ant-row">
                         <div className="ant-col ant-form-item-label"><label>Способ загрузки прайса</label> </div>
-                        <div className="ant-form-item-control">
-                            <Field name="LoadType">
+                        {/* <div className="ant-form-item-control"> */}
+                            <Field name="LoadType" validate={validateName} hasFeedback>
                                 {({ field }) => (
-                                    <select
+                                    <Select
                                         {...field}
-                                        className={'form-control' + (errors.numberOfTickets && touched.numberOfTickets ? ' is-invalid' : '')}
+                                        className={'ant-form-item-control-input-content' + (errors.numberOfTickets && touched.numberOfTickets ? ' is-invalid' : '')}
                                         onChange={e => onChangeLoadType(e, field, values, setValues)}
                                     >
-                                        <option value=""></option>
-                                        {[
-                                            { value: 'api', label: 'API', disabled: false },
-                                            { value: 'mail', label: 'Email', disabled: false },
-                                            { value: 'ftp', label: 'FTP', disabled: true },
-                                            { value: 'parser', label: 'Parser', disabled: false },
-                                        ].map(i =>
-                                            <option key={i.value} value={i.value} disabled={i.disabled}>{i.label}</option>
+                                        <Select.Option value=""></Select.Option>
+                                        {optionsData.map(i =>
+                                            <Select.Option key={i.value} value={i.value} disabled={i.disabled}>{i.label}</Select.Option>
                                         )}
-                                    </select>
+                                    </Select>
                                 )}
                             </Field>
-                        </div>
+                        {/* </div> */}
                         <ErrorMessage name="numberOfTickets" component="div" className="invalid-feedback" />
                     </div>
                     <FieldArray name="params">
-                        {() => (values.data.map((ticket, i) => {
-                            console.log('ticket' + i, ticket)
+                        {() => (values.data.map((target, i) => {
                             const ticketErrors = errors.tickets?.length && errors.tickets[i] || {};
                             const ticketTouched = touched.tickets?.length && touched.tickets[i] || {};
                             return (
-                                <div className="form-group ant-row">
-                                    <div className="ant-col ant-form-item-label"><label className="ant-form-item-label">{ticket}</label></div>
+                                <div key={i+target.name} className="form-group ant-row">
+                                    <div className="ant-col ant-form-item-label">
+                                        <label >{target.label}</label>
+                                    </div>
                                     <div className="ant-form-item-control">
-                                        <Field name={ticket} type="text" className={'form-control' + (ticketErrors.name && ticketTouched.name ? ' is-invalid' : '')} />
+                                        {
+                                            target.type !== 'select'?
+                                            <Field 
+                                                autoComplete="new-password" 
+                                                value={target.value} 
+                                                name={target.name} 
+                                                type={target.type} 
+                                                className={'form-control' + (ticketErrors.name && ticketTouched.name ? ' is-invalid' : '')} 
+                                            />
+                                            :
+                                            <Field name={target.name} >
+                                                {({ field }) => (
+                                                <Select
+                                                    {...field}
+                                                    className={'ant-form-item-control-input-content' + (errors.numberOfTickets && touched.numberOfTickets ? ' is-invalid' : '')}
+                                                    onChange={e => onChangeAlg(e, field, values, setValues)}
+                                                >
+                                                    <Select.Option value=""></Select.Option>
+                                                    {target.options.map(i =>
+                                                        <Select.Option key={i.value} value={i.value} disabled={i.disabled}>{i.label}</Select.Option>
+                                                    )}
+                                                </Select>
+                                                )}
+                                            </Field>
+                                        }
+                                        
                                         <ErrorMessage name={`tickets.${i}.name`} component="div" className="invalid-feedback" />
                                     </div>
                                 </div>
@@ -121,8 +186,7 @@ const NewProviderForm = (props) => {
                         Buy Tickets
                     </button>
                     <button className="btn btn-secondary mr-1" type="reset">Reset</button>
-                    <li>Допилить обьект loadType</li>
-                    <li>switch</li>
+                    {/* <li>default values</li> */}
                     <li>Валидация</li>
                     <li>Api для создания поставщиков</li>
                     <li>Проверка на существование</li>

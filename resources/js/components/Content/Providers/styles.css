@@ -7,8 +7,8 @@
   .ant-form-item-control {
     width: 66.66%;
     /* width: 66.66666667%; */
-    /* display: inline-flex;
-    line-height: normal; */
+    /* display: inline-flex; */
+    line-height: normal;
   }
   
   /* .container {
