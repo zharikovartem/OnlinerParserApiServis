@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import DisplayProviderForm from './DisplayProviderForm';
-// import * as Yup from 'yup';
+import { Select } from 'antd';
 
 import {
     AntDatePicker,
@@ -16,6 +16,8 @@ import {
     validateName,
     isRequired
 } from "./ValidateFields";
+
+const { Option } = Select;
 
 const NewProviderForm = (props) => {
     const initialValues = {
@@ -38,22 +40,7 @@ const NewProviderForm = (props) => {
     //     )
     // });
 
-    function onChangeLoad(e, field, values, setValues) {
-        // update dynamic form
-        console.log(e.target.value)
-        // const tickets = [...values.tickets];
-        // const numberOfTickets = e.target.value || 0;
-        // const previousNumber = parseInt(field.value || '0');
-        // if (previousNumber < numberOfTickets) {
-        //     for (let i = previousNumber; i < numberOfTickets; i++) {
-        //         tickets.push({ name: '', email: '' });
-        //     }
-        // } else {
-        //     for (let i = previousNumber; i >= numberOfTickets; i--) {
-        //         tickets.splice(i, 1);
-        //     }
-        // }
-        // setValues({ ...values, tickets });
+    function onChangeLoadType(e, field, values, setValues) {
         let valuesCopy = {...values};
         valuesCopy.data = [];
         valuesCopy.loadType = e.target.value;
@@ -68,8 +55,6 @@ const NewProviderForm = (props) => {
         }
         setValues(valuesCopy)
 
-        // call formik onChange method
-
         field.onChange(e);
     }
 
@@ -78,35 +63,48 @@ const NewProviderForm = (props) => {
         console.log('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
     }
 
-    console.log(initialValues)
-
     return (
         <Formik initialValues={initialValues}  onSubmit={onSubmit}>
             {({ errors, values, touched, setValues }) => (
                 <Form>
-                    <div className="card m-3">
+                    <Field
+                        component={AntInput}
+                        name="name"
+                        type="text"
+                        label="Наименование поставщика"
+                        validate={validateName}
+                        hasFeedback
+                    />
+                    {/* <div className="card m-3">
                         <div className="card-body border-bottom">
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label>Number of Tickets</label>
-                                    <Field name="numberOfTickets">
-                                    {({ field }) => (
-                                        <select 
-                                            {...field} 
-                                            className={'form-control' + (errors.numberOfTickets && touched.numberOfTickets ? ' is-invalid' : '')} 
-                                            onChange={e => onChangeLoad(e, field, values, setValues)}
-                                        >
-                                            <option value=""></option>
-                                            {['api','mail','ftp',4,5,6,7,8,9,10].map(i => 
-                                                <option key={i} value={i}>{i}</option>
-                                            )}
-                                        </select>
-                                    )}
-                                    </Field>
+                            <div className="form-row">*/}
+                                <div className="form-group ant-row">
+                                    <div className="ant-col ant-form-item-label"><label>Способ загрузки прайса</label> </div>
+                                    <div className="ant-form-item-control">
+                                        <Field name="LoadType">
+                                        {({ field }) => (
+                                            <select 
+                                                {...field} 
+                                                className={'form-control' + (errors.numberOfTickets && touched.numberOfTickets ? ' is-invalid' : '')} 
+                                                onChange={e => onChangeLoadType(e, field, values, setValues)}
+                                            >
+                                                <option value=""></option>
+                                                {   [
+                                                    {value: 'api', label:'API', disabled: false},
+                                                    {value: 'mail', label:'Email', disabled: false},
+                                                    {value: 'ftp', label:'FTP', disabled: true},
+                                                    {value: 'parser', label:'Parser', disabled: false},
+                                                    ].map(i => 
+                                                    <option key={i.value} value={i.value} disabled={i.disabled}>{i.label}</option>
+                                                )}
+                                            </select>
+                                        )}
+                                        </Field>
+                                    </div>
                                     <ErrorMessage name="numberOfTickets" component="div" className="invalid-feedback" />
-                                </div>
-                            </div>
-                        </div>
+                                 </div>
+                            {/*</div>
+                        </div> */}
                         <FieldArray name="params">
                         {() => (values.data.map((ticket, i) => {
                             console.log('ticket'+i, ticket)
@@ -117,11 +115,12 @@ const NewProviderForm = (props) => {
                                     <div className="list-group-item">
                                         {/* <h5 className="card-title">Ticket {i + 1}</h5> */}
                                         <div className="form-row">
-                                            <div className="form-group col-6">
-                                                <label>{ticket}</label>
-                                                <Field name={ticket} type="text" className={'form-control' + (ticketErrors.name && ticketTouched.name ? ' is-invalid' : '' )} />
+                                            {/* <div className="form-group col-6"> */}
+                                            {/* <div className="form-group"> */}
+                                                <label className="ant-form-item-label">{ticket}</label>
+                                                <Field name={ticket} type="text" className={'form-control col-8' + (ticketErrors.name && ticketTouched.name ? ' is-invalid' : '' )} />
                                                 <ErrorMessage name={`tickets.${i}.name`} component="div" className="invalid-feedback" />
-                                            </div>
+                                            {/* </div> */}
                                             {/* <div className="form-group col-6">
                                                 <label>Email</label>
                                                 <Field name={`tickets.${i}.email`} type="text" className={'form-control' + (ticketErrors.email && ticketTouched.email ? ' is-invalid' : '' )} />
@@ -133,13 +132,13 @@ const NewProviderForm = (props) => {
                             );
                         }))}
                         </FieldArray>
-                        <div className="card-footer text-center border-top-0">
+                        {/* <div className="card-footer text-center border-top-0"> */}
                             <button type="submit" className="btn btn-primary mr-1">
                                 Buy Tickets
                             </button>
                             <button className="btn btn-secondary mr-1" type="reset">Reset</button>
-                        </div>
-                    </div>
+                        {/* </div> */}
+                    {/* </div> */}
                 </Form>
             )}
         </Formik>
