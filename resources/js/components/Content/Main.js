@@ -5,6 +5,7 @@ import CatalogTree from '../../views/CatalogTree/CatalogTreeContainer';
 import ToDo from './ToDo/ToDoContainer';
 import Client from './Client/Client';
 import Providers from './Providers/ProvidersContainer';
+import Orders from './Orders/Orders';
 
 const { TabPane } = Tabs;
 
@@ -29,16 +30,19 @@ const Main = (props) => {
                     <TabPane tab="Поставщики" key="3">
                         <Providers />
                     </TabPane>
-                    <TabPane tab="ToDo" key="4">
+                    <TabPane tab="Заказы" key="4">
+                        <Orders />
+                    </TabPane>
+                    <TabPane tab="ToDo" key="5">
                         <ToDo />
                     </TabPane>
-                    <TabPane tab="ReadMe" key="5">
+                    <TabPane tab="ReadMe" key="6">
                         <ReadMe />
                     </TabPane>
-                    <TabPane tab="Процессы" key="6">
+                    <TabPane tab="Процессы" key="7">
                         <Client />
                     </TabPane>
-                    <TabPane tab="Почта" key="7">
+                    <TabPane tab="Почта" key="8">
                         Почта
                     </TabPane>
                 </Tabs>

@@ -28,7 +28,7 @@ const NewProviderFormAntd = (props) => {
         console.log(e)
         switch (e) {
             case 'api':
-                setLoadType(<ApiOptions setAuthCheck={setAuthCheck} authCheck={authCheck}/>)
+                setLoadType(<ApiOptions/>)
                 break;
         
             default:
@@ -68,7 +68,10 @@ const NewProviderFormAntd = (props) => {
             </Form.Item>
 
             {loadType}
-            {authCheck ? <div>authCheck</div> : null}
+            {/* {authCheck ? <div>authCheck</div> : null} */}
+
+            < ProviderContactForm />
+            <p>Адрес и время работы</p>
 
 
             <Form.Item {...tailLayout}>

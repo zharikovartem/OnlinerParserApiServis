@@ -27,8 +27,8 @@ const Providers = (props) => {
   return (
     <>
       <h3>Providers</h3>
-      <p>https://ant.design/components/drawer/</p>
-      <Button type="primary" onClick={showDrawer}>
+      {/* <p>https://ant.design/components/drawer/</p> */}
+      {/* <Button type="primary" onClick={showDrawer}>
         <PlusOutlined />Создать (Formik)
       </Button>
       <Drawer
@@ -42,7 +42,7 @@ const Providers = (props) => {
         visible={visible}
       >
         <NewProviderForm />
-      </Drawer>
+      </Drawer> */}
       <br/><br/>
       <Button type="primary" onClick={showDrawer2}>
         <PlusOutlined />Создать (antd)
