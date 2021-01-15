@@ -449,6 +449,63 @@ const ReadMe = () => {
                     </Collapse>
                 </Panel>
                 <Panel header="Данные для SSH и VDS" key="5"></Panel>
+                <Panel header="React" key="6">
+                    <Collapse>
+                        <Panel header="Подключение Redux" key="6-1">
+                            <UrlCopyed 
+                                value="npm i react-redux redux -s" 
+                                descriptions=" - Устанавливаем расширения"
+                                pre="1)"
+                            />
+                            <UrlCopyed 
+                                value="npm i --save-dev @types/react-redux" 
+                                descriptions=" - Получаем типы react-redux"
+                                pre="2)"
+                            />
+                            <UrlCopyed 
+                                value="npm i --save-dev @types/redux" 
+                                descriptions=" - Получаем типы redux"
+                                pre="3)"
+                            />
+                               
+                            <UrlCopyed 
+                                value="import { Provider } from 'react-redux';" 
+                                descriptions=" - Подключаем Provider "
+                                pre="4)"
+                            />
+                            <UrlCopyed 
+                                value="<Provider store={store}>" 
+                                descriptions=" - Оборачиваем корневой компонент в Provider "
+                                pre="5)"
+                            />
+                            <UrlCopyed 
+                                value="import store from './redux/store';" 
+                                descriptions=" - Подключаем store"
+                                pre="6)"
+                            />
+                            <UrlCopyed 
+                                value="MD redux" 
+                                descriptions=" - создаем папку redux"
+                                pre="6)"
+                            />
+                            <UrlCopyed 
+                                value="CD src/redux" 
+                                descriptions=" - переходим в папку redux"
+                                pre="6)"
+                            />
+                            <UrlCopyed 
+                                value="echo $null >> store.tsx" 
+                                descriptions=" - Создаем файл"
+                                pre="7)"
+                            />
+                            <UrlCopyed 
+                                value="npm i redux-thunk -s" 
+                                descriptions=" - Устанавливаем redux-thunk"
+                                pre=")"
+                            />
+                        </Panel>
+                    </Collapse>
+                </Panel>
             </Collapse>
             
 
