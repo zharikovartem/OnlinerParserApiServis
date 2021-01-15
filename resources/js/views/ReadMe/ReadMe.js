@@ -453,21 +453,15 @@ const ReadMe = () => {
                     <Collapse>
                         <Panel header="Подключение Redux" key="6-1">
                             <UrlCopyed 
-                                value="npm i react-redux redux -s" 
+                                value="npm i react-redux redux redux-thunk -s" 
                                 descriptions=" - Устанавливаем расширения"
                                 pre="1)"
                             />
                             <UrlCopyed 
-                                value="npm i --save-dev @types/react-redux" 
+                                value="npm i --save-dev @types/react-redux @types/redux @types/redux-thunk" 
                                 descriptions=" - Получаем типы react-redux"
                                 pre="2)"
-                            />
-                            <UrlCopyed 
-                                value="npm i --save-dev @types/redux" 
-                                descriptions=" - Получаем типы redux"
-                                pre="3)"
-                            />
-                               
+                            /> 
                             <UrlCopyed 
                                 value="import { Provider } from 'react-redux';" 
                                 descriptions=" - Подключаем Provider "
@@ -484,11 +478,11 @@ const ReadMe = () => {
                                 pre="6)"
                             />
                             <UrlCopyed 
-                                value="MD redux" 
-                                descriptions=" - создаем папку redux"
+                                value="CD src; MD redux; CD redux; echo $null >> store.tsx; code store.tsx; CD..; CD.. " 
+                                descriptions=" - Создаем файл store.tsx"
                                 pre="6)"
                             />
-                            <UrlCopyed 
+                            {/* <UrlCopyed 
                                 value="CD src/redux" 
                                 descriptions=" - переходим в папку redux"
                                 pre="6)"
@@ -497,12 +491,7 @@ const ReadMe = () => {
                                 value="echo $null >> store.tsx" 
                                 descriptions=" - Создаем файл"
                                 pre="7)"
-                            />
-                            <UrlCopyed 
-                                value="npm i redux-thunk -s" 
-                                descriptions=" - Устанавливаем redux-thunk"
-                                pre=")"
-                            />
+                            /> */}
                         </Panel>
                     </Collapse>
                 </Panel>
