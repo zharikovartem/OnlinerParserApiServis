@@ -70,7 +70,7 @@ const NewProviderFormAntd = (props) => {
             {loadType}
             {/* {authCheck ? <div>authCheck</div> : null} */}
 
-            < ProviderContactForm />
+            {/* < ProviderContactForm /> */}
             <p>Адрес и время работы</p>
 
 
