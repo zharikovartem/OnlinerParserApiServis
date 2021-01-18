@@ -493,6 +493,13 @@ const ReadMe = () => {
                                 pre="7)"
                             /> */}
                         </Panel>
+                        <Panel header="Create React App" key="6-2">
+                            <UrlCopyed 
+                                value="npx create-react-app my-app" 
+                                descriptions=" - Создать приложение"
+                                pre="1)"
+                            />
+                        </Panel>
                     </Collapse>
                 </Panel>
             </Collapse>

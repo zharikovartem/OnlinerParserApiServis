@@ -44,7 +44,7 @@ export const createNewTask = (data) => {
     return (dispatch) => {
         toDoAPI.createNewTask(data).then(response => {
             dispatch(setToDoList(response));
-        });
+        })
     }
 }
 
