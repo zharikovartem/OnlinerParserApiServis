@@ -3,6 +3,7 @@ const SET_TODO_DATA = 'SET_TODO_DATA';
 
 let initialState = {
     ToDoData: [],
+    taskList: null,
     // isLoginInProgress: false,
     // user: {},
     // userStatus: 'guest',
@@ -13,7 +14,7 @@ const toDoReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_TODO_DATA:
             console.log(action)
-            stateCopy.ToDoData = action.toDoData.data.ToDoList;
+            stateCopy.taskList = action.toDoData.data.Tasks;
             // stateCopy.isAuth = true;
             // if (action.userData.data.user.status !== undefined) {
             //     stateCopy.userStatus = action.userData.data.user.status;

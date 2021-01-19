@@ -2,10 +2,12 @@ import React from 'react';
 import ReadMe from '../../views/ReadMe/ReadMe';
 import { Tabs } from 'antd';
 import CatalogTree from '../../views/CatalogTree/CatalogTreeContainer';
-import ToDo from './ToDo/ToDo';
+import ToDo from './ToDo/ToDoContainer';
+// import ToDo from './../Todo/ToDoList';
 import Client from './Client/Client';
 import Providers from './Providers/ProvidersContainer';
 import Orders from './Orders/Orders';
+import ToDoList from './../Todo/ToDoListContainer';
 
 const { TabPane } = Tabs;
 
@@ -34,7 +36,10 @@ const Main = (props) => {
                         <Orders />
                     </TabPane>
                     <TabPane tab="ToDo" key="5">
+
                         {/* <ToDo /> */}
+                        <ToDoList />
+
                     </TabPane>
                     <TabPane tab="ReadMe" key="6">
                         <ReadMe />

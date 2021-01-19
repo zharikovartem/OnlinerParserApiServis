@@ -10,24 +10,29 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 }
 
-type PropsType = {
-    selectedDate: moment.Moment
-}
+// type PropsType = {
+//     selectedDate: moment.Moment
+// }
 
 const { TextArea } = Input;
 
-const timeFormat: string = 'HH:mm';
+const timeFormat = 'HH:mm';
 
-const NewTaskForm: React.FC<PropsType> = () => {
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
+const NewTaskForm = (props) => {
+    const onFinish = (values) => {
+        console.log('Success:', values)
+        console.log('props:', props)
+        console.log('taskTime', values.taskTime.format('HH:mm'))
+        values.user_id = props.user.id
+        values.taskTime = values.taskTime.format('HH:mm');
+        props.createNewTask(values)
     };
 
-    const onFinishFailed = (errorInfo: any) => {
+    const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
-    const onTimeChange = (value: moment.Moment | null, dateString: string):void => {
+    const onTimeChange = (value, dateString) => {
         console.log(value, dateString);
     }
 

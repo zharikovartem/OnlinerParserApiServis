@@ -23,6 +23,11 @@ class CreateTasksTable extends Migration
             $table->integer('tado_id')->nullable();
             $table->integer('order_id')->nullable();
             $table->text('type')->nullable();
+            // $table->text('date')->nullable();
+            $table->date('date')->nullable();
+            // $table->text('type')->nullable();
+            $table->time('time')->nullable();
+            $table->mediumText('description')->nullable();
         });
     }
 

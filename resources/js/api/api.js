@@ -117,9 +117,9 @@ export const catalogAPI = {
 
 export const toDoAPI = {
     getToDoList() {
-        return instanse.get('api/getToDoList')
+        return instanse.get('api/tasks')
             .then(response => {
-                console.log(response)
+                console.log('getToDoList', response)
                 return response.status === 200 ? response : null;
             })
             // .catch(err => {
@@ -144,10 +144,21 @@ export const toDoAPI = {
     },
 
     createNewTask(data) {
-        return instanse.post('api/createNewTask', data)
+        return instanse.post('api/tasks', data)
             .then(response => {
-                console.log(response)
+                console.log('createNewTask',response)
                 return response.status === 200 ? response : null;
+            })
+            .catch(err => {
+                if (err.response) {
+                    console.log(err.response.data)
+                    return err.response.data
+                } else if (err.request) {
+                    console.log('request', err.request)
+                } else {
+                    console.log('anything else: ', err)
+                }
+                return null
             })
     }
 }

@@ -20,7 +20,7 @@ class TaskController extends Controller
 
         
 
-        $req ->header('Access-Control-Allow-Origin', null )
+        $req ->header('Access-Control-Allow-Origin', '*')
             ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
             ->header('Access-Control-Allow-Headers',' Origin, Content-Type, Accept, Authorization, X-Request-With')
             ->header('Access-Control-Allow-Credentials',' true');
@@ -49,8 +49,10 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $newTask = new Task;
-        $newTask->name = "test_to ".$request->get("user_id");
+        $newTask->name = $request->get("taskNime");
         $newTask->user_id = $request->get("user_id");
+        $newTask->time = $request->get("taskTime");
+        $newTask->descriptions = $request->get("description");
         $newTask->date = now();
         $newTask->save();
 

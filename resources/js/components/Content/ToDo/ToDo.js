@@ -4,6 +4,7 @@ import { Tree } from 'antd';
 const ToDo = (props) => {
 
   useEffect(() => {
+    console.log('todo', props)
     if (props.ToDoData.length === 0) {
       props.getToDoList()
     }
