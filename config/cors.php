@@ -31,12 +31,7 @@ return [
             'DELETE',
         ],
 
-        'allow_headers' => [
-            'Content-Type',
-            'X-Auth-Token',
-            'Origin',
-            'Authorization',
-        ],
+        'allow_headers' => ['*'],
 
         'expose_headers' => [
             'Cache-Control',
