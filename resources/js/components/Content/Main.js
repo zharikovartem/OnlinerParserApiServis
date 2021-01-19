@@ -34,7 +34,7 @@ const Main = (props) => {
                         <Orders />
                     </TabPane>
                     <TabPane tab="ToDo" key="5">
-                        <ToDo />
+                        {/* <ToDo /> */}
                     </TabPane>
                     <TabPane tab="ReadMe" key="6">
                         <ReadMe />
