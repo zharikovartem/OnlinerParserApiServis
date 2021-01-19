@@ -2,7 +2,7 @@ import React from 'react';
 import ReadMe from '../../views/ReadMe/ReadMe';
 import { Tabs } from 'antd';
 import CatalogTree from '../../views/CatalogTree/CatalogTreeContainer';
-import ToDo from './ToDo/ToDoContainer';
+import ToDo from './ToDo/ToDo';
 import Client from './Client/Client';
 import Providers from './Providers/ProvidersContainer';
 import Orders from './Orders/Orders';

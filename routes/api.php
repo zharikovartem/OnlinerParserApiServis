@@ -55,3 +55,5 @@ Route::get('init-event', function() {
     \App\Classes\Socket\Pusher::sendDataToServer($data);
     var_dump($data);
 });
+
+Route::resource('tasks', 'TaskController');
