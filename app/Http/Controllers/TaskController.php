@@ -20,7 +20,7 @@ class TaskController extends Controller
 
         
 
-        $req ->header('Access-Control-Allow-Origin', '*')
+        $req ->header('Access-Control-Allow-Origin', null )
             ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
             ->header('Access-Control-Allow-Headers',' Origin, Content-Type, Accept, Authorization, X-Request-With')
             ->header('Access-Control-Allow-Credentials',' true');
