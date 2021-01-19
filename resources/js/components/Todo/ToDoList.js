@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { DatePicker, Card, Divider, Button, Drawer } from 'antd'
+import { DatePicker, Card, Divider, Button, Drawer, Tooltip } from 'antd'
 import { FileAddOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import NewTaskForm from './NewTaskFormContainer'
@@ -48,7 +48,11 @@ const ToDoList = (props) => {
                     const nextHour = index+1
                     if (timeVal >= index && timeVal< nextHour) {
                         console.log(element.time + 'to '+ index)
-                        tasksBlock.push(<p>{element.time.split(':', 2).join(':')} - {element.name}</p>)
+                        tasksBlock.push(
+                            <Tooltip placement="topLeft" title={element.descriptions}>
+                                <p>{element.time.split(':', 2).join(':')} - {element.name}</p>
+                            </Tooltip>
+                        )
                     }
                 }
             }

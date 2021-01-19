@@ -27,7 +27,7 @@ class CreateTasksTable extends Migration
             $table->date('date')->nullable();
             // $table->text('type')->nullable();
             $table->time('time')->nullable();
-            $table->mediumText('description')->nullable();
+            $table->mediumText('descriptions')->nullable();
         });
     }
 
