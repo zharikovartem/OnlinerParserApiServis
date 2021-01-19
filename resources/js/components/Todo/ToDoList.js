@@ -12,10 +12,15 @@ const ToDoList = (props) => {
     useEffect(() => {
         console.log('useEffect', props)
         if (props.taskList === null) {
-            props.getToDoList()
+            console.log(selectedDate.format('YYYY-MM-DD'))
+            props.getToDoList(selectedDate.format('YYYY-MM-DD'))
         }
 
     }, [props.taskList]);
+
+    useEffect(() => {
+            props.getToDoList(selectedDate.format('YYYY-MM-DD'))
+    }, [selectedDate]);
 
     const onDateChange = (value, dateString) => {
         if (value !== null) {
@@ -81,6 +86,7 @@ const ToDoList = (props) => {
                                 format='DD-MM-YYYY'
                                 style={{ marginLeft: 10 }}
                             />
+                            <br/>
                             <Button 
                                 type="primary" 
                                 shape="round" 

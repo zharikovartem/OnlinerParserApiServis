@@ -33,9 +33,9 @@ const toDoReducer = (state = initialState, action) => {
 
 export const setToDoList = (toDoData) => ({ type: SET_TODO_DATA, toDoData });
 
-export const getToDoList = () => {
+export const getToDoList = (data) => {
     return (dispatch) => {
-        toDoAPI.getToDoList().then(response => {
+        toDoAPI.getToDoList(data).then(response => {
             dispatch(setToDoList(response));
         });
     }

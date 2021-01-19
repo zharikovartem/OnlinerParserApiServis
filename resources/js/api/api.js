@@ -116,8 +116,8 @@ export const catalogAPI = {
 }
 
 export const toDoAPI = {
-    getToDoList() {
-        return instanse.get('api/tasks')
+    getToDoList(data) {
+        return instanse.get('api/tasks?date='+data)
             .then(response => {
                 console.log('getToDoList', response)
                 return response.status === 200 ? response : null;

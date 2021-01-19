@@ -12,18 +12,24 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $date = $request->get('date');
+        // echo $date;
+
+        $tasks = Task::where('date', $date)
+                    ->get();
+
         $req = response()->json([
-            "Tasks"=> Task::all()
+            "Tasks"=> $tasks
             ], 200);
 
         
 
-        $req ->header('Access-Control-Allow-Origin', '*')
-            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-            ->header('Access-Control-Allow-Headers',' Origin, Content-Type, Accept, Authorization, X-Request-With')
-            ->header('Access-Control-Allow-Credentials',' true');
+        // $req ->header('Access-Control-Allow-Origin', '*')
+        //     ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+        //     ->header('Access-Control-Allow-Headers',' Origin, Content-Type, Accept, Authorization, X-Request-With')
+        //     ->header('Access-Control-Allow-Credentials',' true');
 
         // var_dump($req->headers);
 
@@ -53,10 +59,12 @@ class TaskController extends Controller
         $newTask->user_id = $request->get("user_id");
         $newTask->time = $request->get("taskTime");
         $newTask->descriptions = $request->get("description");
-        $newTask->date = now();
+        $newTask->date = $request->get("date");
         $newTask->save();
 
-        return self::index();
+        // $newReq = new Request;
+
+        return self::index($request);
     }
 
     /**
