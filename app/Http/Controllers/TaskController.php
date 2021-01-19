@@ -16,7 +16,9 @@ class TaskController extends Controller
     {
         return response()->json([
             "Tasks"=> Task::all()
-            ], 200);
+            ], 200)->withHeaders([
+                'Access-Control-Allow-Origin', '*'
+            ]);
     }
 
     /**
