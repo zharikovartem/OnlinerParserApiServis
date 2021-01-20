@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 
-header('Access-Control-Allow-Origin: http://localhost:3000');
+// header('Access-Control-Allow-Origin: http://localhost:3000');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
 header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
 
