@@ -31,7 +31,8 @@ class TaskController extends Controller
         //     ->header('Access-Control-Allow-Headers',' Origin, Content-Type, Accept, Authorization, X-Request-With')
         //     ->header('Access-Control-Allow-Credentials',' true');
 
-        // var_dump($req->headers);
+        // var_dump($req->headers)
+        ;
 
         return $req;
     }
