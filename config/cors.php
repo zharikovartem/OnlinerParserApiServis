@@ -19,7 +19,8 @@ return [
         'allow_credentials' => false,
 
         'allow_origins' => [
-            '*',
+            // '*',
+            'https://localhost:3000/'
         ],
 
         'allow_methods' => [
