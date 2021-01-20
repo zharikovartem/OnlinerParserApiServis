@@ -127,4 +127,30 @@ class TaskController extends Controller
     {
         //
     }
+
+    /**
+     * View interval of tasks
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getTasksPart(Request $request)
+    {
+        $start_time = '00:00:00';
+        if ( $request->get("start_time") !== null ) {
+            $start_time = $request->get("start_time");
+        }
+        $end_time = '23:59:59';
+        if ( $request->get("end_time") !== null ) {
+            $end_time = $request->get("end_time");
+        }
+
+        $tasks = Task::where('date', '>=', $request->get("start_date"))
+                    ->where('date', '<=', $request->get("end_date"))
+                    ->where('time', '>=', $start_time)
+                    ->where('time', '<=', $end_time)
+                    ->get();
+
+        return $tasks;
+    }
 }

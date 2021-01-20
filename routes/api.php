@@ -61,4 +61,5 @@ Route::get('init-event', function() {
     var_dump($data);
 });
 
+Route::post('tasks/part', 'TaskController@getTasksPart');
 Route::resource('tasks', 'TaskController');
