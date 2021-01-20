@@ -61,12 +61,13 @@ const ToDoList = (props) => {
                     }
                 }
             }
-
-            timeScaleArrey.push(
-                <Divider key={index} orientation="left">
-                    {index <= 9 ? '0' : null}{index}:00
-                </Divider>)
-            timeScaleArrey.push(tasksBlock)
+            if (tasksBlock.length > 0 || index > 7) {
+                timeScaleArrey.push(
+                    <Divider key={index} orientation="left">
+                        {index <= 9 ? '0' : null}{index}:00
+                    </Divider>)
+                timeScaleArrey.push(tasksBlock)
+            }
         }
         return timeScaleArrey
     }
