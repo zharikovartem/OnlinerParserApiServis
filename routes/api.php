@@ -8,7 +8,7 @@ if ( isset($_SERVER['HTTP_ORIGIN'])) {
         $http_origin = 'https://zharikovartem.github.io/epam-app';
     }
 } else {
-    $http_origin = 'https://zharikovartem.github.io';
+    $http_origin = 'https://zharikovartem.github.io/epam-app';
 }
 
 // echo $http_origin;
