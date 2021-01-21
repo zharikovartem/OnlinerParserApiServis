@@ -2,8 +2,13 @@
 
 use Illuminate\Http\Request;
 
-$http_origin = $_SERVER['HTTP_ORIGIN'];
-// // var_dump($request_headers['Host']);
+if ( isset($_SERVER['HTTP_ORIGIN'])) {
+    $http_origin = $_SERVER['HTTP_ORIGIN'];
+} else {
+    $http_origin = 'https://zharikovartem.github.io';
+}
+
+echo $http_origin;
 $trusted_adress = [
     // 'http://localhost:3000',
 
@@ -20,14 +25,14 @@ $trusted_adress = [
 //     header('Access-Control-Allow-Origin: '.$request_headers['Host']);
 // } else {
 //     // header('Access-Control-Allow-Origin: https://zharikovartem.github.io/epam-app');
-//     header('Access-Control-Allow-Origin: http://localhost:3000???');
+//     header('Access-Control-Allow-Origin: http://localhost:3000');
 // }
 
 // header('Access-Control-Allow-Origin: '.$request_headers['Host']);
 
 
 header('Access-Control-Allow-Origin:'.$http_origin); # Работает с localhost
-// header('Access-Control-Allow-Origin: https://zharikovartem.github.io/epam-app');
+// header('Access-Control-Allow-Origin: https://zharikovartem.github.io');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
 header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
