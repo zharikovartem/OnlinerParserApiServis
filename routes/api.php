@@ -6,8 +6,8 @@ $request_headers = apache_request_headers();
 // var_dump($request_headers['Host']);
 $trusted_adress = [
     '127.0.0.1',
-    'https://zharikovartem.github.io',
-    'http://localhost'
+    'https://zharikovartem.github.io/',
+    'http://localhost/'
 ];
 
 if ( in_array($request_headers['Host'], $trusted_adress) ) {
