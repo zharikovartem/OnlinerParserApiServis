@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
 $request_headers = apache_request_headers();
 // var_dump($request_headers['Host']);
 $trusted_adress = [
-    '127.0.0.1:8000',
-    'https://zharikovartem.github.io/epam-app/',
-    'http://localhost:3000/epam-app'
+    '127.0.0.1',
+    'https://zharikovartem.github.io',
+    'http://localhost'
 ];
 
 if ( in_array($request_headers['Host'], $trusted_adress) ) {
