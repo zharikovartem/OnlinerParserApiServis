@@ -8,7 +8,7 @@ if ( isset($_SERVER['HTTP_ORIGIN'])) {
     $http_origin = 'https://zharikovartem.github.io';
 }
 
-echo $http_origin;
+// echo $http_origin;
 $trusted_adress = [
     // 'http://localhost:3000',
 
