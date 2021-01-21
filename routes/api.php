@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 
-$request_headers = apache_request_headers();
-var_dump($request_headers);
+// $request_headers = apache_request_headers();
+// var_dump($request_headers);
 
 header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
