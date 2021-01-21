@@ -21,7 +21,8 @@ class TaskController extends Controller
                     ->get();
 
         $req = response()->json([
-            "Tasks"=> $tasks
+            "Tasks"=> $tasks,
+            "orgin"=> $_SERVER['HTTP_ORIGIN']
             ], 200);
 
         
