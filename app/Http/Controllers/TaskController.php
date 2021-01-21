@@ -66,7 +66,7 @@ class TaskController extends Controller
 
         // $newReq = new Request;
 
-        response()->json([
+        return response()->json([
             "request"=> $request
             ], 200);
 
