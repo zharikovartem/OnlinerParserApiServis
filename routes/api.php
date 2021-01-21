@@ -8,11 +8,15 @@ $trusted_adress = [
     '127.0.0.1',
     'https://zharikovartem.github.io/',
     'https://zharikovartem.github.io/epam-app/',
-    'http://localhost:3000'
+    'zharikovartem.github.io/epam-app/',
+    'http://localhost:3000',
+    '127.0.0.1:8000'
 ];
 
+// echo $request_headers['Host'];
 if ( in_array($request_headers['Host'], $trusted_adress) ) {
-    $adress = $request_headers['Host'];
+    // echo '!!!!!';
+    $adress = 'https://'.$request_headers['Host'];
 } else {
     $adress = '*';
 }
