@@ -55,15 +55,20 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $newTask = new Task;
-        $newTask->name = $request->get("taskName");
-        $newTask->user_id = $request->get("user_id");
-        $newTask->time = $request->get("taskTime");
-        $newTask->descriptions = $request->get("description");
-        $newTask->date = $request->get("date");
-        $newTask->save();
+        // $newTask = new Task;
+        // $newTask->name = $request->get("taskName");
+        // $newTask->user_id = $request->get("user_id");
+        // $newTask->time = $request->get("taskTime");
+        // $newTask->descriptions = $request->get("description");
+        // $newTask->date = $request->get("date");
+        // var_dump($newTask);
+        // $newTask->save();
 
         // $newReq = new Request;
+
+        response()->json([
+            "request"=> $request
+            ], 200);
 
         return self::index($request);
     }
