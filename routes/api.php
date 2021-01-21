@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 if ( isset($_SERVER['HTTP_ORIGIN'])) {
     $http_origin = $_SERVER['HTTP_ORIGIN'];
     if ($http_origin === 'https://zharikovartem.github.io/epam-app/') {
-        $http_origin = 'https://zharikovartem.github.io';
+        $http_origin = 'https://zharikovartem.github.io/epam-app';
     }
 } else {
     $http_origin = 'https://zharikovartem.github.io';
