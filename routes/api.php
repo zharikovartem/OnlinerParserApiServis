@@ -7,7 +7,8 @@ $request_headers = apache_request_headers();
 $trusted_adress = [
     '127.0.0.1',
     'https://zharikovartem.github.io/',
-    'http://localhost/'
+    'https://zharikovartem.github.io/epam-app/',
+    'http://localhost:3000'
 ];
 
 if ( in_array($request_headers['Host'], $trusted_adress) ) {
