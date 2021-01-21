@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 
 if ( isset($_SERVER['HTTP_ORIGIN'])) {
     $http_origin = $_SERVER['HTTP_ORIGIN'];
+    if ($http_origin === 'https://zharikovartem.github.io/epam-app/') {
+        $http_origin = 'https://zharikovartem.github.io';
+    }
 } else {
     $http_origin = 'https://zharikovartem.github.io';
 }
@@ -28,10 +31,10 @@ $trusted_adress = [
 //     header('Access-Control-Allow-Origin: http://localhost:3000');
 // }
 
-// header('Access-Control-Allow-Origin: '.$request_headers['Host']);
+header('Access-Control-Allow-Origin: http://localhost:3000'); # Работает с localhost
 
 
-header('Access-Control-Allow-Origin:'.$http_origin); # Работает с localhost
+header('Access-Control-Allow-Origin:'.$http_origin);
 // header('Access-Control-Allow-Origin: https://zharikovartem.github.io');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
