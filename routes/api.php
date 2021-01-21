@@ -4,41 +4,23 @@ use Illuminate\Http\Request;
 
 if ( isset($_SERVER['HTTP_ORIGIN'])) {
     $http_origin = $_SERVER['HTTP_ORIGIN'];
-    // echo $http_origin;
-    if ($http_origin === 'https://zharikovartem.github.io/epam-app/') {
-        $http_origin = 'https://zharikovartem.github.io/epam-app';
+    switch ($_SERVER['HTTP_ORIGIN']) {
+        case 'https://zharikovartem.github.io':
+            $http_origin = $_SERVER['HTTP_ORIGIN'];
+            break;
+
+        case 'http://localhost:3000':
+            $http_origin = $_SERVER['HTTP_ORIGIN'];
+            break;
+        
+        default:
+            $http_origin = '*';
+            break;
     }
 } else {
-    echo 'No HTTP_ORIGIN';
-    $http_origin = 'https://zharikovartem.github.io';
+    $http_origin = '*';
 }
-
-// echo $http_origin;
-$trusted_adress = [
-    // 'http://localhost:3000',
-
-    'https://zharikovartem.github.io',
-    '127.0.0.1',
-    'https://zharikovartem.github.io/epam-app/',
-    'zharikovartem.github.io/epam-app/',
-    '127.0.0.1:8000'
-];
-
-// echo $request_headers['Host'];
-// if ( in_array($request_headers['Host'], $trusted_adress) ) {
-//     // echo '!!!!!';
-//     header('Access-Control-Allow-Origin: '.$request_headers['Host']);
-// } else {
-//     // header('Access-Control-Allow-Origin: https://zharikovartem.github.io/epam-app');
-//     header('Access-Control-Allow-Origin: http://localhost:3000');
-// }
-
-// header('Access-Control-Allow-Origin: http://localhost:3000'); # Работает с localhost
-// header('Access-Control-Allow-Origin: https://zharikovartem.github.io'); # Работает с github
-
-
 header('Access-Control-Allow-Origin:'.$http_origin);
-
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
 header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');

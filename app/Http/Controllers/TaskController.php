@@ -22,7 +22,7 @@ class TaskController extends Controller
 
         $req = response()->json([
             "Tasks"=> $tasks,
-            "orgin"=> $_SERVER['HTTP_ORIGIN']
+            "orgin"=> isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : 'NO HTTP_ORIGIN'
             ], 200);
 
         
