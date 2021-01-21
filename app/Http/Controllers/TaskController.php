@@ -56,7 +56,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $newTask = new Task;
-        $newTask->name = $request->get("taskNime");
+        $newTask->name = $request->get("taskName");
         $newTask->user_id = $request->get("user_id");
         $newTask->time = $request->get("taskTime");
         $newTask->descriptions = $request->get("description");
