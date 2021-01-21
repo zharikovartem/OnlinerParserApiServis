@@ -6,7 +6,7 @@ $request_headers = apache_request_headers();
 // // var_dump($request_headers['Host']);
 $trusted_adress = [
     'http://localhost:3000',
-    'https://zharikovartem.github.io/',
+    'https://zharikovartem.github.io',
 
     '127.0.0.1',
     'https://zharikovartem.github.io/epam-app/',
@@ -27,7 +27,7 @@ if ( in_array($request_headers['Host'], $trusted_adress) ) {
 
 
 // header('Access-Control-Allow-Origin: http://localhost:3000'); # Работает с localhost
-header('Access-Control-Allow-Origin: https://zharikovartem.github.io');
+header('Access-Control-Allow-Origin: https://zharikovartem.github.io/epam-app');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
 header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
