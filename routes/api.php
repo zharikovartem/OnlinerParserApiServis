@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 
-// $request_headers = apache_request_headers();
+$http_origin = $_SERVER['HTTP_ORIGIN'];
 // // var_dump($request_headers['Host']);
 $trusted_adress = [
     // 'http://localhost:3000',
@@ -26,7 +26,7 @@ $trusted_adress = [
 // header('Access-Control-Allow-Origin: '.$request_headers['Host']);
 
 
-header('Access-Control-Allow-Origin: http://localhost:3000'); # Работает с localhost
+header('Access-Control-Allow-Origin:'.$http_origin); # Работает с localhost
 // header('Access-Control-Allow-Origin: https://zharikovartem.github.io/epam-app');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
