@@ -15,27 +15,14 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $date = $request->get('date');
-        // echo $date;
 
         $tasks = Task::where('date', $date)
                     ->get();
 
-        $req = response()->json([
+        return response()->json([
             "Tasks"=> $tasks,
-            "orgin"=> isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : 'NO HTTP_ORIGIN'
+            // "orgin"=> isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : 'NO HTTP_ORIGIN'
             ], 200);
-
-        
-
-        // $req ->header('Access-Control-Allow-Origin', 'http://localhost:3000')
-        //     ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-        //     ->header('Access-Control-Allow-Headers',' Origin, Content-Type, Accept, Authorization, X-Request-With')
-        //     ->header('Access-Control-Allow-Credentials',' true');
-
-        // var_dump($req->headers)
-        ;
-
-        return $req;
     }
 
     /**
@@ -63,13 +50,6 @@ class TaskController extends Controller
         $newTask->descriptions = $request->get("description");
         $newTask->date = $request->get("date");
         $newTask->save();
-
-        // $newReq = new Request;
-
-        // return response()->json([
-        //     "request"=> $request,
-        //     "name"=> $request->get("taskName")
-        //     ], 200);
 
         return self::index($request);
     }
@@ -155,6 +135,8 @@ class TaskController extends Controller
                     ->where('date', '<=', $request->get("end_date"))
                     ->where('time', '>=', $start_time)
                     ->where('time', '<=', $end_time)
+                    ->orderBy('time', 'asc')
+                    ->orderBy('date', 'asc')
                     ->get();
 
         return response()->json([

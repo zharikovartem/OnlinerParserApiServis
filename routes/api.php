@@ -81,3 +81,5 @@ Route::get('init-event', function() {
 
 Route::post('tasks/part', 'TaskController@getTasksPart');
 Route::resource('tasks', 'TaskController');
+
+Route::resource('orders', 'OrderController');
