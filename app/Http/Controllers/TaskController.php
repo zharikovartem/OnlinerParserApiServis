@@ -135,7 +135,6 @@ class TaskController extends Controller
                     ->where('date', '<=', $request->get("end_date"))
                     ->where('time', '>=', $start_time)
                     ->where('time', '<=', $end_time)
-                    // ->groupBy('date')
                     ->orderBy('date')
                     ->orderBy('time')
                     ->get();
