@@ -111,12 +111,17 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        // $task-> delete();
+        $task-> delete();
 
-        return response()->json([
-            "task"=> $task,
-            "Message"=> "OK"
-            ], 200);
+        // return response()->json([
+        //     "task"=> $task,
+        //     "destroyMessage"=> "OK"
+        //     ], 200);
+
+        $request = new Request;
+        $request->request->add([ 'date' => $task['date'] ]);
+
+        return self::index($request);
     }
 
     /**
