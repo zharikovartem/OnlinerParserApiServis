@@ -19,11 +19,12 @@ class AuthController extends Controller
             return response()->json([
                 'data'=>$user, 
                 'resultCode'=> 0,
+                'messages'=>['Авторизация прошла успешно'],
                 'remember_token'=> $remember_token,
                 'user'=>$user
                 ], 200);
         } else {
-            return response()->json(['resultCode'=>1, 'error'=>true, 'message'=>['Нет токена'] ], 200);
+            return response()->json(['resultCode'=>1, 'error'=>true, 'messages'=>['Нет токена'] ], 200);
         }
     }
 }
