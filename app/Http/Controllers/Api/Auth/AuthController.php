@@ -18,12 +18,12 @@ class AuthController extends Controller
             // return response()->json($user, 200);
             return response()->json([
                 'data'=>$user, 
-                'resultCode'=> 1,
+                'resultCode'=> 0,
                 'remember_token'=> $remember_token,
                 'user'=>$user
                 ], 200);
         } else {
-            return response()->json(['resultCode'=>0, 'error'=>true, 'message'=>['Нет токена'] ], 200);
+            return response()->json(['resultCode'=>1, 'error'=>true, 'message'=>['Нет токена'] ], 200);
         }
     }
 }
