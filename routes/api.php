@@ -83,3 +83,5 @@ Route::post('tasks/part', 'TaskController@getTasksPart');
 Route::resource('tasks', 'TaskController');
 
 Route::resource('orders', 'OrderController');
+
+Route::resource('taskList', 'TaskListController');
