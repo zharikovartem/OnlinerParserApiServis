@@ -142,7 +142,9 @@ class TaskController extends Controller
             $end_time = $request->get("end_time");
         }
 
-        $tasks = Task::where('user_id', '>=', $request->get("user")['id'])
+        // $user_id = $request->get("user")->id;
+
+        $tasks = Task::where('user_id', '==', $request->get("user")['id'])
                     ->where('date', '>=', $request->get("start_date"))
                     ->where('date', '<=', $request->get("end_date"))
                     ->where('time', '>=', $start_time)
@@ -153,7 +155,7 @@ class TaskController extends Controller
 
         return response()->json([
             "Tasks"=> $tasks,
-            // "user"=> $request->get("user")
+            "user"=> $request->get("user")
             ], 200);
     }
 }
