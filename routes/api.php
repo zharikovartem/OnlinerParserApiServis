@@ -79,7 +79,7 @@ Route::get('init-event', function() {
     var_dump($data);
 });
 
-Route::post('tasks/part', 'TaskController@getTasksPart');
+Route::post('tasks/part', 'TaskController@getTasksPart')->middleware('token');
 Route::resource('tasks', 'TaskController');
 
 Route::resource('orders', 'OrderController');
