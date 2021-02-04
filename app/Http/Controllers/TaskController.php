@@ -155,7 +155,7 @@ class TaskController extends Controller
 
         return response()->json([
             "Tasks"=> $tasks,
-            "user"=> $request->get("user")
+            "user_id"=> $request->get("user")->id
             ], 200);
     }
 }
