@@ -23,7 +23,7 @@ class TokenAuth
         {
             // $_token = AuthToken::find($_auth_token);
             $_token = User::where('remember_token', $_auth_token)->first();
-            if (!$_token)
+            if (!$_token) 
                 // abort('401', 'No such token. Request a new one.');
                 return response()->json(['token'=>$_auth_token, 'user'=>$_token], 200);
         }
@@ -31,6 +31,7 @@ class TokenAuth
             abort('401', 'No auth token provided');
 
         // return $_token;
+        $request['user'] = $_token;
         return $next($request);
     }
 }
