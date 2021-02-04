@@ -18,6 +18,7 @@ class CreateTaskListsTable extends Migration
             $table->integer('parent_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->text('name');
             $table->integer('user_id');
             $table->mediumText('descriptions')->nullable();
         });

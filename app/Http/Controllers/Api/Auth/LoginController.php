@@ -73,4 +73,5 @@ class LoginController extends Controller
 
         // return response()->json([$request, $data], 200);
     }
+
 }
