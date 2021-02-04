@@ -144,7 +144,7 @@ class TaskController extends Controller
 
         // $user_id = $request->get("user")->id;
 
-        $tasks = Task::where('user_id', '==', $request->get("user")['id'])
+        $tasks = Task::where('user_id', $request->get("user")->id)
                     ->where('date', '>=', $request->get("start_date"))
                     ->where('date', '<=', $request->get("end_date"))
                     ->where('time', '>=', $start_time)
