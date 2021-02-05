@@ -84,4 +84,4 @@ Route::resource('tasks', 'TaskController');
 
 Route::resource('orders', 'OrderController');
 
-Route::resource('taskList', 'TaskListController');
+Route::resource('taskList', 'TaskListController')->middleware('token');
