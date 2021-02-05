@@ -15,7 +15,8 @@ class TaskListController extends Controller
     public function index()
     {
         return response()->json([
-            "Tasks"=> TaskList::all()
+            "Tasks"=> TaskList::where('user_id', $request->get("user")->id)
+            ::get()
             ], 200);
     }
 
