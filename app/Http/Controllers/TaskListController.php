@@ -38,10 +38,16 @@ class TaskListController extends Controller
     public function store(Request $request)
     {
         $newTask = new TaskList;
-        // $newTask->name = "test_to ".$request->get("user_id");
-        // $newTask->user_id = $request->get("user_id");
-        $newTask->date = now();
+        $newTask->name = "test_to ".$request->get("name");
+
+        $newTask->parent_id = $request->get("parent_id");
+
+        $newTask->time_to_complete = $request->get("time_to_complete");
+        
+        // $newTask->date = now();
         $newTask->save();
+
+        return self::index();
     }
 
     /**
