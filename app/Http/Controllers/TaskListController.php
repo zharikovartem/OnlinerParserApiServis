@@ -49,7 +49,7 @@ class TaskListController extends Controller
         // $newTask->date = now();
         $newTask->save();
 
-        return self::index();
+        return self::index($request);
     }
 
     /**
