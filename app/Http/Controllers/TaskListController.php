@@ -12,7 +12,7 @@ class TaskListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return response()->json([
             "Tasks"=> TaskList::where('user_id', $request->get("user")->id)
