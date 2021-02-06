@@ -43,6 +43,7 @@ class TaskListController extends Controller
         $newTask->user_id = $request->get("user_id");
 
         $newTask->parent_id = $request->get("parent_id");
+        $newTask->descriptions = $request->get("descriptions");
 
         $newTask->time_to_complete = $request->get("time_to_complete");
         
@@ -101,7 +102,7 @@ class TaskListController extends Controller
                 $taskList,
             ], 200);
         } else {
-            return response()->json(['error'=>true, 'message'=>$message], 401);
+            return response()->json(['error'=>true, 'message'=>$message, 'taskList'=>$taskList], 401);
         }
     }
 
