@@ -115,6 +115,6 @@ class TaskListController extends Controller
     {
         $hz = $taskList-> delete();
 
-        return self::index();
+        return self::index($request);
     }
 }
