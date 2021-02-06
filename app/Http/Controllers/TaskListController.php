@@ -119,7 +119,7 @@ class TaskListController extends Controller
         // $request = new Request;
         // $request->request->add([ 'date' => $task['date'] ]);
 
-        // return self::index($request);
-        return response()->json(['deletedTask'=>$taskList], 200);
+        return self::index($request);
+        // return response()->json(['deletedTask'=>$taskList], 200);
     }
 }
