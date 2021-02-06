@@ -115,8 +115,8 @@ class TaskListController extends Controller
     {
         $hz = $taskList-> delete();
 
-        $request = new Request;
-        $request->request->add([ 'date' => $task['date'] ]);
+        // $request = new Request;
+        // $request->request->add([ 'date' => $task['date'] ]);
 
         // return self::index($request);
         return response()->json(['deletedTask'=>$taskList], 200);
