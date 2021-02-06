@@ -91,6 +91,7 @@ class TaskListController extends Controller
             } else {
                 $message[$field] = 'do not exist';
             }
+            $requestData[$field] = $value;
         }
 
         if (isset($taskList)) {
@@ -102,7 +103,12 @@ class TaskListController extends Controller
                 $taskList,
             ], 200);
         } else {
-            return response()->json(['error'=>true, 'message'=>$message, 'taskList'=>$taskList], 401);
+            return response()->json([
+                'error'=>true, 
+                'message'=>$message, 
+                'taskList'=>$taskList, 
+                'requestData'=>$requestData
+            ], 401);
         }
     }
 
