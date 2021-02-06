@@ -109,7 +109,7 @@ class TaskListController extends Controller
                 'error'=>true, 
                 'message'=>$message, 
                 'taskList'=>$taskList, 
-                'requestData'=>$requestData
+                'requestData'=>$requestData,
                 'fields'=>$fields
             ], 401);
         }
