@@ -111,7 +111,8 @@ class TaskListController extends Controller
      * @param  \App\TaskList  $taskList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TaskList $taskList)
+    public function destroy(Request $request, TaskList $taskList)
+    
     {
         $hz = $taskList-> delete();
 
