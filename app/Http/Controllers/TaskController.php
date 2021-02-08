@@ -87,7 +87,7 @@ class TaskController extends Controller
     {
         $fields = $request->all();
         foreach ($fields as $field => $value) {
-            if (isset($task[$field])) { 
+            if (isset($task[$field]) || $taskList[$field]===null) { 
                 $task[$field] = $value;
             } else {
                 $message[$field] = 'do not exist';
