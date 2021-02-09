@@ -46,7 +46,7 @@ class TaskController extends Controller
         $newTask = new Task;
         $newTask->name = $request->get("taskName");
         $newTask->user_id = $request->get("user_id");
-        $newTask->time = $request->get("taskTime");
+        $newTask->time = $request->get("time");
         $newTask->descriptions = $request->get("description");
         $newTask->date = $request->get("date");
         $newTask->save();
