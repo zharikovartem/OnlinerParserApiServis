@@ -95,9 +95,13 @@ class TaskController extends Controller
         }
         $task->save();
         if (!isset($message)) {
-            return response()->json([
-                $task,
-            ], 200);
+            // return response()->json([
+            //     $task,
+            // ], 200);
+            $request = new Request;
+            $request->request->add([ 'date' => $task['date'] ]);
+
+            return self::index($request);
         } else {
             return response()->json(['error'=>true, 'message'=>$message], 401);
         }
