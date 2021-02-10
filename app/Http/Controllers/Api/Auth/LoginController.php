@@ -27,9 +27,10 @@ class LoginController extends Controller
 
         if ($remember) {
             $user->setRememberToken($token = Str::random(60));
-        } else {
-            $user->setRememberToken(null);
-        }
+        } 
+        // else {
+        //     $user->setRememberToken(null);
+        // }
 
         return response()->json([
             'user'=>$user, 
