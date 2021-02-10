@@ -55,11 +55,7 @@ class RegisterController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $input['status'] = 'guest';
-        // $success['check'] = User::create($input);
-        $user = User::create($input);
-        $success['user'] =  $user;
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $user['view_settings'] = '{
+        $input['view_settings'] = '{
             "ToDo": {
                 "timeEnd": "23:00",
                 "timeStart": "00:00",
@@ -69,6 +65,11 @@ class RegisterController extends Controller
                 "timeScaleInrerval": false
             }
         }';
+        
+        // $success['check'] = User::create($input);
+        $user = User::create($input);
+        $success['user'] =  $user;
+        $success['token'] =  $user->createToken('MyApp')->accessToken;
 
         return response()->json($success, 200);
         // }
