@@ -59,6 +59,16 @@ class RegisterController extends Controller
         $user = User::create($input);
         $success['user'] =  $user;
         $success['token'] =  $user->createToken('MyApp')->accessToken;
+        $user['view_settings'] = '{
+            "ToDo": {
+                "timeEnd": "23:00",
+                "timeStart": "00:00",
+                "completeSingle": true,
+                "timeScaleSingle": true,
+                "completeInrerval": true,
+                "timeScaleInrerval": false
+            }
+        }';
 
         return response()->json($success, 200);
         // }
