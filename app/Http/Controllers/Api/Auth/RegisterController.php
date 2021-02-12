@@ -69,9 +69,10 @@ class RegisterController extends Controller
         // $success['check'] = User::create($input);
         $user = User::create($input);
         $success['user'] =  $user;
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
+        // $success['token'] =  $user->createToken('MyApp')->accessToken;
 
-        $user->setRememberToken($token = $success['token']);
+        $user->setRememberToken($token = Str::random(60));
+        $success['token'] =  $user->getRememberToken();
 
         return response()->json($success, 200);
         // }
