@@ -125,8 +125,7 @@ class TaskListController extends Controller
         
         if (!isset($message)) {
             return response()->json([
-                $taskList,
-                $columns
+                $taskList
             ], 200);
         } else {
             return response()->json([
@@ -134,7 +133,8 @@ class TaskListController extends Controller
                 'message'=>$message, 
                 'taskList'=>$taskList, 
                 'requestData'=>$requestData,
-                'fields'=>$fields
+                'fields'=>$fields,
+                '$columns'=>$columns
             ], 401);
         }
     }
