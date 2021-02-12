@@ -109,7 +109,7 @@ class TaskListController extends Controller
             if ($field !== 'user') {
                 if (
                     isset( $taskList[$field] ) 
-                    // || $taskList[$field]===null 
+                    || $taskList[$field]===null 
                     ) { 
                     $taskList[$field] = $value;
                 } else {
