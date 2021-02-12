@@ -137,7 +137,6 @@ class TaskListController extends Controller
         // if (!isset($message)) {
             return response()->json([
                 $taskList
-                , $data
             ], 200);
         // } else {
         //     return response()->json([
