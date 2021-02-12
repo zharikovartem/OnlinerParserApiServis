@@ -49,6 +49,18 @@ class TaskListController extends Controller
 
 
         $newTask->time_to_complete = $request->get("time_to_complete");
+
+        switch ($request->get("time_to_complete")) {
+            case '2':
+                $data['phone_number'] = $request->get("phone_number");
+                $data['lead_name'] = $request->get("lead_name");
+                $newTask->data = $data;
+                break;
+            
+            default:
+                # code...
+                break;
+        }
         
         // $newTask->date = now();
         $newTask->save();
