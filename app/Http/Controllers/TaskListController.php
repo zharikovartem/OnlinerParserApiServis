@@ -100,6 +100,8 @@ class TaskListController extends Controller
      */
     public function update(Request $request, TaskList $taskList)
     {
+        $columns = Schema::getColumnListing( $news->NewsCategories()->getRelated()->getTable() );
+
         $fields = $request->all();
         foreach ($fields as $field => $value) {
             if ($field !== 'user') {
@@ -122,6 +124,7 @@ class TaskListController extends Controller
         if (!isset($message)) {
             return response()->json([
                 $taskList,
+                $columns
             ], 200);
         } else {
             return response()->json([
