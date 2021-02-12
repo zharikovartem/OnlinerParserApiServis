@@ -50,7 +50,7 @@ class TaskListController extends Controller
 
         $newTask->time_to_complete = $request->get("time_to_complete");
 
-        switch ($request->get("time_to_complete")) {
+        switch ($request->get("task_type")) {
             case '2':
                 $data['phone_number'] = $request->get("phone_number");
                 $data['lead_name'] = $request->get("lead_name");
