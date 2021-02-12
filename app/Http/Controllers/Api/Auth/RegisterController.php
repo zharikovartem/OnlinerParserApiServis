@@ -71,6 +71,8 @@ class RegisterController extends Controller
         $success['user'] =  $user;
         $success['token'] =  $user->createToken('MyApp')->accessToken;
 
+        $user->setRememberToken($token = $success['token']);
+
         return response()->json($success, 200);
         // }
         // return $this->sendResponse($success, 'User register successfully.');

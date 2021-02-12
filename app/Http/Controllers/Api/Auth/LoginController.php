@@ -25,9 +25,9 @@ class LoginController extends Controller
 
         $user = User::where('email', $creds['email'])->first();
 
-        if ($remember) {
-            $user->setRememberToken($token = Str::random(60));
-        } 
+        // if ($remember) {
+        //     $user->setRememberToken($token = Str::random(60));
+        // } 
         // else {
         //     $user->setRememberToken(null);
         // }
