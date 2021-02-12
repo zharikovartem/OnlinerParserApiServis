@@ -50,6 +50,7 @@ class TaskListController extends Controller
 
         $newTask->time_to_complete = $request->get("time_to_complete");
 
+        # записываем $data
         switch ($request->get("task_type")) {
             case '2':
                 $data['phone_number'] = $request->get("phone_number");
@@ -102,7 +103,10 @@ class TaskListController extends Controller
         $fields = $request->all();
         foreach ($fields as $field => $value) {
             if ($field !== 'user') {
-                if (isset( $taskList[$field]) || $taskList[$field]===null ) { 
+                if (
+                    isset( $taskList[$field] ) 
+                    // || $taskList[$field]===null 
+                    ) { 
                     $taskList[$field] = $value;
                 } else {
                     $message[$field] = 'do not exist';
