@@ -101,7 +101,8 @@ class TaskListController extends Controller
      */
     public function update(Request $request, TaskList $taskList)
     {
-        $columns = Schema::getColumnListing( $taskList->NewsCategories()->getRelated()->getTable() );
+        // $columns = Schema::getColumnListing( $taskList->NewsCategories()->getRelated()->getTable() );
+        $columns = Schema::getColumnListing('Task');
 
         $fields = $request->all();
         foreach ($fields as $field => $value) {
