@@ -45,6 +45,9 @@ class TaskListController extends Controller
         $newTask->parent_id = $request->get("parent_id");
         $newTask->descriptions = $request->get("descriptions");
 
+        $newTask->task_type = $request->get("task_type");
+
+
         $newTask->time_to_complete = $request->get("time_to_complete");
         
         // $newTask->date = now();
