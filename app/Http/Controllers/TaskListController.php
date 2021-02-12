@@ -108,7 +108,7 @@ class TaskListController extends Controller
         foreach ($fields as $field => $value) {
             if ($field !== 'user') {
                 if (
-                    isset( $columns[$field] ) 
+                    in_array( $field, $columns ) 
                     // || $taskList[$field]===null 
                     ) { 
                     $taskList[$field] = $value;
