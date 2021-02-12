@@ -114,29 +114,31 @@ class TaskListController extends Controller
                     $taskList[$field] = $value;
                 } else {
                     $message[$field] = 'do not exist';
+                    $data[$field] = $value;
                 }
                 $requestData[$field] = $value;
             }
         }
 
         if (isset($taskList)) {
+            $newTask->data = json_encode($data);
             $taskList->save();
         }
         
-        if (!isset($message)) {
+        // if (!isset($message)) {
             return response()->json([
                 $taskList
             ], 200);
-        } else {
-            return response()->json([
-                'error'=>true, 
-                'message'=>$message, 
-                'taskList'=>$taskList, 
-                'requestData'=>$requestData,
-                'fields'=>$fields,
-                '$columns'=>$columns
-            ], 401);
-        }
+        // } else {
+        //     return response()->json([
+        //         'error'=>true, 
+        //         'message'=>$message, 
+        //         'taskList'=>$taskList, 
+        //         'requestData'=>$requestData,
+        //         'fields'=>$fields,
+        //         '$columns'=>$columns
+        //     ], 401);
+        // }
     }
 
     /**
