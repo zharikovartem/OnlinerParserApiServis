@@ -120,10 +120,15 @@ class TaskListController extends Controller
             }
         }
 
-        if (isset($taskList)) {
-            $newTask->data = json_encode($data);
-            $taskList->save();
+        if (isset($data)) {
+            $newTask['data'] = json_encode($data);
         }
+
+        if (isset($taskList)) {
+            $taskList->save();
+            
+        }
+        
         
         // if (!isset($message)) {
             return response()->json([
