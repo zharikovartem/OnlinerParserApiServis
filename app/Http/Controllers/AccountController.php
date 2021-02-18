@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // use App\Account;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class AccountController extends Controller
 {
