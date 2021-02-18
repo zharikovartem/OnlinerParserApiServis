@@ -75,6 +75,7 @@ class AccountController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $fields = $request->all();
         // var_dump($user);
         // $columns = Schema::getColumnListing('User');
 
@@ -108,7 +109,8 @@ class AccountController extends Controller
         // }
 
             return response()->json([
-                'user'=>$user
+                'user'=>$user,
+                'fields'=>$fields
             ], 200);
     }
 
