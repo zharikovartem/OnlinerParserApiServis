@@ -80,30 +80,30 @@ class AccountController extends Controller
         // var_dump($user);
         $columns = Schema::getColumnListing('User');
 
-        $fields = $request->all();
-        foreach ($fields as $field => $value) {
-            if ($field !== 'user') {
-                if (
-                    in_array( $field, $columns ) 
-                    // || $user[$field]===null 
-                    ) { 
-                    $user[$field] = $value;
-                } else {
-                    $message[$field] = 'do not exist';
-                    $data[$field] = $value;
-                }
-                $requestData[$field] = $value;
-            }
-        }
+        // $fields = $request->all();
+        // foreach ($fields as $field => $value) {
+        //     if ($field !== 'user') {
+        //         if (
+        //             in_array( $field, $columns ) 
+        //             // || $user[$field]===null 
+        //             ) { 
+        //             $user[$field] = $value;
+        //         } else {
+        //             $message[$field] = 'do not exist';
+        //             $data[$field] = $value;
+        //         }
+        //         $requestData[$field] = $value;
+        //     }
+        // }
 
 
-        // // $newTask['data'] = json_encode($data);
+        // // // $newTask['data'] = json_encode($data);
 
 
-        if (isset($user)) {
-            $user->save();
+        // if (isset($user)) {
+        //     $user->save();
             
-        }
+        // }
         // if (isset($data)) {
         //     $user->data = json_encode($data);
         //     $user->save();
