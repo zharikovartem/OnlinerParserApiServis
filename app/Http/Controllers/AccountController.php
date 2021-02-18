@@ -84,11 +84,13 @@ class AccountController extends Controller
         // $columns = Schema::getColumnListing('User');
 
         // $fields = $request->all();
-        // foreach ($fields['users'] as $field => $value) {
-        //     if ($userTarget[$field] !== $value) {
-        //         $userTarget[$field] = $value;
-        //     }
-        // }
+        $added = '';
+        foreach ($fields['users'] as $field => $value) {
+            if ($userTarget[$field] !== $value) {
+                $userTarget[$field] = $value;
+                $added .= $field.';';
+            }
+        }
         // $userTarget->save();
 
 
@@ -106,7 +108,8 @@ class AccountController extends Controller
 
             return response()->json([
                 'userTarget'=>$userTarget[0],
-                'fields'=>$fields
+                'fields'=>$fields,
+                'added'=>$added
             ], 200);
     }
 
