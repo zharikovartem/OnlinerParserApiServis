@@ -75,34 +75,34 @@ class AccountController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $fields = $request->all();
-        // var_dump($user);
-        // $columns = Schema::getColumnListing('User');
-
         // $fields = $request->all();
-        // foreach ($fields as $field => $value) {
-        //     if ($field !== 'user') {
-        //         if (
-        //             in_array( $field, $columns ) 
-        //             // || $taskList[$field]===null 
-        //             ) { 
-        //             $taskList[$field] = $value;
-        //         } else {
-        //             $message[$field] = 'do not exist';
-        //             $data[$field] = $value;
-        //         }
-        //         $requestData[$field] = $value;
-        //     }
-        // }
+        // var_dump($user);
+        $columns = Schema::getColumnListing('User');
+
+        $fields = $request->all();
+        foreach ($fields as $field => $value) {
+            if ($field !== 'user') {
+                if (
+                    in_array( $field, $columns ) 
+                    // || $taskList[$field]===null 
+                    ) { 
+                    $taskList[$field] = $value;
+                } else {
+                    $message[$field] = 'do not exist';
+                    $data[$field] = $value;
+                }
+                $requestData[$field] = $value;
+            }
+        }
 
 
         // // $newTask['data'] = json_encode($data);
 
 
-        // if (isset($taskList)) {
-        //     $taskList->save();
+        if (isset($taskList)) {
+            $taskList->save();
             
-        // }
+        }
         // if (isset($data)) {
         //     $taskList->data = json_encode($data);
         //     $taskList->save();
