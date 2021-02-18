@@ -13,12 +13,13 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::get();
+        $user = $request->get("user");
+        $usersList = User::get();
         return response()->json([
-            "UsersList"=> $users,
-            // "orgin"=> isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : 'NO HTTP_ORIGIN'
+            "UsersList"=> $usersList,
+            "User"=>$user
             ], 200);
     }
 
