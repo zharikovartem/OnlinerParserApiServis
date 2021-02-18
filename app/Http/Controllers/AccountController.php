@@ -77,6 +77,9 @@ class AccountController extends Controller
     public function update(Request $request, User $user)
     {
         $fields = $request->all();
+
+        $userTarget = TaskList::where('id', $request->get("user")->id)
+            ->get();
         // var_dump($user);
         // $columns = Schema::getColumnListing('User');
 
@@ -110,7 +113,7 @@ class AccountController extends Controller
         // }
 
             return response()->json([
-                'user'=>$user,
+                'user'=>$userTarget,
                 'fields'=>$fields
             ], 200);
     }
