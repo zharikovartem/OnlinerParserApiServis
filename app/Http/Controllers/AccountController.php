@@ -76,9 +76,9 @@ class AccountController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // $fields = $request->all();
+        $fields = $request->all();
         // var_dump($user);
-        $columns = Schema::getColumnListing('User');
+        // $columns = Schema::getColumnListing('User');
 
         // $fields = $request->all();
         // foreach ($fields as $field => $value) {
