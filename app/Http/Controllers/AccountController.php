@@ -89,7 +89,7 @@ class AccountController extends Controller
         foreach ($fields as $field => $value) {
             $added2[$field][0]= $value;
             $added2[$field][1]= $userTarget[0][$field];
-            if (isset($userTarget[0][$field]) && $userTarget[0][$field] !== $value) {
+            if ($userTarget[0][$field] !== $value && $field !== 'user') {
                 $userTarget[0][$field] = $value;
                 $added[$field]= $value;
             }
