@@ -78,7 +78,7 @@ class AccountController extends Controller
     {
         $fields = $request->all();
 
-        $userTarget = User::where('id', $fields->id)
+        $userTarget = User::where('id', $fields[0]['id'])
             ->get();
         // var_dump($user);
         // $columns = Schema::getColumnListing('User');
