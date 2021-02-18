@@ -89,7 +89,7 @@ class AccountController extends Controller
                 $userTarget[0][$field] = $value;
             }
         }
-        $userTarget->save();
+        $userTarget[0]->save();
 
 
         // // // $newTask['data'] = json_encode($data);
