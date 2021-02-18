@@ -85,9 +85,9 @@ class AccountController extends Controller
             if ($field !== 'user') {
                 if (
                     in_array( $field, $columns ) 
-                    // || $taskList[$field]===null 
+                    // || $user[$field]===null 
                     ) { 
-                    $taskList[$field] = $value;
+                    $user[$field] = $value;
                 } else {
                     $message[$field] = 'do not exist';
                     $data[$field] = $value;
@@ -100,13 +100,13 @@ class AccountController extends Controller
         // // $newTask['data'] = json_encode($data);
 
 
-        if (isset($taskList)) {
-            $taskList->save();
+        if (isset($user)) {
+            $user->save();
             
         }
         // if (isset($data)) {
-        //     $taskList->data = json_encode($data);
-        //     $taskList->save();
+        //     $user->data = json_encode($data);
+        //     $user->save();
         // }
 
             return response()->json([
