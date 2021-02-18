@@ -18,6 +18,9 @@ class AccountController extends Controller
     {
         $user = $request->get("user");
         $usersList = User::get();
+        foreach ($usersList as $key => $user) {
+            $usersList[$key]->getToDoList();
+        }
         return response()->json([
             "UsersList"=> $usersList,
             "User"=>$user
