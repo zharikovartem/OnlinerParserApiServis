@@ -113,7 +113,7 @@ class AccountController extends Controller
         // }
 
             return response()->json([
-                'user'=>$userTarget,
+                'userTarget'=>$userTarget[0],
                 'fields'=>$fields
             ], 200);
     }
