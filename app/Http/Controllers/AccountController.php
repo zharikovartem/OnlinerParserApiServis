@@ -79,17 +79,17 @@ class AccountController extends Controller
         $fields = $request->all();
 
         $userTarget = User::where('id', $fields['id'])
-            ->get();
+            ->get()[0];
         // var_dump($user);
         // $columns = Schema::getColumnListing('User');
 
         // $fields = $request->all();
-        foreach ($fields as $field => $value) {
-            if ($userTarget[0][$field] !== $value) {
-                $userTarget[0][$field] = $value;
+        foreach ($fields['users'] as $field => $value) {
+            if ($userTarget[$field] !== $value) {
+                $userTarget[$field] = $value;
             }
         }
-        $userTarget[0]->save();
+        $userTarget->save();
 
 
         // // // $newTask['data'] = json_encode($data);
