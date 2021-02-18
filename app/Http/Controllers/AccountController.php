@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+// use App\Account;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -50,7 +50,7 @@ class AccountController extends Controller
      * @param  \App\Account  $account
      * @return \Illuminate\Http\Response
      */
-    public function show(Account $account)
+    public function show(User $account)
     {
         //
     }
@@ -61,7 +61,7 @@ class AccountController extends Controller
      * @param  \App\Account  $account
      * @return \Illuminate\Http\Response
      */
-    public function edit(Account $account)
+    public function edit(User $account)
     {
         //
     }
@@ -70,12 +70,45 @@ class AccountController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Account  $account
+     * @param  \App\User  $account
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Account $account)
+    public function update(Request $request, User $user)
     {
-        //
+        // $columns = Schema::getColumnListing('User');
+
+        // $fields = $request->all();
+        // foreach ($fields as $field => $value) {
+        //     if ($field !== 'user') {
+        //         if (
+        //             in_array( $field, $columns ) 
+        //             // || $taskList[$field]===null 
+        //             ) { 
+        //             $taskList[$field] = $value;
+        //         } else {
+        //             $message[$field] = 'do not exist';
+        //             $data[$field] = $value;
+        //         }
+        //         $requestData[$field] = $value;
+        //     }
+        // }
+
+
+        // // $newTask['data'] = json_encode($data);
+
+
+        // if (isset($taskList)) {
+        //     $taskList->save();
+            
+        // }
+        // if (isset($data)) {
+        //     $taskList->data = json_encode($data);
+        //     $taskList->save();
+        // }
+
+            return response()->json([
+                $user
+            ], 200);
     }
 
     /**
