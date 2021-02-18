@@ -88,12 +88,12 @@ class AccountController extends Controller
         $added2 = '';
         foreach ($fields as $field => $value) {
             $added2 .= $field.';';
-            if ($userTarget[0][$field] !== $value) {
-            //     $userTarget[$field] = $value;
+            if (isset($userTarget[0][$field]) && $userTarget[0][$field] !== $value) {
+                $userTarget[$field] = $value;
                 $added .= $field.';';
             }
         }
-        // $userTarget->save();
+        $userTarget->save();
 
 
         // // // $newTask['data'] = json_encode($data);
