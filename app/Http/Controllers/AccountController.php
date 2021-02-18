@@ -88,10 +88,10 @@ class AccountController extends Controller
         $added2 = '';
         foreach ($fields as $field => $value) {
             $added2 .= $field.';';
-            // if ($userTarget[$field] !== $value) {
+            if ($userTarget[0][$field] !== $value) {
             //     $userTarget[$field] = $value;
-            //     $added .= $field.';';
-            // }
+                $added .= $field.';';
+            }
         }
         // $userTarget->save();
 
@@ -111,7 +111,8 @@ class AccountController extends Controller
             return response()->json([
                 'userTarget'=>$userTarget[0],
                 'fields'=>$fields,
-                'added'=>$added
+                'added'=>$added,
+                'added2'=>$added2
             ], 200);
     }
 
