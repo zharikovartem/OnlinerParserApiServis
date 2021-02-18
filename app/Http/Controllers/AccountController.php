@@ -85,7 +85,7 @@ class AccountController extends Controller
 
         // $fields = $request->all();
         $added = '';
-        foreach ($fields['users'] as $field => $value) {
+        foreach ($fields as $field => $value) {
             if ($userTarget[$field] !== $value) {
                 $userTarget[$field] = $value;
                 $added .= $field.';';
