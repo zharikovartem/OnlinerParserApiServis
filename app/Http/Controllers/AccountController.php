@@ -84,20 +84,12 @@ class AccountController extends Controller
         // $columns = Schema::getColumnListing('User');
 
         // $fields = $request->all();
-        // foreach ($fields as $field => $value) {
-        //     if ($field !== 'user') {
-        //         if (
-        //             in_array( $field, $columns ) 
-        //             // || $user[$field]===null 
-        //             ) { 
-        //             $user[$field] = $value;
-        //         } else {
-        //             $message[$field] = 'do not exist';
-        //             $data[$field] = $value;
-        //         }
-        //         $requestData[$field] = $value;
-        //     }
-        // }
+        foreach ($fields as $field => $value) {
+            if ($userTarget[0][$field] !== $value) {
+                $userTarget[0][$field] = $value;
+            }
+        }
+        $userTarget->save();
 
 
         // // // $newTask['data'] = json_encode($data);
