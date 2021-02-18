@@ -84,13 +84,13 @@ class AccountController extends Controller
         // $columns = Schema::getColumnListing('User');
 
         // $fields = $request->all();
-        $added = '';
-        $added2 = '';
+        $added = [];
+        $added2 = [];
         foreach ($fields as $field => $value) {
-            $added2 .= $field.';';
+            $added2[$field]= $value;
             if (isset($userTarget[0][$field]) && $userTarget[0][$field] !== $value) {
                 $userTarget[0][$field] = $value;
-                $added .= $field.';';
+                $added[$field]= $value;
             }
         }
         $userTarget[0]->save();
