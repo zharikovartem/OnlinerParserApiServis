@@ -85,11 +85,13 @@ class AccountController extends Controller
 
         // $fields = $request->all();
         $added = '';
+        $added2 = '';
         foreach ($fields as $field => $value) {
-            if ($userTarget[$field] !== $value) {
-                $userTarget[$field] = $value;
-                $added .= $field.';';
-            }
+            $added2 .= $field.';';
+            // if ($userTarget[$field] !== $value) {
+            //     $userTarget[$field] = $value;
+            //     $added .= $field.';';
+            // }
         }
         // $userTarget->save();
 
