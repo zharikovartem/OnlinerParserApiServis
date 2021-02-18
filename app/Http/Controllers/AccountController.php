@@ -78,7 +78,7 @@ class AccountController extends Controller
     {
         $fields = $request->all();
 
-        $userTarget = TaskList::where('id', $request->get("user")->id)
+        $userTarget = User::where('id', $request->get("user")->id)
             ->get();
         // var_dump($user);
         // $columns = Schema::getColumnListing('User');
