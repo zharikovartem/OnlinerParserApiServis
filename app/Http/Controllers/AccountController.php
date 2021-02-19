@@ -108,9 +108,9 @@ class AccountController extends Controller
         // }
 
             return response()->json([
-                'userTarget'=>$userTarget[0],
-                'fields'=>$fields,
-                'userRequest'=>$user
+                'changedUserData'=>$userTarget[0],
+                // 'fields'=>$fields,
+                // 'userRequest'=>$user
             ], 200);
     }
 
