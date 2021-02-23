@@ -55,7 +55,7 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $input['status'] = 'guest';
+        // $input['status'] = 'guest';
         $input['view_settings'] = '{
             "ToDo": {
                 "timeEnd": "23:00",
