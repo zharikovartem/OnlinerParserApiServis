@@ -49,8 +49,9 @@ class TaskController extends Controller
         $newTask->time = $request->get("time");
         $newTask->descriptions = $request->get("descriptions");
         $newTask->date = $request->get("date");
+
         $newTask->action = $request->get("action");
-        $newTask->action_data = $request->get("action_data");
+        $newTask->action_data = json_encode($request->get("action_data"));
         $newTask->save();
 
         return self::index($request);
