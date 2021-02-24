@@ -15,6 +15,8 @@ class Task extends Model
         'name', 
         'user_id', 
         'date',
+        'action',
+        'action_data',
     ];
 
     // protected $attributes = ['delayed' => false,]; // Значения по умолчанию
