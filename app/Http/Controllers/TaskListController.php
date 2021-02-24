@@ -45,22 +45,20 @@ class TaskListController extends Controller
 
         $newTask->parent_id = $request->get("parent_id");
         $newTask->descriptions = $request->get("descriptions");
+        $newTask->time_to_complete = $request->get("time_to_complete");
 
         $newTask->task_type = $request->get("task_type");
 
-
-        $newTask->time_to_complete = $request->get("time_to_complete");
-
         # записываем $data
         switch ($request->get("task_type")) {
-            case '2':
-                $data['phone_number'] = $request->get("phone_number");
-                $data['lead_name'] = $request->get("lead_name");
+            case '1':
+                // $data['phone_number'] = $request->get("phone_number");
+                // $data['lead_name'] = $request->get("lead_name");
                 $newTask->data = json_encode($data);
                 break;
             
             default:
-                # code...
+            $newTask->data = json_encode( $request->get("data") );
                 break;
         }
         
