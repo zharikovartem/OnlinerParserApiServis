@@ -56,7 +56,6 @@ class TaskController extends Controller
             $newTask->action_data = json_encode($request->get("action_data"));
         }
         
-
         $newTask->save();
 
         return self::index($request);

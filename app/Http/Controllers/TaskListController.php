@@ -51,7 +51,7 @@ class TaskListController extends Controller
 
         # записываем $data
         switch ($request->get("task_type")) {
-            case '1':
+            case '2':
                 // $data['phone_number'] = $request->get("phone_number");
                 // $data['lead_name'] = $request->get("lead_name");
                 $newTask->data = json_encode($data);
