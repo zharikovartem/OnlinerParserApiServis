@@ -54,7 +54,7 @@ class TaskListController extends Controller
             case '2':
                 // $data['phone_number'] = $request->get("phone_number");
                 // $data['lead_name'] = $request->get("lead_name");
-                $newTask->data = json_encode($data);
+                $newTask->data = json_encode($request->get("data"));
                 break;
             
             default:
