@@ -83,8 +83,7 @@ class BackendController extends Controller
         //
     }
 
-    public function getNeedBackends(Request $request) {
-        echo '123';
-        var_dump($request);
+    public function getNeedBackends( $item) {
+        echo '123: '.$item;
     }
 }
