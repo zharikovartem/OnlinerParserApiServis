@@ -28,6 +28,6 @@ class CreateBackendsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('backends');
+        Schema::dropIfExists('Backend');
     }
 }
