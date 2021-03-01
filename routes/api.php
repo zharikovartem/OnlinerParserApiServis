@@ -89,3 +89,4 @@ Route::resource('account', 'AccountController')->middleware('token');
 Route::resource('taskList', 'TaskListController')->middleware('token');
 
 Route::get('project/{item}', 'BackendController@getNeedBackends');
+Route::resource('project', 'ProjectController');
