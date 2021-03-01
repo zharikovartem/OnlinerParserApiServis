@@ -87,3 +87,5 @@ Route::resource('orders', 'OrderController');
 Route::resource('account', 'AccountController')->middleware('token');
 
 Route::resource('taskList', 'TaskListController')->middleware('token');
+
+Route::resource('project', 'ProjectController');
