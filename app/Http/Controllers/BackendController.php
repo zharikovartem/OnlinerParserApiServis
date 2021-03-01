@@ -86,8 +86,8 @@ class BackendController extends Controller
     public function getNeedBackends( $item) {
         // echo '123: '.$item;
         return response()->json([
-            Backend::where('id', $item)
-            ->get()[0]
+            "Backend"=> Backend::where('id', $item)
+            ->get()
             ], 200);
     }
 }
