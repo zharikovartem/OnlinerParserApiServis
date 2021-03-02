@@ -18,6 +18,11 @@ class CreateBackendsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->text('name');
+            $table->text('url')->nullable();
+            $table->text('ip')->nullable();
+            $table->text('login')->nullable();
+            $table->text('password')->nullable();
+            $table->text('folder')->nullable();
         });
     }
 
