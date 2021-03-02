@@ -82,4 +82,12 @@ class ModelsInstanseController extends Controller
     {
         //
     }
+
+    public function getCurrentModel( $item) {
+        // echo '123: '.$item;
+        return response()->json([
+            "Backend"=> Backend::where('backend_id', $item)
+            ->get()
+            ], 200);
+    }
 }

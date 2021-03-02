@@ -18,7 +18,8 @@ class CreateModelsInstansesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->text('name');
-            $table->json('fields');
+            $table->json('fields')->nullable();
+            $table->integer('backend_id')->nullable();
         });
     }
 
