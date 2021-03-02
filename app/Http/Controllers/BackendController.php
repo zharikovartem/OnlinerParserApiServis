@@ -69,7 +69,26 @@ class BackendController extends Controller
      */
     public function update(Request $request, Backend $backend)
     {
-        //
+        $fields = $request->all();
+        foreach ($fields as $field => $value) {
+            if (isset($backend[$field]) || $backend[$field]===null) { 
+                $backend[$field] = $value;
+            } else {
+                $message[$field] = 'do not exist';
+            }
+        }
+        $backend->save();
+        if (!isset($message)) {
+            return response()->json([
+                $backend,
+            ], 200);
+            // $request = new Request;
+            // $request->request->add([ 'date' => $task['date'] ]);
+
+            // return self::index($request);
+        } else {
+            return response()->json(['error'=>true, 'message'=>$message], 401);
+        }
     }
 
     /**
