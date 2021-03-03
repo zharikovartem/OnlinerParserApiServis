@@ -80,7 +80,8 @@ class ModelsInstanseController extends Controller
         $task->save();
         if (!isset($message)) {
             return response()->json([
-                $modelsInstanse,
+                'targetModel'=>$modelsInstanse,
+                'request'=>$fields
             ], 200);
         } else {
             return response()->json(['error'=>true, 'message'=>$message], 401);
