@@ -69,6 +69,7 @@ class ModelsInstanseController extends Controller
      */
     public function update(Request $request, ModelsInstanse $modelsInstanse)
     {
+        var_dump($modelsInstanse);
         $fields = $request->all();
         foreach ($fields as $field => $value) {
             if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
@@ -77,7 +78,9 @@ class ModelsInstanseController extends Controller
                 $message[$field] = 'do not exist';
             }
         }
+
         $modelsInstanse->save();
+
         if (!isset($message)) {
             return response()->json([
                 'targetModel'=>$modelsInstanse,
