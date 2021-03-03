@@ -69,7 +69,22 @@ class ModelsInstanseController extends Controller
      */
     public function update(Request $request, ModelsInstanse $modelsInstanse)
     {
-        //
+        $fields = $request->all();
+        foreach ($fields as $field => $value) {
+            if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
+                $modelsInstanse[$field] = $value;
+            } else {
+                $message[$field] = 'do not exist';
+            }
+        }
+        $task->save();
+        if (!isset($message)) {
+            return response()->json([
+                $modelsInstanse,
+            ], 200);
+        } else {
+            return response()->json(['error'=>true, 'message'=>$message], 401);
+        }
     }
 
     /**
