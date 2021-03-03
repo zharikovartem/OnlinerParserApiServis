@@ -69,7 +69,7 @@ class ModelsInstanseController extends Controller
      */
     public function update(Request $request, ModelsInstanse $modelsInstanse)
     {
-        var_dump($modelsInstanse);
+        // var_dump($modelsInstanse);
         $fields = $request->all();
         foreach ($fields as $field => $value) {
             if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
