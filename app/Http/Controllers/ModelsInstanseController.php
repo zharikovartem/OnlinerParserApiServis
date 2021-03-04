@@ -86,6 +86,7 @@ class ModelsInstanseController extends Controller
         if (!isset($message)) {
             return response()->json([
                 'targetModel'=>$modelsInstanse2,
+                'id'=>$request->get("id"),
                 // 'request'=>$fields,
                 // 'modelsInstanse'=>$modelsInstanse
             ], 200);
