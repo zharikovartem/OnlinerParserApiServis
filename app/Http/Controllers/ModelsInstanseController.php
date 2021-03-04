@@ -71,23 +71,23 @@ class ModelsInstanseController extends Controller
     {
         $modelsInstanse2 = ModelsInstanse::where( 'id', $request->get("id") )[0];
         
-        // var_dump($modelsInstanse);
-        $fields = $request->all();
-        foreach ($fields as $field => $value) {
-            if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
-                $modelsInstanse2[$field] = $value;
-            } else {
-                $message[$field] = 'do not exist';
-            }
-        }
 
-        $modelsInstanse2->save();
+        // $fields = $request->all();
+        // foreach ($fields as $field => $value) {
+        //     if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
+        //         $modelsInstanse2[$field] = $value;
+        //     } else {
+        //         $message[$field] = 'do not exist';
+        //     }
+        // }
+
+        // $modelsInstanse2->save();
 
         if (!isset($message)) {
             return response()->json([
                 'targetModel'=>$modelsInstanse2,
-                'request'=>$fields,
-                'modelsInstanse'=>$modelsInstanse
+                // 'request'=>$fields,
+                // 'modelsInstanse'=>$modelsInstanse
             ], 200);
         } else {
             return response()->json(['error'=>true, 'message'=>$message], 401);
