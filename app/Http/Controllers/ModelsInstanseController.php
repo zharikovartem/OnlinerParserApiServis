@@ -74,23 +74,23 @@ class ModelsInstanseController extends Controller
         $target = DB::table('Models_instanses')->where('id', $targetId)->first();
         
 
-        // $fields = $request->all();
-        // foreach ($fields as $field => $value) {
-        //     if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
-        //         $modelsInstanse2[$field] = $value;
-        //     } else {
-        //         $message[$field] = 'do not exist';
-        //     }
-        // }
+        $fields = $request->all();
+        foreach ($fields as $field => $value) {
+            if (isset($target[$field]) || $target[$field]===null) { 
+                $target[$field] = $value;
+            } else {
+                $message[$field] = 'do not exist';
+            }
+        }
 
-        // $modelsInstanse2->save();
+        $modelsInstanse2->save();
 
         if (!isset($message)) {
             return response()->json([
                 'target'=>$target,
                 'id'=>$request->get("id"),
-                // 'request'=>$fields,
-                // 'modelsInstanse'=>$modelsInstanse
+                'request'=>$fields,
+                'modelsInstanse'=>$modelsInstanse
             ], 200);
         } else {
             return response()->json(['error'=>true, 'message'=>$message], 401);
