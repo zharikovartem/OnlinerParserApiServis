@@ -96,4 +96,5 @@ Route::resource('backend', 'BackendController');
 Route::get('models/{item}', 'ModelsInstanseController@getCurrentModel');
 Route::resource('models', 'ModelsInstanseController');
 
-Route::get('controllers/{item}', 'controllers@getCurrentControllers');
+Route::get('controllers/{item}', 'ControllersController@getCurrentControllers');
+Route::resource('controllers', 'ControllersController');
