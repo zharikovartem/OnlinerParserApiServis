@@ -11,4 +11,9 @@ class ModelsInstanse extends Model
 
     // protected $table = 'ModelsInstanse';
     protected $table = 'Models_instanses';
+
+    protected $fillable = [
+        'name', 
+        'backend_id'
+    ];
 }
