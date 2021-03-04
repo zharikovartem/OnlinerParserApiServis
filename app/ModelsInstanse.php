@@ -14,6 +14,7 @@ class ModelsInstanse extends Model
 
     protected $fillable = [
         'name', 
-        'backend_id'
+        'backend_id',
+        'folder'
     ];
 }
