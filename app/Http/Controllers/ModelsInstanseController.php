@@ -96,7 +96,7 @@ class ModelsInstanseController extends Controller
             //     'request'=>$fields,
             //     'modelsInstanse'=>$modelsInstanse
             // ], 200);
-            return getCurrentModel($request->get("backend_id"));
+            return self::getCurrentModel($request->get("backend_id"));
         } else {
             return response()->json(['error'=>true, 'message'=>$message], 401);
         }
