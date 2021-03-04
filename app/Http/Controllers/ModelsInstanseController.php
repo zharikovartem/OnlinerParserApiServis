@@ -74,7 +74,8 @@ class ModelsInstanseController extends Controller
         $target = DB::table('Models_instanses')->where('id', $targetId)->first();
         
 
-        // $fields = $request->all();
+        $fields = $request->all();
+        
         // foreach ($fields as $field => $value) {
         //     if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
         //         $target[$field] = $value;
