@@ -12,8 +12,7 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $date = $request->get('date');
 
         $tasks = Task::where('date', $date)

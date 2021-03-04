@@ -67,9 +67,10 @@ class ModelsInstanseController extends Controller
      * @param  \App\ModelsInstanse  $modelsInstanse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelsInstanse $modelsInstanse)
-    {
-        $modelsInstanse2 = ModelsInstanse::where( 'id', $request->get("id") );
+    public function update(Request $request, ModelsInstanse $modelsInstanse) {
+        $targetId = $request->get("id");
+        // $modelsInstanse2 = ModelsInstanse::where( 'id', $targetId );
+        $target = DB::table('Models_instanses')->where('id', $targetId)->first();
         
 
         // $fields = $request->all();
@@ -85,7 +86,7 @@ class ModelsInstanseController extends Controller
 
         if (!isset($message)) {
             return response()->json([
-                'targetModel'=>$modelsInstanse2,
+                'target'=>$target,
                 'id'=>$request->get("id"),
                 // 'request'=>$fields,
                 // 'modelsInstanse'=>$modelsInstanse
