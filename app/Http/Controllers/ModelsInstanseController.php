@@ -89,13 +89,14 @@ class ModelsInstanseController extends Controller
         $target2[0]->save();
 
         if (!isset($message)) {
-            return response()->json([
-                'target'=>$target,
-                'target2'=>$target2,
-                'id'=>$request->get("id"),
-                'request'=>$fields,
-                'modelsInstanse'=>$modelsInstanse
-            ], 200);
+            // return response()->json([
+            //     'target'=>$target,
+            //     'target2'=>$target2,
+            //     'id'=>$request->get("id"),
+            //     'request'=>$fields,
+            //     'modelsInstanse'=>$modelsInstanse
+            // ], 200);
+            return getCurrentModel($request->get("backend_id"));
         } else {
             return response()->json(['error'=>true, 'message'=>$message], 401);
         }
