@@ -20,6 +20,6 @@ class Controllers extends Model
     ];
 
     public function getModel() {
-        return DB::table('Models_instanses')->where('id', $this->model_id);
+        return DB::table('Models_instanses')->where('id', $this->model_id)->get();
     }
 }
