@@ -36,7 +36,9 @@ class ModelsInstanseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newModel = new ModelsInstanse($request->all());
+        $newModel->save();
+        // $fields = $request->all();
     }
 
     /**
