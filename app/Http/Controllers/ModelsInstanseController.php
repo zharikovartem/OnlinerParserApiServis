@@ -72,7 +72,7 @@ class ModelsInstanseController extends Controller
         $targetId = $request->get("id");
         // $modelsInstanse2 = ModelsInstanse::where( 'id', $targetId );
         $target = DB::table('Models_instanses')->where('id', $targetId)->first();
-        $target2 = ModelsInstanse::where( 'id', $targetId );
+        $target2 = ModelsInstanse::where( 'id', $targetId )->get();
         
 
         $fields = $request->all();
