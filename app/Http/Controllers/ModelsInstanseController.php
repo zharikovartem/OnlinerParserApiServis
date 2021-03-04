@@ -69,7 +69,7 @@ class ModelsInstanseController extends Controller
      */
     public function update(Request $request, ModelsInstanse $modelsInstanse)
     {
-        $modelsInstanse2 = ModelsInstanse::where( 'id', $request->get("id") )[0];
+        $modelsInstanse2 = ModelsInstanse::where( 'id', $request->get("id") );
         
         // var_dump($modelsInstanse);
         $fields = $request->all();
