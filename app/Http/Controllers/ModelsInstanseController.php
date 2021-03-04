@@ -69,7 +69,7 @@ class ModelsInstanseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ModelsInstanse $modelsInstanse) {
-        $targetId = $request->get("id");
+        $targetId = $request->get("id")[0];
         // $modelsInstanse2 = ModelsInstanse::where( 'id', $targetId );
         $target = DB::table('Models_instanses')->where('id', $targetId)->first();
         $target2 = ModelsInstanse::where( 'id', $targetId )->get();
@@ -77,13 +77,13 @@ class ModelsInstanseController extends Controller
 
         $fields = $request->all();
 
-        // foreach ($fields as $field => $value) {
-        //     if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
-        //         $target[$field] = $value;
-        //     } else {
-        //         $message[$field] = 'do not exist';
-        //     }
-        // }
+        foreach ($fields as $field => $value) {
+            if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
+                $target2[$field] = $value;
+            } else {
+                $message[$field] = 'do not exist';
+            }
+        }
 
         // $target->save();
 
