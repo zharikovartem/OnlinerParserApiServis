@@ -76,7 +76,7 @@ class ModelsInstanseController extends Controller
 
         $fields = $request->all();
         foreach ($fields as $field => $value) {
-            if (isset($target[$field]) || $target[$field]===null) { 
+            if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
                 $target[$field] = $value;
             } else {
                 $message[$field] = 'do not exist';
