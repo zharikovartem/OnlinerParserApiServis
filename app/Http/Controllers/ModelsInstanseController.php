@@ -80,7 +80,7 @@ class ModelsInstanseController extends Controller
 
         foreach ($fields as $field => $value) {
             if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
-                $target2[$field] = $value;
+                $target2[0][$field] = $value;
             } else {
                 $message[$field] = 'do not exist';
             }
