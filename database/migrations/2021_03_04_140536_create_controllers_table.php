@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModelsInstansesTable extends Migration
+class CreateControllersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateModelsInstansesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Models_instanses', function (Blueprint $table) {
+        Schema::create('controllers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->softDeletes();
             $table->text('name');
-            $table->json('fields')->nullable();
-            $table->integer('backend_id')->nullable();
             $table->text('folder')->nullable();
+            $table->integer('model_id')->nullable();
+            $table->integer('backend_id')->nullable();
+            $table->boolean('isResource');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateModelsInstansesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Models_instanses');
+        Schema::dropIfExists('controllers');
     }
 }
