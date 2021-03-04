@@ -85,9 +85,14 @@ class ControllersController extends Controller
 
     public function getCurrentControllers($item) {
         // echo '123: '.$item;
+        $controllers = Controllers::where('backend_id', $item)->get();
+
+        foreach ($controllers as $key => $controller) {
+            $controllers[$key]['models'] = $controller->getModel();
+        }
+
         return response()->json([
-            "controllers"=> Controllers::where('backend_id', $item)
-            ->get()
+            "controllers"=> $controllers
             ], 200);
     }
 }

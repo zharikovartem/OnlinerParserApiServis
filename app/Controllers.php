@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Controllers extends Model
 {
@@ -17,4 +18,8 @@ class Controllers extends Model
         'model_id',
         'folder'
     ];
+
+    public function getModel() {
+        return DB::table('Models_instanses')->where('id', $this->$model_id);
+    }
 }
