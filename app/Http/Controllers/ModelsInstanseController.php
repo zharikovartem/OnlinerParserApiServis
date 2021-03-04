@@ -16,8 +16,8 @@ class ModelsInstanseController extends Controller
     public function index()
     {
         return response()->json([
-            "Tasks"=> ModelsInstanse::get(),
-            "index"=>'index'
+            "index"=>'index',
+            "Tasks"=> ModelsInstanse::get()
             ], 200);
     }
 
