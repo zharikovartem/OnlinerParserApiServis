@@ -72,10 +72,11 @@ class ModelsInstanseController extends Controller
         $targetId = $request->get("id");
         // $modelsInstanse2 = ModelsInstanse::where( 'id', $targetId );
         $target = DB::table('Models_instanses')->where('id', $targetId)->first();
+        $target2 = ModelsInstanse::where( 'id', $targetId );
         
 
         $fields = $request->all();
-        
+
         // foreach ($fields as $field => $value) {
         //     if (isset($modelsInstanse[$field]) || $modelsInstanse[$field]===null) { 
         //         $target[$field] = $value;
@@ -89,6 +90,7 @@ class ModelsInstanseController extends Controller
         if (!isset($message)) {
             return response()->json([
                 'target'=>$target,
+                'target2'=>$target2,
                 'id'=>$request->get("id"),
                 'request'=>$fields,
                 'modelsInstanse'=>$modelsInstanse

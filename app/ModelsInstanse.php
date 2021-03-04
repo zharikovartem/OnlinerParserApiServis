@@ -9,5 +9,5 @@ class ModelsInstanse extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'ModelsInstanses';
+    protected $table = 'Models_instanses';
 }
