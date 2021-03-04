@@ -83,7 +83,7 @@ class ModelsInstanseController extends Controller
             }
         }
 
-        $modelsInstanse2->save();
+        $target->save();
 
         if (!isset($message)) {
             return response()->json([
