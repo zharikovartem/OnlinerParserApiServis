@@ -9,7 +9,7 @@ class Controllers extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'Controllers';
+    protected $table = 'controllers';
 
     protected $fillable = [
         'name', 
