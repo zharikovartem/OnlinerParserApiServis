@@ -39,11 +39,11 @@ class ModelsInstanseController extends Controller
      */
     public function store(Request $request)
     {
-        echo 'start';
         $newModel = new ModelsInstanse($request->all());
         // var_dump($newModel);
         $newModel->save();
         // $fields = $request->all();
+        return self::getCurrentModel($request->get("backend_id"));
     }
 
     /**
