@@ -90,7 +90,7 @@ class ControllersController extends Controller
     }
 
     public function getCurrentControllers($item) {
-        echo '!!!';
+        echo '!!!'.$item;
         $controllers = Controllers::where('backend_id', $item)->get();
 
         foreach ($controllers as $key => $controller) {
