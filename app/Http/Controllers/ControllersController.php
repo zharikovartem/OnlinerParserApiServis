@@ -35,7 +35,9 @@ class ControllersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newModel = new Controllers($request->all());
+        $newModel->save();
+        return self::getCurrentModel($request->get("backend_id"));
     }
 
     /**
