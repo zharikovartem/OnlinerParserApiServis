@@ -35,12 +35,8 @@ class ControllersController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
         $newModel = new Controllers($request->all());
         $newModel->save();
-        // return response()->json([
-        //     "controllers"=> $newModel
-        //     ], 200);
         return self::getCurrentControllers($newModel->backend_id);
     }
 
@@ -90,14 +86,11 @@ class ControllersController extends Controller
     }
 
     public function getCurrentControllers($item) {
-        echo '!!!'.$item;
         $controllers = Controllers::where('backend_id', $item)->get();
 
         foreach ($controllers as $key => $controller) {
             $controllers[$key]['models'] = $controller->getModel();
         }
-
-        var_dump($controllers);
 
         return response()->json([
             "controllers"=> $controllers
