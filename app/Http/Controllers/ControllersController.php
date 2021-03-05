@@ -38,10 +38,10 @@ class ControllersController extends Controller
         var_dump($request->all());
         $newModel = new Controllers($request->all());
         $newModel->save();
-        return response()->json([
-            "controllers"=> $newModel
-            ], 200);
-        // return self::getCurrentControllers($request->get("backend_id"));
+        // return response()->json([
+        //     "controllers"=> $newModel
+        //     ], 200);
+        return self::getCurrentControllers($newModel->backend_id);
     }
 
     /**
