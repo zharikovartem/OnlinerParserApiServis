@@ -87,12 +87,13 @@ class ControllersController extends Controller
     }
 
     public function getCurrentControllers($item) {
-        // echo '123: '.$item;
         $controllers = Controllers::where('backend_id', $item)->get();
 
         foreach ($controllers as $key => $controller) {
             $controllers[$key]['models'] = $controller->getModel();
         }
+
+        var_dump($controllers);
 
         return response()->json([
             "controllers"=> $controllers
