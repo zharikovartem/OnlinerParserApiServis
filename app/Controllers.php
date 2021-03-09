@@ -23,7 +23,8 @@ class Controllers extends Model
         if ( $this->models !== null 
         // && count($this->models)!==0
         ) {
-            return DB::table('Models_instanses')->whereIn('id', $this->models)->get();
+            $models = json_decode($this->models, true);
+            return DB::table('Models_instanses')->whereIn('id', $models)->get();
         } else {
             return [];
         }
