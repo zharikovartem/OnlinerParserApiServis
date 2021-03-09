@@ -21,7 +21,7 @@ class Controllers extends Model
 
     public function getModel() {
         if ( isset($this->model_id) && $this->model_id !== null) {
-            return DB::table('Models_instanses')->where('id', $this->model_id)->get()[0];
+            return DB::table('Models_instanses')->where('id', $this->model_id)->get();
         } else {
             return [];
         }
