@@ -20,7 +20,7 @@ class Controllers extends Model
     ];
 
     public function getModel() {
-        if ( isset($this->model_id) && $this->model_id !== null) {
+        if ( isset($this->models) && count($this->models)!==0) {
             return DB::table('Models_instanses')->whereIn('id', $this->models)->get();
         } else {
             return [];
