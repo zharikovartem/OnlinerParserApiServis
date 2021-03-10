@@ -69,12 +69,12 @@ class ControllersController extends Controller
      * @param  \App\Controllers  $controllers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Controllers $controllers)
+    public function update(Request $request, Controllers $localization)
     {
         $fields = $request->all();
 
         return response()->json([
-            "controllers"=>$controllers,
+            "controllers"=>$localization,
             "request"=>$fields
             ], 200);
     }
