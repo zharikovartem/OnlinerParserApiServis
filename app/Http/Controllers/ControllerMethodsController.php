@@ -14,7 +14,9 @@ class ControllerMethodsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            "controllerMethods"=> ControllerMethods::get()
+            ], 200);
     }
 
     /**
