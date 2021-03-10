@@ -66,15 +66,15 @@ class ControllersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Controllers  $controllers
+     * @param  \App\Controllers  $controller
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Controllers $id)
+    public function update(Request $request, Controllers $controller)
     {
         $fields = $request->all();
 
         return response()->json([
-            "controllers"=>$id,
+            "controllers"=>$controller,
             "request"=>$fields
             ], 200);
     }
