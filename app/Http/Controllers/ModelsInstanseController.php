@@ -75,8 +75,6 @@ class ModelsInstanseController extends Controller
      */
     public function update(Request $request, ModelsInstanse $modelsInstanse) {
         $targetId = $request->get("id");
-        // $modelsInstanse2 = ModelsInstanse::where( 'id', $targetId );
-        $target = DB::table('Models_instanses')->where('id', $targetId)->first();
 
         $target2 = ModelsInstanse::where( 'id', $targetId )->get();
         
