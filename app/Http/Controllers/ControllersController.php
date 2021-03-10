@@ -73,6 +73,12 @@ class ControllersController extends Controller
     {
         $fields = $request->all();
 
+        foreach ($fields as $field => $value) {
+            $controller[$field] = $value;
+        }
+
+        $controller->save();
+
         return response()->json([
             "controllers"=>$controller,
             "request"=>$fields
