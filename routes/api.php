@@ -98,3 +98,5 @@ Route::resource('models', 'ModelsInstanseController');
 
 Route::get('currentControllers/{item}', 'ControllersController@getCurrentControllers');
 Route::resource('controllers', 'ControllersController');
+
+Route::resource('controllerMethods', 'ControllerMethodsController');
