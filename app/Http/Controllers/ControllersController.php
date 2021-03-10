@@ -71,9 +71,11 @@ class ControllersController extends Controller
      */
     public function update(Request $request, Controllers $controllers)
     {
+        $fields = $request->all();
+
         return response()->json([
             "controllers"=>$controllers,
-            // "Tasks"=> ModelsInstanse::get()
+            "request"=>$fields
             ], 200);
     }
 
