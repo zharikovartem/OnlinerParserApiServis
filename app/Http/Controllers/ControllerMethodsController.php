@@ -79,12 +79,12 @@ class ControllerMethodsController extends Controller
 
         $controllerMethods->save();
 
-        // return response()->json([
-        //     "controllers"=>$controller,
-        //     "request"=>$fields
-        //     ], 200);
+        return response()->json([
+            "controllers"=>$controllerMethods,
+            "request"=>$fields
+            ], 200);
 
-        return self::index();
+        // return self::index();
     }
 
     /**
