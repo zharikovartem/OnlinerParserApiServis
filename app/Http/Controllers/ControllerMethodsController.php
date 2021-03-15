@@ -71,7 +71,20 @@ class ControllerMethodsController extends Controller
      */
     public function update(Request $request, ControllerMethods $controllerMethods)
     {
-        //
+        $fields = $request->all();
+
+        foreach ($fields as $field => $value) {
+            $controllerMethods[$field] = $value;
+        }
+
+        $controllerMethods->save();
+
+        // return response()->json([
+        //     "controllers"=>$controller,
+        //     "request"=>$fields
+        //     ], 200);
+
+        return self::index();
     }
 
     /**
