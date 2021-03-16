@@ -74,13 +74,13 @@ class ControllerMethodsController extends Controller
         $fields = $request->all();
 
         // foreach ($fields as $field => $value) {
-            // $controllerMethods[$field] = $value;
+            // $controllerMethod[$field] = $value;
         // }
 
-        // $controllerMethods->save();
+        // $controllerMethod->save();
 
         return response()->json([
-            "controllerMethods"=>$controllerMethods,
+            "controllerMethods"=>$controllerMethod,
             "request"=>$fields
             ], 200);
 
