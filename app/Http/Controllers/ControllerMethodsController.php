@@ -66,10 +66,10 @@ class ControllerMethodsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ControllerMethods  $controllerMethods
+     * @param  \App\ControllerMethods  $controllerMethod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ControllerMethods $controllerMethods)
+    public function update(Request $request, ControllerMethods $controllerMethod)
     {
         $fields = $request->all();
 
