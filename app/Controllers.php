@@ -35,6 +35,8 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
+            $update = false;
+
             $childMethods = DB::table('ControllerMethods')->where('controller_id', $this->id)->get();
             $methods = [];
             foreach ($childMethods as $index => $method) {
@@ -47,9 +49,10 @@ class Controllers extends Model
                     'controller_id'=>$this->id,
                     'name'=>'index',
                     'rest_type'=>'get',
-                    'body_actions'=>'{}'
+                    'body_actions'=>'{}',
                 ]);
                 $index->save();
+                $update = true;
             }
             
             # store
@@ -58,9 +61,10 @@ class Controllers extends Model
                     'controller_id'=>$this->id,
                     'name'=>'store',
                     'rest_type'=>'post',
-                    'body_actions'=>'{}'
+                    'body_actions'=>'{}',
                 ]);
                 $store->save();
+                $update = true;
             }
 
             # update
@@ -69,9 +73,10 @@ class Controllers extends Model
                     'controller_id'=>$this->id,
                     'name'=>'update',
                     'rest_type'=>'put',
-                    'body_actions'=>'{}'
+                    'body_actions'=>'{}',
                 ]);
                 $update->save();
+                $update = true;
             }
 
             # destroy
@@ -80,10 +85,13 @@ class Controllers extends Model
                     'controller_id'=>$this->id,
                     'name'=>'destroy',
                     'rest_type'=>'delete',
-                    'body_actions'=>'{}'
+                    'body_actions'=>'{}',
                 ]);
                 $destroy->save();
+                $update = true;
             }
+
+            return $update;
         }
     }
 }

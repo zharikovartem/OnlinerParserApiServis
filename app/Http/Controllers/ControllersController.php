@@ -77,12 +77,13 @@ class ControllersController extends Controller
             $controller[$field] = $value;
         }
 
-        $controller->checkIsResurce();
+        $isMethodsRewrite = $controller->checkIsResurce();
         $controller->save();
 
         return response()->json([
             "controllers"=>$controller,
-            "request"=>$fields
+            "request"=>$fields,
+            "needGetMethods"=>$isMethodsRewrite,
             ], 200);
     }
 
