@@ -35,11 +35,7 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
-            // echo 'isResource: controller-Id: '.$this->id;
-            $childMethods = ControllerMethods::where('controller_id', $this->id)->get();
-            var_dump($childMethods);
             $childMethods = DB::table('ControllerMethods')->whereIn('controller_id', $this->id)->get();
-            var_dump($childMethods);
 
             $methods = [];
             foreach ($childMethods as $index => $method) {
