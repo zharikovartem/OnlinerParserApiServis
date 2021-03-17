@@ -77,6 +77,7 @@ class ControllersController extends Controller
             $controller[$field] = $value;
         }
 
+        $controller->checkIsResurce();
         $controller->save();
 
         return response()->json([
