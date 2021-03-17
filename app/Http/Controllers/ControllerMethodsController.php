@@ -37,7 +37,9 @@ class ControllerMethodsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $controllerMethods = new ControllerMethods($request->all());
+        $controllerMethods->save();
+        return self::index();
     }
 
     /**
