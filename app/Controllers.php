@@ -64,13 +64,19 @@ class Controllers extends Model
                     "type"=> "Request",
                     "label"=> "param 1"
                 );
+                $model = (object) array(
+                    "id"=> 1,
+                    "name"=> explode($this->name, 'Controller')[0],
+                    "type"=> explode($this->name, 'Controller')[0],
+                    "label"=> "param 2"
+                );
 
                 $store = new ControllerMethods([
                     'controller_id'=>$this->id,
                     'name'=>'store',
                     'rest_type'=>'post',
                     'body_actions'=>'',
-                    'request'=> json_encode([$request]) 
+                    'request'=> json_encode([$request, $model]) 
                 ]);
                 $store->save();
                 $update = true;
