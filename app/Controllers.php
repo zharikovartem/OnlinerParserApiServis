@@ -35,7 +35,7 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
-            echo $this->name;
+            // echo $this->name;
             $update = false;
 
             $childMethods = DB::table('ControllerMethods')->where('controller_id', $this->id)->get();
@@ -67,8 +67,8 @@ class Controllers extends Model
                 );
                 $model = (object) array(
                     "id"=> 1,
-                    "name"=> explode('Controller', $this->name)[0],
-                    "type"=> lcfirst( explode('Controller', $this->name)[0] ),
+                    "type"=> explode('Controller', $this->name)[0],
+                    "name"=> lcfirst( explode('Controller', $this->name)[0] ),
                     "label"=> "param 2"
                 );
 
@@ -77,7 +77,13 @@ class Controllers extends Model
                     'name'=>'store',
                     'rest_type'=>'post',
                     'body_actions'=>'',
-                    'request'=> json_encode([$request, $model]) 
+                    'request'=> json_encode([$request, $model]),
+                    'response'=> '{
+                        "type": "method",
+                        "methodId": 1,
+                        "methodName": "index",
+                        "responseItems": []
+                    }',
                 ]);
                 $store->save();
                 $update = true;
