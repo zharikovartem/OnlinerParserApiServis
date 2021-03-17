@@ -37,6 +37,7 @@ class Controllers extends Model
         if ( $this->isResource ) {
             // echo 'isResource: controller-Id: '.$this->id;
             $childMethods = ControllerMethods::where('controller_id', $this->id)->get();
+            var_dump($childMethods);
 
             $methods = [];
             foreach ($childMethods as $index => $method) {
