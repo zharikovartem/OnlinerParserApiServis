@@ -28,6 +28,12 @@ class Controllers extends Model
         } else {
             return [];
         }
-        
+    }
+
+    public function checkIsResurce()
+    {
+        if ( $this->isResource ) {
+            echo 'isResource=>true';
+        }
     }
 }
