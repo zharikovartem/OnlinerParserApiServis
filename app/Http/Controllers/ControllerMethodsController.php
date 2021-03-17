@@ -113,4 +113,9 @@ class ControllerMethodsController extends Controller
     {
         //
     }
+
+    public function getCurrentMethodControllers($item)
+    {
+        //
+    }
 }
