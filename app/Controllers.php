@@ -58,12 +58,12 @@ class Controllers extends Model
             
             # store
             if (!isset($methods['store'])) {
-                $request= [
+                $request = (object) array(
                     "id"=> 0,
                     "name"=> "request",
                     "type"=> "Request",
                     "label"=> "param 1"
-                ];
+                );
 
                 $store = new ControllerMethods([
                     'controller_id'=>$this->id,
