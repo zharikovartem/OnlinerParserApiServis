@@ -19,5 +19,6 @@ class ControllerMethods extends Model
                 "rest_type",
                 "isMiddleware",
                 "body_actions",
+                "name",
     ];
 }
