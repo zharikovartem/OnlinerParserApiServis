@@ -29,16 +29,30 @@ class ControllerMethodsController extends Controller
         //
     }
 
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(Request $request)
+    // {
+    //     $controllerMethods = new ControllerMethods($request->all());
+    //     $controllerMethods->save();
+    //     return self::index();
+    // }
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Descriptions
+    * @param \Illuminate\Http\Request $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request)
     {
+
         $controllerMethods = new ControllerMethods($request->all());
         $controllerMethods->save();
+
         return self::index();
     }
 
