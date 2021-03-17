@@ -33,7 +33,7 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
-            echo 'isResource=>true';
+            echo 'isResource: controller-Id: '.$this->id;
         }
     }
 }
