@@ -43,7 +43,7 @@ class Controllers extends Model
 
             $methods = [];
             foreach ($childMethods as $index => $method) {
-                $methods[] = $method['name'];
+                $methods[] = $method->name;
             }
 
             # index
