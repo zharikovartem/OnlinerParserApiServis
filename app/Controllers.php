@@ -44,24 +44,26 @@ class Controllers extends Model
             }
 
             # index
-            if (!isset($methods['index']))
-            $index = new ControllerMethods([
-                'controller_id'=>$this->id,
-                'name'=>'index',
-                'rest_type'=>'get',
-                'body_actions'=>'{}'
-            ]);
-            $index->save();
-
+            if (!isset($methods['index'])) {
+                $index = new ControllerMethods([
+                    'controller_id'=>$this->id,
+                    'name'=>'index',
+                    'rest_type'=>'get',
+                    'body_actions'=>'{}'
+                ]);
+                $index->save();
+            }
+            
             # store
-            if (!isset($methods['store']))
-            $store = new ControllerMethods([
-                'controller_id'=>$this->id,
-                'name'=>'store',
-                'rest_type'=>'post',
-                'body_actions'=>'{}'
-            ]);
-            $store->save();
+            if (!isset($methods['store'])) {
+                $store = new ControllerMethods([
+                    'controller_id'=>$this->id,
+                    'name'=>'store',
+                    'rest_type'=>'post',
+                    'body_actions'=>'{}'
+                ]);
+                $store->save();
+            }
 
             # update
             # destroy
