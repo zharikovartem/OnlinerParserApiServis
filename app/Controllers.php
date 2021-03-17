@@ -46,6 +46,8 @@ class Controllers extends Model
                 $methods[] = $method->name;
             }
 
+            var_dump($methods);
+
             # index
             if (!isset($methods['index'])) {
                 $index = new ControllerMethods([
