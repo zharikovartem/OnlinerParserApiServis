@@ -67,8 +67,8 @@ class Controllers extends Model
                 );
                 $model = (object) array(
                     "id"=> 1,
-                    "name"=> explode($this->name, 'Controller')[0],
-                    "type"=> explode($this->name, 'Controller')[0],
+                    "name"=> explode('Controller', $this->name)[0],
+                    "type"=> explode('Controller', $this->name)[0],
                     "label"=> "param 2"
                 );
 
