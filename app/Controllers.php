@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
+use App\ControllerMethods;
+
 class Controllers extends Model
 {
     use SoftDeletes;
@@ -33,7 +35,20 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
-            echo 'isResource: controller-Id: '.$this->id;
+            // echo 'isResource: controller-Id: '.$this->id;
+
+            # index
+            $index = new ControllerMethods([
+                'controller_id'=>$this->id,
+                'name'=>'newIndex',
+                'rest_type'=>'post',
+                'body_actions'=>'{}'
+            ]);
+            $index->save();
+            
+            # store
+            # update
+            # destroy
         }
     }
 }
