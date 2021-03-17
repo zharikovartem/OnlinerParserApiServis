@@ -70,7 +70,7 @@ class Controllers extends Model
                     'name'=>'store',
                     'rest_type'=>'post',
                     'body_actions'=>'',
-                    'request'=>[$request]
+                    'request'=> json_encode([$request]) 
                 ]);
                 $store->save();
                 $update = true;
