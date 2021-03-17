@@ -68,7 +68,7 @@ class Controllers extends Model
                 $model = (object) array(
                     "id"=> 1,
                     "name"=> explode('Controller', $this->name)[0],
-                    "type"=> explode('Controller', $this->name)[0],
+                    "type"=> lcfirst( explode('Controller', $this->name)[0] ),
                     "label"=> "param 2"
                 );
 
