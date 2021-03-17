@@ -36,17 +36,33 @@ class Controllers extends Model
     {
         if ( $this->isResource ) {
             // echo 'isResource: controller-Id: '.$this->id;
+            $childMethods = ControllerMethods::where('controller_id', $this->id)->get();
+
+            $methods = [];
+            foreach ($childMethods as $index => $method) {
+                $methods[] = $method['name'];
+            }
 
             # index
+            if (!isset($methods['index']))
             $index = new ControllerMethods([
                 'controller_id'=>$this->id,
-                'name'=>'newIndex',
-                'rest_type'=>'post',
+                'name'=>'index',
+                'rest_type'=>'get',
                 'body_actions'=>'{}'
             ]);
             $index->save();
-            
+
             # store
+            if (!isset($methods['store']))
+            $store = new ControllerMethods([
+                'controller_id'=>$this->id,
+                'name'=>'store',
+                'rest_type'=>'post',
+                'body_actions'=>'{}'
+            ]);
+            $store->save();
+
             # update
             # destroy
         }
