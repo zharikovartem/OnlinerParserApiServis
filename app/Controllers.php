@@ -58,19 +58,19 @@ class Controllers extends Model
             
             # store
             if (!isset($methods['store'])) {
+                $request= [
+                    "id"=> 0,
+                    "name"=> "request",
+                    "type"=> "Request",
+                    "label"=> "param 1"
+                ];
+
                 $store = new ControllerMethods([
                     'controller_id'=>$this->id,
                     'name'=>'store',
                     'rest_type'=>'post',
                     'body_actions'=>'',
-                    'request'=>[
-                        [
-                            "id"=> 0,
-                            "name"=> "request",
-                            "type"=> "Request",
-                            "label"=> "param 1"
-                        ]
-                    ]
+                    'request'=>[$request]
                 ]);
                 $store->save();
                 $update = true;
