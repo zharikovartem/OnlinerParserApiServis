@@ -50,6 +50,7 @@ class Controllers extends Model
                     'name'=>'index',
                     'rest_type'=>'get',
                     'body_actions'=>'',
+                    'request'=>[],
                 ]);
                 $index->save();
                 $update = true;
@@ -62,6 +63,14 @@ class Controllers extends Model
                     'name'=>'store',
                     'rest_type'=>'post',
                     'body_actions'=>'',
+                    'request'=>[
+                        [
+                            "id"=> 0,
+                            "name"=> "request",
+                            "type"=> "Request",
+                            "label"=> "param 1"
+                        ]
+                    ]
                 ]);
                 $store->save();
                 $update = true;
