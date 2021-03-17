@@ -35,18 +35,11 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
-            // echo 'isResource: controller-Id: '.$this->id;
-            // $childMethods = ControllerMethods::where('controller_id', $this->id)->get();
-            // var_dump($childMethods);
             $childMethods = DB::table('ControllerMethods')->where('controller_id', $this->id)->get();
-            // var_dump($childMethods);
-
             $methods = [];
             foreach ($childMethods as $index => $method) {
                 $methods[$method->name] = $method->name;
             }
-
-            // var_dump($methods);
 
             # index
             if (!isset($methods['index'])) {
@@ -71,7 +64,26 @@ class Controllers extends Model
             }
 
             # update
+            if (!isset($methods['update'])) {
+                $update = new ControllerMethods([
+                    'controller_id'=>$this->id,
+                    'name'=>'update',
+                    'rest_type'=>'put',
+                    'body_actions'=>'{}'
+                ]);
+                $update->save();
+            }
+
             # destroy
+            if (!isset($methods['destroy'])) {
+                $destroy = new ControllerMethods([
+                    'controller_id'=>$this->id,
+                    'name'=>'destroy',
+                    'rest_type'=>'delete',
+                    'body_actions'=>'{}'
+                ]);
+                $destroy->save();
+            }
         }
     }
 }
