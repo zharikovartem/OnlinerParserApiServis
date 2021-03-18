@@ -90,8 +90,8 @@ class Controllers extends Model
                         "responseItems": []
                     }',
                     'body_actions'=>
-                        '$newItem = new '.explode('Controller', $this->name)[0].'($request->all());
-                        $newItem->save();',
+                        '   $newItem = new '.explode('Controller', $this->name)[0].'($request->all());
+        $newItem->save();',
                 ]);
                 $store->save();
                 $update = true;
