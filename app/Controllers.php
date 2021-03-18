@@ -76,10 +76,10 @@ class Controllers extends Model
             }
 
             if ( isset($methods['index']) ) {
-                echo '111!!!!!!!!!!!!'.$methods['index'];
+                // echo '111!!!!!!!!!!!!'.$methods['index'];
                 $methodId = $methods['index'];
             } else {
-                echo '222!!!!!!!!!!!!'.$index->id;
+                // echo '222!!!!!!!!!!!!'.$index->id;
                 $methodId = $index->id;
             }
             
