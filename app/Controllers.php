@@ -53,12 +53,12 @@ class Controllers extends Model
                 "label"=> "param 1"
             );
 
-            $model = (object) array(
-                "id"=> 1,
-                "type"=> explode('Controller', $this->name)[0],
-                "name"=> lcfirst( explode('Controller', $this->name)[0] ),
-                "label"=> "param 2"
-            );
+            // $model = (object) array(
+            //     "id"=> 1,
+            //     "type"=> explode('Controller', $this->name)[0],
+            //     "name"=> lcfirst( explode('Controller', $this->name)[0] ),
+            //     "label"=> "param 2"
+            // );
 
             
             ####################################
