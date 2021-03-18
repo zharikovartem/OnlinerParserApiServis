@@ -59,6 +59,13 @@ class Controllers extends Model
                 "label"=> "param 2"
             );
 
+            $model2 = (object) array(
+                "id"=> 0,
+                "type"=> explode('Controller', $this->name)[0],
+                "name"=> lcfirst( explode('Controller', $this->name)[0] ),
+                "label"=> "param 1"
+            );
+
             
             ####################################
 
@@ -133,7 +140,7 @@ class Controllers extends Model
                     'name'=>'destroy',
                     'rest_type'=>'delete',
                     'body_actions'=>'',
-                    'request'=> json_encode([$model]),
+                    'request'=> json_encode([$model2]),
                     'response'=> '{
                         "type": "method",
                         "methodId": '.$methodId.',
