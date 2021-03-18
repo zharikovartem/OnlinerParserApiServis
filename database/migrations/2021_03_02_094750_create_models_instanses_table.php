@@ -21,6 +21,7 @@ class CreateModelsInstansesTable extends Migration
             $table->json('fields')->nullable();
             $table->integer('backend_id')->nullable();
             $table->text('folder')->nullable();
+            $table->boolean('soft_delete')->nullable();
         });
     }
 

@@ -20,8 +20,9 @@ class CreateControllersTable extends Migration
             $table->text('name');
             $table->text('folder')->nullable();
             $table->integer('model_id')->nullable();
+            $table->json('models')->nullable();
             $table->integer('backend_id')->nullable();
-            $table->boolean('isResource');
+            $table->boolean('isResource')->nullable();
         });
     }
 
