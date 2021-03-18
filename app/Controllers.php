@@ -77,7 +77,7 @@ class Controllers extends Model
                     'rest_type'=>'get',
                     'body_actions'=>
                     '$'.lcfirst( explode('Controller', $this->name)[0] ).' = '.explode('Controller', $this->name)[0].'::get();',
-                    'request'=>'[]',
+                    'request'=>json_encode([$request]),
                     'response'=>
                     '{
                         "type": "Response",
