@@ -137,8 +137,7 @@ class Controllers extends Model
                             "methodId": '.$methodId.',
                             "methodName": "index",
                             "responseItems": []
-                        }',
-;
+                        }'
                 ]);
                 $update->save();
                 $update = true;
