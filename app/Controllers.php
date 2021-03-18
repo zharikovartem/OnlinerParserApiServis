@@ -87,7 +87,7 @@ class Controllers extends Model
                                 "variable": "'.lcfirst( explode('Controller', $this->name)[0] ).'"
                             }
                         ]
-                    ',
+                    }',
                 ]);
                 $index->save();
                 $update = true;
