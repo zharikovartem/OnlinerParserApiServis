@@ -78,12 +78,12 @@ class Controllers extends Model
                     'rest_type'=>'post',
                     'body_actions'=>'',
                     'request'=> json_encode([$request, $model]),
-                    'response'=> '{
+                    'response'=> '"{
                         "type": "method",
                         "methodId": "1"
                         "methodName": "index",
                         "responseItems": []
-                    }',
+                    }"',
                 ]);
                 $store->save();
                 $update = true;
