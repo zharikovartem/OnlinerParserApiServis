@@ -83,7 +83,7 @@ class ControllersController extends Controller
         return response()->json([
             "controllers"=>$controller,
             "request"=>$fields,
-            "needGetMethods"=>$isMethodsRewrite,
+            // "needGetMethods"=>$isMethodsRewrite,
             ], 200);
     }
 
