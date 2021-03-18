@@ -46,19 +46,19 @@ class Controllers extends Model
             // var_dump($methods);
 
             ############ data ###################
-            // $request = (object) array(
-            //     "id"=> 0,
-            //     "name"=> "request",
-            //     "type"=> "Request",
-            //     "label"=> "param 1"
-            // );
+            $request = (object) array(
+                "id"=> 0,
+                "name"=> "request",
+                "type"=> "Request",
+                "label"=> "param 1"
+            );
 
-            // $model = (object) array(
-            //     "id"=> 1,
-            //     "type"=> explode('Controller', $this->name)[0],
-            //     "name"=> lcfirst( explode('Controller', $this->name)[0] ),
-            //     "label"=> "param 2"
-            // );
+            $model = (object) array(
+                "id"=> 1,
+                "type"=> explode('Controller', $this->name)[0],
+                "name"=> lcfirst( explode('Controller', $this->name)[0] ),
+                "label"=> "param 2"
+            );
 
             
             ####################################
@@ -71,9 +71,8 @@ class Controllers extends Model
                     'name'=>'index',
                     'rest_type'=>'get',
                     'body_actions'=>'',
-                    'request'=>[],
                 ]);
-                // $index->save();
+                $index->save();
                 $update = true;
             }
 
