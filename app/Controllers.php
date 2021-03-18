@@ -46,12 +46,12 @@ class Controllers extends Model
             // var_dump($methods);
 
             ############ data ###################
-            $request = (object) array(
-                "id"=> 0,
-                "name"=> "request",
-                "type"=> "Request",
-                "label"=> "param 1"
-            );
+            // $request = (object) array(
+            //     "id"=> 0,
+            //     "name"=> "request",
+            //     "type"=> "Request",
+            //     "label"=> "param 1"
+            // );
 
             // $model = (object) array(
             //     "id"=> 1,
