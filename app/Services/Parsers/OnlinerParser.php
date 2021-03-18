@@ -3,7 +3,7 @@
 namespace App\Services\Parsers;
 
 use App\Models\Catalog;
-use DiDom\Document; // gfhcth реьд
+use DiDom\Document; //
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\CatalogItemParsingJob;

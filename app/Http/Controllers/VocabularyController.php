@@ -86,4 +86,9 @@ class VocabularyController extends Controller
     {
         //
     }
+
+    public function getVocabularyList()
+    {
+        echo 'test';
+    }
 }
