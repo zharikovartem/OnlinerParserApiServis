@@ -56,8 +56,6 @@ class Controllers extends Model
                 $index->save();
                 $update = true;
             }
-
-            var_dump($index);
             
             # store
             if (!isset($methods['store'])) {
@@ -82,7 +80,7 @@ class Controllers extends Model
                     'request'=> json_encode([$request, $model]),
                     'response'=> '{
                         "type": "method",
-                        "methodId": '.$index['id'].'
+                        "methodId": '.$index->id.'
                         "methodName": "index",
                         "responseItems": []
                     }',
@@ -115,7 +113,8 @@ class Controllers extends Model
                 $update = true;
             }
 
-            return $update;
+            // return $update;
+            return $index;
         }
     }
 }
