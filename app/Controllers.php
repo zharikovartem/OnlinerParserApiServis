@@ -64,8 +64,8 @@ class Controllers extends Model
             ####################################
 
             # index
-            echo $this->id;
             if (!isset($methods['index'])) {
+                echo '!!!!!!!!!!!!!!!!';
                 $index = new ControllerMethods([
                     'controller_id'=>$this->id,
                     'name'=>'index',
