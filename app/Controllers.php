@@ -56,6 +56,8 @@ class Controllers extends Model
                 $index->save();
                 $update = true;
             }
+
+            var_dump($index);
             
             # store
             if (!isset($methods['store'])) {
