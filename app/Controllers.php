@@ -133,7 +133,7 @@ class Controllers extends Model
                     'name'=>'destroy',
                     'rest_type'=>'delete',
                     'body_actions'=>'',
-                    'request'=> json_encode([$request, $model]),
+                    'request'=> json_encode([$model]),
                     'response'=> '{
                         "type": "method",
                         "methodId": '.$methodId.',
@@ -141,7 +141,7 @@ class Controllers extends Model
                         "responseItems": []
                     }',
                     'body_actions'=>
-                        '$'.lcfirst( explode('Controller', $this->name)[0] ).'-> delete();'
+                        '$'.lcfirst( explode('Controller', $this->name)[0] ).'->delete();'
                 ]);
                 $destroy->save();
                 $update = true;
