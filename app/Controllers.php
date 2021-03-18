@@ -62,79 +62,79 @@ class Controllers extends Model
             ####################################
 
             # index
-            if (!isset($methods['index'])) {
-                $index = new ControllerMethods([
-                    'controller_id'=>$this->id,
-                    'name'=>'index',
-                    'rest_type'=>'get',
-                    'body_actions'=>'',
-                    'request'=>[],
-                ]);
-                $index->save();
-                $update = true;
-            }
+            // if (!isset($methods['index'])) {
+            //     $index = new ControllerMethods([
+            //         'controller_id'=>$this->id,
+            //         'name'=>'index',
+            //         'rest_type'=>'get',
+            //         'body_actions'=>'',
+            //         'request'=>[],
+            //     ]);
+            //     $index->save();
+            //     $update = true;
+            // }
 
-            if ( isset($methods['index']) ) {
-                // echo '111!!!!!!!!!!!!'.$methods['index'];
-                $methodId = $methods['index'];
-            } else {
-                // echo '222!!!!!!!!!!!!'.$index->id;
-                $methodId = $index->id;
-            }
+            // if ( isset($methods['index']) ) {
+            //     // echo '111!!!!!!!!!!!!'.$methods['index'];
+            //     $methodId = $methods['index'];
+            // } else {
+            //     // echo '222!!!!!!!!!!!!'.$index->id;
+            //     $methodId = $index->id;
+            // }
             
             # store
-            if (!isset($methods['store'])) {
-                $store = new ControllerMethods([
-                    'controller_id'=>$this->id,
-                    'name'=>'store',
-                    'rest_type'=>'post',
-                    'body_actions'=>'',
-                    'request'=> json_encode([$request, $model]),
-                    'response'=> '{
-                        "type": "method",
-                        "methodId": '.$methodId.',
-                        "methodName": "index",
-                        "responseItems": []
-                    }',
-                    'body_actions'=>
-                        '   $newItem = new '.explode('Controller', $this->name)[0].'($request->all());
-                $newItem->save();',
-                ]);
-                // $store->save();
-                $update = true;
-            }
+            // if (!isset($methods['store'])) {
+            //     $store = new ControllerMethods([
+            //         'controller_id'=>$this->id,
+            //         'name'=>'store',
+            //         'rest_type'=>'post',
+            //         'body_actions'=>'',
+            //         'request'=> json_encode([$request, $model]),
+            //         'response'=> '{
+            //             "type": "method",
+            //             "methodId": '.$methodId.',
+            //             "methodName": "index",
+            //             "responseItems": []
+            //         }',
+            //         'body_actions'=>
+            //             '   $newItem = new '.explode('Controller', $this->name)[0].'($request->all());
+            //     $newItem->save();',
+            //     ]);
+            //     // $store->save();
+            //     $update = true;
+            // }
 
             # update
-            if (!isset($methods['update'])) {
-                $update = new ControllerMethods([
-                    'controller_id'=>$this->id,
-                    'name'=>'update',
-                    'rest_type'=>'put',
-                    'body_actions'=>'',
-                ]);
-                // $update->save();
-                $update = true;
-            }
+            // if (!isset($methods['update'])) {
+            //     $update = new ControllerMethods([
+            //         'controller_id'=>$this->id,
+            //         'name'=>'update',
+            //         'rest_type'=>'put',
+            //         'body_actions'=>'',
+            //     ]);
+            //     // $update->save();
+            //     $update = true;
+            // }
 
-            # destroy
-            if (!isset($methods['destroy'])) {
-                $destroy = new ControllerMethods([
-                    'controller_id'=>$this->id,
-                    'name'=>'destroy',
-                    'rest_type'=>'delete',
-                    'body_actions'=>'',
-                    'request'=> json_encode([$request, $model]),
-                    'response'=> '{
-                        "type": "method",
-                        "methodId": '.$methodId.',
-                        "methodName": "index",
-                        "responseItems": []
-                    }',
-                    'body_actions'=>'   $'.$model->name.'->delete();'
-                ]);
-                // $destroy->save();
-                $update = true;
-            }
+            // # destroy
+            // if (!isset($methods['destroy'])) {
+            //     $destroy = new ControllerMethods([
+            //         'controller_id'=>$this->id,
+            //         'name'=>'destroy',
+            //         'rest_type'=>'delete',
+            //         'body_actions'=>'',
+            //         'request'=> json_encode([$request, $model]),
+            //         'response'=> '{
+            //             "type": "method",
+            //             "methodId": '.$methodId.',
+            //             "methodName": "index",
+            //             "responseItems": []
+            //         }',
+            //         'body_actions'=>'   $'.$model->name.'->delete();'
+            //     ]);
+            //     // $destroy->save();
+            //     $update = true;
+            // }
 
             return $update;
             // return $index;
