@@ -68,8 +68,19 @@ class Controllers extends Model
                     'controller_id'=>$this->id,
                     'name'=>'index',
                     'rest_type'=>'get',
-                    'body_actions'=>'',
+                    'body_actions'=>
+                    '$'.lcfirst( explode('Controller', $this->name)[0] ).' = '.explode('Controller', $this->name)[0].'::get();',
                     'request'=>'[]',
+                    'response'=>
+                    '{
+                        "type": "Response",
+                        "responseItems": [
+                            {
+                                "key": "'.lcfirst( explode('Controller', $this->name)[0] ).'",
+                                "variable": "'.lcfirst( explode('Controller', $this->name)[0] ).'"
+                            }
+                        ]
+                    }',
                 ]);
                 $index->save();
                 $update = true;
@@ -80,7 +91,7 @@ class Controllers extends Model
             } else {
                 $methodId = $index->id;
             }
-            
+
             # store
             if (!isset($methods['store'])) {
                 $store = new ControllerMethods([
