@@ -35,7 +35,6 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
-            // echo $this->name;
             $update = false;
 
             $childMethods = DB::table('ControllerMethods')->where('controller_id', $this->id)->get();
@@ -139,6 +138,8 @@ class Controllers extends Model
 
             return $update;
             // return $index;
+        } else {
+            return false;
         }
     }
 }
