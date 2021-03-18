@@ -107,6 +107,7 @@ class Controllers extends Model
                     'controller_id'=>$this->id,
                     'name'=>'update',
                     'rest_type'=>'put',
+                    'request'=> json_encode([$request, $model]),
                     'body_actions'=>'',
                 ]);
                 $update->save();
