@@ -129,8 +129,8 @@ class Controllers extends Model
                     'rest_type'=>'put',
                     'request'=> json_encode([$request, $model]),
                     'body_actions'=>
-                        '       foreach ($request->all() as $field => $value) {'.
-                        '           $'.lcfirst( explode('Controller', $this->name)[0] ).'[$field] = $value;
+                        '       foreach ($request->all() as $field => $value) {
+                        '.'           $'.lcfirst( explode('Controller', $this->name)[0] ).'[$field] = $value;
                         '.'       }
                         '.'       $'.lcfirst( explode('Controller', $this->name)[0] ).'->save();',
                     'response'=> '{
