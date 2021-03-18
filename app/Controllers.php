@@ -130,7 +130,7 @@ class Controllers extends Model
                     'request'=> json_encode([$request, $model]),
                     'body_actions'=>
                         'foreach ($request->all() as $field => $value) {
-                        '.'$'.lcfirst( explode('Controller', $this->name)[0] ).'[$field] = $value;
+                            '.lcfirst( explode('Controller', $this->name)[0] ).'[$field] = $value;
                         '.'}
                         '.'$'.lcfirst( explode('Controller', $this->name)[0] ).'->save();',
                     'response'=> '{
@@ -159,7 +159,7 @@ class Controllers extends Model
                         "responseItems": []
                     }',
                     'body_actions'=>
-                        '$'.lcfirst( explode('Controller', $this->name)[0] ).'->delete();'
+                        '   $'.lcfirst( explode('Controller', $this->name)[0] ).'->delete();'
                 ]);
                 $destroy->save();
                 $update = true;
