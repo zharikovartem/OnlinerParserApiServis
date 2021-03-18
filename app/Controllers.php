@@ -41,7 +41,7 @@ class Controllers extends Model
             $childMethods = DB::table('ControllerMethods')->where('controller_id', $this->id)->get();
             $methods = [];
             foreach ($childMethods as $index => $method) {
-                $methods[$method->name] = $method->name;
+                $methods[$method->name] = $method->id;
             }
 
             # index
@@ -72,6 +72,11 @@ class Controllers extends Model
                     "label"=> "param 2"
                 );
 
+                if ( isset($methods['index']) ) {
+                    $methodId = $methods['index'];
+                } else {
+                    $methodId = $index->id;
+                }
                 $store = new ControllerMethods([
                     'controller_id'=>$this->id,
                     'name'=>'store',
@@ -80,7 +85,7 @@ class Controllers extends Model
                     'request'=> json_encode([$request, $model]),
                     'response'=> '{
                         "type": "method",
-                        "methodId": 1,
+                        "methodId": '.$methodId.',
                         "methodName": "index",
                         "responseItems": []
                     }',
@@ -113,8 +118,8 @@ class Controllers extends Model
                 $update = true;
             }
 
-            // return $update;
-            return $index;
+            return $update;
+            // return $index;
         }
     }
 }
