@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Vocabulary;
 use Illuminate\Http\Request;
 
+use App\Services\UniversalParser\UniversalParser;
+
 class VocabularyController extends Controller
 {
     /**
@@ -89,6 +91,8 @@ class VocabularyController extends Controller
 
     public function getVocabularyList()
     {
-        echo 'test';
+        // echo 'test';
+        return UniversalParser::getVocabularyList();
+
     }
 }
