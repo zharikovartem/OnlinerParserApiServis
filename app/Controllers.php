@@ -89,6 +89,9 @@ class Controllers extends Model
                         "methodName": "index",
                         "responseItems": []
                     }',
+                    'body_actions'=>
+                        '$newItem = new '.explode('Controller', $this->name)[0].'($request->all());
+                        $newItem->save();',
                 ]);
                 $store->save();
                 $update = true;
