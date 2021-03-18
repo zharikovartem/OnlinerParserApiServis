@@ -73,7 +73,7 @@ class Controllers extends Model
                     'name'=>'index',
                     'rest_type'=>'get',
                     'body_actions'=>'',
-                    'request'=>[],
+                    'request'=>'[]',
                 ]);
                 $index->save();
                 $update = true;
