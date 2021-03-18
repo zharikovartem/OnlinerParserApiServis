@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->json('view_settings')->nullable();
+            $table->text('phone')->nullable();
         });
     }
 

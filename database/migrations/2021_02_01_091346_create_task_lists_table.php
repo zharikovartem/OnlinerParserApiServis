@@ -21,6 +21,9 @@ class CreateTaskListsTable extends Migration
             $table->text('name');
             $table->integer('user_id');
             $table->mediumText('descriptions')->nullable();
+            $table->dateTime('time_to_complete')->nullable();
+            $table->integer('task_type')->nullable();
+            $table->json('data')->nullable();
         });
     }
 

@@ -16,7 +16,7 @@ class CreateControllerMethodsTable extends Migration
             $table->json("response")->nullable();
             $table->text("rest_type");
             $table->boolean("isMiddleware")->nullable();
-            $table->json("body_actions");
+            $table->text("body_actions")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
