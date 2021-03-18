@@ -76,10 +76,10 @@ class Controllers extends Model
                     'name'=>'index',
                     'rest_type'=>'get',
                     'body_actions'=>
-                    '"$'.lcfirst( explode('Controller', $this->name)[0] ).' = '.explode('Controller', $this->name)[0].'::get();"',
+                    '$'.lcfirst( explode('Controller', $this->name)[0] ).' = '.explode('Controller', $this->name)[0].'::get();',
                     'request'=>json_encode([$request]),
                     'response'=>
-                    '"{
+                    '{
                         "type": "Response",
                         "responseItems": [
                             {
@@ -87,7 +87,7 @@ class Controllers extends Model
                                 "variable": "'.lcfirst( explode('Controller', $this->name)[0] ).'"
                             }
                         ]
-                    }"',
+                    ',
                 ]);
                 $index->save();
                 $update = true;
