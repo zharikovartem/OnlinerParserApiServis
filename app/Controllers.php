@@ -80,7 +80,7 @@ class Controllers extends Model
                     'request'=> json_encode([$request, $model]),
                     'response'=> '{
                         "type": "method",
-                        "methodId": '.$index->id.'
+                        "methodId": 1
                         "methodName": "index",
                         "responseItems": []
                     }',
