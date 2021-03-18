@@ -35,6 +35,7 @@ class Controllers extends Model
     public function checkIsResurce()
     {
         if ( $this->isResource ) {
+            // echo $this->name;
             $update = false;
 
             $childMethods = DB::table('ControllerMethods')->where('controller_id', $this->id)->get();
@@ -42,8 +43,6 @@ class Controllers extends Model
             foreach ($childMethods as $index => $method) {
                 $methods[$method->name] = $method->id;
             }
-
-            // var_dump($methods);
 
             ############ data ###################
             $request = (object) array(
@@ -60,88 +59,83 @@ class Controllers extends Model
                 "label"=> "param 2"
             );
 
-            
+            if ( isset($methods['index']) ) {
+                $methodId = $methods['index'];
+            } else {
+                $methodId = $index->id;
+            }
             ####################################
 
             # index
             if (!isset($methods['index'])) {
-                echo '!!!!!!!!!!!!!!!!';
                 $index = new ControllerMethods([
                     'controller_id'=>$this->id,
                     'name'=>'index',
                     'rest_type'=>'get',
                     'body_actions'=>'',
+                    'request'=>[],
                 ]);
                 $index->save();
                 $update = true;
             }
-
-            // if ( isset($methods['index']) ) {
-            //     // echo '111!!!!!!!!!!!!'.$methods['index'];
-            //     $methodId = $methods['index'];
-            // } else {
-            //     // echo '222!!!!!!!!!!!!'.$index->id;
-            //     $methodId = $index->id;
-            // }
             
             # store
-            // if (!isset($methods['store'])) {
-            //     $store = new ControllerMethods([
-            //         'controller_id'=>$this->id,
-            //         'name'=>'store',
-            //         'rest_type'=>'post',
-            //         'body_actions'=>'',
-            //         'request'=> json_encode([$request, $model]),
-            //         'response'=> '{
-            //             "type": "method",
-            //             "methodId": '.$methodId.',
-            //             "methodName": "index",
-            //             "responseItems": []
-            //         }',
-            //         'body_actions'=>
-            //             '   $newItem = new '.explode('Controller', $this->name)[0].'($request->all());
-            //     $newItem->save();',
-            //     ]);
-            //     // $store->save();
-            //     $update = true;
-            // }
+            if (!isset($methods['store'])) {
+                $store = new ControllerMethods([
+                    'controller_id'=>$this->id,
+                    'name'=>'store',
+                    'rest_type'=>'post',
+                    'body_actions'=>'',
+                    'request'=> json_encode([$request, $model]),
+                    'response'=> '{
+                        "type": "method",
+                        "methodId": '.$methodId.',
+                        "methodName": "index",
+                        "responseItems": []
+                    }',
+                    'body_actions'=>
+                        '   $newItem = new '.explode('Controller', $this->name)[0].'($request->all());
+                $newItem->save();',
+                ]);
+                $store->save();
+                $update = true;
+            }
 
             # update
-            // if (!isset($methods['update'])) {
-            //     $update = new ControllerMethods([
-            //         'controller_id'=>$this->id,
-            //         'name'=>'update',
-            //         'rest_type'=>'put',
-            //         'body_actions'=>'',
-            //     ]);
-            //     // $update->save();
-            //     $update = true;
-            // }
+            if (!isset($methods['update'])) {
+                $update = new ControllerMethods([
+                    'controller_id'=>$this->id,
+                    'name'=>'update',
+                    'rest_type'=>'put',
+                    'body_actions'=>'',
+                ]);
+                $update->save();
+                $update = true;
+            }
 
-            // # destroy
-            // if (!isset($methods['destroy'])) {
-            //     $destroy = new ControllerMethods([
-            //         'controller_id'=>$this->id,
-            //         'name'=>'destroy',
-            //         'rest_type'=>'delete',
-            //         'body_actions'=>'',
-            //         'request'=> json_encode([$request, $model]),
-            //         'response'=> '{
-            //             "type": "method",
-            //             "methodId": '.$methodId.',
-            //             "methodName": "index",
-            //             "responseItems": []
-            //         }',
-            //         'body_actions'=>'   $'.$model->name.'->delete();'
-            //     ]);
-            //     // $destroy->save();
-            //     $update = true;
-            // }
+            # destroy
+            if (!isset($methods['destroy'])) {
+                $destroy = new ControllerMethods([
+                    'controller_id'=>$this->id,
+                    'name'=>'destroy',
+                    'rest_type'=>'delete',
+                    'body_actions'=>'',
+                    'request'=> json_encode([$request, $model]),
+                    'response'=> '{
+                        "type": "method",
+                        "methodId": '.$methodId.',
+                        "methodName": "index",
+                        "responseItems": []
+                    }',
+                    'body_actions'=>
+                        '$'.lcfirst( explode('Controller', $this->name)[0] ).'-> delete();'
+                ]);
+                $destroy->save();
+                $update = true;
+            }
 
             return $update;
             // return $index;
-        } else {
-            return false;
         }
     }
 }
