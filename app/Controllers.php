@@ -39,7 +39,6 @@ class Controllers extends Model
             $update = false;
 
             $childMethods = DB::table('ControllerMethods')->where('controller_id', $this->id)->get();
-
             $methods = [];
             foreach ($childMethods as $index => $method) {
                 $methods[$method->name] = $method->id;
@@ -60,7 +59,11 @@ class Controllers extends Model
                 "label"=> "param 2"
             );
 
-            
+            if ( isset($methods['index']) ) {
+                $methodId = $methods['index'];
+            } else {
+                $methodId = $index->id;
+            }
             ####################################
 
             # index
@@ -75,13 +78,6 @@ class Controllers extends Model
                 $index->save();
                 $update = true;
             }
-            ##########################################
-            if ( isset($methods['index']) ) {
-                $methodId = $methods['index'];
-            } else {
-                $methodId = $index->id;
-            }
-            ##########################################
             
             # store
             if (!isset($methods['store'])) {
@@ -111,7 +107,6 @@ class Controllers extends Model
                     'controller_id'=>$this->id,
                     'name'=>'update',
                     'rest_type'=>'put',
-                    // 'request'=> json_encode([$request, $model]),
                     'body_actions'=>'',
                 ]);
                 $update->save();
