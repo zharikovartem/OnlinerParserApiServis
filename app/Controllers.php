@@ -44,6 +44,21 @@ class Controllers extends Model
                 $methods[$method->name] = $method->id;
             }
 
+            ############ data ###################
+            $request = (object) array(
+                "id"=> 0,
+                "name"=> "request",
+                "type"=> "Request",
+                "label"=> "param 1"
+            );
+            $model = (object) array(
+                "id"=> 1,
+                "type"=> explode('Controller', $this->name)[0],
+                "name"=> lcfirst( explode('Controller', $this->name)[0] ),
+                "label"=> "param 2"
+            );
+            ####################################
+
             # index
             if (!isset($methods['index'])) {
                 $index = new ControllerMethods([
@@ -59,19 +74,6 @@ class Controllers extends Model
             
             # store
             if (!isset($methods['store'])) {
-                $request = (object) array(
-                    "id"=> 0,
-                    "name"=> "request",
-                    "type"=> "Request",
-                    "label"=> "param 1"
-                );
-                $model = (object) array(
-                    "id"=> 1,
-                    "type"=> explode('Controller', $this->name)[0],
-                    "name"=> lcfirst( explode('Controller', $this->name)[0] ),
-                    "label"=> "param 2"
-                );
-
                 if ( isset($methods['index']) ) {
                     $methodId = $methods['index'];
                 } else {
@@ -91,7 +93,7 @@ class Controllers extends Model
                     }',
                     'body_actions'=>
                         '   $newItem = new '.explode('Controller', $this->name)[0].'($request->all());
-        $newItem->save();',
+                $newItem->save();',
                 ]);
                 $store->save();
                 $update = true;
@@ -116,6 +118,7 @@ class Controllers extends Model
                     'name'=>'destroy',
                     'rest_type'=>'delete',
                     'body_actions'=>'',
+                    'request'=> json_encode([$request, $model]),
                 ]);
                 $destroy->save();
                 $update = true;
