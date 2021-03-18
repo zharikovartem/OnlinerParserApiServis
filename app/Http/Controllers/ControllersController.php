@@ -77,7 +77,7 @@ class ControllersController extends Controller
             $controller[$field] = $value;
         }
 
-        $isMethodsRewrite = $controller->checkIsResurce();
+        // $isMethodsRewrite = $controller->checkIsResurce();
         $controller->save();
 
         return response()->json([
