@@ -43,7 +43,7 @@ class Controllers extends Model
                 $methods[$method->name] = $method->id;
             }
 
-            var_dump($methods);
+            // var_dump($methods);
 
             ############ data ###################
             $request = (object) array(
