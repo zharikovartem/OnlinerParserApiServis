@@ -51,12 +51,19 @@ class Controllers extends Model
                 "type"=> "Request",
                 "label"=> "param 1"
             );
+
             $model = (object) array(
                 "id"=> 1,
                 "type"=> explode('Controller', $this->name)[0],
                 "name"=> lcfirst( explode('Controller', $this->name)[0] ),
                 "label"=> "param 2"
             );
+
+            if ( isset($methods['index']) ) {
+                $methodId = $methods['index'];
+            } else {
+                $methodId = $index->id;
+            }
             ####################################
 
             # index
@@ -74,11 +81,6 @@ class Controllers extends Model
             
             # store
             if (!isset($methods['store'])) {
-                if ( isset($methods['index']) ) {
-                    $methodId = $methods['index'];
-                } else {
-                    $methodId = $index->id;
-                }
                 $store = new ControllerMethods([
                     'controller_id'=>$this->id,
                     'name'=>'store',
@@ -119,6 +121,14 @@ class Controllers extends Model
                     'rest_type'=>'delete',
                     'body_actions'=>'',
                     'request'=> json_encode([$request, $model]),
+                    'response'=> '{
+                        "type": "method",
+                        "methodId": '.$methodId.',
+                        "methodName": "index",
+                        "responseItems": []
+                    }',
+                    'body_actions'=>
+                        '$'.$model->name.'-> delete();'
                 ]);
                 $destroy->save();
                 $update = true;
