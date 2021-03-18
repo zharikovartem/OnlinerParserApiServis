@@ -127,8 +127,7 @@ class Controllers extends Model
                         "methodName": "index",
                         "responseItems": []
                     }',
-                    'body_actions'=>
-                        '$'.$model->name.'-> delete();'
+                    'body_actions'=>'   $'.$model->name.'->delete();'
                 ]);
                 $destroy->save();
                 $update = true;
