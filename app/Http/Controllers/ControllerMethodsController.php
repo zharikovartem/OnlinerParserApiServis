@@ -87,9 +87,8 @@ class ControllerMethodsController extends Controller
      */
     public function update(Request $request, ControllerMethods $controllerMethod)
     {
-        $fields = $request->all();
 
-        foreach ($fields as $field => $value) {
+        foreach ($request->all() as $field => $value) {
             $controllerMethod[$field] = $value;
         }
 
