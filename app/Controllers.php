@@ -101,7 +101,7 @@ class Controllers extends Model
                         '   $newItem = new '.explode('Controller', $this->name)[0].'($request->all());
                 $newItem->save();',
                 ]);
-                $store->save();
+                // $store->save();
                 $update = true;
             }
 
@@ -113,7 +113,7 @@ class Controllers extends Model
                     'rest_type'=>'put',
                     'body_actions'=>'',
                 ]);
-                $update->save();
+                // $update->save();
                 $update = true;
             }
 
@@ -133,7 +133,7 @@ class Controllers extends Model
                     }',
                     'body_actions'=>'   $'.$model->name.'->delete();'
                 ]);
-                $destroy->save();
+                // $destroy->save();
                 $update = true;
             }
 
