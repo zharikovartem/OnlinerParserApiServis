@@ -59,11 +59,7 @@ class Controllers extends Model
                 "label"=> "param 2"
             );
 
-            if ( isset($methods['index']) ) {
-                $methodId = $methods['index'];
-            } else {
-                $methodId = $index->id;
-            }
+            
             ####################################
 
             # index
@@ -77,6 +73,12 @@ class Controllers extends Model
                 ]);
                 $index->save();
                 $update = true;
+            }
+            
+            if ( isset($methods['index']) ) {
+                $methodId = $methods['index'];
+            } else {
+                $methodId = $index->id;
             }
             
             # store
