@@ -79,8 +79,8 @@ class Controllers extends Model
                     'body_actions'=>'',
                     'request'=> json_encode([$request, $model]),
                     'response'=> '{
-                        type": '.$index['id'].',
-                        "methodId": $index
+                        "type": "method",
+                        "methodId": '.$index['id'].'
                         "methodName": "index",
                         "responseItems": []
                     }',
