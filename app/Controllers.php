@@ -64,17 +64,17 @@ class Controllers extends Model
             ####################################
 
             # index
-            if (!isset($methods['index'])) {
-                $index = new ControllerMethods([
-                    'controller_id'=>$this->id,
-                    'name'=>'index',
-                    'rest_type'=>'get',
-                    'body_actions'=>'',
-                    'request'=>[],
-                ]);
-                $index->save();
-                $update = true;
-            }
+            // if (!isset($methods['index'])) {
+            //     $index = new ControllerMethods([
+            //         'controller_id'=>$this->id,
+            //         'name'=>'index',
+            //         'rest_type'=>'get',
+            //         'body_actions'=>'',
+            //         'request'=>[],
+            //     ]);
+            //     $index->save();
+            //     $update = true;
+            // }
 
             // if ( isset($methods['index']) ) {
             //     // echo '111!!!!!!!!!!!!'.$methods['index'];
