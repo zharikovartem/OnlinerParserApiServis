@@ -17,7 +17,8 @@ class UniversalParser {
 
         foreach ($table[0]->find('tr') as $i => $row) {
             $colls = $row->find('td');
-            echo $colls[0]->html();
+            echo trim($colls[0]->html());
+            echo '->'.trim($colls[2]->html());
 
             echo '<br/>';
         }
