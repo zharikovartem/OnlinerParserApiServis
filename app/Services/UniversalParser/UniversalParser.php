@@ -33,7 +33,7 @@ class UniversalParser {
             // include_once 'Yandex_Translate.php';
             $yandex = new Yandex_Translate();
             $pairs = $yandex->yandexGetLangsPairs();
-            print_r($pairs);
+            var_dump($pairs);
 
             // $curl = curl_init();
 
