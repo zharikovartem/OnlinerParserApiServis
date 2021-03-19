@@ -21,11 +21,15 @@ class UniversalParser {
             echo trim($colls[2]->find('span')[0]->html()); 
             echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
 
-            $curl = curl_init();
+            
             $postFields = '[{"Text":"'.trim( $colls[2]->find('span')[0]->text() ).'"}]';
 
+            <?php
+
+            $curl = curl_init();
+
             curl_setopt_array($curl, [
-                CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/Detect?api-version=3.0",
+                CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
