@@ -23,6 +23,7 @@ class UniversalParser {
 
             $yandex_url = explode('ru-en', trim( $colls[5]->find('a')[0]->getAttribute('href') ))[0].'en-ru';
             $yandexDocument = new Document($yandex_url, true);
+            var_dump($yandexDocument);
             $part_of_speech = $yandexDocument->find('.dictionary-pos')[0]->getAttribute('title');
 
             echo '<br/>';
