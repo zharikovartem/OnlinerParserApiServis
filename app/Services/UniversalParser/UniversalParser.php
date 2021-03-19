@@ -13,6 +13,8 @@ class UniversalParser {
         // $base = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'.$page.'/';
         $document = new Document($base, true);
 
+        var_dump($document);
+
         $table = $document->find('.table-voc')[0];
         return $table;
     }
