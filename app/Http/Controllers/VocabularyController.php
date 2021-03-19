@@ -93,7 +93,8 @@ class VocabularyController extends Controller
     {
         // echo 'test';
         // $vocabularyList = UniversalParser::getVocabularyList(1, 1, 500);
-        $vocabularyList = UniversalParser::test();
+        $parser = new UniversalParser();
+        $vocabularyList = $parser->test();
 
         return response()->json([
             "vocabularyList"=> $vocabularyList,
