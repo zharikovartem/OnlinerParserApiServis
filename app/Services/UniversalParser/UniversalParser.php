@@ -21,13 +21,15 @@ class UniversalParser {
             echo trim($colls[2]->find('span')[0]->html()); 
             echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
 
+            $yandex_url = explode('ru-en', trim( $colls[5]->find('a')[0]->getAttribute('href') ))[0].'en-ru';
+
             echo '<br/>';
             $item = new Vocabulary([
                 'eng_value' => trim( $colls[2]->find('span')[0]->text() ),
                 'rus_value' => trim( $colls[4]->text() ),
                 'part_of_speech' => '???',
                 'gender'=>'gender',
-                'yandex_url'=>trim( $colls[5]->find('a')[0]->getAttribute('href') )
+                'yandex_url'=> $yandex_url
             ]);
             $item->save();
             $item->getYandexData();
