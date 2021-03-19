@@ -19,7 +19,8 @@ class Controllers extends Model
         'backend_id',
         'model_id',
         'folder',
-        'models'
+        'models',
+        'isResource',
     ];
 
     public function getModel() {
