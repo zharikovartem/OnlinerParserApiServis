@@ -69,7 +69,7 @@ class UniversalParser {
 
             $item->save();
             // break;
-            sleep(2);
+            // sleep(2);
         }
 
         // var_dump($table);
