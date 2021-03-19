@@ -24,38 +24,37 @@ class UniversalParser {
             
             $postFields = '[{"Text":"'.trim( $colls[2]->find('span')[0]->text() ).'"}]';
 
-            $curl = curl_init();
+            echo '<br/>'.$postFields.'<br/>';
 
-            curl_setopt_array($curl, [
-                CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => $postFields,
-                CURLOPT_HTTPHEADER => [
-                    "content-type: application/json",
-                    "x-rapidapi-host: microsoft-translator-text.p.rapidapi.com",
-                    "x-rapidapi-key: a20a4f686emshd81a4a63d9f86cap1dca45jsn16cfe3f7ef53"
-                ],
-            ]);
+            // $curl = curl_init();
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
+            // curl_setopt_array($curl, [
+            //     CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain",
+            //     CURLOPT_RETURNTRANSFER => true,
+            //     CURLOPT_FOLLOWLOCATION => true,
+            //     CURLOPT_ENCODING => "",
+            //     CURLOPT_MAXREDIRS => 10,
+            //     CURLOPT_TIMEOUT => 30,
+            //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            //     CURLOPT_CUSTOMREQUEST => "POST",
+            //     CURLOPT_POSTFIELDS => $postFields,
+            //     CURLOPT_HTTPHEADER => [
+            //         "content-type: application/json",
+            //         "x-rapidapi-host: microsoft-translator-text.p.rapidapi.com",
+            //         "x-rapidapi-key: a20a4f686emshd81a4a63d9f86cap1dca45jsn16cfe3f7ef53"
+            //     ],
+            // ]);
 
-            curl_close($curl);
+            // $response = curl_exec($curl);
+            // $err = curl_error($curl);
 
-            if ($err) {
-                echo "cURL Error #:" . $err;
-            } else {
-                echo $response;
-            }
+            // curl_close($curl);
 
-
-            $google = 'http://translate.google.ru/translate_a/t?client=x&text={textToTranslate}&hl=en&sl=en&tl=ru';
+            // if ($err) {
+            //     echo "cURL Error #:" . $err;
+            // } else {
+            //     echo $response;
+            // }
 
             echo '<br/>';
             $item = new Vocabulary([
