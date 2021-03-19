@@ -36,8 +36,10 @@ class ControllersController extends Controller
     public function store(Request $request)
     {
         $newModel = new Controllers($request->all());
-        $newModel->checkIsResurce();
+        
         $newModel->save();
+        $newModel->checkIsResurce();
+
         return self::getCurrentControllers($newModel->backend_id);
     }
 
@@ -78,8 +80,9 @@ class ControllersController extends Controller
             $controller[$field] = $value;
         }
 
-        $isMethodsRewrite = $controller->checkIsResurce();
+        
         $controller->save();
+        $isMethodsRewrite = $controller->checkIsResurce();
 
         return response()->json([
             "controllers"=>$controller,
