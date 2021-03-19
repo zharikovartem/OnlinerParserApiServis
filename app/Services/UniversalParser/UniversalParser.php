@@ -38,12 +38,15 @@ class UniversalParser {
                 'yandex_url'=> $yandex_url,
                 // 'part_of_speech' => $part_of_speech,
             ]);
-            $item->save();
+           
             // $item->getYandexData();
 
             $ya = new Document($yandex_url, true);
-            echo $ya->html();
+            $title = $ya->find('.dictionary-pos')[0]->title[0];
 
+            $item->part_of_speech = $title;
+
+            $item->save();
             break;
         }
 
