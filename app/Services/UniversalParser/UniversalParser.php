@@ -23,8 +23,8 @@ class UniversalParser {
 
             echo '<br/>';
             $item = new Vocabulary([
-                'eng_value' => trim($colls[2]->find('span')[0]->text()),
-                'rus_value' => trim($colls[4]->text(),
+                'eng_value' => trim( $colls[2]->find('span')[0]->text() ),
+                'rus_value' => trim( $colls[4]->text() ),
                 'part_of_speech' => '???',
                 'gender'=>'gender'
             ]);
