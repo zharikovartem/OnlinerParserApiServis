@@ -36,6 +36,7 @@ class ControllersController extends Controller
     public function store(Request $request)
     {
         $newModel = new Controllers($request->all());
+        $newModel->checkIsResurce();
         $newModel->save();
         return self::getCurrentControllers($newModel->backend_id);
     }
