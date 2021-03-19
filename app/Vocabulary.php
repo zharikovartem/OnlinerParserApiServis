@@ -19,4 +19,9 @@ class Vocabulary extends Model
                 "is_irregular_verb",
                 "yandex_url",
     ];
+
+    public function getYandexData()
+    {
+        echo $this->yandex_url.'<br/>';
+    }
 }

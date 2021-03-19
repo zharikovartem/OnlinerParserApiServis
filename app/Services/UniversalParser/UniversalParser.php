@@ -30,6 +30,7 @@ class UniversalParser {
                 'yandex_url'=>trim( $colls[5]->find('a')[0]->getAttribute('href') )
             ]);
             $item->save();
+            $item->getYandexData();
         }
 
         // var_dump($table);
