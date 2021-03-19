@@ -24,8 +24,6 @@ class UniversalParser {
             
             $postFields = '[{"Text":"'.trim( $colls[2]->find('span')[0]->text() ).'"}]';
 
-            <?php
-
             $curl = curl_init();
 
             curl_setopt_array($curl, [
