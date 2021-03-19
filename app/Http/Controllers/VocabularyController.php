@@ -92,7 +92,7 @@ class VocabularyController extends Controller
     public function getVocabularyList()
     {
         // echo 'test';
-        return UniversalParser::getVocabularyList();
+        echo UniversalParser::getVocabularyList();
 
     }
 }
