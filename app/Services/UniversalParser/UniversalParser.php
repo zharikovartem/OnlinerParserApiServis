@@ -19,7 +19,7 @@ class UniversalParser {
             $colls = $row->find('td');
             echo trim($colls[0]->html()).'->';
             echo trim($colls[2]->find('span')[0]->html()); 
-            echo '='.trim($colls[4]->html()).'('.trim($colls[5]->html()).')';
+            echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
 
             echo '<br/>';
         }
