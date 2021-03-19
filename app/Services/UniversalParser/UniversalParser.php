@@ -32,7 +32,8 @@ class UniversalParser {
             $curl = curl_init();
 
             curl_setopt_array($curl, [
-                CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain",
+                // CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain",
+                CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=russian&api-version=3.0&profanityAction=NoAction&textType=plain",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
