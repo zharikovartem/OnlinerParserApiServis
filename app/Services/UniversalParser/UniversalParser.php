@@ -42,7 +42,7 @@ class UniversalParser {
             // $item->getYandexData();
 
             $ya = new Document($yandex_url, true);
-            $title = $ya->find('.dictionary-pos')[0]->title[0];
+            $title = $ya->find('.dictionary-pos')[0]->title;
 
             $item->part_of_speech = $title;
 
