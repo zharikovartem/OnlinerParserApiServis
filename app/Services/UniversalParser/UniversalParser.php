@@ -52,7 +52,7 @@ class UniversalParser {
             // $item->getYandexData();
 
             $item->save();
-            break;
+            // break;
         }
 
         // var_dump($table);
