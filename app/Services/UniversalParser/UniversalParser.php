@@ -61,7 +61,7 @@ class UniversalParser {
                 'rus_value' => trim( $colls[4]->text() ),
                 'part_of_speech' => '???',
                 'gender'=>'gender',
-                'yandex_url'=> $yandex_url,
+                // 'yandex_url'=> $yandex_url,
                 // 'part_of_speech' => $part_of_speech,
             ]);
             $item->save();
