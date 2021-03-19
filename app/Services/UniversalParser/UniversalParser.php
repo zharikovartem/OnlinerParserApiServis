@@ -15,7 +15,8 @@ class UniversalParser {
 
         $table = $document->find('.table-voc');
 
-        var_dump($table);
+        // var_dump($table);
+        echo $table->html();
 
         return $table;
     }
