@@ -68,6 +68,8 @@ class Yandex_Translate {
 
         $langPairs = $this->yandexGetLangsPairs();
 
+        var_dump($langPairs);
+
         foreach ($langPairs as $langPair){
             $smallArray = explode($this->langDelimiter, $langPair);
             $outerArray[$smallArray[0]] = $smallArray[0];
