@@ -19,7 +19,7 @@ class UniversalParser {
             $colls = $row->find('td');
 
             $response = 'no result';
-            
+
             echo trim($colls[0]->html()).'->';
             echo trim($colls[2]->find('span')[0]->html()); 
             echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
@@ -29,35 +29,35 @@ class UniversalParser {
 
             echo '<br/>'.$postFields.'<br/>';
 
-            // $curl = curl_init();
+            $curl = curl_init();
 
-            // curl_setopt_array($curl, [
-            //     CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain",
-            //     CURLOPT_RETURNTRANSFER => true,
-            //     CURLOPT_FOLLOWLOCATION => true,
-            //     CURLOPT_ENCODING => "",
-            //     CURLOPT_MAXREDIRS => 10,
-            //     CURLOPT_TIMEOUT => 30,
-            //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            //     CURLOPT_CUSTOMREQUEST => "POST",
-            //     CURLOPT_POSTFIELDS => $postFields,
-            //     CURLOPT_HTTPHEADER => [
-            //         "content-type: application/json",
-            //         "x-rapidapi-host: microsoft-translator-text.p.rapidapi.com",
-            //         "x-rapidapi-key: a20a4f686emshd81a4a63d9f86cap1dca45jsn16cfe3f7ef53"
-            //     ],
-            // ]);
+            curl_setopt_array($curl, [
+                CURLOPT_URL => "https://microsoft-translator-text.p.rapidapi.com/translate?to=%3CREQUIRED%3E&api-version=3.0&profanityAction=NoAction&textType=plain",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => $postFields,
+                CURLOPT_HTTPHEADER => [
+                    "content-type: application/json",
+                    "x-rapidapi-host: microsoft-translator-text.p.rapidapi.com",
+                    "x-rapidapi-key: a20a4f686emshd81a4a63d9f86cap1dca45jsn16cfe3f7ef53"
+                ],
+            ]);
 
-            // $response = curl_exec($curl);
-            // $err = curl_error($curl);
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
 
-            // curl_close($curl);
+            curl_close($curl);
 
-            // if ($err) {
-            //     echo "cURL Error #:" . $err;
-            // } else {
-            //     echo $response;
-            // }
+            if ($err) {
+                echo "cURL Error #:" . $err;
+            } else {
+                echo $response;
+            }
 
             echo '<br/>';
             $item = new Vocabulary([
