@@ -23,8 +23,9 @@ class UniversalParser {
 
             $yandex_url = explode('ru-en', trim( $colls[5]->find('a')[0]->getAttribute('href') ))[0].'en-ru';
             $yandexDocument = new Document($yandex_url, true);
-            var_dump($yandexDocument);
-            $part_of_speech = $yandexDocument->find('.dictionary-pos')[0]->getAttribute('title');
+            // var_dump($yandexDocument);
+            echo $yandexDocument->find('.dictionary-pos')[0];
+            // $part_of_speech = $yandexDocument->find('.dictionary-pos')[0]->getAttribute('title');
 
             echo '<br/>';
             $item = new Vocabulary([
@@ -33,7 +34,7 @@ class UniversalParser {
                 'part_of_speech' => '???',
                 'gender'=>'gender',
                 'yandex_url'=> $yandex_url,
-                'part_of_speech' => $part_of_speech,
+                // 'part_of_speech' => $part_of_speech,
             ]);
             $item->save();
             // $item->getYandexData();
