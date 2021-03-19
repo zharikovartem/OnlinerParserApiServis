@@ -41,12 +41,12 @@ class UniversalParser {
            
             // $item->getYandexData();
 
-            $ya = new Document($yandex_url, true);
+            // $ya = new Document($yandex_url, true);
             // $ya = new Document('https://translate.google.com/?hl=ru&sl=en&tl=ru&text='.trim( $colls[2]->find('span')[0]->text() ).'%0A&op=translate', true);
-            echo $ya->html();
+            // echo $ya->html();
 
-            $title = $ya->find('.dictionary-pos')[0]->title;
-            $item->part_of_speech = $title;
+            // $title = $ya->find('.dictionary-pos')[0]->title;
+            // $item->part_of_speech = $title;
 
             $item->save();
             break;
