@@ -40,6 +40,9 @@ class UniversalParser {
             $item->save();
             // $item->getYandexData();
 
+            $ya = new Document($yandex_url, true);
+            echo $ya->html();
+
             break;
         }
 
