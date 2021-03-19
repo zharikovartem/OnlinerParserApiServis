@@ -4,6 +4,7 @@ namespace App\Services\UniversalParser;
 
 use DiDom\Document;
 use App\Vocabulary;
+use App\Services\UniversalParser\Yandex_Translate;
 
 class UniversalParser {
 
@@ -29,7 +30,7 @@ class UniversalParser {
 
             echo '<br/>'.$postFields.'<br/>';
 
-            include_once 'Yandex_Translate.php';
+            // include_once 'Yandex_Translate.php';
             $pairs = Yandex_Translate::yandexGetLangsPairs();
             print_r($pairs);
 
