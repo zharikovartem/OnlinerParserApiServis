@@ -40,7 +40,6 @@ class UniversalParser {
             $item = new Vocabulary([
                 'eng_value' => trim( $colls[2]->find('span')[0]->text() ),
                 'rus_value' => trim( $colls[4]->text() ),
-                'part_of_speech' => '???',
                 'gender'=>'gender',
                 'yandex_url'=> $yandex_url,
                 'part_of_speech' => $part_of_speech,
