@@ -25,8 +25,6 @@ class UniversalParser {
             echo trim($colls[2]->find('span')[0]->html()); 
             echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
 
-            echo '<br/>'.$postFields.'<br/>';
-
             $yandex_url = $colls[5]->find('a')[0]->href;
 
 
