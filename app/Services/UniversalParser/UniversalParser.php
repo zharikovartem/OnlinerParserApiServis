@@ -16,7 +16,10 @@ class UniversalParser {
         $table = $document->find('.table-voc');
 
         foreach ($table[0]->find('tr') as $i => $row) {
-            echo $row->html();
+            $colls = $row->find('td');
+            echo $colls[0]->html();
+
+            echo '<br/>';
         }
 
         // var_dump($table);
