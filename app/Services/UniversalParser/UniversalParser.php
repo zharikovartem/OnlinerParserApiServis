@@ -25,7 +25,8 @@ class UniversalParser {
             echo trim($colls[2]->find('span')[0]->html()); 
             echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
 
-            $yandex_url = explode('ru-en', $colls[5]->find('a')[0]->href).'en-ru' ; 
+            $yandex_url = explode('ru-en', $colls[5]->find('a')[0]->href)[0].'en-ru' ; 
+
 
 
             echo '<br/>';
