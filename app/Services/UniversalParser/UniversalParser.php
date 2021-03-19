@@ -87,4 +87,24 @@ class UniversalParser {
         return $table;
     }
 
+    public function test()
+    {
+        error_reporting(E_ALL);
+        ini_set("display_errors", 1);
+
+        $translator = new Yandex_Translate();
+
+        //Массив языков, с которых можно переводить
+        echo '<pre>';
+        $pairs = $translator->yandexGetLangsPairs();
+        print_r($pairs);
+        echo '</pre>';
+
+        //Массив языков, на которые можно переводить
+        echo '<pre>';
+        $to = $translator->yandexGet_FROM_Langs();
+        print_r($to);
+        echo '</pre>';
+    }
+
 }
