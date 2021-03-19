@@ -22,6 +22,13 @@ class UniversalParser {
             echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
 
             echo '<br/>';
+            $item = new Vocabulary([
+                'eng_value' => trim($colls[0]->html()),
+                'rus_value' => trim($colls[2]->find('span')[0]->html()),
+                'part_of_speech' => '???',
+                'gender'=>'gender'
+            ]);
+            $item->save();
         }
 
         // var_dump($table);
