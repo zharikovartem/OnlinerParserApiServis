@@ -41,7 +41,10 @@ class UniversalParser {
                 if ($ya) {
                     echo $url.'<br/>';
                     $part_of_speech1 = $ya->find('.quick-result-option')[0]->find('span');
-                    $part_of_speech = $part_of_speech1[0]->text();
+                    if (isset($part_of_speech1[0])) {
+                        $part_of_speech = $part_of_speech1[0]->text();
+                    }
+                    
                 }
             }
             
