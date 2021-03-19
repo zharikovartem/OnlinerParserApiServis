@@ -26,7 +26,8 @@ class UniversalParser {
                 'eng_value' => trim( $colls[2]->find('span')[0]->text() ),
                 'rus_value' => trim( $colls[4]->text() ),
                 'part_of_speech' => '???',
-                'gender'=>'gender'
+                'gender'=>'gender',
+                'yandex_url'=>trim( $colls[5]->find('a')[0]->getAttribute('href') )
             ]);
             $item->save();
         }
