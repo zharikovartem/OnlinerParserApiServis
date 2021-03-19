@@ -34,6 +34,8 @@ class UniversalParser {
             // echo $ya->html();
             $part_of_speech = $ya->find('.quick-result-option')[0]->find('.suffix')[0]->text;
 
+            echo '<h1>'.$part_of_speech.'</h1>';
+
             echo '<br/>';
             $item = new Vocabulary([
                 'eng_value' => trim( $colls[2]->find('span')[0]->text() ),
