@@ -30,7 +30,7 @@ class UniversalParser {
             echo '<br/>'.$postFields.'<br/>';
 
             include_once 'Yandex_Translate.php';
-            $pairs = $translator->yandexGetLangsPairs();
+            $pairs = Yandex_Translate::yandexGetLangsPairs();
             print_r($pairs);
 
             // $curl = curl_init();
