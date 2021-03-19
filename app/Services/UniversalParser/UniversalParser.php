@@ -34,7 +34,7 @@ class UniversalParser {
             echo $ya->html();
             $part_of_speech1 = $ya->find('.quick-result-option')[0]->find('span');
 
-            var_dump($part_of_speech1);
+            var_dump($part_of_speech1[0]);
 
             $part_of_speech = $part_of_speech1[0]->text;
 
