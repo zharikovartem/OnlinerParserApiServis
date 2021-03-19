@@ -18,7 +18,8 @@ class Controllers extends Model
         'name', 
         'backend_id',
         'model_id',
-        'folder'
+        'folder',
+        'models'
     ];
 
     public function getModel() {
