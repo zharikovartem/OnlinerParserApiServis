@@ -96,12 +96,12 @@ class VocabularyController extends Controller
         $count = DB::table('Vocabulary')->count();
         echo 'count='.$count.'<br/>';
 
-        $part = $count / 500;
+        $part = $count % 500;
         $page = $count % 5;
         echo 'part='.$part.'<br/>';
         echo 'page='.$page.'<br/>';
-        $start = $page*500+1;
-        $stop = $page*500+500;
+        $start = $part*500+1;
+        $stop = $part*500+500;
         echo 'start='.$start.'<br/>';
         echo 'stop='.$stop.'<br/>';
 
