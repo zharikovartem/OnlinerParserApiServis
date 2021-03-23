@@ -101,7 +101,7 @@ class VocabularyController extends Controller
         echo '???'.$part.'???';
         echo '???'.$page.'???';
         $start = $part*500+1;
-        $stop = $start = $part*500+500;
+        $stop = $part*500+500;
         echo '???'.$start.'???';
         echo '???'.$stop.'???';
 
