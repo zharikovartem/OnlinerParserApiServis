@@ -31,6 +31,8 @@ class UniversalParser {
             $eng_value = trim( $colls[2]->find('span')[0]->text() );
             $occurrence = trim( $colls[6]->text() );
 
+            echo '>>>>>>$occurrence'.$occurrence.'<br/>';
+
             $check = Vocabulary::where('eng_value', $eng_value)->get();
 
             if (count($check) === 0) {
