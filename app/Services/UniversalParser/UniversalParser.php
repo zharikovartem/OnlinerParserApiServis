@@ -67,11 +67,14 @@ class UniversalParser {
                             echo '<br/>count($options): '.count($options).'<br/>';
                             if (count($options)>0) {
                                 $engResArr = $part_of_speech_block[$i]->find('.babQuickResult');
+                                $suffix = $part_of_speech_block[$i]->find('.suffix');
                                 if (count($engResArr) > 0) {
                                     $engRes = $engResArr[0]->text();
-                                    echo $i.') <b>'.$engRes.'</b><br>';
+                                    echo $i.') <b>'.$engRes.'</b>';
                                     if (mb_strtolower($engRes) === $eng_value) {
-                                        echo '!!!!!'. $engRes .'<br/>';
+                                        echo '!!!!!'. $engRes .'('.$suffix[0].')<br/>';
+                                        // получить часть речи
+                                        $part_of_speech = $suffix[0];
                                     }
                                 }
                             }
