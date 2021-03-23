@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vocabulary;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use App\Services\UniversalParser\UniversalParser;
 
 class VocabularyController extends Controller
@@ -92,7 +93,9 @@ class VocabularyController extends Controller
     public function getVocabularyList()
     {
         // echo 'test';
-        $vocabularyList = UniversalParser::getVocabularyList(2, 1, 500);
+        $count = DB::table('Vocabulary')->count();
+
+        $vocabularyList = UniversalParser::getVocabularyList(3, 1, 500);
         // $parser = new UniversalParser();
         // $vocabularyList = $parser->test();
 
