@@ -22,6 +22,7 @@ class Vocabulary extends Model
                 "yandex_url",
                 "occurrence",
                 "babla_url",
+                "eng_sound",
     ];
 
     public function getYandexData()

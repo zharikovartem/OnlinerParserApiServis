@@ -26,6 +26,7 @@ class CreateVocabulariesTable extends Migration
             $table->timestamps();
             $table->integer('occurrence')->nullable();
             $table->text("babla_url")->nullable();
+            $table->text("eng_sound")->nullable();
             //
         });
     }
