@@ -15,7 +15,8 @@ class CreateVocabulariesTable extends Migration
     {
         Schema::create("Vocabulary", function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->text("eng_value")->unique();
+            // $table->text("eng_value")->unique();
+            $table->text("eng_value");
             $table->text("rus_value");
             $table->text("part_of_speech");
             $table->text("gender");
