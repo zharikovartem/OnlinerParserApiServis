@@ -79,12 +79,12 @@ class UniversalParser {
                                         $suffixVal = $suffix[0]->text();
                                     }
                                     echo $i.') <b>'.$engRes.'</b>';
-                                    if (mb_strtolower($engRes) === $eng_value) {
+                                    if (mb_strtolower($engRes) === $eng_value || 'to '.mb_strtolower($engRes) === $eng_value) {
                                         echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
                                         //Проверить совпадения русских значений
                                         // var_dump($overviews);
                                         if (count($overviews)>0) {
-                                            echo 'Значения: ';
+                                            echo $suffixVal.'Значения: ';
                                             foreach ($overviews[0]->find('li') as $key => $li) {
                                                 echo $li->text().', ';
                                             }
