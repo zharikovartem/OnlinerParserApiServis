@@ -36,9 +36,12 @@ class UniversalParser {
             $check = Vocabulary::where('eng_value', $eng_value)->get();
 
             if (count($check) === 0) {
-                $part_of_speech = self::getBablaData($colls, $eng_value, $rus_value);
+                $bablaData = self::getBablaData($colls, $eng_value, $rus_value);
+                $part_of_speech = $bablaData['part_of_speech'];
+                $eng_sound = $bablaData['eng_sound'];
             } else {
                 $part_of_speech = '?';
+                $eng_sound = null;
             }
 
             $yandex_url = explode('ru-en', $colls[5]->find('a')[0]->href)[0].'en-ru' ; 
@@ -53,6 +56,7 @@ class UniversalParser {
                 'part_of_speech' => $part_of_speech,
                 'babla_url' => 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() ),
                 'occurrence' => (int) $occurrence,
+                'eng_sound' => $eng_sound,
             ]);
            
             // $item->getYandexData();
@@ -83,7 +87,7 @@ class UniversalParser {
 
     public static function getBablaData($colls, $eng_value, $rus_value)
     {
-        $part_of_speech = 'undefined';
+        $part_of_speech = null;
         $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
         if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
             try {
@@ -119,10 +123,10 @@ class UniversalParser {
                                         foreach ($overviews[0]->find('li') as $key => $li) {
                                             // Если русское значение полностью совпадает
                                             if ($li->text() === $rus_value) {
-                                                $part_of_speech = $suffixVal;
+                                                $response['part_of_speech'] = $suffixVal;
                                                 // $this->eng_sound = explode("'", $options->find('.bab-quick-sound')[0]->getAttribute('href') )[1];
 
-                                                echo explode("'", $options[0]->find('.bab-quick-sound')[0]->getAttribute('href') )[1].'<br/>';
+                                                $response['eng_sound'] = explode("'", $options[0]->find('.bab-quick-sound')[0]->getAttribute('href') )[1].'<br/>';
                                             }
                                             // echo $li->text().', ';
                                         }
@@ -144,7 +148,7 @@ class UniversalParser {
             }
         }
 
-        return $part_of_speech;
+        return $response;
     }
 
 }
