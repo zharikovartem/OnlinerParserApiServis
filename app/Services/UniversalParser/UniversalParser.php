@@ -50,7 +50,7 @@ class UniversalParser {
                 'yandex_url'=> $yandex_url,
                 'part_of_speech' => $part_of_speech,
                 'babla_url' => 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() ),
-                'occurrence' => null
+                'occurrence' => $occurrence,
             ]);
            
             // $item->getYandexData();
