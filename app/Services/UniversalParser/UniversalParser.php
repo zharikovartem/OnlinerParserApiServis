@@ -82,11 +82,13 @@ class UniversalParser {
                                     if (mb_strtolower($engRes) === $eng_value) {
                                         echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
                                         //Проверить совпадения русских значений
-                                        var_dump($overviews);
+                                        // var_dump($overviews);
                                         if (count($overviews)>0) {
+                                            echo 'Значения: ';
                                             foreach ($overviews[0]->find('li') as $key => $li) {
                                                 echo $li->text().', ';
                                             }
+                                            echo '<br/>';
                                         }
                                         // получить часть речи
                                         $part_of_speech = $suffixVal;
