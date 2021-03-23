@@ -127,7 +127,7 @@ class VocabularyController extends Controller
     public function getVocabularyPart($part)
     {
 
-        $vocabularyList = Vocabulary::where('id', '>=', $part*100)->where('id', '<', $part*100+100)->get();
+        $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
 
         return response()->json([
             "vocabularyList"=> $vocabularyList,
