@@ -70,11 +70,15 @@ class UniversalParser {
                                 $suffix = $part_of_speech_block[$i]->find('.suffix');
                                 if (count($engResArr) > 0) {
                                     $engRes = $engResArr[0]->text();
+                                    $suffixVal = '???';
+                                    if (isset($suffix[0])) {
+                                        $suffixVal = $suffix[0]->text();
+                                    }
                                     echo $i.') <b>'.$engRes.'</b>';
                                     if (mb_strtolower($engRes) === $eng_value) {
-                                        echo '!!!!!'. $engRes .'('.$suffix[0].')<br/>';
+                                        echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
                                         // получить часть речи
-                                        $part_of_speech = $suffix[0];
+                                        $part_of_speech = $suffixVal;
                                     }
                                 }
                             }
