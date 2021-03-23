@@ -63,7 +63,7 @@ class UniversalParser {
             if ( count($check) === 0) {
                 $item->save();
             } else {
-                var_dump($check['id']);
+                var_dump($check);
             }
             
             
