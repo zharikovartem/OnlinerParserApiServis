@@ -20,6 +20,8 @@ class Vocabulary extends Model
                 "gender",
                 "is_irregular_verb",
                 "yandex_url",
+                "occurrence",
+                "babla_url",
     ];
 
     public function getYandexData()
