@@ -88,7 +88,7 @@ class UniversalParser {
     public static function getBablaData($colls, $eng_value, $rus_value)
     {
         $response['part_of_speech'] = '???';
-        $response['eng_sound'] = '???';
+        $response['eng_sound'] = null;
 
         $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
         if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
@@ -128,7 +128,7 @@ class UniversalParser {
                                                 $response['part_of_speech'] = $suffixVal;
                                                 // $this->eng_sound = explode("'", $options->find('.bab-quick-sound')[0]->getAttribute('href') )[1];
 
-                                                $response['eng_sound'] = explode("'", $options[0]->find('.bab-quick-sound')[0]->getAttribute('href') )[1].'<br/>';
+                                                $response['eng_sound'] = explode("'", $options[0]->find('.bab-quick-sound')[0]->getAttribute('href') )[1];
                                             }
                                             // echo $li->text().', ';
                                         }
