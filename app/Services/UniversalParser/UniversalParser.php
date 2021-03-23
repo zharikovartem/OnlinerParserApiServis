@@ -29,7 +29,7 @@ class UniversalParser {
 
             $rus_value = trim( $colls[4]->text() );
             $eng_value = trim( $colls[2]->find('span')[0]->text() );
-            $occurrence = trim( $colls[6]->find('span')[0]->text() );
+            $occurrence = trim( $colls[6]->text() );
 
             $check = Vocabulary::where('eng_value', $eng_value)->get();
 
