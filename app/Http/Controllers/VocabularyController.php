@@ -92,23 +92,15 @@ class VocabularyController extends Controller
 
     public function getVocabularyList()
     {
-        // echo 'test';
         $count = DB::table('Vocabulary')->count();
-        echo 'count='.$count.'<br/>';
-
-        
 
         $part = $count % 500;
         $page = $part / 100;
-        echo 'part='.$part.'<br/>';
-        echo 'page='.$page .'<br/>';
 
         $index = ($count-$part) / 500;
 
         $start = $index*500+1;
         $stop = $index*500+500;
-        echo 'start='.$start.'<br/>';
-        echo 'stop='.$stop.'<br/>';
 
         // $vocabularyList = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'. $page .'/';
         // // $document = new Document($base, true);
@@ -126,6 +118,22 @@ class VocabularyController extends Controller
             "page"=> $page,
             "start"=> $start,
             "stop"=> $stop,
+        ], 200);
+    }
+
+    public function getVocabularyPart($part)
+    {
+
+        $vocabularyList = Vocabulary::get();
+
+        return response()->json([
+            "vocabularyList"=> $vocabularyList,
+            "part"=> $part,
+            // "count"=> $count,
+            // "part"=> $part,
+            // "page"=> $page,
+            // "start"=> $start,
+            // "stop"=> $stop,
         ], 200);
     }
 }

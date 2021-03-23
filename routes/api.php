@@ -102,3 +102,5 @@ Route::resource('controllers', 'ControllersController');
 Route::resource('controllerMethods', 'ControllerMethodsController');
 
 Route::get('getVocabularyList', 'VocabularyController@getVocabularyList');
+Route::get('getVocabularyPart/{part}', 'VocabularyController@getVocabularyPart');
+Route::resource('vocabulary', 'VocabularyController');
