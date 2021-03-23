@@ -37,6 +37,7 @@ class UniversalParser {
 
             if (count($check) === 0) {
                 $part_of_speech = self::getBablaData($colls, $eng_value, $rus_value);
+                echo $this->eng_sound;
             } else {
                 $part_of_speech = '?';
             }
@@ -120,6 +121,7 @@ class UniversalParser {
                                             // Если русское значение полностью совпадает
                                             if ($li->text() === $rus_value) {
                                                 $part_of_speech = $suffixVal;
+                                                $this->eng_sound = explode("'", $options->find('.bab-quick-sound')[0]->getAttribute('href') )[1];
                                             }
                                             // echo $li->text().', ';
                                         }
