@@ -63,8 +63,13 @@ class UniversalParser {
                     if (count($part_of_speech_block) > 0) {
                         for ($i=0; $i < count($part_of_speech_block); $i++) { 
                             $options = $part_of_speech_block[$i]->find('.quick-result-option');
-                            echo '<br/>count($options): <br/>'.count($options);
-                            echo $i.') '.$part_of_speech_block[$i]->find('.quick-result-option')[0]->text().'<br>';
+                            echo '<br/>count($options): '.count($options).'<br/>';
+                            if (count($options>0)) {
+                                $engRes = $part_of_speech_block[$i]->find('.babQuickResult')[0]->text();
+                                echo $i.') '.$engRes.'<br>';
+
+                            }
+                            
                             // $rus_result = $part_of_speech_block[$ii]->find('li');
                             // foreach ($rus_result as $item => $res) {
                             //     echo $item.')'.$res->text();
