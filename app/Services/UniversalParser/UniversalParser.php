@@ -63,7 +63,7 @@ class UniversalParser {
             if ( count($check) === 0) {
                 $item->save();
             } else {
-                if ((int) trim( $colls[4]->text() !== $check[0]->id) {
+                if ( (int)trim( $colls[0]->text() ) !== $check[0]->id ) {
                     $item->save();
                 }
 
