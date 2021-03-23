@@ -67,7 +67,7 @@ class UniversalParser {
                     if (count($part_of_speech_block) > 0) {
                         for ($i=0; $i < count($part_of_speech_block); $i++) { 
                             $options = $part_of_speech_block[$i]->find('.quick-result-option'); // английские значения и суф.
-                            $overviews = $part_of_speech_block[$i]->find('quick-result-overview'); // русские значения
+                            $overviews = $part_of_speech_block[$i]->find('.quick-result-overview'); // русские значения
                             echo '<br/>count($options): '.count($options).'<br/>';
                             if (count($options)>0) {
                                 $engResArr = $part_of_speech_block[$i]->find('.babQuickResult');
