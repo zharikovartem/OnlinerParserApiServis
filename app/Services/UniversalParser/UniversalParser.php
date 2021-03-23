@@ -57,16 +57,16 @@ class UniversalParser {
                     //     }
                     // }
                     // echo '<br/><br/><br/>';
-                    $part_of_speech_block = $ya->find('.quick-result-option');
+                    // $part_of_speech_block = $ya->find('.quick-result-option');
+                    $part_of_speech_block = $ya->find('.quick-result-entry');
                     $index = 0;
                     if (count($part_of_speech_block) > 0) {
-                        for ($i=0; $i < count($part_of_speech_block); $i = $i+2) { 
-                            $ii = $i+1;
-                            echo $part_of_speech_block[$i]->text().'<br>';
-                            $rus_result = $part_of_speech_block[$ii]->find('li');
-                            foreach ($rus_result as $item => $res) {
-                                echo $item.')'.$res->text();
-                            }
+                        for ($i=0; $i < count($part_of_speech_block); $i++) { 
+                            echo $i.') '.$part_of_speech_block[$i]->find('.quick-result-option')[0]->text().'<br>';
+                            // $rus_result = $part_of_speech_block[$ii]->find('li');
+                            // foreach ($rus_result as $item => $res) {
+                            //     echo $item.')'.$res->text();
+                            // }
                         }
                     }
                     echo '<br/><br/><br/>';
