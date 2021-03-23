@@ -87,7 +87,7 @@ class UniversalParser {
 
     public static function getBablaData($colls, $eng_value, $rus_value)
     {
-        $part_of_speech = null;
+        $response = null;
         $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
         if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
             try {
