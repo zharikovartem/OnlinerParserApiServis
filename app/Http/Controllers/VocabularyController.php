@@ -95,7 +95,7 @@ class VocabularyController extends Controller
         $count = DB::table('Vocabulary')->count();
 
         $part = $count % 500;
-        $ost = $part % 100
+        $ost = $part % 100;
         $page = $part / 100;
 
         $index = ($count-$part) / 500;
