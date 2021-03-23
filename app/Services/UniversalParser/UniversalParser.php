@@ -86,6 +86,10 @@ class UniversalParser {
                                         if (count($overviews)>0) {
                                             echo $suffixVal.'Значения: ';
                                             foreach ($overviews[0]->find('li') as $key => $li) {
+                                                // Если русское значение полностью совпадает
+                                                if ($li->text() === $rus_value) {
+                                                    $part_of_speech = $suffixVal;
+                                                }
                                                 echo $li->text().', ';
                                             }
                                             echo '<br/>';
