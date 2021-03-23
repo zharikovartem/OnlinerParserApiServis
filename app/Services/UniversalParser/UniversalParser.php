@@ -122,7 +122,7 @@ class UniversalParser {
                                                 $part_of_speech = $suffixVal;
                                                 // $this->eng_sound = explode("'", $options->find('.bab-quick-sound')[0]->getAttribute('href') )[1];
 
-                                                echo explode("'", $options->find('.bab-quick-sound')[0]->getAttribute('href') )[1].'<br/>';
+                                                echo explode("'", $options[0]->find('.bab-quick-sound')[0]->getAttribute('href') )[1].'<br/>';
                                             }
                                             // echo $li->text().', ';
                                         }
