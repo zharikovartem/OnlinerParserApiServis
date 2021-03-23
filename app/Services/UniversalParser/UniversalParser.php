@@ -64,7 +64,7 @@ class UniversalParser {
                 $item->save();
             } else {
                 if ((int) trim( $colls[4]->text() !== $check[0]->id) {
-                    $item->save()
+                    $item->save();
                 }
 
                 echo $check[0]->id.'<br/>';
