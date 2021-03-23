@@ -24,6 +24,8 @@ class CreateVocabulariesTable extends Migration
             $table->softDeletes();
             $table->timestamps();
             $table->integer('occurrence')->nullable();
+            $table->text("babla_url")->nullable();
+            //
         });
     }
 
