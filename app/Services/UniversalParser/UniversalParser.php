@@ -29,6 +29,7 @@ class UniversalParser {
 
             $rus_value = trim( $colls[4]->text() );
             $eng_value = trim( $colls[2]->find('span')[0]->text() );
+            $occurrence = trim( $colls[6]->find('span')[0]->text() );
 
             $check = Vocabulary::where('eng_value', $eng_value)->get();
 
@@ -49,6 +50,7 @@ class UniversalParser {
                 'yandex_url'=> $yandex_url,
                 'part_of_speech' => $part_of_speech,
                 'babla_url' => 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() ),
+                'occurrence' => null
             ]);
            
             // $item->getYandexData();
