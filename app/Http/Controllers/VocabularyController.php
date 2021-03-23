@@ -94,6 +94,7 @@ class VocabularyController extends Controller
     {
         // echo 'test';
         $count = DB::table('Vocabulary')->count();
+        echo '???'.$count.'???';
 
         $part = $count/500 - $count % 500;
         $page = $count % 5;
