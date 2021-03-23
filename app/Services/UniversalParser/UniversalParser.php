@@ -64,6 +64,7 @@ class UniversalParser {
                 $item->save();
             } else {
                 var_dump($check);
+                echo '<br/><br/>';
             }
             
             
