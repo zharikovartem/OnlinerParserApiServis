@@ -33,7 +33,7 @@ class UniversalParser {
             $check = Vocabulary::where('eng_value', $eng_value)->get();
 
             if (count($check) === 0) {
-                $part_of_speech = self::getBablaData($colls);
+                $part_of_speech = self::getBablaData($colls, $eng_value, $rus_value);
             } else {
                 $part_of_speech = '?';
             }
@@ -133,7 +133,7 @@ class UniversalParser {
         return $table;
     }
 
-    public static function getBablaData($colls)
+    public static function getBablaData($colls, $eng_value, $rus_value)
     {
         $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
         if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
