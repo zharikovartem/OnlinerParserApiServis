@@ -14,6 +14,8 @@ class UniversalParser {
         $base = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'.$page.'/';
         $document = new Document($base, true);
 
+        echo $base;
+
         $table = $document->find('.table-voc');
 
         foreach ($table[0]->find('tr') as $i => $row) {
