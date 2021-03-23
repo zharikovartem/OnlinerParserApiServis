@@ -105,9 +105,11 @@ class VocabularyController extends Controller
         echo 'start='.$start.'<br/>';
         echo 'stop='.$stop.'<br/>';
 
-        
+        $base = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'.$count%100.'/';
+        // $document = new Document($base, true);
+        echo $base;
 
-        $vocabularyList = UniversalParser::getVocabularyList($count%100, $start, $stop);
+        // $vocabularyList = UniversalParser::getVocabularyList($count%100, $start, $stop);
         // $parser = new UniversalParser();
         // $vocabularyList = $parser->test();
 
