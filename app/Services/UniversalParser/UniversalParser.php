@@ -37,7 +37,7 @@ class UniversalParser {
 
             if (count($check) === 0) {
                 $part_of_speech = self::getBablaData($colls, $eng_value, $rus_value);
-                echo $this->eng_sound;
+                echo '++++',$this->eng_sound.'<br/>';
             } else {
                 $part_of_speech = '?';
             }
