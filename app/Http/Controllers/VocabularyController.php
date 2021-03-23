@@ -96,7 +96,7 @@ class VocabularyController extends Controller
         $count = DB::table('Vocabulary')->count();
         echo 'count='.$count.'<br/>';
 
-        $part = $count / 500;
+        $part = $count % 500;
         $page = $part / 100;
         echo 'part='.$part.'<br/>';
         echo 'page='.$page .'<br/>';
@@ -115,6 +115,11 @@ class VocabularyController extends Controller
 
         return response()->json([
             "vocabularyList"=> $vocabularyList,
+            "count"=> $count,
+            "part"=> $part,
+            "page"=> $page,
+            "start"=> $start,
+            "stop"=> $stop,
         ], 200);
     }
 }
