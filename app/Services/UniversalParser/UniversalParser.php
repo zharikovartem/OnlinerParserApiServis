@@ -26,6 +26,7 @@ class UniversalParser {
             echo '='.trim($colls[4]->html()).'('.trim($colls[6]->html()).')';
 
             $rus_value = trim( $colls[4]->text() );
+            $eng_value = trim( $colls[2]->find('span')[0]->text() );
 
             $yandex_url = explode('ru-en', $colls[5]->find('a')[0]->href)[0].'en-ru' ; 
 
@@ -66,8 +67,10 @@ class UniversalParser {
                             echo '<br/>count($options): '.count($options).'<br/>';
                             if (count($options)>0) {
                                 $engRes = $part_of_speech_block[$i]->find('.babQuickResult')[0]->text();
-                                echo $i.') '.$engRes.'<br>';
-
+                                echo $i.') <b>'.$engRes.'</b><br>';
+                                if ($engRes === $eng_value) {
+                                    echo '!!!!!'. $engRes .'<br/>';
+                                }
                             }
                             
                             // $rus_result = $part_of_speech_block[$ii]->find('li');
@@ -83,7 +86,7 @@ class UniversalParser {
 
             echo '<br/>';
             $item = new Vocabulary([
-                'eng_value' => trim( $colls[2]->find('span')[0]->text() ),
+                'eng_value' => $eng_value,
                 'rus_value' => $rus_value,
                 'gender'=>'gender',
                 'yandex_url'=> $yandex_url,
