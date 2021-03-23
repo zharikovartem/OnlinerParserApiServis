@@ -83,11 +83,11 @@ class UniversalParser {
                                         echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
                                         //Проверить совпадения русских значений
                                         var_dump($overviews);
-                                        foreach ($overviews[0]->find('li') as $key => $li) {
-                                            echo $li->text().', ';
+                                        if (count($overviews)>0) {
+                                            foreach ($overviews[0]->find('li') as $key => $li) {
+                                                echo $li->text().', ';
+                                            }
                                         }
-
-
                                         // получить часть речи
                                         $part_of_speech = $suffixVal;
                                     }
