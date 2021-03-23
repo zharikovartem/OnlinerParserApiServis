@@ -97,7 +97,7 @@ class VocabularyController extends Controller
         $part = $count % 500;
         $ost = $part % 100;
         echo $ost;
-        $page = $part / 100;
+        $page = $part / 100 - ($ost/100);
 
         $index = ($count-$part) / 500;
 
