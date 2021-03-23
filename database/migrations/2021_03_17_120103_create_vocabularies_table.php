@@ -15,7 +15,7 @@ class CreateVocabulariesTable extends Migration
     {
         Schema::create("Vocabulary", function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->text("eng_value");
+            $table->text("eng_value")->unique();
             $table->text("rus_value");
             $table->text("part_of_speech");
             $table->text("gender");
@@ -23,6 +23,7 @@ class CreateVocabulariesTable extends Migration
             $table->text("yandex_url")->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->integer('occurrence')->nullable();
         });
     }
 
