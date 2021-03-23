@@ -82,6 +82,7 @@ class UniversalParser {
                                     if (mb_strtolower($engRes) === $eng_value) {
                                         echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
                                         //Проверить совпадения русских значений
+                                        var_dump($overviews);
                                         foreach ($overviews[0]->find('li') as $key => $li) {
                                             echo $li->text().', ';
                                         }
