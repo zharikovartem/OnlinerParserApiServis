@@ -41,15 +41,32 @@ class UniversalParser {
                 }
                 // echo $ya->html();
                 if ($ya) {
-                    echo $url.'<br/>';
-                    $part_of_speech1 = $ya->find('.quick-result-option')[0]->find('span');
-                    if (isset($part_of_speech1[0])) {
-                        $part_of_speech = $part_of_speech1[0]->text();
-                    }
+                    // echo $url.'<br/>';
+                    // $part_of_speech_block = $ya->find('.quick-result-option')[0]->find('span');
+                    // if (isset($part_of_speech_block[0])) {
+                    //     $part_of_speech = $part_of_speech1[0]->text();
+                    // }
 
-                    if (count($part_of_speech1) > 0) {
-                        foreach ($part_of_speech1 as $index => $res) {
-                            echo $index.')'.$res->text().'<br/>';
+                    // if (count($part_of_speech_block) > 0) {
+                    //     foreach ($part_of_speech1 as $index => $res) {
+                    //         $text = $res->text();
+                    //         echo $index.')'.$text.'<br/>';
+                    //         if ($text === $rus_value) {
+                    //             $part_of_speech = $part_of_speech_block[0]->text();
+                    //         }
+                    //     }
+                    // }
+                    // echo '<br/><br/><br/>';
+                    $part_of_speech_block = $ya->find('.quick-result-option');
+                    $index = 0;
+                    if (count($part_of_speech_block) > 0) {
+                        for ($i=0; $i < count($part_of_speech_block); $i = $i+2) { 
+                            $ii = $i+1;
+                            echo $part_of_speech_block[$i]->text().'<br>';
+                            $rus_result = $part_of_speech_block[$ii]->find('li');
+                            foreach ($rus_result as $item => $res) {
+                                echo $item.')'.$res->text();
+                            }
                         }
                     }
                     echo '<br/><br/><br/>';
