@@ -125,7 +125,7 @@ class UniversalParser {
             // $item->getYandexData();
 
             # проверка на существование 
-            $check = Vocabulary::where('eng_value', $eng_value);
+            $check = Vocabulary::where('eng_value', $eng_value)->get();
 
             if ( count($check) === 0) {
                 $item->save();
