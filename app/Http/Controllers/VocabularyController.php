@@ -107,7 +107,7 @@ class VocabularyController extends Controller
 
         
 
-        $vocabularyList = UniversalParser::getVocabularyList($page, $start, $stop);
+        $vocabularyList = UniversalParser::getVocabularyList($count/100, $start, $stop);
         // $parser = new UniversalParser();
         // $vocabularyList = $parser->test();
 
