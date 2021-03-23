@@ -99,7 +99,7 @@ class VocabularyController extends Controller
         $part = $count % 500;
         $page = $count % 5;
         echo 'part='.$part.'<br/>';
-        echo 'page='.$page.'<br/>';
+        echo 'page='.$count % 100 .'<br/>';
         $start = $part*500+1;
         $stop = $part*500+500;
         echo 'start='.$start.'<br/>';
