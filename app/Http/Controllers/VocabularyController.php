@@ -105,7 +105,7 @@ class VocabularyController extends Controller
         echo 'start='.$start.'<br/>';
         echo 'stop='.$stop.'<br/>';
 
-        $base = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'. $count % 100 .'/';
+        $base = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'. $page .'/';
         // $document = new Document($base, true);
         echo $base;
 
