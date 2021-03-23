@@ -33,6 +33,9 @@ class UniversalParser {
             $part_of_speech = '?';
 
             // $url= 'https://www.babla.ru/%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/'.trim( $colls[2]->find('span')[0]->text() );
+            
+            #######################
+            ## https://www.babla.ru/спряжения/английский/begin
             $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
             if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
                 try {
@@ -63,7 +66,8 @@ class UniversalParser {
                     $index = 0;
                     if (count($part_of_speech_block) > 0) {
                         for ($i=0; $i < count($part_of_speech_block); $i++) { 
-                            $options = $part_of_speech_block[$i]->find('.quick-result-option');
+                            $options = $part_of_speech_block[$i]->find('.quick-result-option'); // английские значения и суф.
+                            $overviews = $part_of_speech_block[$i]->find('quick-result-overview'); // русские значения
                             echo '<br/>count($options): '.count($options).'<br/>';
                             if (count($options)>0) {
                                 $engResArr = $part_of_speech_block[$i]->find('.babQuickResult');
@@ -77,6 +81,12 @@ class UniversalParser {
                                     echo $i.') <b>'.$engRes.'</b>';
                                     if (mb_strtolower($engRes) === $eng_value) {
                                         echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
+                                        //Проверить совпадения русских значений
+                                        foreach ($overviews[0]->find('li') as $key => $li) {
+                                            echo $li->text().', ';
+                                        }
+
+
                                         // получить часть речи
                                         $part_of_speech = $suffixVal;
                                     }
