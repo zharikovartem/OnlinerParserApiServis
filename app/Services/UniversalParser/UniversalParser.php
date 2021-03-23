@@ -30,87 +30,78 @@ class UniversalParser {
             $rus_value = trim( $colls[4]->text() );
             $eng_value = trim( $colls[2]->find('span')[0]->text() );
 
+            $check = Vocabulary::where('eng_value', $eng_value)->get();
+
+            if (count($check) === 0) {
+                $part_of_speech = getBablaData(trim( $colls[2]->find('span')[0]->text() ));
+            } else {
+                $part_of_speech = '?';
+            }
+
             $yandex_url = explode('ru-en', $colls[5]->find('a')[0]->href)[0].'en-ru' ; 
 
-            $part_of_speech = '?';
+            
 
             // $url= 'https://www.babla.ru/%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/'.trim( $colls[2]->find('span')[0]->text() );
             
             #######################
             ## https://www.babla.ru/спряжения/английский/begin
-            $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
-            if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
-                try {
-                    $ya = new Document($url, true);
-                } catch (Exception $e) {
-                    echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
-                }
-                // echo $ya->html();
-                if ($ya) {
-                    // echo $url.'<br/>';
-                    // $part_of_speech_block = $ya->find('.quick-result-option')[0]->find('span');
-                    // if (isset($part_of_speech_block[0])) {
-                    //     $part_of_speech = $part_of_speech1[0]->text();
-                    // }
-
-                    // if (count($part_of_speech_block) > 0) {
-                    //     foreach ($part_of_speech1 as $index => $res) {
-                    //         $text = $res->text();
-                    //         echo $index.')'.$text.'<br/>';
-                    //         if ($text === $rus_value) {
-                    //             $part_of_speech = $part_of_speech_block[0]->text();
-                    //         }
-                    //     }
-                    // }
-                    // echo '<br/><br/><br/>';
-                    // $part_of_speech_block = $ya->find('.quick-result-option');
-                    $part_of_speech_block = $ya->find('.quick-result-entry');
-                    $index = 0;
-                    if (count($part_of_speech_block) > 0) {
-                        for ($i=0; $i < count($part_of_speech_block); $i++) { 
-                            $options = $part_of_speech_block[$i]->find('.quick-result-option'); // английские значения и суф.
-                            $overviews = $part_of_speech_block[$i]->find('.quick-result-overview'); // русские значения
-                            echo '<br/>count($options): '.count($options).'<br/>';
-                            if (count($options)>0) {
-                                $engResArr = $part_of_speech_block[$i]->find('.babQuickResult');
-                                $suffix = $part_of_speech_block[$i]->find('.suffix');
-                                if (count($engResArr) > 0) {
-                                    $engRes = $engResArr[0]->text();
-                                    $suffixVal = '???';
-                                    if (isset($suffix[0])) {
-                                        $suffixVal = $suffix[0]->text();
-                                    }
-                                    echo $i.') <b>'.$engRes.'</b>';
-                                    if (mb_strtolower($engRes) === $eng_value || mb_strtolower($engRes) === 'to '.$eng_value) {
-                                        echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
-                                        //Проверить совпадения русских значений
-                                        // var_dump($overviews);
-                                        if (count($overviews)>0) {
-                                            echo $suffixVal.'Значения: ';
-                                            foreach ($overviews[0]->find('li') as $key => $li) {
-                                                // Если русское значение полностью совпадает
-                                                if ($li->text() === $rus_value) {
-                                                    $part_of_speech = $suffixVal;
-                                                }
-                                                echo $li->text().', ';
-                                            }
-                                            echo '<br/>';
-                                        }
-                                        // получить часть речи
-                                        // $part_of_speech = $suffixVal;
-                                    }
-                                }
-                            }
+            // $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
+            // if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
+            //     try {
+            //         $ya = new Document($url, true);
+            //     } catch (Exception $e) {
+            //         echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+            //     }
+            //     // echo $ya->html();
+            //     if ($ya) {
+            //         $part_of_speech_block = $ya->find('.quick-result-entry');
+            //         $index = 0;
+            //         if (count($part_of_speech_block) > 0) {
+            //             for ($i=0; $i < count($part_of_speech_block); $i++) { 
+            //                 $options = $part_of_speech_block[$i]->find('.quick-result-option'); // английские значения и суф.
+            //                 $overviews = $part_of_speech_block[$i]->find('.quick-result-overview'); // русские значения
+            //                 echo '<br/>count($options): '.count($options).'<br/>';
+            //                 if (count($options)>0) {
+            //                     $engResArr = $part_of_speech_block[$i]->find('.babQuickResult');
+            //                     $suffix = $part_of_speech_block[$i]->find('.suffix');
+            //                     if (count($engResArr) > 0) {
+            //                         $engRes = $engResArr[0]->text();
+            //                         $suffixVal = '???';
+            //                         if (isset($suffix[0])) {
+            //                             $suffixVal = $suffix[0]->text();
+            //                         }
+            //                         echo $i.') <b>'.$engRes.'</b>';
+            //                         if (mb_strtolower($engRes) === $eng_value || mb_strtolower($engRes) === 'to '.$eng_value) {
+            //                             echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
+            //                             //Проверить совпадения русских значений
+            //                             // var_dump($overviews);
+            //                             if (count($overviews)>0) {
+            //                                 echo $suffixVal.'Значения: ';
+            //                                 foreach ($overviews[0]->find('li') as $key => $li) {
+            //                                     // Если русское значение полностью совпадает
+            //                                     if ($li->text() === $rus_value) {
+            //                                         $part_of_speech = $suffixVal;
+            //                                     }
+            //                                     echo $li->text().', ';
+            //                                 }
+            //                                 echo '<br/>';
+            //                             }
+            //                             // получить часть речи
+            //                             // $part_of_speech = $suffixVal;
+            //                         }
+            //                     }
+            //                 }
                             
-                            // $rus_result = $part_of_speech_block[$ii]->find('li');
-                            // foreach ($rus_result as $item => $res) {
-                            //     echo $item.')'.$res->text();
-                            // }
-                        }
-                    }
-                    echo '<br/><br/><br/>';
-                }
-            }
+            //                 // $rus_result = $part_of_speech_block[$ii]->find('li');
+            //                 // foreach ($rus_result as $item => $res) {
+            //                 //     echo $item.')'.$res->text();
+            //                 // }
+            //             }
+            //         }
+            //         echo '<br/><br/><br/>';
+            //     }
+            // }
             
 
             echo '<br/>';
@@ -125,7 +116,7 @@ class UniversalParser {
             // $item->getYandexData();
 
             # проверка на существование 
-            $check = Vocabulary::where('eng_value', $eng_value)->get();
+            
 
             if ( count($check) === 0) {
                 $item->save();
@@ -142,24 +133,66 @@ class UniversalParser {
         return $table;
     }
 
-    public function test()
+    private function getBablaData($word)
     {
-        error_reporting(E_ALL);
-        ini_set("display_errors", 1);
+        $url= 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() );
+        if (trim( $colls[2]->find('span')[0]->text() ) !== 'I') {
+            try {
+                $ya = new Document($url, true);
+            } catch (Exception $e) {
+                echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+            }
+            // echo $ya->html();
+            if ($ya) {
+                $part_of_speech_block = $ya->find('.quick-result-entry');
+                $index = 0;
+                if (count($part_of_speech_block) > 0) {
+                    for ($i=0; $i < count($part_of_speech_block); $i++) { 
+                        $options = $part_of_speech_block[$i]->find('.quick-result-option'); // английские значения и суф.
+                        $overviews = $part_of_speech_block[$i]->find('.quick-result-overview'); // русские значения
+                        echo '<br/>count($options): '.count($options).'<br/>';
+                        if (count($options)>0) {
+                            $engResArr = $part_of_speech_block[$i]->find('.babQuickResult');
+                            $suffix = $part_of_speech_block[$i]->find('.suffix');
+                            if (count($engResArr) > 0) {
+                                $engRes = $engResArr[0]->text();
+                                $suffixVal = '???';
+                                if (isset($suffix[0])) {
+                                    $suffixVal = $suffix[0]->text();
+                                }
+                                echo $i.') <b>'.$engRes.'</b>';
+                                if (mb_strtolower($engRes) === $eng_value || mb_strtolower($engRes) === 'to '.$eng_value) {
+                                    echo '!!!!!'. $engRes .'('.$suffixVal.')<br/>';
+                                    //Проверить совпадения русских значений
+                                    // var_dump($overviews);
+                                    if (count($overviews)>0) {
+                                        echo $suffixVal.'Значения: ';
+                                        foreach ($overviews[0]->find('li') as $key => $li) {
+                                            // Если русское значение полностью совпадает
+                                            if ($li->text() === $rus_value) {
+                                                $part_of_speech = $suffixVal;
+                                            }
+                                            echo $li->text().', ';
+                                        }
+                                        echo '<br/>';
+                                    }
+                                    // получить часть речи
+                                    // $part_of_speech = $suffixVal;
+                                }
+                            }
+                        }
+                        
+                        // $rus_result = $part_of_speech_block[$ii]->find('li');
+                        // foreach ($rus_result as $item => $res) {
+                        //     echo $item.')'.$res->text();
+                        // }
+                    }
+                }
+                echo '<br/><br/><br/>';
+            }
+        }
 
-        $translator = new Yandex_Translate();
-
-        //Массив языков, с которых можно переводить
-        echo '<pre>';
-        $pairs = $translator->yandexGetLangsPairs();
-        print_r($pairs);
-        echo '</pre>';
-
-        //Массив языков, на которые можно переводить
-        echo '<pre>';
-        $to = $translator->yandexGet_FROM_Langs();
-        print_r($to);
-        echo '</pre>';
+        return $part_of_speech;
     }
 
 }
