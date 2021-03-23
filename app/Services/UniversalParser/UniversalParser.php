@@ -95,7 +95,7 @@ class UniversalParser {
                                             echo '<br/>';
                                         }
                                         // получить часть речи
-                                        $part_of_speech = $suffixVal;
+                                        // $part_of_speech = $suffixVal;
                                     }
                                 }
                             }
