@@ -99,14 +99,14 @@ class VocabularyController extends Controller
         $page = $count % 5;
         echo '???'.$part.'???';
         echo '???'.$page.'???';
-        $start = $part+1;
-        $stop = $start = $part+500;
+        $start = $part*500+1;
+        $stop = $start = $part*500+500;
         echo '???'.$start.'???';
         echo '???'.$stop.'???';
 
         
 
-        $vocabularyList = UniversalParser::getVocabularyList($part, 1, 500);
+        $vocabularyList = UniversalParser::getVocabularyList($part, $start, $stop);
         // $parser = new UniversalParser();
         // $vocabularyList = $parser->test();
 
