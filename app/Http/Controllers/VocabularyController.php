@@ -76,7 +76,14 @@ class VocabularyController extends Controller
      */
     public function update(Request $request, Vocabulary $vocabulary)
     {
-        //
+        foreach ($request->all() as $field => $value) {
+            $vocabulary[$field] = $value;
+        }
+        $vocabulary->save();
+        // return self::index();
+        return response()->json([
+            "vocabularyTarget"=> $vocabulary,
+        ], 200);
     }
 
     /**
