@@ -177,7 +177,7 @@ class VocabularyController extends Controller
             if (isset($value['date_to'])) {
                 $date_to = $value['date_to'];
             } else {
-                $date_to = now();
+                $date_to = date("m.d.Y");
             }
             
             $ressult .= $value['date_from'].'/'.$date_to.': '.$value['address'].';';
