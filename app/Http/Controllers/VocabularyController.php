@@ -157,10 +157,6 @@ class VocabularyController extends Controller
             ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2011', 'date_to' => '31-12-2012'],
         ];
 
-        function my_comparison($a, $b) {
-            return strcmp($a['date_from'], $b['date_from']);
-        }
-
         function build_sorter($key) {
             return function ($a, $b) use ($key) {
                 return strnatcmp($a[$key], $b[$key]);
@@ -169,22 +165,26 @@ class VocabularyController extends Controller
 
         usort($arrayData, build_sorter('date_from'));
 
-        var_dump($arrayData);
-        echo '<br/><br/>';
+        // var_dump($arrayData);
+        // echo '<br/><br/>';
 
         $ressult = '';
         foreach ($arrayData as $key =>  $value) {
 
             $date_to = $value['date_to'] ?? date("m.d.Y");
 
-            $end = ';\n';
-            echo count($arrayData).' === '.$key.'<br/>';
+            $end = ';';
+            // echo count($arrayData).' === '.$key.'<br/>';
             if ( count($arrayData)-1 === $key ) {
                 $end = '.';
             }
             
             $ressult .= $value['date_from'].'/'.$date_to.': '.$value['address'].$end;
         }  
-        echo '<br/><br/>'.$ressult;
+        // echo '<br/><br/>'.$ressult;
+
+        return response()->json([
+            "ressult"=> $ressult,
+        ], 200);
     }
 }
