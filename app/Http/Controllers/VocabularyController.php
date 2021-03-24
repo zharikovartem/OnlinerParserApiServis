@@ -143,20 +143,9 @@ class VocabularyController extends Controller
     }
 
 
-    
-    public function getVocabularyList()
-    {
-        $arrayData = [
-            ['address' => 'г. Минск, ул. Восточнаяя, д. 33', 'date_from' => '31-12-2002', 'date_to' => '31-12-2005'],
-            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2005', 'date_to' => '31-12-2006'],
-            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2006', 'date_to' => '31-12-2008'],
-            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2000', 'date_to' => '31-12-2002'],
-            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2008', 'date_to' => '31-12-2010'],
-            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2010', 'date_to' => '31-12-2011'],
-            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2012'],
-            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2011', 'date_to' => '31-12-2012'],
-        ];
 
+    public function getAdressData( $arrayData ): string
+    {
         function build_sorter($key) {
             return function ($a, $b) use ($key) {
                 return strnatcmp($a[$key], $b[$key]);
@@ -165,23 +154,18 @@ class VocabularyController extends Controller
 
         usort($arrayData, build_sorter('date_from'));
 
-        // var_dump($arrayData);
-        // echo '<br/><br/>';
-
         $ressult = '';
         foreach ($arrayData as $key =>  $value) {
-
             $date_to = $value['date_to'] ?? date("m.d.Y");
+            // $end = '; ';
+            // if ( count($arrayData)-1 === $key ) {
+            //     $end = '.';
+            // }
 
-            $end = ';';
-            // echo count($arrayData).' === '.$key.'<br/>';
-            if ( count($arrayData)-1 === $key ) {
-                $end = '.';
-            }
+            $end = count($arrayData)-1 !== $key ? '; ' : '.';
             
             $ressult .= $value['date_from'].'/'.$date_to.': '.$value['address'].$end;
         }  
-        // echo '<br/><br/>'.$ressult;
 
         return response()->json([
             "ressult"=> $ressult,
