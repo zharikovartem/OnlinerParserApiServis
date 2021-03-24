@@ -138,11 +138,13 @@ class VocabularyController extends Controller
 
         $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
 
+        $toLern = Vocabulary::where('status', 'inProcess')->get();
+
         return response()->json([
             "vocabularyList"=> $vocabularyList,
             "part"=> $part+1,
             "count"=> $count,
-            // "part"=> $part,
+            "toLern"=> $toLern,
             // "page"=> $page,
             // "start"=> $start,
             // "stop"=> $stop,
