@@ -133,7 +133,7 @@ class VocabularyController extends Controller
 
         return response()->json([
             "vocabularyList"=> $vocabularyList,
-            "part"=> $part++,
+            "part"=> $part+1,
             "count"=> $count,
             // "part"=> $part,
             // "page"=> $page,
