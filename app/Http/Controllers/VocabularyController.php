@@ -169,7 +169,7 @@ class VocabularyController extends Controller
 
         usort($arrayData, build_sorter('date_from'));
 
-        var_dump($data);
+        var_dump($arrayData);
 
         foreach ($array as $key =>  list($address, $date_from, $date_to)) {
             $ressult .= $date_from.'/'.$date_to.': '.$address.';';
