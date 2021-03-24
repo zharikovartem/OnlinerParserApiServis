@@ -124,21 +124,50 @@ class VocabularyController extends Controller
         ], 200);
     }
 
-    public function getVocabularyPart($part)
+    // public function getVocabularyPart($part)
+    // {
+    //     $part--;
+    //     $count= Vocabulary::count();
+
+    //     $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
+
+    //     return response()->json([
+    //         "vocabularyList"=> $vocabularyList,
+    //         "part"=> $part+1,
+    //         "count"=> $count,
+    //         // "part"=> $part,
+    //         // "page"=> $page,
+    //         // "start"=> $start,
+    //         // "stop"=> $stop,
+    //     ], 200);
+    // }
+
+
+    
+    private function getVocabularyPart($part)
     {
-        $part--;
-        $count= Vocabulary::count();
+        $arrayData = [
+            ['address' => 'г. Минск, ул. Восточнаяя, д. 33', 'date_from' => '31-12-2002', 'date_to' => '31-12-2005'],
+            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2005', 'date_to' => '31-12-2006'],
+            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2006', 'date_to' => '31-12-2008'],
+            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2000', 'date_to' => '31-12-2002'],
+            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2008', 'date_to' => '31-12-2010'],
+            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2010', 'date_to' => '31-12-2011'],
+            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2012'],
+            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2011', 'date_to' => '31-12-2012'],
+        ];
 
-        $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
+        function my_comparison($a, $b) {
+            return strcmp($a['date_from'], $b['date_from']);
+        }
 
-        return response()->json([
-            "vocabularyList"=> $vocabularyList,
-            "part"=> $part+1,
-            "count"=> $count,
-            // "part"=> $part,
-            // "page"=> $page,
-            // "start"=> $start,
-            // "stop"=> $stop,
-        ], 200);
+        usort($arrayData, 'my_comparison');
+
+        var_dump($data);
+
+        foreach ($array as $key =>  list($address, $date_from, $date_to)) {
+            $ressult[] = 
+        }  
+
     }
 }
