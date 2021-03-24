@@ -149,8 +149,20 @@ class VocabularyController extends Controller
      * @param  \App\Vocabulary  $vocabulary
      * @return \Illuminate\Http\Response
      */
-    public function getVocabularyList($arrayData)
+    public function getVocabularyList()
     {
+        $arrayData = [
+            ['address' => 'г. Минск, ул. Восточнаяя, д. 33', 'date_from' => '31-12-2002', 'date_to' => '31-12-2005'],
+            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2005', 'date_to' => '31-12-2006'],
+            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2006', 'date_to' => '31-12-2008'],
+            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2000', 'date_to' => '31-12-2002'],
+            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2008', 'date_to' => '31-12-2010'],
+            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2010', 'date_to' => '31-12-2011'],
+            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2012'],
+            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2011', 'date_to' => '31-12-2012'],
+        ];
+
+        
         function build_sorter($key) {
             return function ($a, $b) use ($key) {
                 return strnatcmp($a[$key], $b[$key]);
