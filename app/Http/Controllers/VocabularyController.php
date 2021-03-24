@@ -143,8 +143,13 @@ class VocabularyController extends Controller
     }
 
 
-
-    public function getAdressData( $arrayData ): string
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Vocabulary  $vocabulary
+     * @return \Illuminate\Http\Response
+     */
+    public function getVocabularyList($arrayData)
     {
         function build_sorter($key) {
             return function ($a, $b) use ($key) {
@@ -156,12 +161,13 @@ class VocabularyController extends Controller
 
         $ressult = '';
         foreach ($arrayData as $key =>  $value) {
+
             $date_to = $value['date_to'] ?? date("m.d.Y");
+
             // $end = '; ';
             // if ( count($arrayData)-1 === $key ) {
             //     $end = '.';
             // }
-
             $end = count($arrayData)-1 !== $key ? '; ' : '.';
             
             $ressult .= $value['date_from'].'/'.$date_to.': '.$value['address'].$end;
