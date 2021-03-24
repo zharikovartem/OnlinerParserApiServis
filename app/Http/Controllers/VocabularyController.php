@@ -177,7 +177,7 @@ class VocabularyController extends Controller
 
             $date_to = $value['date_to'] ?? date("m.d.Y");
 
-            $end = ';\p';
+            $end = ';\n';
             echo count($arrayData).' === '.$key.'<br/>';
             if ( count($arrayData)-1 === $key ) {
                 $end = '.';
