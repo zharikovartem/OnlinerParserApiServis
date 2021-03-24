@@ -172,7 +172,7 @@ class VocabularyController extends Controller
         var_dump($arrayData);
 
         foreach ($arrayData as $key =>  $value) {
-            $ressult .= $value['date_from'].'/'.$value['$date_to'].': '.$value['$address'].';';
+            $ressult .= $value['date_from'].'/'.isset($value['$date_to']) ? $value['$date_to'] : now().': '.$value['$address'].';';
         }  
         echo $ressult;
     }
