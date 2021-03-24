@@ -182,6 +182,6 @@ class VocabularyController extends Controller
             
             $ressult .= $value['date_from'].'/'.$date_to.': '.$value['address'].';';
         }  
-        echo $ressult;
+        echo '<br/><br/>'.$ressult;
     }
 }
