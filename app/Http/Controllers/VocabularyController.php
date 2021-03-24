@@ -90,61 +90,61 @@ class VocabularyController extends Controller
         //
     }
 
-    public function getVocabularyList()
-    {
-        $count = DB::table('Vocabulary')->count();
-
-        $part = $count % 500;
-        $ost = $part % 100;
-        echo $ost;
-        $page = $part / 100 - ($ost/100);
-
-        $index = ($count-$part) / 500;
-
-        $start = $index*500+1;
-        $stop = $index*500+500;
-
-        // $vocabularyList = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'. $page .'/';
-        // // $document = new Document($base, true);
-        // echo $vocabularyList;
-
-        $vocabularyList = UniversalParser::getVocabularyList($page, $start, $stop);
-        // $parser = new UniversalParser();
-        // $vocabularyList = $parser->test();
-
-        return response()->json([
-            "vocabularyList"=> $vocabularyList,
-            "index"=> $index,
-            "count"=> $count,
-            "part"=> $part,
-            "page"=> $page,
-            "start"=> $start,
-            "stop"=> $stop,
-            "ost"=> $ost,
-        ], 200);
-    }
-
-    // public function getVocabularyPart($part)
+    // public function getVocabularyList()
     // {
-    //     $part--;
-    //     $count= Vocabulary::count();
+    //     $count = DB::table('Vocabulary')->count();
 
-    //     $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
+    //     $part = $count % 500;
+    //     $ost = $part % 100;
+    //     echo $ost;
+    //     $page = $part / 100 - ($ost/100);
+
+    //     $index = ($count-$part) / 500;
+
+    //     $start = $index*500+1;
+    //     $stop = $index*500+500;
+
+    //     // $vocabularyList = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'. $page .'/';
+    //     // // $document = new Document($base, true);
+    //     // echo $vocabularyList;
+
+    //     $vocabularyList = UniversalParser::getVocabularyList($page, $start, $stop);
+    //     // $parser = new UniversalParser();
+    //     // $vocabularyList = $parser->test();
 
     //     return response()->json([
     //         "vocabularyList"=> $vocabularyList,
-    //         "part"=> $part+1,
+    //         "index"=> $index,
     //         "count"=> $count,
-    //         // "part"=> $part,
-    //         // "page"=> $page,
-    //         // "start"=> $start,
-    //         // "stop"=> $stop,
+    //         "part"=> $part,
+    //         "page"=> $page,
+    //         "start"=> $start,
+    //         "stop"=> $stop,
+    //         "ost"=> $ost,
     //     ], 200);
     // }
 
+    public function getVocabularyPart($part)
+    {
+        $part--;
+        $count= Vocabulary::count();
+
+        $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
+
+        return response()->json([
+            "vocabularyList"=> $vocabularyList,
+            "part"=> $part+1,
+            "count"=> $count,
+            // "part"=> $part,
+            // "page"=> $page,
+            // "start"=> $start,
+            // "stop"=> $stop,
+        ], 200);
+    }
+
 
     
-    private function getVocabularyPart($part)
+    public function getVocabularyList()
     {
         $arrayData = [
             ['address' => 'г. Минск, ул. Восточнаяя, д. 33', 'date_from' => '31-12-2002', 'date_to' => '31-12-2005'],
