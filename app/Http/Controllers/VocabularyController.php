@@ -90,39 +90,39 @@ class VocabularyController extends Controller
         //
     }
 
-    // public function getVocabularyList()
-    // {
-    //     $count = DB::table('Vocabulary')->count();
+    public function getVocabularyList()
+    {
+        $count = DB::table('Vocabulary')->count();
 
-    //     $part = $count % 500;
-    //     $ost = $part % 100;
-    //     echo $ost;
-    //     $page = $part / 100 - ($ost/100);
+        $part = $count % 500;
+        $ost = $part % 100;
+        echo $ost;
+        $page = $part / 100 - ($ost/100);
 
-    //     $index = ($count-$part) / 500;
+        $index = ($count-$part) / 500;
 
-    //     $start = $index*500+1;
-    //     $stop = $index*500+500;
+        $start = $index*500+1;
+        $stop = $index*500+500;
 
-    //     // $vocabularyList = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'. $page .'/';
-    //     // // $document = new Document($base, true);
-    //     // echo $vocabularyList;
+        // $vocabularyList = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'. $page .'/';
+        // // $document = new Document($base, true);
+        // echo $vocabularyList;
 
-    //     $vocabularyList = UniversalParser::getVocabularyList($page, $start, $stop);
-    //     // $parser = new UniversalParser();
-    //     // $vocabularyList = $parser->test();
+        $vocabularyList = UniversalParser::getVocabularyList($page, $start, $stop);
+        // $parser = new UniversalParser();
+        // $vocabularyList = $parser->test();
 
-    //     return response()->json([
-    //         "vocabularyList"=> $vocabularyList,
-    //         "index"=> $index,
-    //         "count"=> $count,
-    //         "part"=> $part,
-    //         "page"=> $page,
-    //         "start"=> $start,
-    //         "stop"=> $stop,
-    //         "ost"=> $ost,
-    //     ], 200);
-    // }
+        return response()->json([
+            "vocabularyList"=> $vocabularyList,
+            "index"=> $index,
+            "count"=> $count,
+            "part"=> $part,
+            "page"=> $page,
+            "start"=> $start,
+            "stop"=> $stop,
+            "ost"=> $ost,
+        ], 200);
+    }
 
     public function getVocabularyPart($part)
     {
@@ -139,54 +139,6 @@ class VocabularyController extends Controller
             // "page"=> $page,
             // "start"=> $start,
             // "stop"=> $stop,
-        ], 200);
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Vocabulary  $vocabulary
-     * @return \Illuminate\Http\Response
-     */
-    public function getVocabularyList()
-    {
-        $arrayData = [
-            ['address' => 'г. Минск, ул. Восточнаяя, д. 33', 'date_from' => '31-12-2002', 'date_to' => '31-12-2005'],
-            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2005', 'date_to' => '31-12-2006'],
-            ['address' => 'г. Минск, ул. Восточнаяя, д. 34', 'date_from' => '31-12-2006', 'date_to' => '31-12-2008'],
-            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2000', 'date_to' => '31-12-2002'],
-            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2008', 'date_to' => '31-12-2010'],
-            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2010', 'date_to' => '31-12-2011'],
-            ['address' => 'г. Минск, ул. Тихая, д. 33', 'date_from' => '31-12-2012'],
-            ['address' => 'г. Минск, ул. Ленина, д. 33', 'date_from' => '31-12-2011', 'date_to' => '31-12-2012'],
-        ];
-
-        
-        function build_sorter($key) {
-            return function ($a, $b) use ($key) {
-                return strnatcmp($a[$key], $b[$key]);
-            };
-        }
-
-        usort($arrayData, build_sorter('date_from'));
-
-        $ressult = '';
-        foreach ($arrayData as $key =>  $value) {
-
-            $date_to = $value['date_to'] ?? date("m.d.Y");
-
-            // $end = '; ';
-            // if ( count($arrayData)-1 === $key ) {
-            //     $end = '.';
-            // }
-            $end = count($arrayData)-1 !== $key ? '; ' : '.';
-            
-            $ressult .= $value['date_from'].'/'.$date_to.': '.$value['address'].$end;
-        }  
-
-        return response()->json([
-            "ressult"=> $ressult,
         ], 200);
     }
 }
