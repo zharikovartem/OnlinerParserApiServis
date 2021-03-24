@@ -179,7 +179,7 @@ class VocabularyController extends Controller
 
             $end = ';';
             echo count($arrayData).' === '.$key.'<br/>';
-            if ( count($arrayData) === $key ) {
+            if ( count($arrayData)-1 === $key ) {
                 $end = '.';
             }
             
