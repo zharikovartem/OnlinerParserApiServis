@@ -170,6 +170,7 @@ class VocabularyController extends Controller
         usort($arrayData, build_sorter('date_from'));
 
         var_dump($arrayData);
+        echo '<br/><br/>';
 
         $ressult = '';
         foreach ($arrayData as $key =>  $value) {
@@ -177,6 +178,7 @@ class VocabularyController extends Controller
             $date_to = $value['date_to'] ?? date("m.d.Y");
 
             $end = ';';
+            echo count($arrayData).' === '.$key.'<br/>';
             if ( count($arrayData) === $key ) {
                 $end = '.';
             }
