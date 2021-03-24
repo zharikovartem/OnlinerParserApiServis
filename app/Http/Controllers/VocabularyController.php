@@ -173,12 +173,14 @@ class VocabularyController extends Controller
 
         $ressult = '';
         foreach ($arrayData as $key =>  $value) {
-        // foreach ( $arrayData as list($address, $date_from, $date_to) ) {
-            if (isset($value['date_to'])) {
-                $date_to = $value['date_to'];
-            } else {
-                $date_to = date("m.d.Y");
-            }
+
+            // if (isset($value['date_to'])) {
+                $date_to = $value['date_to'] ?? date("m.d.Y");
+            // } else {
+            //     $date_to = date("m.d.Y");
+            // }
+
+            $end = 
             
             $ressult .= $value['date_from'].'/'.$date_to.': '.$value['address'].';';
         }  
