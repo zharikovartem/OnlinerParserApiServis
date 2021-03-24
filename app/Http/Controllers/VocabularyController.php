@@ -161,7 +161,13 @@ class VocabularyController extends Controller
             return strcmp($a['date_from'], $b['date_from']);
         }
 
-        usort($arrayData, 'my_comparison');
+        function build_sorter($key) {
+            return function ($a, $b) use ($key) {
+                return strnatcmp($a[$key], $b[$key]);
+            };
+        }
+
+        usort($arrayData, build_sorter('date_from'));
 
         var_dump($data);
 
