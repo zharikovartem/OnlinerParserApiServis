@@ -17,12 +17,7 @@
         "laravel/passport": "^9.4",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.0",
-<<<<<<< HEAD
-        "laravel/ui": "^1.3",
-        "react/zmq": "^0.4.0"
-=======
         "laravel/ui": "^1.3"
->>>>>>> cf812dbf7dfe344c70c26be841f39d412fdfa69d
     },
     "require-dev": {
         "facade/ignition": "^1.4",
