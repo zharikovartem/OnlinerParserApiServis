@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Catalog;
-use  App\Services\Parsers\OnlinerParser;
+use App\Services\Parsers\OnlinerParser;
 
 
 class CatalogParsingJob implements ShouldQueue
