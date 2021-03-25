@@ -14,10 +14,11 @@ class CreateUserVocabylaryTable extends Migration
     public function up()
     {
         Schema::create('user_vocabylary', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->timestamps();
+
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vocabylary_id');
-
             $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('vocabylary_id')->references('id')->on('vocabylary');
         });

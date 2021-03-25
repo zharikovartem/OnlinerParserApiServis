@@ -37,7 +37,6 @@
         "redux-thunk": "^2.3.0"
     },
     "config": {
-
         "platform-check": false
     }
 }
