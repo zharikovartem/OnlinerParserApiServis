@@ -19,8 +19,8 @@ class CreateUserVocabylaryTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vocabylary_id');
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('vocabylary_id')->references('id')->on('vocabylary');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('vocabylary_id')->references('id')->on('Vocabulary');
         });
     }
 
