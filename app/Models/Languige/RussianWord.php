@@ -11,4 +11,9 @@ class RussianWord extends AbstractWord
         $this->name = $name;
         $this->languige = 'rus';
     }
+
+    public function relations()
+    {
+        return $this->belongsToMany(EngleshWords::class);
+    }
 }
