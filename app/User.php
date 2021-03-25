@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be cast to native types.
-     *
+     * Атрибуты, которые следует приводить к собственным типам.
      * @var array
      */
     protected $casts = [
@@ -70,5 +70,13 @@ class User extends Authenticatable
         $toDoList = Task::where('user_id', $this->id)
         ->get();
         $this->toDoList = $toDoList;
+    }
+
+    /**
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    */
+    public function vocabylary()
+    {
+        return $this->belongsToMany(Vocabulary::class);
     }
 }
