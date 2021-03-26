@@ -136,7 +136,7 @@ class VocabularyController extends Controller
         ], 200);
     }
 
-    public function getVocabularyPart($part)
+    public function getVocabularyPart(Request $request, int $part)
     {
         $part--;
         $count= Vocabulary::count();

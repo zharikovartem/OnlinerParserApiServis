@@ -103,5 +103,5 @@ Route::resource('controllerMethods', 'ControllerMethodsController');
 
 Route::get('getVocabularyList', 'Api\Parser\VocabularyCreateController@startVocabularyParsing');
 
-Route::get('getVocabularyPart/{part}', 'VocabularyController@getVocabularyPart');
+Route::get('getVocabularyPart/{part}', 'VocabularyController@getVocabularyPart')->middleware('token');
 Route::resource('vocabulary', 'VocabularyController');
