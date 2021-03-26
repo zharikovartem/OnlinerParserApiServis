@@ -60,6 +60,7 @@ class VocabularyParser
         }
 
         if ($count !== 0) {
+            echo '!!!'.$this->part.'<br>';
             if ($this->part !== 4) {
                 dispatch( (new VocabularyParsingJob($this->start ,$this->stop, $this->part+1)) );
             } else {
