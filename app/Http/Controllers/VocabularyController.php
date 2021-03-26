@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\UniversalParser\UniversalParser;
 
-use app\Models\Languige\EnglishWord;
+use App\Models\Languige\EnglishWord;
 
 class VocabularyController extends Controller
 {
