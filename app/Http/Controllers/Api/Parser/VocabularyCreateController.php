@@ -30,7 +30,7 @@ class VocabularyCreateController extends Controller
         $newParser->getVocabularyList();
 
         return response()->json([
-            "message"=> 'VocabularyParsingJob started',
+            "message"=> 'VocabularyParsingJob started1',
         ], 200);
     }
 }
