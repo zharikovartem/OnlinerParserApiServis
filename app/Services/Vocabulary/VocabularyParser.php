@@ -45,13 +45,14 @@ class VocabularyParser
         //     'description'=>$description
         // ]);
 
-        $englishWord = new EnglishWord([
-                'name'=>$name,
-                'occurrence'=>$occurrence,
-                'description'=>$description
-            ]);
+        // $englishWord = new EnglishWord([
+        //         'name'=>$name,
+        //         'occurrence'=>$occurrence,
+        //         'description'=>$description
+        //     ]);
+        $englishWord = new EnglishWord($name, $occurrence, $description);
 
-            $englishWord->save();
+        $englishWord->save();
         
         // 1. Список обьектов для заполнения
             // 1.1 EnglishWord
