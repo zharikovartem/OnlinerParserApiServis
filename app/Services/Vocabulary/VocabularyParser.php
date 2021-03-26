@@ -50,7 +50,10 @@ class VocabularyParser
             $newWord->save();
 
             $count++;
+
             # Добавиить русские слова
+            $ids = array();
+
             foreach ($relations as $key => $rusValue) {
                 echo 'add '.$rusValue.' <br/>';
                 $russianWord = new RussianWord([
@@ -67,9 +70,7 @@ class VocabularyParser
             }
 
             # Добавить связи
-            var_dump($russianWordsArray);
-
-            if (count($russianWordsArray) !== 0) {
+            if (count($ids) !== 0) {
                 $newWord->relations()->attach($ids);
             }
             
