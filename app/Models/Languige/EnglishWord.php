@@ -8,6 +8,7 @@ class EnglishWord extends AbstractWord
 {
     public function __construct($name, $occurrence, $description)
     {
+        echo 'neme: '.$name.'<br/>';
         $this->name = $name;
         $this->languige = 'eng';
         $this->occurrence = $occurrence;
