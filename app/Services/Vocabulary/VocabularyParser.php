@@ -64,6 +64,7 @@ class VocabularyParser
             if ($this->part !== 4) {
                 dispatch( (new VocabularyParsingJob($this->start ,$this->stop, $this->part+1)) );
             } else {
+                echo '???????????????????????????';
                 echo $this->start+500 .', '. $this->stop+500 .', 0 <br/>';
                 echo $this->url.'<br/>';
                 dispatch( (new VocabularyParsingJob($this->start+500 ,$this->stop+500, 0)) );
