@@ -57,8 +57,7 @@ class VocabularyParser
         }
 
         if ($this->part < 5) {
-            $this->part++;
-            dispatch( (new VocabularyParsingJob($this->part ,500, 0)) );
+            dispatch( (new VocabularyParsingJob($this->part+1 ,500, 0)) );
         } 
 
         
