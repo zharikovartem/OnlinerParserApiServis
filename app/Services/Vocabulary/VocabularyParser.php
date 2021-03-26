@@ -26,11 +26,13 @@ class VocabularyParser
             $name = trim( $colls[2]->find('span')[0]->text() );
             $relations = explode(', ', trim( $colls[4]->text() )) ;
             $occurrence = trim( $colls[6]->text() );
+            $description = trim( $colls[7]->text() );
 
             $obj = [
                 'name'=>$name,
                 'relations'=>$relations,
-                'occurrence'=>$occurrence
+                'occurrence'=>$occurrence,
+                'description'=>$description
             ];
 
             var_dump($obj);
