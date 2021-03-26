@@ -16,6 +16,8 @@ class EnglishWord extends AbstractWord
     //     $this->description = $description;
     // }
 
+    public $relationsList;
+
     protected $table = 'EngleshWords';
 
     protected $fillable = [
@@ -37,6 +39,8 @@ class EnglishWord extends AbstractWord
 
     public function relations()
     {
+        $this->relationsList = $this->belongsToMany(RussianWord::class);
+
         return $this->belongsToMany(RussianWord::class);
     }
 }
