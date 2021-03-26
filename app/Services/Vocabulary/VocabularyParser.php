@@ -33,42 +33,46 @@ class VocabularyParser
         foreach ($table[0]->find('tr') as $i => $row) {
             $colls = $row->find('td');
 
-            $name = trim( $colls[2]->find('span')[0]->text() );
-            $relations = explode(', ', trim( $colls[4]->text() )) ;
-            $occurrence = trim( $colls[6]->text() );
-            $description = trim( $colls[7]->text() );
+            $name = trim($colls[2]->find('span')[0]->text());
+            $occurrence = trim($colls[6]->text());
+            $description = trim($colls[7]->text());
 
-            $obj = [
-                'name'=>$name,
-                'relations'=>$relations,
-                'occurrence'=>$occurrence,
-                'description'=>$description
-            ];
-
-            // var_dump($obj);
-            // echo '<br/><br/>';
+            $relations = explode(', ', trim( $colls[4]->text() ));
 
             $newWord = new EnglishWord([
                 'name'=>$name,
                 'occurrence'=>$occurrence,
                 'description'=>$description,
-                'languige'=>'eng'
+                'languige'=>'eng',
+                'isBasic'=>true,
+                'isContain'=>false
             ]);
-
             $newWord->save();
+
             $count++;
+            # Добавиить русские слова
+            foreach ($relations as $key => $rusValue) {
+                $russianWord = new RussianWord([
+                    'name'=>$rusValue,
+                    'occurrence'=>null,
+                    'languige'=>'rus',
+                    'isBasic'=>false,
+                    'isContain'=>false
+                ]);
+                $russianWord->save();
+                $russianWordsArray[] = $russianWord;
+            }
+
+            # Добавить связи
+            $newWord->relations()->attach($russianWordsArray);
         }
 
         if ($count !== 0) {
-            echo '!!!'.$this->part.'<br>';
             if ($this->part !== 4) {
                 dispatch( (new VocabularyParsingJob($this->start ,$this->stop, $this->part+1)) );
             } else {
-                echo '???????????????????????????';
-                
                 $start = $this->start+500;
                 $stop = $this->stop+500;
-
                 dispatch( (new VocabularyParsingJob($start ,$stop, 0)) );
             }
         }
