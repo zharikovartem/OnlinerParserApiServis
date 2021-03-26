@@ -52,6 +52,7 @@ class VocabularyParser
             $count++;
             # Добавиить русские слова
             foreach ($relations as $key => $rusValue) {
+                echo 'add '.$rusValue.' <br/>';
                 $russianWord = new RussianWord([
                     'name'=>$rusValue,
                     'occurrence'=>null,
