@@ -27,11 +27,11 @@ abstract class AbstractWord extends Model
     public $examples; // Примеры использования
 
     /* get value List */
-    abstract protected function getValues():array;
-    /* get data for instanse */
-    abstract protected function getCurrentData():array;
+    // abstract protected function getValues():array;
+    // /* get data for instanse */
+    // abstract protected function getCurrentData():array;
 
-    abstract public function relations();
+    // abstract public function relations();
 
     // protected function getRelations()
     // {
