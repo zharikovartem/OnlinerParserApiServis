@@ -20,6 +20,9 @@ class EnglishWord extends AbstractWord
     protected $fillable = [
         'id',
         'name',
+        'languige',
+        'occurrence',
+        'description'
         // 'is_active',
         // 'total_count',
         // 'type',
