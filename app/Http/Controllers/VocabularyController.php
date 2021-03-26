@@ -148,7 +148,7 @@ class VocabularyController extends Controller
         $englishWords = EnglishWord::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
 
         foreach ($englishWords as $key => $englishWord) {
-            $englishWords[$key]->relations();
+            $check[] = $englishWords[$key]->relations();
         }
 
         return response()->json([
@@ -157,7 +157,7 @@ class VocabularyController extends Controller
             "count"=> $count,
             "toLern"=> $toLern,
             "englishWords"=> $englishWords,
-            // "start"=> $start,
+            "check"=> $check,
             // "stop"=> $stop,
         ], 200);
     }
