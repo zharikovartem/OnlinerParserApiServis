@@ -28,6 +28,8 @@ class VocabularyParser
         
         $document = new Document($this->url, true);
         $table = $document->find('.table-voc');
+
+        $count = 0;
         foreach ($table[0]->find('tr') as $i => $row) {
             $colls = $row->find('td');
 
@@ -54,11 +56,17 @@ class VocabularyParser
             ]);
 
             $newWord->save();
+            $count++;
         }
 
-        if ($this->part < 5) {
-            dispatch( (new VocabularyParsingJob(1 ,500, $this->part+1)) );
-        } 
+        if ($count !== 0) {
+            if ($this->part < 5) {
+                dispatch( (new VocabularyParsingJob($this->start ,$this->stop, $this->part+1)) );
+            } else {
+                dispatch( (new VocabularyParsingJob($this->start+500 ,$this->stop+500, 0)) );
+            }
+        }
+        
 
         
 
