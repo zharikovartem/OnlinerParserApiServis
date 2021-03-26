@@ -35,8 +35,8 @@ class VocabularyParsingJob implements ShouldQueue
      */
     public function handle()
     {
-        // Создать сервис по парсингу https://audio-english.ru/frequencydict/s_1_po_500/page-0/
-        // OnlinerParser::getCatalog();
+        $newParser = new VocabularyParser($start, $stop, $part);
+        $newParser->getVocabularyList();
 
         /*
         создания документа
