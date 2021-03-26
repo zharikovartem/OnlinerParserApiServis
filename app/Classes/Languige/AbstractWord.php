@@ -33,10 +33,10 @@ abstract class AbstractWord extends Model
 
     abstract public function relations();
 
-    protected function getRelations()
-    {
-        // Массив связанных слов
-    }
+    // protected function getRelations()
+    // {
+    //     // Массив связанных слов
+    // }
 
     protected function setTransletValues()
     {
