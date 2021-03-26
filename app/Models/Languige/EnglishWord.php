@@ -5,6 +5,8 @@ namespace app\Models\Languige;
 use App\Classes\Languige\AbstractWord;
 use App\Models\Languige\RussianWord;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 class EnglishWord extends AbstractWord
 {
     // public function __construct($name, $occurrence, $description)
@@ -37,6 +39,9 @@ class EnglishWord extends AbstractWord
 
     protected $hidden = [];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function relations()
     {
         $this->relationsList = $this->belongsToMany(RussianWord::class);
