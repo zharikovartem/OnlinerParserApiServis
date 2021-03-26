@@ -158,7 +158,7 @@ class VocabularyController extends Controller
             "toLern"=> $toLern,
             "englishWords"=> $englishWords,
             "check"=> $check,
-            // "stop"=> $stop,
+            "request"=> $request->all(),
         ], 200);
     }
 }
