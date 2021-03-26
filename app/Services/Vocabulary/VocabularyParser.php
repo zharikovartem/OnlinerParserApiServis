@@ -48,7 +48,8 @@ class VocabularyParser
         $englishWord = new EnglishWord([
                 'name'=>$name,
                 'occurrence'=>$occurrence,
-                'description'=>$description
+                'description'=>$description,
+                'languige'=>'eng'
             ]);
         // $englishWord = new EnglishWord($name, $occurrence, $description);
 
