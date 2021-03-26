@@ -45,8 +45,8 @@ class VocabularyParser
                 'description'=>$description
             ];
 
-            var_dump($obj);
-            echo '<br/><br/>';
+            // var_dump($obj);
+            // echo '<br/><br/>';
 
             $newWord = new EnglishWord([
                 'name'=>$name,
@@ -63,6 +63,7 @@ class VocabularyParser
             if ($this->part < 5) {
                 dispatch( (new VocabularyParsingJob($this->start ,$this->stop, $this->part+1)) );
             } else {
+                echo $this->start+500.', '.$this->stop+500', ', 0.'<br/>');
                 dispatch( (new VocabularyParsingJob($this->start+500 ,$this->stop+500, 0)) );
             }
         }
