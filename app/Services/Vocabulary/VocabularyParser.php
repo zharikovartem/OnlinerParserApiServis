@@ -38,6 +38,12 @@ class VocabularyParser
             var_dump($obj);
             echo '<br/><br/>';
         }
+
+        EnglishWord::create([
+            'name'=>$name,
+            'occurrence'=>$occurrence,
+            'description'=>$description
+        ]);
         
         // 1. Список обьектов для заполнения
             // 1.1 EnglishWord
