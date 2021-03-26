@@ -53,9 +53,7 @@ class VocabularyParser
 
             # Добавиить русские слова
             $ids = array();
-
             foreach ($relations as $key => $rusValue) {
-                echo 'add '.$rusValue.' <br/>';
                 $russianWord = new RussianWord([
                     'name'=>$rusValue,
                     'occurrence'=>null,
@@ -64,9 +62,8 @@ class VocabularyParser
                     'isContain'=>false
                 ]);
                 $russianWord->save();
-                $russianWordsArray[] = $russianWord;
+
                 $ids[] = $russianWord->id;
-                echo '$russianWord->id: '.$russianWord->id.'<br/>';
             }
 
             # Добавить связи
@@ -75,7 +72,7 @@ class VocabularyParser
             }
             
         }
-
+        
         if ($count !== 0) {
             if ($this->part !== 4) {
                 dispatch( (new VocabularyParsingJob($this->start ,$this->stop, $this->part+1)) );
@@ -85,31 +82,6 @@ class VocabularyParser
                 dispatch( (new VocabularyParsingJob($start ,$stop, 0)) );
             }
         }
-        
-
-        
-
-        // EnglishWord::create([
-        //     'name'=>$name,
-        //     'occurrence'=>$occurrence,
-        //     'description'=>$description
-        // ]);
-
-        // $englishWord = new EnglishWord([
-        //         'name'=>$name,
-        //         'occurrence'=>$occurrence,
-        //         'description'=>$description,
-        //         'languige'=>'eng'
-        //     ]);
-        // // $englishWord = new EnglishWord($name, $occurrence, $description);
-
-        // $englishWord->save();
-        
-        // 1. Список обьектов для заполнения
-            // 1.1 EnglishWord
-            // 1.2 RussianWord
-            // 1.3 englis_russian
-        // 2. Получить список EnglishWord (name, descriptions, yandex_url, babla_url)
     }
 }
 
