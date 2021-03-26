@@ -13,7 +13,7 @@ class CreateEngleshWordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('englesh_words', function (Blueprint $table) {
+        Schema::create('EngleshWords', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->text('name');
@@ -34,6 +34,6 @@ class CreateEngleshWordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('englesh_words');
+        Schema::dropIfExists('EngleshWords');
     }
 }
