@@ -37,7 +37,7 @@ class VocabularyParsingJob implements ShouldQueue
      */
     public function handle()
     {
-        $newParser = new VocabularyParser($start, $stop, $part);
+        $newParser = new VocabularyParser($this->start, $this->stop, $this->part);
         $newParser->getVocabularyList();
 
         /*
