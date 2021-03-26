@@ -5,6 +5,7 @@ namespace App\Services\Vocabulary;
 use DiDom\Document;
 use App\Models\Languige\EnglishWord;
 use App\Models\Languige\RussianWord;
+use App\Jobs\VocabularyParsingJob;
 
 class VocabularyParser
 {
