@@ -14,8 +14,8 @@ abstract class AbstractWord extends Model
         'word_number'
     ];
 
-    protected $name; // Имя (значение на родном языке)
-    protected $languige; // К какому языку пренадлежит
+    public $name; // Имя (значение на родном языке)
+    public $languige; // К какому языку пренадлежит
     protected $isBasic; // Является ли слово основным
     protected $isContain; // Были ли заполнены поля слова
 
