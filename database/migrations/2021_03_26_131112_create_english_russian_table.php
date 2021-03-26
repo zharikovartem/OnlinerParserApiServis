@@ -13,10 +13,10 @@ class CreateEnglishRussianTable extends Migration
      */
     public function up()
     {
-        Schema::create('english_russian', function (Blueprint $table) {
+        Schema::create('english_word_russian_word', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            
+
             $table->unsignedBigInteger('english_id');
             $table->unsignedBigInteger('russian_id');
             $table->foreign('english_id')->references('id')->on('EngleshWords');
@@ -31,6 +31,6 @@ class CreateEnglishRussianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('english_russian');
+        Schema::dropIfExists('english_word_russian_word');
     }
 }
