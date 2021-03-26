@@ -6,12 +6,14 @@ use App\Classes\Languige\AbstractWord;
 
 class EnglishWord extends AbstractWord
 {
-    public function __construct($name)
+    public function __construct($name, $occurrence, $description)
     {
         $this->name = $name;
         $this->languige = 'eng';
+        $this->occurrence = $occurrence;
+        $this->description = $description;
     }
-    
+
     protected $table = 'EngleshWords';
 
     protected $fillable = [

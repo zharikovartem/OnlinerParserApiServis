@@ -39,11 +39,19 @@ class VocabularyParser
             echo '<br/><br/>';
         }
 
-        EnglishWord::create([
-            'name'=>$name,
-            'occurrence'=>$occurrence,
-            'description'=>$description
-        ]);
+        // EnglishWord::create([
+        //     'name'=>$name,
+        //     'occurrence'=>$occurrence,
+        //     'description'=>$description
+        // ]);
+
+        $englishWord = new EnglishWord([
+                'name'=>$name,
+                'occurrence'=>$occurrence,
+                'description'=>$description
+            ]);
+
+            $englishWord->save();
         
         // 1. Список обьектов для заполнения
             // 1.1 EnglishWord
