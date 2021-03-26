@@ -45,6 +45,6 @@ class VocabularyParsingJob implements ShouldQueue
         разбор полей на типы
         разбор маршрута каждого поля 
         */
-        info('info'.$start);
+        info('info'.$this->start);
     }
 }
