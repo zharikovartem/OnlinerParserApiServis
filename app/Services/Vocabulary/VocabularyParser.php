@@ -3,8 +3,8 @@
 namespace App\Services\Vocabulary;
 
 use DiDom\Document;
-use app\Models\Languige\EnglishWord;
-use app\Models\Languige\RussianWord;
+use App\Models\Languige\EnglishWord;
+use App\Models\Languige\RussianWord;
 
 class VocabularyParser
 {
