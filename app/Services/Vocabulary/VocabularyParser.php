@@ -85,6 +85,10 @@ class VocabularyParser
     }
 }
 
+# сбор информации о слове
+
+# Чистка дубликатов русских слов
+
 // 'babla_url' => 'https://www.babla.ru/английский-русский/'.trim( $colls[2]->find('span')[0]->text() ),
 
 // http://translate.google.ru/translate_a/t?client=x&text={jump}&hl=en&sl=en&tl=ru

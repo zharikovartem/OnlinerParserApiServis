@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\UniversalParser\UniversalParser;
 
+use app\Models\Languige\EnglishWord;
+
 class VocabularyController extends Controller
 {
     /**
@@ -19,8 +21,11 @@ class VocabularyController extends Controller
     {
         $vocabularyList = new Vocabulary( $request->all() );
 
+        $englishWord = '';
+
         return response()->json([
             "vocabularyList"=> $vocabularyList,
+            "EnglishWord"=> $englishWord
         ], 200);
     }
 
@@ -140,12 +145,14 @@ class VocabularyController extends Controller
 
         $toLern = Vocabulary::where('status', 'inProcess')->get();
 
+        $englishWords = EnglishWord::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
+
         return response()->json([
             "vocabularyList"=> $vocabularyList,
             "part"=> $part+1,
             "count"=> $count,
             "toLern"=> $toLern,
-            // "page"=> $page,
+            "englishWords"=> $englishWords,
             // "start"=> $start,
             // "stop"=> $stop,
         ], 200);
