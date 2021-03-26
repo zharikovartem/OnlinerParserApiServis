@@ -9,9 +9,16 @@ use App\Models\Languige\RussianWord;
 class VocabularyParser
 {
     private $url;
+    private $start;
+    private $stop;
+    private $part;
 
     public function __construct(int $start, int $stop, int $part)
     {
+        $this->start = $start;
+        $this->stop = $stop;
+        $this->part = $part;
+
         $this->url = 'https://audio-english.ru/frequencydict/s_'.$start.'_po_'.$stop.'/page-'.$part.'/';
     }
 
@@ -47,6 +54,12 @@ class VocabularyParser
 
             $newWord->save();
         }
+
+        if ($this->part < 5) {
+            $this->part++;
+        } 
+
+        dispatch( (new VocabularyParsingJob($this->part ,500, 0)) );
 
         // EnglishWord::create([
         //     'name'=>$name,

@@ -28,8 +28,8 @@ class VocabularyCreateController extends Controller
         dispatch( (new VocabularyParsingJob(1 ,500, 0)) );
         // dispatch((new VocabularyParsingJob(1 ,500, 0))->onQueue('vocabulary'));
 
-        $newParser = new VocabularyParser(1, 500, 0);
-        $newParser->getVocabularyList();
+        // $newParser = new VocabularyParser(1, 500, 0);
+        // $newParser->getVocabularyList();
 
         return response()->json([
             "message"=> 'VocabularyParsingJob started1',
