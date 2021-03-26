@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEngleshWordsTable extends Migration
+class CreateRussianWordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEngleshWordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('EngleshWords', function (Blueprint $table) {
+        Schema::create('RussianWords', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->text('name');
@@ -38,6 +38,6 @@ class CreateEngleshWordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('EngleshWords');
+        Schema::dropIfExists('RussianWords');
     }
 }

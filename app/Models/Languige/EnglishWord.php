@@ -3,6 +3,7 @@
 namespace app\Models\Languige;
 
 use App\Classes\Languige\AbstractWord;
+use App\Models\Languige\RussianWord;
 
 class EnglishWord extends AbstractWord
 {
@@ -22,19 +23,14 @@ class EnglishWord extends AbstractWord
         'name',
         'languige',
         'occurrence',
-        'description'
-        // 'is_active',
-        // 'total_count',
-        // 'type',
-        // 'parent_id',
-        // 'password',
-        // 'created_at',
-        // 'updated_at',
-        // 'params',
-        // 'label',
-        // 'labels',
-        // 'url',
-        // 'full_url'
+        'description',
+        'isBasic',
+        'isContain',
+        'gender',
+        'part_of_speech',
+        'word_number',
+        'conjugation',
+        'examples',
     ];
 
     protected $hidden = [];

@@ -2,15 +2,27 @@
 
 namespace app\Models\Languige;
 
+use App\Models\Languige\EngleshWord;
 use App\Classes\Languige\AbstractWord;
 
 class RussianWord extends AbstractWord
 {
-    public function __construct($name)
-    {
-        $this->name = $name;
-        $this->languige = 'rus';
-    }
+    protected $table = 'RussianWords';
+    
+    protected $fillable = [
+        'id',
+        'name',
+        'languige',
+        'occurrence',
+        'description',
+        'isBasic',
+        'isContain',
+        'gender',
+        'part_of_speech',
+        'word_number',
+        'conjugation',
+        'examples',
+    ];
 
     public function relations()
     {
