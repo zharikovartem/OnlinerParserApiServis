@@ -45,12 +45,12 @@ class VocabularyParser
         //     'description'=>$description
         // ]);
 
-        // $englishWord = new EnglishWord([
-        //         'name'=>$name,
-        //         'occurrence'=>$occurrence,
-        //         'description'=>$description
-        //     ]);
-        $englishWord = new EnglishWord($name, $occurrence, $description);
+        $englishWord = new EnglishWord([
+                'name'=>$name,
+                'occurrence'=>$occurrence,
+                'description'=>$description
+            ]);
+        // $englishWord = new EnglishWord($name, $occurrence, $description);
 
         $englishWord->save();
         
