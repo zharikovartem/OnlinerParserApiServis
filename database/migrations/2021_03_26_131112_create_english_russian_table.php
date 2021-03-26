@@ -17,10 +17,10 @@ class CreateEnglishRussianTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->unsignedBigInteger('english_id');
-            $table->unsignedBigInteger('russian_id');
-            $table->foreign('english_id')->references('id')->on('EngleshWords');
-            $table->foreign('russian_id')->references('id')->on('RussianWords');
+            $table->unsignedBigInteger('english_word_id');
+            $table->unsignedBigInteger('russian_word_id');
+            $table->foreign('english_word_id')->references('id')->on('EngleshWords');
+            $table->foreign('russian_word_id')->references('id')->on('RussianWords');
         });
     }
 

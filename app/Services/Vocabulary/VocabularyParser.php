@@ -62,10 +62,14 @@ class VocabularyParser
                 ]);
                 $russianWord->save();
                 $russianWordsArray[] = $russianWord;
+                echo '$russianWord->id: '.$russianWord->id.'<br/>';
             }
 
             # Добавить связи
-            $newWord->relations()->attach($russianWordsArray);
+            if (count($russianWordsArray) !== 0) {
+                $newWord->relations()->attach($russianWordsArray);
+            }
+            
         }
 
         if ($count !== 0) {
