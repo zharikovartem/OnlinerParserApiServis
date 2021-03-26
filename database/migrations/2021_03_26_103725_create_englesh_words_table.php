@@ -22,7 +22,7 @@ class CreateEngleshWordsTable extends Migration
             $table->text('languige');
 
             // AbstractWord
-            $table->text('name');
+            // $table->text('name');
             //
         });
     }
