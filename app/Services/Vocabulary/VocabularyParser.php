@@ -18,7 +18,7 @@ class VocabularyParser
     public function getVocabularyList()
     {
         
-        $document = new Document($url, true);
+        $document = new Document($this->url, true);
         $table = $document->find('.table-voc');
         foreach ($table[0]->find('tr') as $i => $row) {
             $colls = $row->find('td');
