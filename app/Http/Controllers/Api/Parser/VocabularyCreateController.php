@@ -24,7 +24,7 @@ class VocabularyCreateController extends Controller
     {
         # php artisan make:job VocabularyParsingJob // создать Job
         // dispatch(new VocabularyParsingJob);
-        dispatch((new VocabularyParsingJob(1 ,500, 0))->onQueue('vocabulary'));
+        // dispatch((new VocabularyParsingJob(1 ,500, 0))->onQueue('vocabulary'));
 
         $newParser = new VocabularyParser($start, $stop, $part);
         $newParser->getVocabularyList();
