@@ -82,11 +82,11 @@ class User extends Authenticatable
 
     public function vocabylary2()
     {
-        return $this->name;
+        return $this->id.'_vocabylary';
     }
 
     public function createVocabylaryRelations()
     {
-
+        # create new model
     }
 }
