@@ -81,5 +81,8 @@ class User extends Authenticatable
         return $this->name;
     }
 
-    // public function createvacub
+    public function createVocabylaryRelations()
+    {
+
+    }
 }
