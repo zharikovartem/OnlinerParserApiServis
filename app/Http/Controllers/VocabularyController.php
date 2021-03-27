@@ -147,6 +147,8 @@ class VocabularyController extends Controller
 
         $englishWords = EnglishWord::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
 
+        # Получаем 
+
         foreach ($englishWords as $key => $englishWord) {
             $check[] = $englishWords[$key]->relations;
         }
@@ -158,7 +160,7 @@ class VocabularyController extends Controller
             "toLern"=> $toLern,
             "englishWords"=> $englishWords,
             "check"=> $check,
-            "user"=> $request->all(),
+            "user"=> $request->get('user'),
         ], 200);
     }
 }
