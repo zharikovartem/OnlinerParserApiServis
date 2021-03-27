@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 use App\Task;
 
@@ -85,7 +86,7 @@ class User extends Authenticatable
     {
         $targetClass = 'vocabylary_'.$this->id;
         self::createVocabylaryRelations();
-        
+
         return $this->belongsToMany( 'App\Vocabulary', $targetClass);
     }
 
