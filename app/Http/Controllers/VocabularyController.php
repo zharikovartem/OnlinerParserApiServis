@@ -149,7 +149,7 @@ class VocabularyController extends Controller
 
         # Получаем для User
         $user = $request->get('user');
-        $userVocabylary = $user->vocabylary;
+        $userVocabylary = $user->vocabylary2;
 
         foreach ($englishWords as $key => $englishWord) {
             $check[] = $englishWords[$key]->relations;
