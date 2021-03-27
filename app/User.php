@@ -85,9 +85,9 @@ class User extends Authenticatable
     public function vocabylary2()
     {
         $targetClass = 'vocabylary_'.$this->id;
-        self::createVocabylaryRelations();
+        // self::createVocabylaryRelations();
 
-        return $this->belongsToMany( 'App\Vocabulary', $targetClass);
+        return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass);
     }
 
     public function createVocabylaryRelations()
