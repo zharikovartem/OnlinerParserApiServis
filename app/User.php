@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Schema\Blueprint;
 
 use App\Task;
 
@@ -82,11 +83,24 @@ class User extends Authenticatable
 
     public function vocabylary2()
     {
-        return $this->id.'_vocabylary';
+        $targetClass = 'vocabylary_'.$this->id;
+        self::createVocabylaryRelations();
+        
+        return $this->belongsToMany( 'App\Vocabulary', $targetClass);
     }
 
     public function createVocabylaryRelations()
     {
-        # create new model
+        # create relations model
+        Schema::create('vocabylary_'.$this->id, function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+            $table->text('status');
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('english_word_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('english_word_id')->references('id')->on('EngleshWords');
+        });
     }
 }
