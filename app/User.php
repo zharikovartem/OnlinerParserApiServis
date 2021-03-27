@@ -77,7 +77,8 @@ class User extends Authenticatable
     */
     public function vocabylary()
     {
-        return $this->belongsToMany(Vocabulary::class);
+        // return $this->belongsToMany(Vocabulary::class);
+        return $this->name;
     }
 
     // public function createvacub
