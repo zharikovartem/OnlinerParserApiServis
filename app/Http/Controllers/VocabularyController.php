@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Services\UniversalParser\UniversalParser;
 
 use App\Models\Languige\EnglishWord;
+use App\User;
 
 class VocabularyController extends Controller
 {
