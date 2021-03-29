@@ -42,10 +42,20 @@ class VocabularyController extends Controller
             ->limit(100-$toLearnCount-$vocabylaryCount)
             ->get();
 
-        // while ($toLearnCount <= 100) {
-        //     # code...
-        //     $toLearnCount++;
-        // }
+        if (count($englishWords) !== 0) {
+            foreach ($englishWords as $key => $englishWord) {
+                $attachItem = [
+                    'english_word_id'=>$englishWord->id,
+                    'status' => 'toLearn',
+                    'progress'=>json_encode( [
+                        'tryToLern'=>0,
+                        'successLern'=>0,
+                        'errorLern'=>0
+                    ] )
+                ];
+                $user->vocabylary()->attach([$attachItem]);
+            }
+        }
 
         return response()->json([
             "user"=> $user,
