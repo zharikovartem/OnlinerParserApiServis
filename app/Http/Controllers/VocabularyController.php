@@ -216,11 +216,11 @@ class VocabularyController extends Controller
             $attachItem = [
                 'english_word_id'=>$englishWord->id,
                 'status' => 'toLearn',
-                'progress'=>[
+                'progress'=>json_decode( [
                     'tryToLern'=>1,
                     'successLern'=>1,
                     'errorLern'=>0
-                ]
+                ] )
             ];
             $user->vocabylary()->attach([$attachItem]);
             $user->save();
