@@ -217,11 +217,6 @@ class VocabularyController extends Controller
             
         }
 
-        # Обновление записи в промежуточной таблице
-        // $user->roles()->updateExistingPivot($vocabylaryId, [
-        //     'status' => 'learned',
-        // ]);
-
         if ($isNew) {
             $attachItem = [
                 'english_word_id'=>$englishWord->id,
@@ -233,7 +228,9 @@ class VocabularyController extends Controller
                 ] )
             ];
             $user->vocabylary()->attach([$attachItem]);
-            $user->save();
+            // $user->save();
+            $user = User::where('id', $user->id)->get()[0];
+            $user->vocabylary;
             // $userVocabylary = $user->vocabylary;
         } else {
             $progress['tryToLern']++;
