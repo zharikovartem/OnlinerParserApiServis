@@ -150,7 +150,8 @@ class VocabularyController extends Controller
         $userVocabylary = $user->vocabylary;
         // $userVocabylaryIds = array_column( (array) $userVocabylary, 'id');
         $userVocabylaryIds = array_map(function ($item) { 
-            return $item['id'];
+            // var_dump($item);
+            return $item;
          }, (array) $userVocabylary );
 
         # Получаем список английских слов
