@@ -203,6 +203,7 @@ class VocabularyController extends Controller
 
         return response()->json([
             "request"=> $request->all(),
+            "user"=>$user,
             "englishWord"=>$englishWord
         ], 200);
     }
