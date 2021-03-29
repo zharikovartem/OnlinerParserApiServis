@@ -203,12 +203,18 @@ class VocabularyController extends Controller
             }
         }
 
+        # Обновление записи в промежуточной таблице
+        // $user->roles()->updateExistingPivot($vocabylaryId, [
+        //     'status' => 'learned',
+        // ]);
+
         if ($isNew) {
             $attachItem = [
                 'english_word_id'=>$englishWord->id,
                 'status' => 'toLearn'
             ];
             $user->vocabylary()->attach([$attachItem]);
+            $user->save();
             $user->vocabylary;
         }
         
