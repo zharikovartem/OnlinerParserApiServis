@@ -94,7 +94,9 @@ class User extends Authenticatable
         Schema::create('vocabylary_'.$this->id, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            
             $table->text('status');
+            $table->text('progress');
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('english_word_id');

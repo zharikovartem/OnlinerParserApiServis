@@ -209,6 +209,7 @@ class VocabularyController extends Controller
                 'status' => 'toLearn'
             ];
             $user->vocabylary()->attach([$attachItem]);
+            $user->vocabylary;
         }
         
 
