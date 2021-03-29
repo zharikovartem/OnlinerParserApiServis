@@ -201,18 +201,20 @@ class VocabularyController extends Controller
             if ($vocabylary->id === $englishWord->id) {
                 $isNew = false;
                 $vocabylaryId = $englishWord->id;
+                
+                if ($vocabylary->pivot->progress !== null) {
+                    $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
+                    // $progress = json_decode($vocabylary->pivot->progress, true);
+                    $progress = $vocabylary->pivot->progress;
+                } else {
+                    $progress = [
+                        'tryToLern'=>1,
+                        'successLern'=>1,
+                        'errorLern'=>0
+                    ];
+                }
             }
-            if ($vocabylary->pivot->progress !== null) {
-                $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
-                // $progress = json_decode($vocabylary->pivot->progress, true);
-                $progress = $vocabylary->pivot->progress;
-            } else {
-                $progress = [
-                    'tryToLern'=>1,
-                    'successLern'=>1,
-                    'errorLern'=>0
-                ];
-            }
+            
         }
 
         # Обновление записи в промежуточной таблице
