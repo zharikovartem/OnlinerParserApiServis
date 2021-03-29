@@ -90,6 +90,15 @@ class User extends Authenticatable
         ->withPivot('status');
     }
 
+    public function toLearn()
+    {
+        $targetClass = 'vocabylary_'.$this->id;
+        return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
+        ->withPivot('progress')
+        ->withPivot('status')
+        ->where('status', 'toLearn');
+    }
+
     public function createVocabylaryRelations()
     {
         # create relations model

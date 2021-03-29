@@ -240,12 +240,14 @@ class VocabularyController extends Controller
             ]);
         }
         
+        $toLearn = $user->toLearn;
 
         return response()->json([
             "request"=> $request->all(),
             "user"=>$user,
             "englishWord"=>$englishWord,
-            "progress"=>isset($progress) ? $progress : null
+            "progress"=>isset($progress) ? $progress : null,
+            "toLearn"=>$toLearn,
         ], 200);
     }
 }
