@@ -55,6 +55,8 @@ class VocabularyController extends Controller
                 ];
                 $user->vocabylary()->attach([$attachItem]);
             }
+            $user = User::where('id', $user->id)->get()[0];
+            $toLearn = $user->toLearn;
         }
 
         return response()->json([
