@@ -200,6 +200,7 @@ class VocabularyController extends Controller
         foreach ($user->vocabylary as $key => $vocabylary) {
             if ($vocabylary->id === $englishWord->id) {
                 $isNew = false;
+                $vocabylaryId = $englishWord->id;
             }
         }
 
@@ -216,6 +217,10 @@ class VocabularyController extends Controller
             $user->vocabylary()->attach([$attachItem]);
             $user->save();
             $userVocabylary = $user->vocabylary;
+        } else {
+            $user->vocabylary()->updateExistingPivot($vocabylaryId, [
+                'status' => 'learned!!!',
+            ]);
         }
         
 
