@@ -192,6 +192,10 @@ class VocabularyController extends Controller
     public function checkTestResult(Request $request, EnglishWord  $englishWord)
     {
         # method: POST ???
+
+        $user = $request->get('user');
+        $user->vocabylary()->attach([$englishWord]);
+
         return response()->json([
             "request"=> $request->all(),
             "englishWord"=>$englishWord
