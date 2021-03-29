@@ -204,9 +204,7 @@ class VocabularyController extends Controller
                 $vocabylaryId = $englishWord->id;
 
                 if ($vocabylary->pivot->progress !== null) {
-                    $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
-                    // $progress = json_decode($vocabylary->pivot->progress, true);
-                    $progress = $vocabylary->pivot->progress;
+                    $progress = $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
                 } else {
                     $progress = [
                         'tryToLern'=>1,
@@ -229,10 +227,9 @@ class VocabularyController extends Controller
                 ] )
             ];
             $user->vocabylary()->attach([$attachItem]);
-            // $user->save();
+            # обновляем User
             $user = User::where('id', $user->id)->get()[0];
             $user->vocabylary;
-            // $userVocabylary = $user->vocabylary;
         } else {
             $progress['tryToLern']++;
             $progress['successLern']++;
