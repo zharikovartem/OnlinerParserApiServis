@@ -148,8 +148,8 @@ class VocabularyController extends Controller
         # Получаем для User
         $user = $request->get('user');
         $userVocabylary = $user->vocabylary;
-        $userVocabylaryIds = array_column( (array)$userVocabylary, 'id');
-        $items = array_filter((array)$userVocabylary, function ($item) use ($codes) { return in_array($item->id, $codes); });
+        // $userVocabylaryIds = array_column( (array)$userVocabylary, 'id');
+        $userVocabylaryIds = array_filter( (array)$userVocabylary, function ($item) { return $item->id; } );
         // $userVocabylaryIds = array_map(function ( $item) { 
         //     // var_dump($item);
         //     // return $item->id;
