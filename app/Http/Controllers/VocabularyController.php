@@ -194,6 +194,7 @@ class VocabularyController extends Controller
         # method: POST ???
 
         $user = $request->get('user');
+        $user->relations;
         $attachItem = [
             'english_word_id'=>$englishWord->id,
             'status' => 'toLearn'
