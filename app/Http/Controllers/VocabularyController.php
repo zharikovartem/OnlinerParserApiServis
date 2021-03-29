@@ -216,7 +216,7 @@ class VocabularyController extends Controller
             ];
             $user->vocabylary()->attach([$attachItem]);
             $user->save();
-            $userVocabylary = $user->vocabylary;
+            // $userVocabylary = $user->vocabylary;
         } else {
             $user->vocabylary()->updateExistingPivot($vocabylaryId, [
                 'status' => 'learned!!!',
@@ -228,7 +228,7 @@ class VocabularyController extends Controller
             "request"=> $request->all(),
             "user"=>$user,
             "englishWord"=>$englishWord,
-            "userVocabylary"=>$userVocabylary
+            // "userVocabylary"=>$userVocabylary
         ], 200);
     }
 }
