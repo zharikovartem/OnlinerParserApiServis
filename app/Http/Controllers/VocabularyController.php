@@ -215,14 +215,15 @@ class VocabularyController extends Controller
             ];
             $user->vocabylary()->attach([$attachItem]);
             $user->save();
-            $user->vocabylary;
+            $userVocabylary = $user->vocabylary;
         }
         
 
         return response()->json([
             "request"=> $request->all(),
             "user"=>$user,
-            "englishWord"=>$englishWord
+            "englishWord"=>$englishWord,
+            "userVocabylary"=>$userVocabylary
         ], 200);
     }
 }
