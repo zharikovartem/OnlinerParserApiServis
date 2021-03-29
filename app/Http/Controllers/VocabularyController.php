@@ -150,9 +150,9 @@ class VocabularyController extends Controller
         $userVocabylary = $user->vocabylary;
         var_dump($userVocabylary);
         // $userVocabylaryIds = array_column($userVocabylary, 'id');
-        $userVocabylaryIds = array_map(function ($item) { 
-            return $item->id;
-         }, $userVocabylary );
+        // $userVocabylaryIds = array_map(function ($item) { 
+        //     return $item->id;
+        //  }, $userVocabylary );
 
         # Получаем список английских слов
         $englishWords = EnglishWord::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
