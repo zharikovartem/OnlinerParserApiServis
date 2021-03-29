@@ -22,10 +22,11 @@ class VocabularyController extends Controller
     public function index(Request $request)
     {
         $user = $request->get('user');
+        $toLearn = $user->toLearn;
 
         return response()->json([
             "user"=> $user,
-            // "EnglishWord"=> $englishWord
+            "toLearn"=> $toLearn
         ], 200);
     }
 
