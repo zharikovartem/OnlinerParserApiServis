@@ -96,6 +96,7 @@ class User extends Authenticatable
         $targetClass = 'vocabylary_'.$this->id;
         $pivot = $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
         ->withPivot('progress')->toJson()
+        
         ->withPivot('status')
         ->where('status', 'toLearn');
 
