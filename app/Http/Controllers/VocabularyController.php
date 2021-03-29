@@ -203,8 +203,9 @@ class VocabularyController extends Controller
                 $vocabylaryId = $englishWord->id;
             }
             if ($vocabylary->pivot->progress !== null) {
-                $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
-                $progress = json_decode($vocabylary->pivot->progress, true);
+                // $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
+                // $progress = json_decode($vocabylary->pivot->progress, true);
+                $progress = $vocabylary->pivot->progress;
             }
         }
 
