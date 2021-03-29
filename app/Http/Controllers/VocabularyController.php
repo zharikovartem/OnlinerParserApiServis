@@ -149,6 +149,9 @@ class VocabularyController extends Controller
         $user = $request->get('user');
         $userVocabylary = $user->vocabylary;
         // $userVocabylaryIds = array_column($userVocabylary, 'id');
+        $userVocabylaryIds = array_map(function ($item) { 
+            return $item->id;
+         }, $userVocabylary );
 
         # Получаем список английских слов
         $englishWords = EnglishWord::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
@@ -170,7 +173,8 @@ class VocabularyController extends Controller
             "englishWords"=> $englishWords,
             "check"=> $check,
             "user"=> $request->get('user'),
-            "userVocabylary"=>$userVocabylary
+            "userVocabylary"=>$userVocabylary,
+            "userVocabylaryIds"=>$userVocabylaryIds
         ], 200);
     }
 }
