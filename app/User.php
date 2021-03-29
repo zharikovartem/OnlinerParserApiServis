@@ -101,7 +101,7 @@ class User extends Authenticatable
 
         // var_dump($pivot);
 
-        // $pivot->status = json_decode($pivot->status, true);
+        $this->pivot->status = json_decode($pivot->status, true);
 
         return $pivot;
     }
