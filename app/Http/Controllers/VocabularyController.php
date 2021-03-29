@@ -194,7 +194,11 @@ class VocabularyController extends Controller
         # method: POST ???
 
         $user = $request->get('user');
-        $user->vocabylary()->attach([$englishWord->id]);
+        $attachItem = {
+            'english_word_id'=>$englishWord->id,
+            'status' => 'toLearn'
+        };
+        $user->vocabylary()->attach([$attachItem]);
 
         return response()->json([
             "request"=> $request->all(),
