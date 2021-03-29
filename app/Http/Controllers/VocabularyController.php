@@ -216,7 +216,7 @@ class VocabularyController extends Controller
             $attachItem = [
                 'english_word_id'=>$englishWord->id,
                 'status' => 'toLearn',
-                'progress'=>json_decode( [
+                'progress'=>json_encode( [
                     'tryToLern'=>1,
                     'successLern'=>1,
                     'errorLern'=>0
