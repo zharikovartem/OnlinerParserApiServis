@@ -195,11 +195,22 @@ class VocabularyController extends Controller
 
         $user = $request->get('user');
         $user->vocabylary;
-        $attachItem = [
-            'english_word_id'=>$englishWord->id,
-            'status' => 'toLearn'
-        ];
-        $user->vocabylary()->attach([$attachItem]);
+        
+        $isNew = true;
+        foreach ($user->vocabylary as $key => $vocabylary) {
+            if ($vocabylary->id === $englishWord->id) {
+                $isNew = false;
+            }
+        }
+
+        if ($isNew) {
+            $attachItem = [
+                'english_word_id'=>$englishWord->id,
+                'status' => 'toLearn'
+            ];
+            $user->vocabylary()->attach([$attachItem]);
+        }
+        
 
         return response()->json([
             "request"=> $request->all(),
