@@ -39,7 +39,7 @@ class VocabularyController extends Controller
 
         $englishWords = EnglishWord::whereNotIn('id', $toLearnIds)
             ->whereNotIn('id', $vocabylaryIds)
-            ->limit(100-$toLearnCount-$vocabylaryCount)
+            ->limit(100-$toLearnCount)
             ->get();
 
         if (count($englishWords) !== 0) {
