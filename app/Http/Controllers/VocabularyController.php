@@ -231,10 +231,11 @@ class VocabularyController extends Controller
             $user = User::where('id', $user->id)->get()[0];
             $user->vocabylary;
         } else {
+            # UPDATE progress:
             $progress['tryToLern']++;
             $progress['successLern']++;
             $user->vocabylary()->updateExistingPivot($vocabylaryId, [
-                'status' => 'learned',
+                'status' => $progress['successLern'] >= 5 ? 'learned' : 'toLearn',
                 'progress'=>json_encode($progress)
             ]);
         }
