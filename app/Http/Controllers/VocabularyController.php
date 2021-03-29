@@ -15,18 +15,17 @@ class VocabularyController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @param  \Illuminate\Http\Request  $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vocabularyList = new Vocabulary( $request->all() );
-
-        $englishWord = '';
+        $user = $request->get('user');
 
         return response()->json([
-            "vocabularyList"=> $vocabularyList,
-            "EnglishWord"=> $englishWord
+            "user"=> $user,
+            // "EnglishWord"=> $englishWord
         ], 200);
     }
 
