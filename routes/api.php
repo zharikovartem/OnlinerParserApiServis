@@ -107,3 +107,5 @@ Route::get('getVocabularyPart/{part}', 'VocabularyController@getVocabularyPart')
 Route::resource('vocabulary', 'VocabularyController')->middleware('token');
 
 Route::post('checkTestResult/{englishWord}', 'VocabularyController@checkTestResult')->middleware('token');
+
+Route::resource('providers', 'ProvidersController');
