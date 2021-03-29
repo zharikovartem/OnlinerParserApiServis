@@ -24,9 +24,24 @@ class VocabularyController extends Controller
         $user = $request->get('user');
         $toLearn = $user->toLearn;
 
+        $toLearnIds = [];
+        foreach ($toLearn as $key => $word) {
+            $toLearnIds[] = $word->id;
+        }
+
+        $toLearnCount = count($toLearn);
+
+        $englishWords = EnglishWord::whereNotIn('id', $toLearnIds)->limit(100-$toLearnCount)->get();
+
+        // while ($toLearnCount <= 100) {
+        //     # code...
+        //     $toLearnCount++;
+        // }
+
         return response()->json([
             "user"=> $user,
-            "toLearn"=> $toLearn
+            "toLearn"=> $toLearn,
+            "englishWords"=>$englishWords
         ], 200);
     }
 
