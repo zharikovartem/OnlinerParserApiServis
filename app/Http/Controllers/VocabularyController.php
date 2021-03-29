@@ -154,15 +154,6 @@ class VocabularyController extends Controller
 
         # Получаем список английских слов
         $englishWords = EnglishWord::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
-        foreach ($englishWords as $key => $englishWord) {
-            if (!isset($userVocabylaryIds[$englishWord['id']])) {
-                $check[] = $englishWords[$key]->relations;
-            }
-        }
-
-        
-
-        
 
         return response()->json([
             "vocabularyList"=> $vocabularyList,
@@ -170,7 +161,6 @@ class VocabularyController extends Controller
             "count"=> $count,
             "toLern"=> $toLern,
             "englishWords"=> $englishWords,
-            "check"=> $check,
             "user"=> $request->get('user'),
             "userVocabylary"=>$userVocabylary,
             "userVocabylaryIds"=>$userVocabylaryIds
