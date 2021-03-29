@@ -77,16 +77,14 @@ class User extends Authenticatable
     /**
     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
     */
+    // public function vocabylary()
+    // {
+    //     return $this->belongsToMany(Vocabulary::class);
+    // }
+
     public function vocabylary()
     {
-        return $this->belongsToMany(Vocabulary::class);
-    }
-
-    public function vocabylary2()
-    {
         $targetClass = 'vocabylary_'.$this->id;
-        // self::createVocabylaryRelations();
-
         return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)->withPivot('status');
     }
 
