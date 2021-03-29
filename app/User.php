@@ -87,7 +87,7 @@ class User extends Authenticatable
         $targetClass = 'vocabylary_'.$this->id;
         // self::createVocabylaryRelations();
 
-        return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass);
+        return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)->withPivot('status');
     }
 
     public function createVocabylaryRelations()
