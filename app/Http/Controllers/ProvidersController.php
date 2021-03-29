@@ -38,7 +38,10 @@ class ProvidersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newItem = new Providers($request->all());
+        $newItem->save();
+
+        return self::index();
     }
 
     /**
@@ -72,9 +75,10 @@ class ProvidersController extends Controller
      */
     public function update(Request $request, Providers $providers)
     {
-        $newItem = new Providers($request->all());
-        $newItem->save();
-
+        foreach ($request->all() as $field => $value) {
+            $providers[$field] = $value;
+        }
+        $providers->save();
         return self::index();
     }
 
