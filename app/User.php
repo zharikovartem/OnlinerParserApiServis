@@ -99,7 +99,7 @@ class User extends Authenticatable
         ->withPivot('status')
         ->where('status', 'toLearn');
 
-        $pivot->status = json_decode($pivot->status, true);
+        // $pivot->status = json_decode($pivot->status, true);
 
         return $pivot;
     }
