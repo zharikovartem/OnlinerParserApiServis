@@ -163,6 +163,9 @@ class VocabularyController extends Controller
 
         # Получаем список английских слов
         $englishWords = EnglishWord::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
+        foreach ($englishWords as $key => $value) {
+            $value->relations;
+        }
 
         return response()->json([
             "vocabularyList"=> $vocabularyList,
@@ -176,6 +179,22 @@ class VocabularyController extends Controller
 
             "learned"=>$learned,
             "toLearn"=>$toLearn,
+        ], 200);
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\EnglishWord  $englishWord
+     * @return \Illuminate\Http\Response
+     */
+    public function checkTestResult(Request $request, EnglishWord  $englishWord)
+    {
+        # method: POST ???
+        return response()->json([
+            "request"=> $request->getAll(),
+            "englishWord"=>$englishWord
         ], 200);
     }
 }
