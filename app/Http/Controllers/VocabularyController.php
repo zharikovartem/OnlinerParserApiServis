@@ -234,6 +234,8 @@ class VocabularyController extends Controller
             $user->save();
             // $userVocabylary = $user->vocabylary;
         } else {
+            echo $progress['tryToLern'].'=';
+
             $progress['tryToLern'] = $progress['tryToLern']+1;
             $progress['successLern'] = $progress['successLern']+1;
 
