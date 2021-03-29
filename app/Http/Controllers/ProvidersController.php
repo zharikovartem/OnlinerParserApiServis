@@ -70,10 +70,10 @@ class ProvidersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Providers  $providers
+     * @param  \App\Providers  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Providers $providers)
+    public function update(Request $request, Providers $provider)
     {
         // foreach ($request->all() as $field => $value) {
         //     $providers[$field] = $value;
@@ -81,7 +81,7 @@ class ProvidersController extends Controller
         // $providers->save();
         // return self::index();
         return response()->json([
-            "providers"=> $providers,
+            "providers"=> $provider,
         ], 200);
     }
 
