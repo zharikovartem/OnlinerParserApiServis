@@ -202,6 +202,9 @@ class VocabularyController extends Controller
                 $isNew = false;
                 $vocabylaryId = $englishWord->id;
             }
+            if ($vocabylary->pivot->progress !== null) {
+                $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
+            }
         }
 
         # Обновление записи в промежуточной таблице
@@ -212,7 +215,12 @@ class VocabularyController extends Controller
         if ($isNew) {
             $attachItem = [
                 'english_word_id'=>$englishWord->id,
-                'status' => 'toLearn'
+                'status' => 'toLearn',
+                'progress'=>[
+                    'tryToLern'=>1,
+                    'successLern'=>1,
+                    'errorLern'=>0
+                ]
             ];
             $user->vocabylary()->attach([$attachItem]);
             $user->save();
