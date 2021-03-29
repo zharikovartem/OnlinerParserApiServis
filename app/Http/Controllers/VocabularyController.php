@@ -193,7 +193,7 @@ class VocabularyController extends Controller
     {
         # method: POST ???
         return response()->json([
-            "request"=> $request->getAll(),
+            "request"=> $request->all(),
             "englishWord"=>$englishWord
         ], 200);
     }
