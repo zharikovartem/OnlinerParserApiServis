@@ -106,4 +106,4 @@ Route::get('getVocabularyList', 'Api\Parser\VocabularyCreateController@startVoca
 Route::get('getVocabularyPart/{part}', 'VocabularyController@getVocabularyPart')->middleware('token');
 Route::resource('vocabulary', 'VocabularyController');
 
-Route::post('checkTestResult/{item}', 'VocabularyController@checkTestResult')->middleware('token');
+Route::post('checkTestResult/{englishWord}', 'VocabularyController@checkTestResult')->middleware('token');
