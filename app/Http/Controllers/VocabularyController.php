@@ -149,6 +149,7 @@ class VocabularyController extends Controller
         $user = $request->get('user');
         $userVocabylary = $user->vocabylary;
         foreach ($userVocabylary as $key => $value) {
+            $value->relations;
             $userVocabylaryIds[] = $value->id;
         }
 
