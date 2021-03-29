@@ -75,11 +75,14 @@ class ProvidersController extends Controller
      */
     public function update(Request $request, Providers $providers)
     {
-        foreach ($request->all() as $field => $value) {
-            $providers[$field] = $value;
-        }
-        $providers->save();
-        return self::index();
+        // foreach ($request->all() as $field => $value) {
+        //     $providers[$field] = $value;
+        // }
+        // $providers->save();
+        // return self::index();
+        return response()->json([
+            "providers"=> $providers,
+        ], 200);
     }
 
     /**
