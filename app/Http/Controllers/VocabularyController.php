@@ -209,13 +209,13 @@ class VocabularyController extends Controller
                 'status' => 'toLearn'
             ];
             $user->vocabylary()->attach([$attachItem]);
-            $user->vocabylary;
+            // $user->vocabylary;
         }
         
 
         return response()->json([
             "request"=> $request->all(),
-            "user"=>$user,
+            "user"=>$user->vocabylary,
             "englishWord"=>$englishWord
         ], 200);
     }
