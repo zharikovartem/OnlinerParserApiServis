@@ -16,7 +16,7 @@ class ProvidersController extends Controller
     {
         $providers = Providers::get();
         return response()->json([
-            "providers"=> $providers,
+            "providersList"=> $providers,
         ], 200);
     }
 
