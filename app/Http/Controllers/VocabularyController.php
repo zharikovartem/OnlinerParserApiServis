@@ -230,6 +230,7 @@ class VocabularyController extends Controller
         } else {
             $progress['tryToLern'] = $progress['tryToLern']+1;
             $progress['successLern'] = $progress['successLern']+1;
+
             $user->vocabylary()->updateExistingPivot($vocabylaryId, [
                 'status' => 'learned',
                 'progress'=>json_encode($progress)
@@ -241,7 +242,7 @@ class VocabularyController extends Controller
             "request"=> $request->all(),
             "user"=>$user,
             "englishWord"=>$englishWord,
-            // "userVocabylary"=>$userVocabylary
+            "progress"=>isset($progress) ? $progress : null
         ], 200);
     }
 }
