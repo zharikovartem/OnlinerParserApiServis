@@ -206,6 +206,12 @@ class VocabularyController extends Controller
                 $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
                 // $progress = json_decode($vocabylary->pivot->progress, true);
                 $progress = $vocabylary->pivot->progress;
+            } else {
+                $progress = [
+                    'tryToLern'=>1,
+                    'successLern'=>1,
+                    'errorLern'=>0
+                ];
             }
         }
 
@@ -230,6 +236,8 @@ class VocabularyController extends Controller
         } else {
             $progress['tryToLern'] = $progress['tryToLern']+1;
             $progress['successLern'] = $progress['successLern']+1;
+
+            echo $progress['tryToLern'];
 
             $user->vocabylary()->updateExistingPivot($vocabylaryId, [
                 'status' => 'learned',
