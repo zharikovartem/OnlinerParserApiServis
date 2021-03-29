@@ -219,7 +219,7 @@ class VocabularyController extends Controller
             // $userVocabylary = $user->vocabylary;
         } else {
             $user->vocabylary()->updateExistingPivot($vocabylaryId, [
-                'status' => 'learned!!!',
+                'status' => 'learned',
             ]);
         }
         

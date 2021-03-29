@@ -85,7 +85,9 @@ class User extends Authenticatable
     public function vocabylary()
     {
         $targetClass = 'vocabylary_'.$this->id;
-        return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)->withPivot('status');
+        return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
+        ->withPivot('progress')
+        ->withPivot('status');
     }
 
     public function createVocabylaryRelations()
@@ -96,7 +98,7 @@ class User extends Authenticatable
             $table->timestamps();
             
             $table->text('status');
-            $table->text('progress');
+            $table->json('progress')->nullable();
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('english_word_id');
