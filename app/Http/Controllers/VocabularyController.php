@@ -148,9 +148,17 @@ class VocabularyController extends Controller
         # Получаем для User
         $user = $request->get('user');
         $userVocabylary = $user->vocabylary;
+        $learned = array();
+        $toLearn = array();
         foreach ($userVocabylary as $key => $value) {
             $value->relations;
             $userVocabylaryIds[] = $value->id;
+            if ($value->pivot->status === 'learned') {
+                $learned[] = $value;
+            }
+            if ($value->pivot->status === 'toLearn') {
+                $toLearn[] = $value;
+            }
         }
 
         # Получаем список английских слов
@@ -164,7 +172,10 @@ class VocabularyController extends Controller
             "englishWords"=> $englishWords,
             "user"=> $request->get('user'),
             "userVocabylary"=>$userVocabylary,
-            "userVocabylaryIds"=>$userVocabylaryIds
+            "userVocabylaryIds"=>$userVocabylaryIds,
+
+            "learned"=>$learned,
+            "toLearn"=>$toLearn,
         ], 200);
     }
 }
