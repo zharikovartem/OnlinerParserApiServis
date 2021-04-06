@@ -23,16 +23,16 @@ class VocabularyController extends Controller
     {
         $user = $request->get('user');
         $toLearn = $user->toLearn;
-        // $vocabylary = $user->vocabylary;
+        $vocabylary = $user->vocabylary;
 
-        // $toLearnIds = [];
-        // foreach ($toLearn as $key => $word) {
-        //     $toLearnIds[] = $word->id;
-        // }
-        // $vocabylaryIds = [];
-        // foreach ($vocabylary as $key => $word) {
-        //     $vocabylaryIds[] = $word->id;
-        // }
+        $toLearnIds = [];
+        foreach ($toLearn as $key => $word) {
+            $toLearnIds[] = $word->id;
+        }
+        $vocabylaryIds = [];
+        foreach ($vocabylary as $key => $word) {
+            $vocabylaryIds[] = $word->id;
+        }
 
         // $toLearnCount = count($toLearn);
         // $vocabylaryCount = count($vocabylary);
@@ -62,7 +62,7 @@ class VocabularyController extends Controller
         return response()->json([
             // "user"=> $user,
             "toLearn"=> $toLearn,
-            // "vocabylary"=> $vocabylary,
+            "vocabylary"=> $vocabylary,
             // "englishWords"=>$englishWords
         ], 200);
     }
