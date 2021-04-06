@@ -28,6 +28,7 @@ class VocabularyController extends Controller
         $toLearnIds = [];
         foreach ($toLearn as $key => $word) {
             $toLearnIds[] = $word->id;
+            $word->$relations;
         }
         $vocabylaryIds = [];
         foreach ($vocabylary as $key => $word) {
