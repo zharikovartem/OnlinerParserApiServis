@@ -91,6 +91,12 @@ class User extends Authenticatable
         ->where('status', 'learned');
     }
 
+    /**
+     * get words who need to learn
+     * 
+     *
+     * @return App\Models\Languige\EnglishWord[]
+     */
     public function toLearn()
     {
         $targetClass = 'vocabylary_'.$this->id;
