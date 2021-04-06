@@ -24,7 +24,7 @@ class AuthController extends Controller
                 'user'=>$user
                 ], 200);
         } else {
-            return response()->json(['resultCode'=>1, 'error'=>true, 'messages'=>['Нет токена'] ], 200);
+            return response()->json(['resultCode'=>1, 'error'=>true, 'messages'=>['Нет токена'] ], 401);
         }
     }
 }

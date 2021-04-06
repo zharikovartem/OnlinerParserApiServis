@@ -80,9 +80,6 @@ class ProvidersController extends Controller
         }
         $provider->save();
         return self::index();
-        // return response()->json([
-        //     "providers"=> $provider,
-        // ], 200);
     }
 
     /**
