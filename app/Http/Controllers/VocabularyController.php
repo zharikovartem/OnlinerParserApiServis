@@ -182,8 +182,8 @@ class VocabularyController extends Controller
         $count= Vocabulary::count();
 
         $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
-
         $toLearn = Vocabulary::where('status', 'inProcess')->get();
+        $userVocabylaryIds = [];
 
         # Получаем для User
         $user = $request->get('user');
@@ -319,7 +319,7 @@ class VocabularyController extends Controller
         } else {
             $progress['tryToLearn']++;
             $progress['errorLern']++;
-            
+
             $res['status'] = 'toLearn';
         }
 
