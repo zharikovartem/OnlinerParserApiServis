@@ -238,13 +238,13 @@ class VocabularyController extends Controller
         $user->toLearn;
         
         $isNew = true;
-        foreach ($user->vocabylary as $key => $vocabylary) {
-            if ($vocabylary->id === $englishWord->id) {
+        foreach ($user->toLearn as $key => $word) {
+            if ($word->id === $englishWord->id) {
                 $isNew = false;
                 $vocabylaryId = $englishWord->id;
 
-                if ($vocabylary->pivot->progress !== null) {
-                    $progress = $vocabylary->pivot->progress = json_decode($vocabylary->pivot->progress, true);
+                if ($word->pivot->progress !== null) {
+                    $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
                 } else {
                     $progress = [
                         'tryToLern'=>1,
