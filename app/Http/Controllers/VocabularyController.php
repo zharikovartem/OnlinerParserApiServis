@@ -332,13 +332,17 @@ class VocabularyController extends Controller
     }
 
     public function skipWord(Request $request, int $wordId) {
-        $targetArray = $request->get('user')->toLearn;
+        $user = $request->get('user');
+        $targetArray = $user->toLearn;
         $target = null;
         foreach ($targetArray as $value) {
             if ($value->id === $wordId) {
                 $target = $value;
             }
         }
+        $newPovit = $target->povit;
+        $newPovit['status'] = 'learned';
+        $user->toLearn()->updateExistingPivot($target->id, $newPovit);
 
         return response()->json([
             "wordId"=> $wordId,
