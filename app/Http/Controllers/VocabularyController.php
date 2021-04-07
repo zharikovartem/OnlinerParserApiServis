@@ -330,4 +330,10 @@ class VocabularyController extends Controller
 
         return $res;
     }
+
+    public function skipWord(int $wordId) {
+        return response()->json([
+            "wordId"=> $wordId,
+        ], 200);
+    }
 }
