@@ -331,9 +331,12 @@ class VocabularyController extends Controller
         return $res;
     }
 
-    public function skipWord(int $wordId) {
+    public function skipWord(Request $request, int $wordId) {
+        $target = $request->get('user')->toLearn;
+
         return response()->json([
             "wordId"=> $wordId,
+            "target"=> $target,
         ], 200);
     }
 }
