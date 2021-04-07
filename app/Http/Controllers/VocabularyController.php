@@ -235,6 +235,7 @@ class VocabularyController extends Controller
 
         $user = $request->get('user');
         $user->vocabylary;
+        $user->toLearn;
         
         $isNew = true;
         foreach ($user->vocabylary as $key => $vocabylary) {
