@@ -102,8 +102,8 @@ Route::resource('controllers', 'ControllersController');
 Route::resource('controllerMethods', 'ControllerMethodsController');
 
 Route::get('getVocabularyList', 'Api\Parser\VocabularyCreateController@startVocabularyParsing');
-Route::get('skipWord/{wordId}', 'Api\Parser\VocabularyCreateController@skipWord');
 
+Route::get('skipWord/{wordId}', 'Api\Parser\VocabularyController@skipWord');
 Route::get('getVocabularyPart/{part}', 'VocabularyController@getVocabularyPart')->middleware('token');
 Route::resource('vocabulary', 'VocabularyController')->middleware('token');
 
