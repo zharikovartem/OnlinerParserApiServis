@@ -67,7 +67,7 @@ class VocabularyController extends Controller
             // "user"=> $user,
             "toLearn"=> $toLearn,
             "vocabylary"=> $vocabylary,
-            // "englishWords"=>$englishWords
+            "englishWords"=>$englishWords
         ], 200);
     }
 
