@@ -317,7 +317,9 @@ class VocabularyController extends Controller
             // return 'toLearn';
             $res['status'] = 'toLearn';
         } else {
-            // return 'toLearn';
+            $progress['tryToLearn']++;
+            $progress['errorLern']++;
+            
             $res['status'] = 'toLearn';
         }
 
