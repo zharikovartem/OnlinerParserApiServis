@@ -272,7 +272,7 @@ class VocabularyController extends Controller
             $user->vocabylary;
         } else {
             # UPDATE progress:
-            $progress = $this->checkVocabylaryStatus($progress);
+            $status = $this->checkVocabylaryStatus($progress);
             $progress['tryToLern']++;
             $progress['successLern']++;
             $user->vocabylary()->updateExistingPivot($vocabylaryId, [
@@ -296,10 +296,12 @@ class VocabularyController extends Controller
      *
      *
      * @param  array $progress
-     * @return array 
+     * @return string 
      */
     private function checkVocabylaryStatus(array  $progress) {
-
-        return $progress;
+        if ($progress['successLern'] > $progress['errorLern']*2+5) {
+            return 'learned';
+        }
+        return 'toLern';
     }
 }
