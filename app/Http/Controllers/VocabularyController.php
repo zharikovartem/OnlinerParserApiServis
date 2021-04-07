@@ -36,30 +36,32 @@ class VocabularyController extends Controller
             $vocabylaryIds[] = $word->id;
         }
 
-        // $toLearnCount = count($toLearn);
+        $newIds = array_merge($toLearnIds, $vocabylaryIds);
+
+        $toLearnCount = count($toLearn);
         // $vocabylaryCount = count($vocabylary);
 
-        // $englishWords = EnglishWord::whereNotIn('id', $toLearnIds)
-        //     ->whereNotIn('id', $vocabylaryIds)
-        //     ->limit(100-$toLearnCount)
-        //     ->get();
+        $englishWords = EnglishWord::whereNotIn('id', $newIds)
+            ->whereNotIn('id', $vocabylaryIds)
+            ->limit(25-$toLearnCount)
+            ->get();
 
-        // if (count($englishWords) !== 0) {
-        //     foreach ($englishWords as $key => $englishWord) {
-        //         $attachItem = [
-        //             'english_word_id'=>$englishWord->id,
-        //             'status' => 'toLearn',
-        //             'progress'=>json_encode( [
-        //                 'tryToLearn'=>0,
-        //                 'successLern'=>0,
-        //                 'errorLern'=>0
-        //             ] )
-        //         ];
-        //         $user->vocabylary()->attach([$attachItem]);
-        //     }
-        //     $user = User::where('id', $user->id)->get()[0];
-        //     $toLearn = $user->toLearn;
-        // }
+        if (count($englishWords) !== 0) {
+            foreach ($englishWords as $key => $englishWord) {
+                $attachItem = [
+                    'english_word_id'=>$englishWord->id,
+                    'status' => 'toLearn',
+                    'progress'=>json_encode( [
+                        'tryToLearn'=>0,
+                        'successLern'=>0,
+                        'errorLern'=>0
+                    ] )
+                ];
+                $user->vocabylary()->attach([$attachItem]);
+            }
+            $user = User::where('id', $user->id)->get()[0];
+            $toLearn = $user->toLearn;
+        }
 
         return response()->json([
             // "user"=> $user,
