@@ -332,7 +332,13 @@ class VocabularyController extends Controller
     }
 
     public function skipWord(Request $request, int $wordId) {
-        $target = $request->get('user')->toLearn;
+        $targetArray = $request->get('user')->toLearn;
+        $target = null;
+        foreach ($targetArray as $value) {
+            if ($value->id === $wordId) {
+                $target = $value;
+            }
+        }
 
         return response()->json([
             "wordId"=> $wordId,
