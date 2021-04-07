@@ -50,7 +50,7 @@ class VocabularyController extends Controller
         //             'english_word_id'=>$englishWord->id,
         //             'status' => 'toLearn',
         //             'progress'=>json_encode( [
-        //                 'tryToLern'=>0,
+        //                 'tryToLearn'=>0,
         //                 'successLern'=>0,
         //                 'errorLern'=>0
         //             ] )
@@ -183,7 +183,7 @@ class VocabularyController extends Controller
 
         $vocabularyList = Vocabulary::where('id', '>=', $part*100+1)->where('id', '<', $part*100+101)->get();
 
-        $toLern = Vocabulary::where('status', 'inProcess')->get();
+        $toLearn = Vocabulary::where('status', 'inProcess')->get();
 
         # Получаем для User
         $user = $request->get('user');
@@ -211,7 +211,7 @@ class VocabularyController extends Controller
             "vocabularyList"=> $vocabularyList,
             "part"=> $part+1,
             "count"=> $count,
-            "toLern"=> $toLern,
+            "toLearn"=> $toLearn,
             "englishWords"=> $englishWords,
             "user"=> $request->get('user'),
             "userVocabylary"=>$userVocabylary,
@@ -247,8 +247,8 @@ class VocabularyController extends Controller
                     $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
                 } else {
                     $progress = [
-                        'tryToLern'=>1,
-                        'successLern'=>1,
+                        'tryToLearn'=>0,
+                        'successLern'=>0,
                         'errorLern'=>0
                     ];
                 }
@@ -261,7 +261,7 @@ class VocabularyController extends Controller
                 'english_word_id'=>$englishWord->id,
                 'status' => 'toLearn',
                 'progress'=>json_encode( [
-                    'tryToLern'=>1,
+                    'tryToLearn'=>1,
                     'successLern'=>1,
                     'errorLern'=>0
                 ] )
@@ -307,18 +307,18 @@ class VocabularyController extends Controller
         ];
 
         if ($status === 'success') {
-            $progress['tryToLern']++;
+            $progress['tryToLearn']++;
             $progress['successLern']++;
 
             if ($progress['successLern'] > $progress['errorLern']*2+5) {
                 // return 'learned';
                 $res['status'] = 'learned';
             }
-            // return 'toLern';
-            $res['status'] = 'toLern';
+            // return 'toLearn';
+            $res['status'] = 'toLearn';
         } else {
-            // return 'toLern';
-            $res['status'] = 'toLern';
+            // return 'toLearn';
+            $res['status'] = 'toLearn';
         }
 
         $res['progress'] = json_encode($progress);
