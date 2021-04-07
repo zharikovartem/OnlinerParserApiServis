@@ -278,7 +278,7 @@ class VocabularyController extends Controller
             //     'status' => $progress['successLern'] >= 5 ? 'learned' : 'toLearn',
             //     'progress'=>json_encode($progress)
             // ]);
-            $user->vocabulary()->updateExistingPivot($vocabylaryId, $result);
+            // $user->vocabulary()->updateExistingPivot($vocabylaryId, $result);
         }
         
         $toLearn = $user->toLearn;
@@ -319,7 +319,7 @@ class VocabularyController extends Controller
             'status' => '',
             'progress'=>json_encode($progress)
         ];
-        
+
         return $res;
     }
 }
