@@ -315,9 +315,10 @@ class VocabularyController extends Controller
             if ($progress['successLern'] > $progress['errorLern']*2+5) {
                 // return 'learned';
                 $res['status'] = 'learned';
+            } else {
+                $res['status'] = 'toLearn';
             }
-            // return 'toLearn';
-            $res['status'] = 'toLearn';
+            
         } else {
             $progress['tryToLearn']++;
             $progress['errorLern']++;
