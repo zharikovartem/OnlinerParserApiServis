@@ -232,7 +232,7 @@ class VocabularyController extends Controller
     public function checkTestResult(Request $request, EnglishWord  $englishWord)
     {
         # method: POST ???
-
+        $status = $request->get('result');
         $user = $request->get('user');
         $user->vocabylary;
         $user->toLearn;
@@ -272,13 +272,14 @@ class VocabularyController extends Controller
             $user->vocabylary;
         } else {
             # UPDATE progress:
-            $status = $this->checkVocabylaryStatus($progress);
+            $result = $this->checkVocabylaryStatus($progress, $status);
             $progress['tryToLern']++;
             $progress['successLern']++;
-            $user->vocabylary()->updateExistingPivot($vocabylaryId, [
-                'status' => $progress['successLern'] >= 5 ? 'learned' : 'toLearn',
-                'progress'=>json_encode($progress)
-            ]);
+            // $user->vocabylary()->updateExistingPivot($vocabylaryId, [
+            //     'status' => $progress['successLern'] >= 5 ? 'learned' : 'toLearn',
+            //     'progress'=>json_encode($progress)
+            // ]);
+            $user->vocabulary()->updateExistingPivot($vocabylaryId, $result);
         }
         
         $toLearn = $user->toLearn;
@@ -296,12 +297,26 @@ class VocabularyController extends Controller
      *
      *
      * @param  array $progress
-     * @return string 
+     * @param string $status
+     * @return array 
      */
-    private function checkVocabylaryStatus(array  $progress) {
-        if ($progress['successLern'] > $progress['errorLern']*2+5) {
-            return 'learned';
+    private function checkVocabylaryStatus(array  $progress, string $status) {
+        $res = [
+            'status' => '',
+            'progress'=>json_encode($progress)
+        ];
+
+        if ($status === 'success') {
+            if ($progress['successLern'] > $progress['errorLern']*2+5) {
+                // return 'learned';
+                $res['status'] = 'learned';
+            }
+            // return 'toLern';
+            $res['status'] = 'toLern';
+        } else {
+            // return 'toLern';
+            $res['status'] = 'toLern';
         }
-        return 'toLern';
+        return $res;
     }
 }
