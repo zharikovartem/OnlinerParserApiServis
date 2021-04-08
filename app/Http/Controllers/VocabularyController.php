@@ -63,6 +63,10 @@ class VocabularyController extends Controller
             $toLearn = $user->toLearn;
         }
 
+        foreach ($toLearn as $key => $word) {
+            $toLearn[$key]->relations;
+        }
+
         return response()->json([
             // "user"=> $user,
             "toLearn"=> $toLearn,
