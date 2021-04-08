@@ -61,10 +61,9 @@ class VocabularyController extends Controller
             }
             $user = User::where('id', $user->id)->get()[0];
             $toLearn = $user->toLearn;
-        }
-
-        foreach ($toLearn as $key => $word) {
-            $toLearn[$key]->relations;
+            foreach ($toLearn as $key => $word) {
+                $toLearn[$key]->relations;
+            }
         }
 
         return response()->json([
