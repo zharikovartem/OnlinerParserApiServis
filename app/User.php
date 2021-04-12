@@ -86,8 +86,16 @@ class User extends Authenticatable
     {
         $targetClass = 'vocabylary_'.$this->id;
         return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
-        ->withPivot('progress')
-        ->withPivot('status')
+        ->withPivot(
+            'progress', 
+            'status',
+            'progress_ru_en_c',
+            'progress_en_ru_c',
+            'progress_ru_en_s',
+            'progress_en_ru_s',
+            'progress_ru_en_r',
+            'progress_en_ru_r'
+            )
         ->where('status', 'learned');
     }
 
@@ -101,7 +109,16 @@ class User extends Authenticatable
     {
         $targetClass = 'vocabylary_'.$this->id;
         return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
-        ->withPivot('progress', 'status')
+        ->withPivot(
+            'progress', 
+            'status',
+            'progress_ru_en_c',
+            'progress_en_ru_c',
+            'progress_ru_en_s',
+            'progress_en_ru_s',
+            'progress_ru_en_r',
+            'progress_en_ru_r'
+            )
         ->where('status', 'toLearn');
     }
 

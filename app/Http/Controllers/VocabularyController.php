@@ -236,6 +236,9 @@ class VocabularyController extends Controller
      */
     public function checkTestResult(Request $request, EnglishWord  $englishWord)
     {
+        # Опредиляем метод проверки:
+        $checkMethod = $request->get('checkMethod');
+
         # method: POST ???
         $status = $request->get('result');
         $user = $request->get('user');
@@ -277,7 +280,7 @@ class VocabularyController extends Controller
             $user->vocabylary;
         } else {
             # UPDATE progress:
-            $result = $this->checkVocabylaryStatus($progress, $status);
+            $result = $this->checkVocabylaryStatus($progress, $status, $checkMethod);
             // var_dump($result);
             
             // $user->vocabylary()->updateExistingPivot($vocabylaryId, [
@@ -299,16 +302,23 @@ class VocabularyController extends Controller
     }
 
     /**
-     *
+     * Проверяет статус слова после изменения параметров
      *
      * @param  array $progress
      * @param string $status
+     * @param string $checkMethod
      * @return array 
      */
-    private function checkVocabylaryStatus(array  $progress, string $status) {
+    private function checkVocabylaryStatus(array  $progress, string $status, string $checkMethod) {
         $res = [
             'status' => '',
-            'progress'=>''
+            'progress'=>'',
+            'progress_ru_en_c',
+            'progress_en_ru_c',
+            'progress_ru_en_s',
+            'progress_en_ru_s',
+            'progress_ru_en_r',
+            'progress_en_ru_r'
         ];
 
         if ($status === 'success') {
