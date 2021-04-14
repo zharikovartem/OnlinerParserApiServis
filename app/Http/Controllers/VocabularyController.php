@@ -252,18 +252,6 @@ class VocabularyController extends Controller
                 $vocabylaryId = $englishWord->id;
 
                 $progress = new UserVocabylaryPovit( json_decode($word->pivot, true) );
-
-                // if ($word->pivot->progress !== null) {
-                //     // $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
-                //     $progress = new UserVocabylaryPovit( json_decode($word->pivot, true) );
-                // } else {
-                //     // $progress = [
-                //     //     'tryToLearn'=>0,
-                //     //     'successLern'=>0,
-                //     //     'errorLern'=>0
-                //     // ];
-                //     $progress = new UserVocabylaryPovit();
-                // }
             }
             
         }
@@ -281,7 +269,7 @@ class VocabularyController extends Controller
             # создаем новый progress
             $user->vocabylary()->attach([$attachItem]);
             # обновляем User
-            $user = User::where('id', $user->id)->get()[0];
+            // $user = User::where('id', $user->id)->get()[0];
             $user->vocabylary;
         } else {
             # Обновляем уже существующий progress
