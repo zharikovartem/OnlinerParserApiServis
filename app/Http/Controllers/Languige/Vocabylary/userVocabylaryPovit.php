@@ -93,7 +93,13 @@ class UserVocabylaryPovit{
             'english_word_id'=>$this->english_word_id,
             'user_id'=>$this->user_id,
 
-            'progress'=>$this->progress->getArray()
+            'progress'=>$this->progress->getArray(),
+            'progress_ru_en_c'=>$this->progress_ru_en_c->getArray(),
+            'progress_en_ru_c'=>$this->progress_en_ru_c->getArray(),
+            'progress_ru_en_s'=>$this->progress_ru_en_s->getArray(),
+            'progress_en_ru_s'=>$this->progress_en_ru_s->getArray(),
+            'progress_ru_en_r'=>$this->progress_ru_en_r->getArray(),
+            'progress_en_ru_r'=>$this->progress_en_ru_r->getArray()
         ];
     }
 
