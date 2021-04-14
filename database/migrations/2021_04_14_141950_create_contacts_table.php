@@ -21,7 +21,11 @@ class CreateContactsTable extends Migration
             $table->json("Viber")->nullable();
             $table->json("Telegram")->nullable();
             $table->json("WhatsApp")->nullable();
-            $table->bigInteger("providerId")->nullable();
+            // $table->bigInteger("providerId")->nullable();
+            $table->foreign('providerId')
+                    ->references('id')->on('Providers')
+                    ->onDelete('cascade');
+                    
             $table->softDeletes();
             $table->timestamps();
         });
