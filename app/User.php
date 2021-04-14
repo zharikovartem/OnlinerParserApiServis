@@ -122,6 +122,10 @@ class User extends Authenticatable
             )
         ->where('status', 'toLearn');
 
+        foreach ($data as $key => $value) {
+            # code...
+        }
+
         return $data;
     }
 
