@@ -128,8 +128,8 @@ class User extends Authenticatable
         //     $data[$key]->povit2 = $item['povit'];
         // }
 
-        foreach ($data as $key => $value) {
-            $data[$key]->aaa = 'aaa';
+        foreach ($data as $value) {
+            $value->aaa = 'aaa';
         }
 
         // var_dump($data);
