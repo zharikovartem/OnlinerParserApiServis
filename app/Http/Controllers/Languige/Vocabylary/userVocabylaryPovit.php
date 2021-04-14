@@ -90,9 +90,9 @@ class UserVocabylaryPovit{
     public function getArray()
     {
         return [
-            $this->status,
-            $this->english_word_id,
-            $this->user_id
+            'status'=>$this->status,
+            'english_word_id'=>$this->english_word_id,
+            'user_id'=>$this->user_id
         ];
     }
 
