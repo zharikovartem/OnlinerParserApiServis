@@ -43,8 +43,17 @@ class ProgressInstanse {
         ];
     }
 
-    public function editData()
+    /**
+     * Преобразовывает данные в массив
+     * @param string $status
+     */
+    public function editData($status)
     {
         $this->tryToLearn++;
+        if ($status === 'success') {
+            $this->successLern++;
+        } else {
+            $this->errorLern++;
+        }
     }
 }

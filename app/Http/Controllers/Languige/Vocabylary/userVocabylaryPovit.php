@@ -106,11 +106,12 @@ class UserVocabylaryPovit{
     /**
      * Преобразовывает данные в массив
      * @param string $checkMethod
+     * @param string $status
      */
-    public function editProperty($checkMethod)
+    public function editProperty($checkMethod, $status)
     {
         $fieldName = 'progress_'.$checkMethod;
-        $this->$fieldName->editData();
+        $this->$fieldName->editData($status);
     }
 
 }
