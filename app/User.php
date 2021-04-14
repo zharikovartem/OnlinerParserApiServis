@@ -109,6 +109,7 @@ class User extends Authenticatable
     public function toLearn()
     {
         $targetClass = 'vocabylary_'.$this->id;
+
         $data = $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
         ->withPivot(
             'progress', 
@@ -122,6 +123,7 @@ class User extends Authenticatable
             )
         ->where('status', 'toLearn');
 
+        var_dump($data);
         // $data->povit2 = new userVocabylaryPovit($data->povit);
 
         return $data;
