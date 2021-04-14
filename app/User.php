@@ -128,7 +128,7 @@ class User extends Authenticatable
         //     $data[$key]->povit2 = $item['povit'];
         // }
 
-        $data->check = '!true';
+        $data['check'] = '!true';
 
         // var_dump($data);
         // $data->povit2 = new userVocabylaryPovit($data->povit);
