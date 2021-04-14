@@ -82,4 +82,18 @@ class UserVocabylaryPovit{
         
     }
 
+    /**
+     * Преобразовывает данные в массив
+     *
+     * @return array 
+     */
+    public function getArray()
+    {
+        return [
+            $this->status,
+            $this->english_word_id,
+            $this->user_id
+        ];
+    }
+
 }
