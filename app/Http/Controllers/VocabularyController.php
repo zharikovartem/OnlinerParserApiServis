@@ -324,10 +324,10 @@ class VocabularyController extends Controller
         ];
 
         if ($status === 'success') {
-            $progress->progress['tryToLearn']++;
-            $progress->progress['successLern']++;
+            $progress->progress->tryToLearn++;
+            $progress->progress->successLern++;
 
-            if ($progress->progress['successLern'] > $progress->progress['errorLern']*2+5) {
+            if ($progress->progress->successLern > $progress->progress->errorLern*2+5) {
                 // return 'learned';
                 $res['status'] = 'learned';
             } else {
@@ -335,8 +335,8 @@ class VocabularyController extends Controller
             }
             
         } else {
-            $progress->progress['tryToLearn']++;
-            $progress->progress['errorLern']++;
+            $progress->progress->tryToLearn++;
+            $progress->progress->errorLern++;
 
             $res['status'] = 'toLearn';
         }
