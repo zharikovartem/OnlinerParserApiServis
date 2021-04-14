@@ -122,7 +122,7 @@ class User extends Authenticatable
             )
         ->where('status', 'toLearn');
 
-        $data->povit2 = new userVocabylaryPovit($data->povit);
+        $data->povit2 = new userVocabylaryPovit($data['povit']);
 
         return $data;
     }
