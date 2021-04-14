@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Http\Controllers\Languige\Vocabylary\userVocabylaryPovit;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -122,18 +121,6 @@ class User extends Authenticatable
             'progress_en_ru_r'
             )
         ->where('status', 'toLearn');
-
-        // foreach ($data as $key => $item) {
-        //     // $data[$key]->povit2 = new userVocabylaryPovit($item['povit']);
-        //     $data[$key]->povit2 = $item['povit'];
-        // }
-
-        foreach ($data as $value) {
-            $value->gender = 'aaa';
-        }
-
-        // var_dump($data);
-        // $data->povit2 = new userVocabylaryPovit($data->povit);
 
         return $data;
     }

@@ -4,6 +4,7 @@ namespace app\Models\Languige;
 
 use App\Classes\Languige\AbstractWord;
 use App\Models\Languige\RussianWord;
+use App\Http\Controllers\Languige\Vocabylary\userVocabylaryPovit;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -19,6 +20,12 @@ class EnglishWord extends AbstractWord
     // }
 
     public $relationsList;
+
+    /**
+    * Значение статуса 
+    * @var userVocabylaryPovit
+    */
+    public $povit;
 
     protected $table = 'EngleshWords';
 
