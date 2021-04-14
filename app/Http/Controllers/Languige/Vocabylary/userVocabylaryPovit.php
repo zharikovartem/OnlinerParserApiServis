@@ -73,7 +73,7 @@ class UserVocabylaryPovit{
 
             $this->progress = new ProgressInstanse($data['progress']);
             $this->progress_ru_en_c = isset($data['progress_ru_en_c']) ? new ProgressInstanse($data['progress_ru_en_c']) : new ProgressInstanse();
-            // $this->progress_en_ru_c = new ProgressInstanse($data['progress_en_ru_c']);
+            $this->progress_en_ru_c = new ProgressInstanse($data['progress_en_ru_c']);
             // $this->progress_ru_en_s = new ProgressInstanse($data['progress_ru_en_s']);
             // $this->progress_en_ru_s = new ProgressInstanse($data['progress_en_ru_s']);
             // $this->progress_ru_en_r = new ProgressInstanse($data['progress_ru_en_r']);
