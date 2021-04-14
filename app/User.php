@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\Languige\Vocabylary\userVocabylaryPovit;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -108,7 +109,7 @@ class User extends Authenticatable
     public function toLearn()
     {
         $targetClass = 'vocabylary_'.$this->id;
-        return $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
+        $data = $this->belongsToMany( 'App\Models\Languige\EnglishWord', $targetClass)
         ->withPivot(
             'progress', 
             'status',
@@ -120,6 +121,10 @@ class User extends Authenticatable
             'progress_en_ru_r'
             )
         ->where('status', 'toLearn');
+
+        $data->povit2 = new userVocabylaryPovit($data->povit);
+
+        return $data;
     }
 
     public function createVocabylaryRelations()
