@@ -89,6 +89,9 @@ class User extends Authenticatable
         ->withPivot(
             'progress', 
             'status',
+            'status_c',
+            'status_s',
+            'status_r',
             'progress_ru_en_c',
             'progress_en_ru_c',
             'progress_ru_en_s',

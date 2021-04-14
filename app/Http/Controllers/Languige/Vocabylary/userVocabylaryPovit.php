@@ -84,14 +84,13 @@ class UserVocabylaryPovit{
     public function __construct(array $data = null)
     {
         if ($data) {
-            // $data = json_decode($paramSrtring, true);
+            $this->english_word_id = (int) $data['english_word_id'];
+            $this->user_id = (int) $data['user_id'];
+
             $this->status = $data['status'];
             $this->status_c = $data['status_c'];
             $this->status_s = $data['status_s'];
             $this->status_r = $data['status_r'];
-
-            $this->english_word_id = (int) $data['english_word_id'];
-            $this->user_id = (int) $data['user_id'];
 
             $this->progress = new ProgressInstanse($data['progress']);
             $this->progress_ru_en_c = isset($data['progress_ru_en_c']) ? new ProgressInstanse($data['progress_ru_en_c']) : new ProgressInstanse();

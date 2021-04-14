@@ -251,17 +251,19 @@ class VocabularyController extends Controller
                 $isNew = false;
                 $vocabylaryId = $englishWord->id;
 
-                if ($word->pivot->progress !== null) {
-                    // $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
-                    $progress = new UserVocabylaryPovit( json_decode($word->pivot, true) );
-                } else {
-                    // $progress = [
-                    //     'tryToLearn'=>0,
-                    //     'successLern'=>0,
-                    //     'errorLern'=>0
-                    // ];
-                    $progress = new UserVocabylaryPovit();
-                }
+                $progress = new UserVocabylaryPovit( json_decode($word->pivot, true) );
+
+                // if ($word->pivot->progress !== null) {
+                //     // $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
+                //     $progress = new UserVocabylaryPovit( json_decode($word->pivot, true) );
+                // } else {
+                //     // $progress = [
+                //     //     'tryToLearn'=>0,
+                //     //     'successLern'=>0,
+                //     //     'errorLern'=>0
+                //     // ];
+                //     $progress = new UserVocabylaryPovit();
+                // }
             }
             
         }
@@ -276,20 +278,14 @@ class VocabularyController extends Controller
                     'errorLern'=>0
                 ] )
             ];
+            # создаем новый progress
             $user->vocabylary()->attach([$attachItem]);
             # обновляем User
             $user = User::where('id', $user->id)->get()[0];
             $user->vocabylary;
         } else {
-            # UPDATE progress:
-            // $result = $this->checkVocabylaryStatus($progress, $status, $checkMethod);
+            # Обновляем уже существующий progress
             $progress->editProperty($checkMethod, $status);
-            // var_dump($result);
-            
-            // $user->vocabylary()->updateExistingPivot($vocabylaryId, [
-            //     'status' => $progress['successLern'] >= 5 ? 'learned' : 'toLearn',
-            //     'progress'=>json_encode($progress)
-            // ]);
             $user->vocabylary()->updateExistingPivot($vocabylaryId, $progress->getArray());
         }
         
@@ -302,52 +298,6 @@ class VocabularyController extends Controller
             "progress"=>isset($progress) ? $progress : null,
             "toLearn"=>$toLearn,
         ], 200);
-    }
-
-    /**
-     * Проверяет статус слова после изменения параметров
-     *
-     * @param  UserVocabylaryPovit $progress
-     * @param string $status
-     * @param string $checkMethod
-     * @return UserVocabylaryPovit 
-     */
-    private function checkVocabylaryStatus(UserVocabylaryPovit  $progress, string $status, string $checkMethod) {
-        // $res = [
-        //     'status' => '',
-        //     'progress'=>'',
-        //     'progress_ru_en_c'=>'{}',
-        //     'progress_en_ru_c'=>'{}',
-        //     'progress_ru_en_s'=>'{}',
-        //     'progress_en_ru_s'=>'{}',
-        //     'progress_ru_en_r'=>'{}',
-        //     'progress_en_ru_r'=>'{}'
-        // ];
-
-        // if ($status === 'success') {
-        //     $progress->progress->tryToLearn++;
-        //     $progress->progress->successLern++;
-
-        //     if ($progress->progress->successLern > $progress->progress->errorLern*2+5) {
-        //         // return 'learned';
-        //         $res['status'] = 'learned';
-        //     } else {
-        //         $res['status'] = 'toLearn';
-        //     }
-            
-        // } else {
-        //     // $progress->progress->tryToLearn++;
-        //     // $progress->progress->errorLern++;
-
-        //     $res['status'] = 'toLearn';
-        // }
-
-        // $res['progress'] = json_encode($progress->progress);
-
-        $progress->editProperty($checkMethod, $status);
-
-        // return $res;
-        return $progress;
     }
 
     public function skipWord(Request $request, int $wordId) {
