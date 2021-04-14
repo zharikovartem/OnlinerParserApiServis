@@ -22,8 +22,8 @@ class CreateContactsTable extends Migration
             $table->json("Telegram")->nullable();
             $table->json("WhatsApp")->nullable();
 
-            $table->unsignedBigInteger("providerId")->nullable();
-            $table->foreign('providerId')
+            $table->unsignedBigInteger("providers_id")->nullable();
+            $table->foreign('providers_id')
                     ->references('id')->on('Providers')
                     ->onDelete('cascade');
 
