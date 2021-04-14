@@ -312,36 +312,36 @@ class VocabularyController extends Controller
      * @return UserVocabylaryPovit 
      */
     private function checkVocabylaryStatus(UserVocabylaryPovit  $progress, string $status, string $checkMethod) {
-        $res = [
-            'status' => '',
-            'progress'=>'',
-            'progress_ru_en_c'=>'{}',
-            'progress_en_ru_c'=>'{}',
-            'progress_ru_en_s'=>'{}',
-            'progress_en_ru_s'=>'{}',
-            'progress_ru_en_r'=>'{}',
-            'progress_en_ru_r'=>'{}'
-        ];
+        // $res = [
+        //     'status' => '',
+        //     'progress'=>'',
+        //     'progress_ru_en_c'=>'{}',
+        //     'progress_en_ru_c'=>'{}',
+        //     'progress_ru_en_s'=>'{}',
+        //     'progress_en_ru_s'=>'{}',
+        //     'progress_ru_en_r'=>'{}',
+        //     'progress_en_ru_r'=>'{}'
+        // ];
 
-        if ($status === 'success') {
-            $progress->progress->tryToLearn++;
-            $progress->progress->successLern++;
+        // if ($status === 'success') {
+        //     $progress->progress->tryToLearn++;
+        //     $progress->progress->successLern++;
 
-            if ($progress->progress->successLern > $progress->progress->errorLern*2+5) {
-                // return 'learned';
-                $res['status'] = 'learned';
-            } else {
-                $res['status'] = 'toLearn';
-            }
+        //     if ($progress->progress->successLern > $progress->progress->errorLern*2+5) {
+        //         // return 'learned';
+        //         $res['status'] = 'learned';
+        //     } else {
+        //         $res['status'] = 'toLearn';
+        //     }
             
-        } else {
-            $progress->progress->tryToLearn++;
-            $progress->progress->errorLern++;
+        // } else {
+        //     // $progress->progress->tryToLearn++;
+        //     // $progress->progress->errorLern++;
 
-            $res['status'] = 'toLearn';
-        }
+        //     $res['status'] = 'toLearn';
+        // }
 
-        $res['progress'] = json_encode($progress->progress);
+        // $res['progress'] = json_encode($progress->progress);
 
         $progress->editProperty($checkMethod, $status);
 
