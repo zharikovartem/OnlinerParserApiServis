@@ -21,11 +21,11 @@ class EnglishWord extends AbstractWord
 
     public $relationsList;
 
-    /**
-    * Значение статуса 
-    * @var userVocabylaryPovit
-    */
-    public $pivot;
+    // /**
+    // * Значение статуса 
+    // * @var userVocabylaryPovit
+    // */
+    // public $pivot;
 
     protected $table = 'EngleshWords';
 
