@@ -111,6 +111,10 @@ class UserVocabylaryPovit{
     {
         return [
             'status'=>$this->status,
+            'status_c'=>$this->status_c,
+            'status_s'=>$this->status_s,
+            'status_r'=>$this->status_r,
+
             'english_word_id'=>$this->english_word_id,
             'user_id'=>$this->user_id,
 
