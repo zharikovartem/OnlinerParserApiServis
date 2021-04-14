@@ -25,7 +25,7 @@ class EnglishWord extends AbstractWord
     * Значение статуса 
     * @var userVocabylaryPovit
     */
-    public $povit;
+    public $pivot;
 
     protected $table = 'EngleshWords';
 
