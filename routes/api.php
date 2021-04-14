@@ -110,4 +110,4 @@ Route::post('checkTestResult/{englishWord}', 'VocabularyController@checkTestResu
 
 Route::resource('providers', 'ProvidersController');
 
-Route::resource('contacts', 'ContactsController');
+Route::resource('contacts', 'ContactsController')->middleware('token');
