@@ -24,9 +24,9 @@ class ProgressInstanse {
     public function __construct(string $paramSrtring = null) {
         if ($paramSrtring) {
             $data = json_decode($paramSrtring, true);
-            $this->errorLern = (int) $data['errorLern'];
-            $this->tryToLearn = (int) $data['tryToLearn'];
-            $this->successLern = (int) $data['successLern'];
+            if (isset($data['errorLern'])) $this->errorLern = (int) $data['errorLern'];
+            if (isset($data['tryToLearn'])) $this->tryToLearn = (int) $data['tryToLearn'];
+            if (isset($data['successLern'])) $this->successLern = (int) $data['successLern'];
         }         
     }
 }
