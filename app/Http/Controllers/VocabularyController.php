@@ -309,7 +309,7 @@ class VocabularyController extends Controller
      * @param  UserVocabylaryPovit $progress
      * @param string $status
      * @param string $checkMethod
-     * @return array 
+     * @return UserVocabylaryPovit 
      */
     private function checkVocabylaryStatus(UserVocabylaryPovit  $progress, string $status, string $checkMethod) {
         $res = [
@@ -343,7 +343,8 @@ class VocabularyController extends Controller
 
         $res['progress'] = json_encode($progress->progress);
 
-        return $res;
+        // return $res;
+        return $progress;
     }
 
     public function skipWord(Request $request, int $wordId) {
