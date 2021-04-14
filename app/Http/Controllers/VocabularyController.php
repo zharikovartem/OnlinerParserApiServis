@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Languige\Vocabylary\UserVocabylaryPovit;
+use App\Http\Controllers\Languige\Vocabylary\userVocabylaryPovit;
 use App\Vocabulary;
 use Illuminate\Http\Request;
 
