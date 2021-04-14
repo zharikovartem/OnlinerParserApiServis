@@ -124,7 +124,8 @@ class User extends Authenticatable
         ->where('status', 'toLearn');
 
         foreach ($data as $key => $item) {
-            $data[$key]->povit2 = new userVocabylaryPovit($item['povit']);
+            // $data[$key]->povit2 = new userVocabylaryPovit($item['povit']);
+            $data[$key]->povit2 = $item['povit'];
         }
 
         // var_dump($data);
