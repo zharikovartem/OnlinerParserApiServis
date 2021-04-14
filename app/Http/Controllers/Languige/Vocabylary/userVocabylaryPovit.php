@@ -133,8 +133,8 @@ class UserVocabylaryPovit{
     {
         $fieldName = 'progress_'.$checkMethod;
         $statusName = 'status_'.explode('_', $checkMethod)[2];
-        
-        if( $this->$fieldName->editData($status) ) $this->$statusName = 'learned';
+
+        $this->$fieldName->editData($status) ? $this->$statusName='learned' : $this->$statusName='toLearn';
 
         $this->progress->editData($status);
     }
