@@ -123,7 +123,11 @@ class User extends Authenticatable
             )
         ->where('status', 'toLearn');
 
-        var_dump($data);
+        foreach ($data as $key => $item) {
+            $item->povit2 = new userVocabylaryPovit($item->povit);
+        }
+
+        // var_dump($data);
         // $data->povit2 = new userVocabylaryPovit($data->povit);
 
         return $data;
