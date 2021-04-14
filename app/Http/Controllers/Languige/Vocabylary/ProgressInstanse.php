@@ -46,6 +46,8 @@ class ProgressInstanse {
     /**
      * Преобразовывает данные в массив
      * @param string $status
+     * 
+     * @return boolean 
      */
     public function editData($status)
     {
@@ -55,5 +57,18 @@ class ProgressInstanse {
         } else {
             $this->errorLern++;
         }
+
+        return $this->checkStatus();
+    }
+
+    private function checkStatus()
+    {
+        if ($this->errorLern*2 < $this->successLern) {
+            if ($this->tryToLearn>5) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

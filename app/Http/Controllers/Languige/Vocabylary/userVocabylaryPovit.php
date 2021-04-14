@@ -132,7 +132,10 @@ class UserVocabylaryPovit{
     public function editProperty($checkMethod, $status)
     {
         $fieldName = 'progress_'.$checkMethod;
-        $this->$fieldName->editData($status);
+        $statusName = 'status_'.explode('_', $checkMethod)[2];
+        
+        if( $this->$fieldName->editData($status) ) $this->$statusName = 'learned';
+
         $this->progress->editData($status);
     }
 
