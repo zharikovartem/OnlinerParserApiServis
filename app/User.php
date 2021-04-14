@@ -122,9 +122,9 @@ class User extends Authenticatable
             )
         ->where('status', 'toLearn');
 
-        foreach ($data as $key => $value) {
-            $data[$key]->relations;
-        }
+        // foreach ($data as $key => $value) {
+        //     $data[$key]->relations;
+        // }
 
         return $data;
     }
