@@ -42,4 +42,9 @@ class ProgressInstanse {
             'successLern'=>$this->successLern,
         ];
     }
+
+    public function editData()
+    {
+        $this->tryToLearn++;
+    }
 }

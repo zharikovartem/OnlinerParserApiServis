@@ -343,6 +343,8 @@ class VocabularyController extends Controller
 
         $res['progress'] = json_encode($progress->progress);
 
+        $progress->editProperty($checkMethod);
+        
         // return $res;
         return $progress;
     }

@@ -84,7 +84,6 @@ class UserVocabylaryPovit{
 
     /**
      * Преобразовывает данные в массив
-     *
      * @return array 
      */
     public function getArray()
@@ -96,6 +95,16 @@ class UserVocabylaryPovit{
 
             'progress'=>$this->progress->getArray()
         ];
+    }
+
+    /**
+     * Преобразовывает данные в массив
+     * @param string $checkMethod
+     */
+    public function editProperty($checkMethod)
+    {
+        $fieldName = 'progress_'.$checkMethod;
+        $this->$fieldName->editData;
     }
 
 }
