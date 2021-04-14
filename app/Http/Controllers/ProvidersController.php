@@ -15,6 +15,10 @@ class ProvidersController extends Controller
     public function index()
     {
         $providers = Providers::get();
+
+        foreach ($providers as $provider) {
+            $provider->contacts;
+        }
         return response()->json([
             "providersList"=> $providers,
         ], 200);

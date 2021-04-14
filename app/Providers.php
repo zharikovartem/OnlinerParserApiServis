@@ -11,4 +11,9 @@ class Providers extends Model
     protected $fillable = [
                 "name",
     ];
+
+    public function contacts()
+    {
+      return $this->hasMany(Contacts::class);
+    }
 }
