@@ -18,6 +18,6 @@ class Contacts extends Model
                 "Viber",
                 "Telegram",
                 "WhatsApp",
-                "providerId",
+                "providers_id",
     ];
 }
