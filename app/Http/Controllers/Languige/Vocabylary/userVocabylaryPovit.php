@@ -15,19 +15,19 @@ class UserVocabylaryPovit{
      * Значение статуса 
      * @var string
      */
-    public $status_c;
+    public $status_c='toLearn';
 
     /**
      * Значение статуса 
      * @var string
      */
-    public $status_s;
+    public $status_s='toLearn';
 
     /**
      * Значение статуса 
      * @var string
      */
-    public $status_r;
+    public $status_r='toLearn';
 
     /**
      * @var int
@@ -93,7 +93,7 @@ class UserVocabylaryPovit{
             $this->status_r = $data['status_r'];
 
             $this->progress = new ProgressInstanse($data['progress']);
-            $this->progress_ru_en_c = isset($data['progress_ru_en_c']) ? new ProgressInstanse($data['progress_ru_en_c']) : new ProgressInstanse();
+            $this->progress_ru_en_c = new ProgressInstanse($data['progress_ru_en_c']);
             $this->progress_en_ru_c = new ProgressInstanse($data['progress_en_ru_c']);
             $this->progress_ru_en_s = new ProgressInstanse($data['progress_ru_en_s']);
             $this->progress_en_ru_s = new ProgressInstanse($data['progress_en_ru_s']);
