@@ -29,4 +29,17 @@ class ProgressInstanse {
             if (isset($data['successLern'])) $this->successLern = (int) $data['successLern'];
         }         
     }
+
+    /**
+     * Преобразовывает данные в массив
+     * @return array 
+     */
+    public function getArray()
+    {
+        return[
+            'errorLern'=>$this->errorLern,
+            'tryToLearn'=>$this->tryToLearn,
+            'successLern'=>$this->successLern,
+        ];
+    }
 }

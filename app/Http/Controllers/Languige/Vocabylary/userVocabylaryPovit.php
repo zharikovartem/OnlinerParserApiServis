@@ -92,7 +92,9 @@ class UserVocabylaryPovit{
         return [
             'status'=>$this->status,
             'english_word_id'=>$this->english_word_id,
-            'user_id'=>$this->user_id
+            'user_id'=>$this->user_id,
+
+            'progress'=>$this->progress->getArray()
         ];
     }
 
