@@ -313,12 +313,12 @@ class VocabularyController extends Controller
         $res = [
             'status' => '',
             'progress'=>'',
-            'progress_ru_en_c'=>'',
-            'progress_en_ru_c'=>'',
-            'progress_ru_en_s'=>'',
-            'progress_en_ru_s'=>'',
-            'progress_ru_en_r'=>'',
-            'progress_en_ru_r'=>''
+            'progress_ru_en_c'=>'{}',
+            'progress_en_ru_c'=>'{}',
+            'progress_ru_en_s'=>'{}',
+            'progress_en_ru_s'=>'{}',
+            'progress_ru_en_r'=>'{}',
+            'progress_en_ru_r'=>'{}'
         ];
 
         if ($status === 'success') {
