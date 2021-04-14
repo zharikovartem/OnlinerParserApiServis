@@ -129,7 +129,7 @@ class User extends Authenticatable
         // }
 
         foreach ($data as $value) {
-            $value->aaa = 'aaa';
+            $value['aaa'] = 'aaa';
         }
 
         // var_dump($data);
