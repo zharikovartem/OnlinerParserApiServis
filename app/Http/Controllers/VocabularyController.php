@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Languige\Vocabylary\UserVocabylaryPovit;
 use App\Vocabulary;
 use Illuminate\Http\Request;
 
@@ -238,9 +239,8 @@ class VocabularyController extends Controller
     {
         # Опредиляем метод проверки:
         $checkMethod = $request->get('checkMethod');
-
-        # method: POST ???
         $status = $request->get('result');
+
         $user = $request->get('user');
         $user->vocabylary;
         $user->toLearn;
@@ -252,13 +252,15 @@ class VocabularyController extends Controller
                 $vocabylaryId = $englishWord->id;
 
                 if ($word->pivot->progress !== null) {
-                    $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
+                    // $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
+                    $progress = new UserVocabylaryPovit( json_decode($word->pivot, true) );
                 } else {
-                    $progress = [
-                        'tryToLearn'=>0,
-                        'successLern'=>0,
-                        'errorLern'=>0
-                    ];
+                    // $progress = [
+                    //     'tryToLearn'=>0,
+                    //     'successLern'=>0,
+                    //     'errorLern'=>0
+                    // ];
+                    $progress = new UserVocabylaryPovit();
                 }
             }
             

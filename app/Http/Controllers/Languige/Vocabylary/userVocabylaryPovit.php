@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Languige\Vocabylary;
 
 use App\Http\Controllers\Languige\Vocabylary\ProgressInstanse;
 
-class userVocabylaryPovit{
+class UserVocabylaryPovit{
     /**
      * Значение статуса 
      * @var string
@@ -63,20 +63,23 @@ class userVocabylaryPovit{
      */
     public $progress_en_ru_r;
 
-    public function __construct(array $data)
+    public function __construct(array $data = null)
     {
-        // $data = json_decode($paramSrtring, true);
-        $this->status = $data['status'];
-        $this->english_word_id = (int) $data['english_word_id'];
-        $this->user_id = (int) $data['user_id'];
+        if ($data) {
+            // $data = json_decode($paramSrtring, true);
+            $this->status = $data['status'];
+            $this->english_word_id = (int) $data['english_word_id'];
+            $this->user_id = (int) $data['user_id'];
 
-        $this->progress = new ProgressInstanse($data['progress']);
-        $this->progress_ru_en_c = new ProgressInstanse($data['progress_ru_en_c']);
-        $this->progress_en_ru_c = new ProgressInstanse($data['progress_en_ru_c']);
-        $this->progress_ru_en_s = new ProgressInstanse($data['progress_ru_en_s']);
-        $this->progress_en_ru_s = new ProgressInstanse($data['progress_en_ru_s']);
-        $this->progress_ru_en_r = new ProgressInstanse($data['progress_ru_en_r']);
-        $this->progress_en_ru_r = new ProgressInstanse($data['progress_en_ru_r']);
+            $this->progress = new ProgressInstanse($data['progress']);
+            $this->progress_ru_en_c = isset($data['progress_ru_en_c']) ? new ProgressInstanse($data['progress_ru_en_c']) : new ProgressInstanse();
+            // $this->progress_en_ru_c = new ProgressInstanse($data['progress_en_ru_c']);
+            // $this->progress_ru_en_s = new ProgressInstanse($data['progress_ru_en_s']);
+            // $this->progress_en_ru_s = new ProgressInstanse($data['progress_en_ru_s']);
+            // $this->progress_ru_en_r = new ProgressInstanse($data['progress_ru_en_r']);
+            // $this->progress_en_ru_r = new ProgressInstanse($data['progress_en_ru_r']);
+        }
+        
     }
 
 }
