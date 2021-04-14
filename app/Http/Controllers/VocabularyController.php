@@ -282,14 +282,15 @@ class VocabularyController extends Controller
             $user->vocabylary;
         } else {
             # UPDATE progress:
-            $result = $this->checkVocabylaryStatus($progress, $status, $checkMethod);
+            // $result = $this->checkVocabylaryStatus($progress, $status, $checkMethod);
+            $progress->editProperty($checkMethod, $status);
             // var_dump($result);
             
             // $user->vocabylary()->updateExistingPivot($vocabylaryId, [
             //     'status' => $progress['successLern'] >= 5 ? 'learned' : 'toLearn',
             //     'progress'=>json_encode($progress)
             // ]);
-            $user->vocabylary()->updateExistingPivot($vocabylaryId, $result->getArray());
+            $user->vocabylary()->updateExistingPivot($vocabylaryId, $progress->getArray());
         }
         
         $toLearn = $user->toLearn;
