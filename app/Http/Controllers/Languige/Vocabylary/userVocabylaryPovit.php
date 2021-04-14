@@ -89,7 +89,7 @@ class UserVocabylaryPovit{
             $this->status_c = $data['status_c'];
             $this->status_s = $data['status_s'];
             $this->status_r = $data['status_r'];
-            
+
             $this->english_word_id = (int) $data['english_word_id'];
             $this->user_id = (int) $data['user_id'];
 
@@ -134,6 +134,7 @@ class UserVocabylaryPovit{
     {
         $fieldName = 'progress_'.$checkMethod;
         $this->$fieldName->editData($status);
+        $this->progress->editData($status);
     }
 
 }
