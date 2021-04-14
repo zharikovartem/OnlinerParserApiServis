@@ -12,6 +12,24 @@ class UserVocabylaryPovit{
     public $status;
 
     /**
+     * Значение статуса 
+     * @var string
+     */
+    public $status_c;
+
+    /**
+     * Значение статуса 
+     * @var string
+     */
+    public $status_s;
+
+    /**
+     * Значение статуса 
+     * @var string
+     */
+    public $status_r;
+
+    /**
      * @var int
      */
     public $english_word_id;
@@ -68,6 +86,10 @@ class UserVocabylaryPovit{
         if ($data) {
             // $data = json_decode($paramSrtring, true);
             $this->status = $data['status'];
+            $this->status_c = $data['status_c'];
+            $this->status_s = $data['status_s'];
+            $this->status_r = $data['status_r'];
+            
             $this->english_word_id = (int) $data['english_word_id'];
             $this->user_id = (int) $data['user_id'];
 
