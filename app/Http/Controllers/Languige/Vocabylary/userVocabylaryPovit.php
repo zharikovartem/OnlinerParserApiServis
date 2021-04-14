@@ -104,7 +104,7 @@ class UserVocabylaryPovit{
     public function editProperty($checkMethod)
     {
         $fieldName = 'progress_'.$checkMethod;
-        $this->$fieldName->editData;
+        $this->$fieldName->editData();
     }
 
 }
