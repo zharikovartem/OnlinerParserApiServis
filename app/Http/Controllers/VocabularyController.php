@@ -306,12 +306,12 @@ class VocabularyController extends Controller
     /**
      * Проверяет статус слова после изменения параметров
      *
-     * @param  array $progress
+     * @param  UserVocabylaryPovit $progress
      * @param string $status
      * @param string $checkMethod
      * @return array 
      */
-    private function checkVocabylaryStatus(array  $progress, string $status, string $checkMethod) {
+    private function checkVocabylaryStatus(UserVocabylaryPovit  $progress, string $status, string $checkMethod) {
         $res = [
             'status' => '',
             'progress'=>'',
@@ -324,10 +324,10 @@ class VocabularyController extends Controller
         ];
 
         if ($status === 'success') {
-            $progress['tryToLearn']++;
-            $progress['successLern']++;
+            $progress->progress['tryToLearn']++;
+            $progress->progress['successLern']++;
 
-            if ($progress['successLern'] > $progress['errorLern']*2+5) {
+            if ($progress->progress['successLern'] > $progress->progress['errorLern']*2+5) {
                 // return 'learned';
                 $res['status'] = 'learned';
             } else {
@@ -335,13 +335,13 @@ class VocabularyController extends Controller
             }
             
         } else {
-            $progress['tryToLearn']++;
-            $progress['errorLern']++;
+            $progress->progress['tryToLearn']++;
+            $progress->progress['errorLern']++;
 
             $res['status'] = 'toLearn';
         }
 
-        $res['progress'] = json_encode($progress);
+        $res['progress'] = json_encode($progress->progress);
 
         return $res;
     }
