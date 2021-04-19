@@ -171,7 +171,7 @@ class CatalogController extends Controller
 
         return response()->json([
             'products' => $products,
-            'count' => $count / 1000,
+            'count' => ceil( $count / 1000 ),
             'part' => $part+1
         ], 200);
     }
