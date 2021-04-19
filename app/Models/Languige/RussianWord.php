@@ -5,6 +5,14 @@ namespace app\Models\Languige;
 use App\Models\Languige\EngleshWord;
 use App\Classes\Languige\AbstractWord;
 
+/**
+ * app\Models\Languige\RussianWord
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|RussianWord newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RussianWord newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RussianWord query()
+ * @mixin \Eloquent
+ */
 class RussianWord extends AbstractWord
 {
     protected $table = 'RussianWords';

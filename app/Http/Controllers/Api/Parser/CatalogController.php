@@ -161,12 +161,20 @@ class CatalogController extends Controller
 
     public function getProductDescriptions($productType, $part=0) {
         $products = DB::table($productType)
-            ->select('id', 'name', 'params', 'images', 'html_url', 'onliner_id', 'brend')
+            ->select('id', 'name', 'params', 'images', 'html_url', 'onliner_id', 'brend', 'price_min')
             ->where('params', '!=', null)
+            ->offset($part*1000)
             ->limit(1000)
             ->get();
 
-        return response()->json($products, 200);
+        $count = DB::table($productType)->where('params', '!=', null)->count();
+
+        return response()->json([
+            'products' => $products,
+            'productCount' => $count,
+            'count' => ceil( $count / 1000 ),
+            'part' => $part+1
+        ], 200);
     }
 
     public function getProductPrices($productType) {

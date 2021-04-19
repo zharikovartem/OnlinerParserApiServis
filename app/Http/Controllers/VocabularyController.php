@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Languige\Vocabylary\userVocabylaryPovit;
 use App\Vocabulary;
 use Illuminate\Http\Request;
 
@@ -238,9 +239,8 @@ class VocabularyController extends Controller
     {
         # Опредиляем метод проверки:
         $checkMethod = $request->get('checkMethod');
-
-        # method: POST ???
         $status = $request->get('result');
+
         $user = $request->get('user');
         $user->vocabylary;
         $user->toLearn;
@@ -251,15 +251,7 @@ class VocabularyController extends Controller
                 $isNew = false;
                 $vocabylaryId = $englishWord->id;
 
-                if ($word->pivot->progress !== null) {
-                    $progress = $word->pivot->progress = json_decode($word->pivot->progress, true);
-                } else {
-                    $progress = [
-                        'tryToLearn'=>0,
-                        'successLern'=>0,
-                        'errorLern'=>0
-                    ];
-                }
+                $progress = new UserVocabylaryPovit( json_decode($word->pivot, true) );
             }
             
         }
@@ -274,20 +266,15 @@ class VocabularyController extends Controller
                     'errorLern'=>0
                 ] )
             ];
+            # создаем новый progress
             $user->vocabylary()->attach([$attachItem]);
             # обновляем User
-            $user = User::where('id', $user->id)->get()[0];
+            // $user = User::where('id', $user->id)->get()[0];
             $user->vocabylary;
         } else {
-            # UPDATE progress:
-            $result = $this->checkVocabylaryStatus($progress, $status, $checkMethod);
-            // var_dump($result);
-            
-            // $user->vocabylary()->updateExistingPivot($vocabylaryId, [
-            //     'status' => $progress['successLern'] >= 5 ? 'learned' : 'toLearn',
-            //     'progress'=>json_encode($progress)
-            // ]);
-            $user->vocabylary()->updateExistingPivot($vocabylaryId, $result);
+            # Обновляем уже существующий progress
+            $progress->editProperty($checkMethod, $status);
+            $user->vocabylary()->updateExistingPivot($vocabylaryId, $progress->getArray());
         }
         
         $toLearn = $user->toLearn;
@@ -299,49 +286,6 @@ class VocabularyController extends Controller
             "progress"=>isset($progress) ? $progress : null,
             "toLearn"=>$toLearn,
         ], 200);
-    }
-
-    /**
-     * Проверяет статус слова после изменения параметров
-     *
-     * @param  array $progress
-     * @param string $status
-     * @param string $checkMethod
-     * @return array 
-     */
-    private function checkVocabylaryStatus(array  $progress, string $status, string $checkMethod) {
-        $res = [
-            'status' => '',
-            'progress'=>'',
-            'progress_ru_en_c',
-            'progress_en_ru_c',
-            'progress_ru_en_s',
-            'progress_en_ru_s',
-            'progress_ru_en_r',
-            'progress_en_ru_r'
-        ];
-
-        if ($status === 'success') {
-            $progress['tryToLearn']++;
-            $progress['successLern']++;
-
-            if ($progress['successLern'] > $progress['errorLern']*2+5) {
-                // return 'learned';
-                $res['status'] = 'learned';
-            } else {
-                $res['status'] = 'toLearn';
-            }
-            
-        } else {
-            $progress['tryToLearn']++;
-            $progress['errorLern']++;
-
-            $res['status'] = 'toLearn';
-        }
-
-        $res['progress'] = json_encode($progress);
-
-        return $res;
     }
 
     public function skipWord(Request $request, int $wordId) {
