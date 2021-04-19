@@ -167,7 +167,13 @@ class CatalogController extends Controller
             ->limit(1000)
             ->get();
 
-        return response()->json($products, 200);
+        $count = DB::table($productType)->count();
+
+        return response()->json([
+            'products' => $products,
+            'count' => $count / 1000,
+            'part' => $part+1
+        ], 200);
     }
 
     public function getProductPrices($productType) {
