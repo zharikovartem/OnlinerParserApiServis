@@ -163,6 +163,7 @@ class CatalogController extends Controller
         $products = DB::table($productType)
             ->select('id', 'name', 'params', 'images', 'html_url', 'onliner_id', 'brend')
             ->where('params', '!=', null)
+            ->offset($part*1000)
             ->limit(1000)
             ->get();
 
