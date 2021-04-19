@@ -8,6 +8,16 @@ use App\Http\Controllers\Languige\Vocabylary\userVocabylaryPovit;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * app\Models\Languige\EnglishWord
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\app\Models\Languige\RussianWord[] $relations
+ * @property-read int|null $relations_count
+ * @method static \Illuminate\Database\Eloquent\Builder|EnglishWord newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EnglishWord newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EnglishWord query()
+ * @mixin \Eloquent
+ */
 class EnglishWord extends AbstractWord
 {
     // public function __construct($name, $occurrence, $description)

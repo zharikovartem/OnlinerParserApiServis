@@ -8,6 +8,37 @@ use Illuminate\Support\Facades\DB;
 
 use App\ControllerMethods;
 
+/**
+ * App\Controllers
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string $name
+ * @property string|null $folder
+ * @property int|null $model_id
+ * @property mixed|null $models
+ * @property int|null $backend_id
+ * @property int|null $isResource
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Controllers onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereBackendId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereFolder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereIsResource($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereModelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereModels($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Controllers whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Controllers withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Controllers withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Controllers extends Model
 {
     use SoftDeletes;
