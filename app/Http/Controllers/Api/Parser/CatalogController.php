@@ -167,11 +167,11 @@ class CatalogController extends Controller
             ->limit(1000)
             ->get();
 
-        // $count = DB::table($productType)->count();
+        $count = DB::table($productType)->count();
 
         return response()->json([
             'products' => $products,
-            // 'count' => $count / 1000,
+            'count' => $count / 1000,
             'part' => $part+1
         ], 200);
     }

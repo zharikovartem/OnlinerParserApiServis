@@ -60,7 +60,7 @@ Route::get('startCatalogItem/{item}', 'Api\Parser\CatalogController@startCatalog
 Route::get('startProductParamParsing/{productType}', 'Api\Parser\CatalogController@startProductParamParsing')->middleware('token'); # Начать парсинг Описаний для раздела
 Route::get('startProductParamParsing/{productType}/{productId}', 'Api\Parser\CatalogController@startProductParamItem')->middleware('token'); # Получить Описания для Товара
 
-Route::get('getProductDescriptions/{productType}/{part}', 'Api\Parser\CatalogController@getProductDescriptions')->middleware('token'); # Получить готовые описания для товаров
+Route::get('getProductDescriptions/{productType}/{part?}', 'Api\Parser\CatalogController@getProductDescriptions')->middleware('token'); # Получить готовые описания для товаров
 Route::get('getProductPrices/{productType}', 'Api\Parser\CatalogController@getProductPrices')->middleware('token'); # Получить цены с ценами конкурентов
 
 # ToDo:
