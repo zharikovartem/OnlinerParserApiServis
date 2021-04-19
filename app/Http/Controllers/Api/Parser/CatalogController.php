@@ -167,7 +167,7 @@ class CatalogController extends Controller
             ->limit(1000)
             ->get();
 
-        $count = DB::table($productType)->count();
+        $count = DB::table($productType)->where('params', '!=', null)->count();
 
         return response()->json([
             'products' => $products,
