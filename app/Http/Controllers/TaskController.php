@@ -58,7 +58,7 @@ class TaskController extends Controller
         
         $newTask->save();
 
-        return self::index($request);
+        return $this->index($request);
     }
 
     /**
@@ -133,7 +133,7 @@ class TaskController extends Controller
         $request = new Request;
         $request->request->add([ 'date' => $task['date'] ]);
 
-        return self::index($request);
+        return $this->index($request);
     }
 
     /**
