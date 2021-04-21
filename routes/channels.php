@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Broadcast;
+
+>>>>>>> first commit
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -11,6 +16,10 @@
 |
 */
 
+<<<<<<< HEAD
 Broadcast::channel('App.User.{id}', function ($user, $id) {
+=======
+Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+>>>>>>> first commit
     return (int) $user->id === (int) $id;
 });

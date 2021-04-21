@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Foundation\Inspiring;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Artisan;
+>>>>>>> first commit
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +19,8 @@ use Illuminate\Foundation\Inspiring;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
+<<<<<<< HEAD
 })->describe('Display an inspiring quote');
+=======
+})->purpose('Display an inspiring quote');
+>>>>>>> first commit

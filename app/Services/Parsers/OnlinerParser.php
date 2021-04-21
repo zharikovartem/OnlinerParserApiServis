@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\CatalogItemParsingJob;
 use App\Jobs\ProductParamParsingJob;
-
-
+use Exception;
 
 // use Sunra\PhpSimple\HtmlDomParser;
 // use Symfony\Component\DomCrawler\Crawler;
@@ -108,54 +107,34 @@ class OnlinerParser {
     public static function getCatalogItem($data) {
         $catalogItem = $data['name'];
         # Проверяем таблицу на существование:
-        if (Schema::hasTable($catalogItem)) {
-            // echo $catalogItem.' - Существует!';
-        } else {
-            Schema::create($catalogItem, function($table) {
-                $table->increments('id');
-                $table->integer('onliner_id');
-                $table->integer('popularity');
-                $table->timestamps();
-                $table->string('onliner_key');
-                $table->string('name');
-                $table->string('brend')->nullable();
-                $table->string('full_name');
-                $table->string('name_prefix');
-                $table->string('extended_name');
-                $table->mediumText('image_header_url')->nullable();
-                $table->mediumText('descriptions');
-                $table->mediumText('html_url');
-                $table->decimal('price_min', 8, 2);
-                $table->dateTime('pars_date')->nullable();
-                // $table->json('params')->nullable();
-                // $table->json('images')->nullable();
-                
-                $table->longText('params')->nullable();
-                $table->longText('images')->nullable();
-
-                // $table->mediumText('params')->nullable();
-            });
-
-            // echo $catalogItem.' - Создана!';
+        if (!Schema::hasTable($catalogItem)) {
+            self::createCatalogItemTable($catalogItem);
         }
 
-        // echo '
-        // Стартуем: '.$data['part'].'
-        
-        // ';
-        # https://catalog.onliner.by/sdapi/catalog.api/search/hoods?page=1
         $baseUrl = 'https://catalog.onliner.by/sdapi/catalog.api/search/'.$catalogItem.'?page='.$data['part'];
-        // $document = new Document($baseUrl, true);
-        $pageJSON = file_get_contents($baseUrl);
+
+        try {
+            $pageJSON = file_get_contents($baseUrl);
+        } catch (Exception $e) { 
+            echo 'Exception';
+            DB::table('jobs')->delete();
+            sleep(20);
+            dispatch(new CatalogItemParsingJob($data));
+            // exit();
+            die($e);
+        }
+
+        
+
         $pageObject = json_decode($pageJSON, true);
 
-        $productsData = $pageObject['products'];
         $productsToInsert = array();
         $productsToUpdate = array();
         $onlinerIds = array();
 
-        foreach ($productsData as $index => $item) {
+        foreach ($pageObject['products'] as $index => $item) {
             $onlinerIds[] = $item['id'];
+
             $productItem = [
                 'name' => $item['name'],
                 'onliner_id' => $item['id'],
@@ -165,7 +144,7 @@ class OnlinerParser {
                 'extended_name' => $item['extended_name'],
                 'image_header_url' => $item['images']['header'],
                 'descriptions' => $item['description'],
-                'price_min' => floatval($item['prices']['price_min']['amount']),
+                'price_min' => $item['prices']!==null ? floatval($item['prices']['price_min']['amount']) : 00.00,
                 'popularity' => ((int)$data['part']-1) * 30 + (int)$index + 1,
                 'html_url' => $item['html_url'],
                 'brend'=> explode(' '.$item['name'], $item['full_name'])[0]
@@ -178,12 +157,11 @@ class OnlinerParser {
         $oldProducts = DB::table($catalogItem)
                     ->whereIn('onliner_id', $onlinerIds)
                     ->get();
-        // var_dump($oldProducts);
+
+        # Добавляем productsToUpdate удаляем productsToInsert
         foreach ($oldProducts as $keyO => $oldProduct) {
-            // echo $oldProduct->onliner_id;
             foreach ($productsToInsert as $keyP => $product) {
                 if ($product['onliner_id'] == $oldProduct->onliner_id) {
-                    // $oldProduct->updated_at = now();
                     $itemToUpdate = [
                         'id'=>$oldProduct->id
                     ];
@@ -206,7 +184,7 @@ class OnlinerParser {
         
 
 
-        if ($pageObject['page']['last'] == $data['part']) {
+        if ($pageObject['page']['last'] === $data['part']) {
             echo 'end';
             # получаем количество товаров в базе:
             $total_count = DB::table($catalogItem)->count();
@@ -219,19 +197,19 @@ class OnlinerParser {
                 ));
 
             $data['total_count'] = $total_count;
-            $dataToEvent = [
-                // 'topic_id'=>'onNewData',
-                'topic_id'=>$data['name'],
-                'data'=>$data
-            ];
-            \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
+
+            # Добавить эвент для web socket
+            // $dataToEvent = [
+            //     'topic_id'=>$data['name'],
+            //     'data'=>$data
+            // ];
+            // \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
 
         } else {
-            // echo 'next';
             $data['part']++;
-            sleep(1);
+            // usleep(100);
             dispatch(new CatalogItemParsingJob($data));
-            echo (int)memory_get_peak_usage()/1000000 . '';
+            echo (int)memory_get_peak_usage()/1000000 . ' = '.$data['part'];
         }
     }
 
@@ -271,12 +249,12 @@ class OnlinerParser {
             if (count($products) == 0) {
                 # Отравляем WebSocket:
                 ############################################################################################################
-                $dataToEvent = [
-                    // 'topic_id'=>'onNewData',
-                    'topic_id'=>$data['name'].'Desc',
-                    'data'=>'end'
-                ];
-                \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
+                // $dataToEvent = [
+                //     // 'topic_id'=>'onNewData',
+                //     'topic_id'=>$data['name'].'Desc',
+                //     'data'=>'end'
+                // ];
+                // \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
                 ############################################################################################################
                 # Сохраняем нужное количество товаров в Catalog:
                 DB::table('Catalog')
@@ -400,12 +378,12 @@ class OnlinerParser {
             ]));
             ################################################################################################
             # обновляем количество спаршенных товаров:
-            $dataToEvent = [
-                // 'topic_id'=>'onNewData',
-                'topic_id'=>$data['name'].'Desc',
-                'data'=>$data['part']
-            ];
-            \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
+            // $dataToEvent = [
+            //     // 'topic_id'=>'onNewData',
+            //     'topic_id'=>$data['name'].'Desc',
+            //     'data'=>$data['part']
+            // ];
+            // \App\Classes\Socket\Pusher::sendDataToServer($dataToEvent);
 
             ####################################################################
 
@@ -447,6 +425,36 @@ class OnlinerParser {
 
     # https://catalog.onliner.by/sdapi/catalog.api/facets/oven_cooker - Получить описание параметров
     # https://catalog.onliner.by/sdapi/catalog.api/search/oven_cooker?mfr[0]=maunfeld
+
+
+
+    private static function createCatalogItemTable(string $catalogItem) {
+        Schema::create($catalogItem, function($table) {
+            $table->increments('id');
+            $table->integer('onliner_id');
+            $table->integer('popularity');
+            $table->timestamps();
+            $table->string('onliner_key');
+            $table->string('name');
+            $table->string('brend')->nullable();
+            $table->string('full_name');
+            $table->string('name_prefix');
+            $table->string('extended_name');
+            $table->mediumText('image_header_url')->nullable();
+            $table->mediumText('descriptions');
+            $table->mediumText('html_url');
+            $table->decimal('price_min', 8, 2);
+            $table->dateTime('pars_date')->nullable();
+            // $table->json('params')->nullable();
+            // $table->json('images')->nullable();
+            
+            $table->json('params')->nullable();
+            $table->longText('images')->nullable();
+
+            // $table->mediumText('params')->nullable();
+        });
+    }
 }
+
 
 

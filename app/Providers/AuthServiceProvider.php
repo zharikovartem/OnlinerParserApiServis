@@ -4,7 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+<<<<<<< HEAD
 use Laravel\Passport\Passport;
+=======
+>>>>>>> first commit
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,7 +17,11 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+<<<<<<< HEAD
         // 'App\Model' => 'App\Policies\ModelPolicy',
+=======
+        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+>>>>>>> first commit
     ];
 
     /**
@@ -26,6 +33,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+<<<<<<< HEAD
         Passport::routes();
+=======
+        //
+>>>>>>> first commit
     }
 }

@@ -175,8 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+<<<<<<< HEAD
         Laravel\Passport\PassportServiceProvider::class,
 
+=======
+>>>>>>> first commit
     ],
 
     /*
@@ -203,12 +206,20 @@ return [
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
+<<<<<<< HEAD
+=======
+        'Date' => Illuminate\Support\Facades\Date::class,
+>>>>>>> first commit
         'DB' => Illuminate\Support\Facades\DB::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+<<<<<<< HEAD
+=======
+        'Http' => Illuminate\Support\Facades\Http::class,
+>>>>>>> first commit
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -216,7 +227,11 @@ return [
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
+<<<<<<< HEAD
         'Redis' => Illuminate\Support\Facades\Redis::class,
+=======
+        // 'Redis' => Illuminate\Support\Facades\Redis::class,
+>>>>>>> first commit
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
         'Route' => Illuminate\Support\Facades\Route::class,

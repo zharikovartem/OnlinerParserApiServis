@@ -42,7 +42,10 @@ return [
         ],
 
         'api' => [
+<<<<<<< HEAD
             // 'driver' => 'token',
+=======
+>>>>>>> first commit
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
@@ -69,8 +72,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
+<<<<<<< HEAD
             'model' => App\User::class,
             // 'model' => App\Models\User::class,
+=======
+            'model' => App\Models\User::class,
+>>>>>>> first commit
         ],
 
         // 'users' => [

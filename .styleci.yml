@@ -1,7 +1,11 @@
 php:
   preset: laravel
   disabled:
+<<<<<<< HEAD
     - unused_use
+=======
+    - no_unused_imports
+>>>>>>> first commit
   finder:
     not-name:
       - index.php

@@ -13,7 +13,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'default' => env('QUEUE_CONNECTION', 'database'),
+=======
+    'default' => env('QUEUE_CONNECTION', 'sync'),
+>>>>>>> first commit
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +42,12 @@ return [
             'driver' => 'database',
             'table' => 'jobs',
             'queue' => 'default',
+<<<<<<< HEAD
             'retry_after' => 240,
+=======
+            'retry_after' => 90,
+            'after_commit' => false,
+>>>>>>> first commit
         ],
 
         'beanstalkd' => [
@@ -47,6 +56,10 @@ return [
             'queue' => 'default',
             'retry_after' => 90,
             'block_for' => 0,
+<<<<<<< HEAD
+=======
+            'after_commit' => false,
+>>>>>>> first commit
         ],
 
         'sqs' => [
@@ -54,8 +67,15 @@ return [
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+<<<<<<< HEAD
             'queue' => env('SQS_QUEUE', 'your-queue-name'),
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+=======
+            'queue' => env('SQS_QUEUE', 'default'),
+            'suffix' => env('SQS_SUFFIX'),
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'after_commit' => false,
+>>>>>>> first commit
         ],
 
         'redis' => [
@@ -64,6 +84,10 @@ return [
             'queue' => env('REDIS_QUEUE', 'default'),
             'retry_after' => 90,
             'block_for' => null,
+<<<<<<< HEAD
+=======
+            'after_commit' => false,
+>>>>>>> first commit
         ],
 
     ],
@@ -80,7 +104,11 @@ return [
     */
 
     'failed' => [
+<<<<<<< HEAD
         'driver' => env('QUEUE_FAILED_DRIVER', 'database'),
+=======
+        'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
+>>>>>>> first commit
         'database' => env('DB_CONNECTION', 'mysql'),
         'table' => 'failed_jobs',
     ],

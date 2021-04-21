@@ -3,7 +3,11 @@
 namespace App\Http\Middleware;
 
 // use App\AuthToken;
+<<<<<<< HEAD
 use App\User;
+=======
+use App\Models\User;
+>>>>>>> first commit
 use Closure;
 
 class TokenAuth

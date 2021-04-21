@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Route;
+
+>>>>>>> first commit
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +19,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 Route::get('/registration', function () {
     return view('welcome');
 });
@@ -28,3 +34,5 @@ Route::get('/login', function () {
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+=======
+>>>>>>> first commit

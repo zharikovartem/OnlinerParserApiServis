@@ -14,16 +14,24 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+<<<<<<< HEAD
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('status')->nullable();
+=======
+            $table->id();
+            $table->string('name');
+>>>>>>> first commit
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+<<<<<<< HEAD
             $table->json('view_settings')->nullable();
             $table->text('phone')->nullable();
+=======
+>>>>>>> first commit
         });
     }
 
@@ -37,4 +45,7 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> first commit

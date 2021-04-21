@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 // use Illuminate\Routing\Route;
 
 if ( isset($_SERVER['HTTP_ORIGIN'])) {
@@ -24,6 +25,11 @@ header('Access-Control-Allow-Origin:'.$http_origin); //.', x-auth-token');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: origin, x-requested-with, content-type, x-auth-token');
 header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
+=======
+use App\Http\Controllers\Api\Parser\CatalogController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+>>>>>>> first commit
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +46,7 @@ header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
 //     return $request->user();
 // });
 
+<<<<<<< HEAD
 Route::post('login', 'Api\Auth\LoginController@login');
 Route::post('register', 'Api\Auth\RegisterController@register');
 
@@ -111,3 +118,9 @@ Route::post('checkTestResult/{englishWord}', 'VocabularyController@checkTestResu
 Route::resource('providers', 'ProvidersController');
 
 Route::resource('contacts', 'ContactsController')->middleware('token');
+=======
+Route::get('startCatalogParsing', 'Api\Parser\CatalogController@startCatalogParsing');//->middleware('token'); # Получить весь каталог
+Route::get('startCatalogItem/{item}', 'Api\Parser\CatalogController@startCatalogItem');//->middleware('token'); # Получить список товаров для раздела
+Route::get('startProductParamParsing/{productType}', 'Api\Parser\CatalogController@startProductParamParsing');//->middleware('token'); # Начать парсинг Описаний для раздела
+// http://127.0.0.1:8000/api/startProductParamParsing/faucet
+>>>>>>> first commit

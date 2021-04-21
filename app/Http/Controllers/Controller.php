@@ -10,8 +10,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+<<<<<<< HEAD
 
     // public function __construct() {
     //     auth()->setDefaultDriver('api');
     // }
+=======
+>>>>>>> first commit
 }
